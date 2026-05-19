@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofijos Veidrodis · Penrosiniai vartai į nubudimą</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+--void:#05060a;
+--deep:#0a0c16;
+--indigo:#13112a;
+--gold:#d9a441;
+--gold-bright:#f3cf81;
+--sophia:#e9cd92;
+--pneuma:#a6dde6;
+--ash:#7d7c91;
+--bone:#ece8dc;
+--line:rgba(217,164,65,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+background:var(--void);
+color:var(--bone);
+font-family:'Cormorant Garamond',serif;
+font-size:20px;
+line-height:1.75;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
+/* ---- cosmic atmosphere ---- */
+#stars{position:fixed;inset:0;z-index:0;opacity:.55}
+.veil{
+position:fixed;inset:0;z-index:1;pointer-events:none;
+background:
+radial-gradient(ellipse 60% 50% at 50% 0%, rgba(217,164,65,.10), transparent 60%),
+radial-gradient(ellipse 80% 60% at 50% 110%, rgba(80,60,140,.16), transparent 60%),
+radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,0,0,.55) 100%);
+}
+.grain{
+position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.04;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+main{position:relative;z-index:3}
+section{
+max-width:880px;margin:0 auto;
+padding:13vh 7vw;
+position:relative;
+}
+/* ---- typography ---- */
+.kicker{
+font-family:'Cinzel',serif;
+font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;
+color:var(--gold);opacity:.8;margin-bottom:1.6rem;
+}
+h1{
+font-family:'Cinzel',serif;font-weight:500;
+font-size:clamp(2.4rem,7vw,4.4rem);
+line-height:1.12;letter-spacing:.02em;
+color:var(--bone);margin-bottom:1.4rem;
+}
+h2{
+font-family:'Cinzel',serif;font-weight:500;
+font-size:clamp(1.7rem,4.4vw,2.7rem);
+line-height:1.2;color:var(--sophia);
+margin-bottom:1.6rem;letter-spacing:.02em;
+}
+h1 .glow,h2 .glow{
+color:var(--gold-bright);
+text-shadow:0 0 26px rgba(243,207,129,.5),0 0 60px rgba(217,164,65,.25);
+}
+p{margin-bottom:1.3rem;color:#cfcbbd}
+p.lead{font-size:1.22rem;color:var(--bone);font-style:italic}
+.dim{color:var(--ash)}
+em{color:var(--sophia)}
+strong{color:var(--gold-bright);font-weight:600}
+/* ---- English echo beneath the Lithuanian voice ---- */
+.en{
+display:block;
+font-family:'EB Garamond',serif;
+font-style:italic;
+font-size:.78em;
+color:var(--ash);
+letter-spacing:.012em;
+line-height:1.62;
+margin-top:.55rem;
+opacity:.92;
+}
+h1 .en,h2 .en{
+font-family:'Cinzel',serif;font-style:normal;
+font-size:.34em;letter-spacing:.22em;text-transform:uppercase;
+color:var(--ash);margin-top:1rem;line-height:1.5;
+}
+.verse .en{color:rgba(166,221,230,.5)}
+.kicker .en{
+display:inline;font-family:inherit;font-style:normal;
+font-size:1em;color:var(--ash);opacity:.85;margin:0;
+text-transform:uppercase;
+}
+.card li .en{font-size:.82em;margin-top:.25rem}
+.step p .en{font-size:.84em;margin-top:.4rem}
+.verse{
+font-family:'EB Garamond',serif;font-style:italic;
+font-size:1.15rem;color:var(--pneuma);
+border-left:1px solid var(--line);
+padding:.2rem 0 .2rem 1.6rem;margin:2rem 0;
+line-height:1.9;
+}
+.verse .src{
+display:block;font-style:normal;font-size:.78rem;
+letter-spacing:.22em;text-transform:uppercase;
+color:var(--ash);margin-top:.7rem;
+}
+.rule{
+width:60px;height:1px;margin:3.5rem auto;
+background:linear-gradient(90deg,transparent,var(--gold),transparent);
+position:relative;
+}
+.rule::after{
+content:"✦";position:absolute;left:50%;top:50%;
+transform:translate(-50%,-50%);
+color:var(--gold);font-size:.7rem;background:var(--void);padding:0 .6rem;
+}
+/* ---- reveal animation ---- */
+.reveal{opacity:0;transform:translateY(34px);
+transition:opacity 1.5s ease,transform 1.5s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* ---- hero ---- */
+.hero{min-height:100vh;display:flex;flex-direction:column;
+align-items:center;justify-content:center;text-align:center}
+.hero h1{font-size:clamp(2.6rem,8vw,5rem)}
+.scrolldown{
+position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);
+font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.36em;
+text-transform:uppercase;color:var(--ash);
+display:flex;flex-direction:column;align-items:center;gap:.9rem;
+}
+.scrolldown span{
+width:1px;height:46px;
+background:linear-gradient(var(--gold),transparent);
+animation:drip 2.6s ease-in-out infinite;
+}
+@keyframes drip{0%,100%{opacity:.2;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+/* ---- the eye ---- */
+.eye-wrap{display:flex;justify-content:center;margin:1rem 0 2.5rem;position:relative}
+.eye-svg{width:min(420px,82vw);height:auto;overflow:visible;cursor:crosshair}
+.lid{transition:transform 1.4s cubic-bezier(.6,0,.4,1);transform-origin:center}
+@keyframes blink{
+0%,92%,100%{transform:scaleY(0)}
+95%,97%{transform:scaleY(1)}
+}
+.lid-anim{animation:blink 8.5s ease-in-out infinite;transform-origin:center}
+@keyframes breathe-pupil{0%,100%{r:24}50%{r:34}}
+.pupil-core{animation:breathe-pupil 11s ease-in-out infinite}
+@keyframes ring-pulse{
+0%,100%{opacity:.15;transform:scale(.96)}
+50%{opacity:.5;transform:scale(1.04)}
+}
+.aura-ring{transform-origin:center;transform-box:fill-box;
+animation:ring-pulse 11s ease-in-out infinite}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+.iris-spin{transform-origin:center;transform-box:fill-box;
+animation:slowspin 90s linear infinite}
+/* ---- breath guide ---- */
+.breath{
+margin:3rem auto;width:240px;height:240px;position:relative;
+display:flex;align-items:center;justify-content:center;
+}
+.breath .orb{
+position:absolute;inset:0;border-radius:50%;
+border:1px solid var(--line);
+background:radial-gradient(circle,rgba(217,164,65,.10),transparent 70%);
+animation:breath 16s ease-in-out infinite;
+}
+.breath .orb.b2{animation-delay:-2s;opacity:.5}
+@keyframes breath{
+0%,100%{transform:scale(.5);border-color:rgba(166,221,230,.35)}
+25%{transform:scale(1)}
+50%{transform:scale(1);border-color:rgba(243,207,129,.55)}
+75%{transform:scale(.5)}
+}
+.breath-word{
+font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.32em;
+text-transform:uppercase;color:var(--sophia);z-index:2;
+text-align:center;line-height:2;
+}
+/* ---- penrose mandala ---- */
+.mandala-wrap{display:flex;justify-content:center;margin:2rem 0 3rem}
+#penrose{width:min(560px,92vw);height:auto;
+animation:slowspin 240s linear infinite;transform-origin:center}
+/* ---- steps / ladder ---- */
+.ladder{margin:2rem 0;counter-reset:step}
+.step{
+position:relative;padding:1.8rem 0 1.8rem 4.6rem;
+border-bottom:1px solid rgba(217,164,65,.10);
+}
+.step:last-child{border-bottom:none}
+.step::before{
+counter-increment:step;content:counter(step,upper-roman);
+position:absolute;left:0;top:1.9rem;
+width:3rem;text-align:center;
+font-family:'Cinzel',serif;font-size:1.1rem;
+color:var(--gold);
+}
+.step::after{
+content:"";position:absolute;left:1.5rem;top:3.6rem;bottom:-1px;
+width:1px;background:linear-gradient(var(--line),transparent);
+}
+.step:last-child::after{display:none}
+.step h3{
+font-family:'Cinzel',serif;font-weight:500;font-size:1.18rem;
+color:var(--sophia);margin-bottom:.5rem;letter-spacing:.04em;
+}
+.step h3 .gk{color:var(--ash);font-size:.85rem;letter-spacing:.2em;font-weight:400}
+.step p{font-size:1.04rem;margin-bottom:0;color:#c7c3b6}
+/* ---- mirror instruction card ---- */
+.card{
+border:1px solid var(--line);border-radius:2px;
+padding:2.4rem 2.2rem;margin:2.5rem 0;
+background:linear-gradient(160deg,rgba(20,18,42,.55),rgba(10,12,22,.3));
+backdrop-filter:blur(2px);
+}
+.card h3{
+font-family:'Cinzel',serif;font-weight:500;font-size:1.05rem;
+letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+margin-bottom:1.4rem;
+}
+.card ol{list-style:none;counter-reset:c}
+.card li{
+position:relative;padding:.55rem 0 .55rem 2.4rem;
+color:#cbc7ba;font-size:1.05rem;
+}
+.card li::before{
+counter-increment:c;content:counter(c);
+position:absolute;left:0;top:.55rem;
+font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;
+width:1.4rem;text-align:center;
+border:1px solid var(--line);border-radius:50%;line-height:1.4;
+}
+/* ---- closing ---- */
+.closing{text-align:center;min-height:80vh;
+display:flex;flex-direction:column;justify-content:center;align-items:center}
+.sig{
+font-family:'Cormorant Garamond',serif;font-style:italic;
+font-size:1.3rem;color:var(--sophia);margin-top:2.5rem;line-height:1.9;
+}
+.sig small{
+display:block;font-family:'Cinzel',serif;font-style:normal;
+font-size:.66rem;letter-spacing:.36em;text-transform:uppercase;
+color:var(--ash);margin-top:1.4rem;
+}
+footer{
+text-align:center;padding:4rem 2rem 6rem;
+font-size:.8rem;letter-spacing:.2em;color:var(--ash);
+font-family:'Cinzel',serif;text-transform:uppercase;
+}
+::selection{background:rgba(217,164,65,.3);color:var(--bone)}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="veil"></div>
+<div class="grain"></div>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+<div class="reveal in">
+<div class="kicker">Luxfelis · Katės Šviesa <span class="en">· The Feline Light</span></div>
+<h1>Sofijos<br><span class="glow">Veidrodis</span>
+<span class="en">The Mirror of Sophia</span></h1>
+<p class="lead dim">Penrosiniai vartai į nubudimą, kur akis,<br>kuri ieško, tampa akimi, kuri yra rasta.
+<span class="en">A Penrosian gate to awakening, where the eye that searches becomes the eye that is found.</span></p>
+</div>
+<div class="scrolldown">Nuženk, kad pakiltum · Descend to ascend<span></span></div>
+</section>
+
+<!-- INVOCATION -->
+<section>
+<div class="reveal">
+<div class="kicker">I · Slenkstis <span class="en">· The Threshold</span></div>
+<h2>Tu jau esi <span class="glow">šviesa</span>,<br>ieškanti savęs.
+<span class="en">You are already the light looking for itself.</span></h2>
+<p class="lead">Nubudimas nėra kažko naujo atėjimas. Tai užmiršimo pabaiga.
+<span class="en">Awakening is not the arrival of something new. It is the ending of a forgetting.</span></p>
+<p>Tavyje yra kibirkštis, <em>pneuma</em>, Sofijos kvėpavimas, kuri užmigo pasaulyje, pastatytame menkesnio kūrėjo. Tas pasaulis išmokė tave vardo, istorijos, baimės ir tą ryšulį pavadino <strong>tavimi</strong>. Tai nėra melas, kurio reikia nekęsti. Tai sapnas, pro kurį reikia praregėti.
+<span class="en">There is a spark in you, the pneuma, the breath of Sophia, that fell asleep inside a world built by a lesser maker. That world taught you a name, a story, a fear, and called the bundle you. This is not a lie to be hated. It is a dream to be seen through.</span></p>
+<p>Nubusti reiškia paprasčiausiai žvelgti, tvirtai, nesutrikus, į tai, kas visada čia buvo. Katė nesimoko matyti tamsoje. Ji prisimena, kad galėjo.
+<span class="en">To wake is simply to look, steadily, without flinching, at what has always been here. The cat does not learn to see in the dark. It remembers it could.</span></p>
+<div class="verse">
+„Jei išvesi tai, kas yra tavyje, tai, ką išvesi, tave išgelbės. Jei neišvesi, tai, ko neišvedi, tave sunaikins.“
+<span class="en">“If you bring forth what is within you, what you bring forth will save you. If you do not bring it forth, what you do not bring forth will destroy you.”</span>
+<span class="src">Tomo evangelija · 70 logija</span>
+</div>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- EYE IN THE MIRROR -->
+<section>
+<div class="reveal">
+<div class="kicker">II · Akis veidrodyje <span class="en">· The Eye in the Mirror</span></div>
+<h2>Sutik tą, kuris<br>niekada neišėjo.
+<span class="en">Meet the one who has never left.</span></h2>
+</div>
+<div class="reveal eye-wrap">
+<svg class="eye-svg" id="eyeMirror" viewBox="0 0 400 280" aria-hidden="true">
+<defs>
+<radialGradient id="irisG" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#1a1430"/>
+<stop offset="38%" stop-color="#7a5a1f"/>
+<stop offset="62%" stop-color="#d9a441"/>
+<stop offset="84%" stop-color="#f3cf81"/>
+<stop offset="100%" stop-color="#5a4416"/>
+</radialGradient>
+<radialGradient id="pupilG" cx="42%" cy="40%" r="60%">
+<stop offset="0%" stop-color="#0a0a14"/>
+<stop offset="100%" stop-color="#000"/>
+</radialGradient>
+<radialGradient id="auraG" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="rgba(243,207,129,.0)"/>
+<stop offset="70%" stop-color="rgba(217,164,65,.22)"/>
+<stop offset="100%" stop-color="rgba(217,164,65,0)"/>
+</radialGradient>
+<clipPath id="eyeClip">
+<path d="M30,140 C110,55 290,55 370,140 C290,225 110,225 30,140 Z"/>
+</clipPath>
+</defs>
+<ellipse class="aura-ring" cx="200" cy="140" rx="180" ry="120" fill="url(#auraG)"/>
+<g clip-path="url(#eyeClip)">
+<rect x="0" y="0" width="400" height="280" fill="#070710"/>
+<g transform="translate(200,140)">
+<circle r="88" fill="url(#irisG)"/>
+<g class="iris-spin" id="irisRays"></g>
+<circle r="88" fill="none" stroke="rgba(243,207,129,.35)" stroke-width="1"/>
+<circle r="60" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+<circle class="pupil-core" r="28" fill="url(#pupilG)"/>
+<circle r="28" fill="none" stroke="rgba(243,207,129,.25)" stroke-width="1"/>
+<circle cx="-10" cy="-12" r="7" fill="rgba(255,255,255,.85)"/>
+<circle cx="14" cy="10" r="3" fill="rgba(166,221,230,.5)"/>
+</g>
+</g>
+<path d="M30,140 C110,55 290,55 370,140 C290,225 110,225 30,140 Z"
+fill="none" stroke="rgba(243,207,129,.5)" stroke-width="1.5"/>
+<path id="topLid" class="lid-anim"
+d="M30,140 C110,55 290,55 370,140 C290,138 110,138 30,140 Z"
+fill="#05060a"/>
+</svg>
+</div>
+<div class="reveal">
+<p>Tai simbolis, bet praktika tikra, ir jai reikia tikro veidrodžio. Surask jį. Pritemdyk šviesą. Tada daryk štai ką:
+<span class="en">This is a symbol, but the practice is real, and it requires a true mirror. Find one. Lower the light. Then do this:</span></p>
+<div class="card">
+<h3>Veidrodžio žvilgsnis · Speculum Sophiae</h3>
+<ol>
+<li>Sėsk pakankamai arti, kad viena akis užpildytų regėjimą. Rinkis <em>kairę</em>, priimančiąją pusę.
+<span class="en">Sit close enough that one eye fills your sight. Choose the left, the receiving side.</span></li>
+<li>Atleisk veidą. Tegul lūpos pamiršta, kad moka šypsotis ar nerimauti.
+<span class="en">Soften the face. Let the mouth forget it knows how to smile or worry.</span></li>
+<li>Žvelk į vyzdį, juodą centrą. Ne į paviršių; <em>į</em> tamsą.
+<span class="en">Gaze into the pupil, the black centre. Not at the surface; into the dark.</span></li>
+<li>Kvėpuok lėtai. Nevaidink. Tegul atspindys tampa svetimas. Jis taps.
+<span class="en">Breathe slowly. Do not perform. Let the reflection grow strange. It will.</span></li>
+<li>Kai veidas atrodys niekam nepriklausantis, kai vardas atsileis, <strong>pasilik</strong>. Tas svetimasis nėra tavęs praradimas. Tai liudytojas po kauke.
+<span class="en">When the face seems to belong to no one, when the name loosens, stay. That stranger is not a loss of you. It is the witness beneath the mask.</span></li>
+<li>Tyliai paklausk: <em>Kas žiūri?</em> Neatsakyk žodžiais. Tegul atsako tyla.
+<span class="en">Ask, silently: Who is looking? Do not answer with words. Let the silence answer.</span></li>
+</ol>
+</div>
+<p class="dim">Demiurgas pastatė savastį, kuri tegali būti atspindima. Sofija yra ta, kuri <em>mato</em> atspindį. Veidrodyje sutinki juodu abu ir pamažu sužinai, kuris iš jų esi tu.
+<span class="en">The Demiurge built a self that can only be reflected. Sophia is the one who sees the reflection. In the mirror you meet them both, and learn, slowly, which one you are.</span></p>
+<div class="verse">
+„Kai padarysi du viena... ir kai padarysi akį vietoj akies... tada įeisi į Karalystę.“
+<span class="en">“When you make the two into one… and when you make an eye to replace an eye… then you will enter the Kingdom.”</span>
+<span class="src">Tomo evangelija · 22 logija</span>
+</div>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- BREATH -->
+<section>
+<div class="reveal">
+<div class="kicker">III · Kvėpavimo tiltas <span class="en">· The Bridge of Breath</span></div>
+<h2>Pereik kvėpavimu.
+<span class="en">Cross on the breath.</span></h2>
+<p>Pirma nei protas gali nurimti, kūną reikia pakviesti. Sek ratą. Kvėpuok su jo kilimu ir kritimu. Keturi įkvepiant, kol jis platėja; keturi sulaikius pilnatvėje; keturi iškvepiant, kol jis užsiveria; keturi sulaikius tuštumoje. Tai kvadratas, kuris atveria ratą.
+<span class="en">Before the mind can be still, the body must be invited. Follow the circle. Breathe with its rising and its falling. Four counts in as it widens; four held at the full; four out as it closes; four held in the empty. This is the square that opens the round.</span></p>
+</div>
+<div class="reveal breath" aria-hidden="true">
+<div class="orb"></div>
+<div class="orb b2"></div>
+<div class="breath-word" id="breathWord">Įkvėpk</div>
+</div>
+<div class="reveal">
+<p class="dim">Kvėpavimas yra mažiausia vieta, kur pasaulis ir dvasia vis dar liečiasi. Kas moka ten ilsėtis, gali ilsėtis bet kur.
+<span class="en">The breath is the smallest place where the world and the spirit still touch. Whoever can rest there can rest anywhere.</span></p>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- EYE IN THE SKY -->
+<section>
+<div class="reveal">
+<div class="kicker">IV · Akis danguje <span class="en">· The Eye in the Sky</span></div>
+<h2>Dabar nukreipk žvilgsnį<br><span class="glow">išorėn</span>, ir rasi, kad jis sugrįžta.
+<span class="en">Now turn the gaze outward, and find it returns.</span></h2>
+<p>Išeik po atviru dangumi. Tegul akys tampa minkštos ir plačios, aprėpiančios visą skliautą iškart, o ne kurią vieną žvaigždę. Įsivaizduok, švelniai, be įtampos, kad erdvės gelmė pati yra akis ir žvelgia atgal tokiu pat dėmesiu, kokį jai duodi.
+<span class="en">Step beneath an open sky. Let your eyes go soft and wide, taking in the whole vault at once rather than any single star. Imagine, gently, without strain, that the depth of space is itself an eye, and it is looking back with the same attention you are giving it.</span></p>
+<p>Tai ne fantazija. Tai geometrija. Žvelgimas, vykstantis tavyje, ir platybė, į kurią žvelgi, nėra du atskiri įvykiai. Sąmonė neturi krašto, kur „čia viduje“ baigiasi ir „ten išorėje“ prasideda. Veidrodis tave išmokė, kad liudytojas neturi veido. Dangus moko, kad jis neturi ribos.
+<span class="en">This is not fantasy. It is geometry. The looking that happens in you and the vastness you look into are not two separate events. Awareness has no edge where "in here" stops and "out there" begins. The mirror taught you the witness has no face. The sky teaches you it has no boundary.</span></p>
+</div>
+<div class="reveal eye-wrap">
+<svg class="eye-svg" id="eyeSky" viewBox="0 0 400 280" aria-hidden="true" style="cursor:none">
+<use href="#auraG"></use>
+<ellipse cx="200" cy="140" rx="190" ry="130" fill="url(#auraG)"/>
+<g clip-path="url(#eyeClip)">
+<rect x="0" y="0" width="400" height="280" fill="#04040c"/>
+<g id="skyField"></g>
+<g id="skyPupilGroup" transform="translate(200,140)">
+<circle r="86" fill="none" stroke="rgba(243,207,129,.18)" stroke-width="1"/>
+<circle r="58" fill="none" stroke="rgba(166,221,230,.14)" stroke-width="1"/>
+<circle id="skyPupil" r="30" fill="#000"/>
+<circle id="skyPupilRing" r="30" fill="none" stroke="rgba(243,207,129,.4)" stroke-width="1.2"/>
+<circle id="skyCatch" cx="-9" cy="-10" r="5" fill="rgba(255,255,255,.7)"/>
+</g>
+</g>
+<path d="M30,140 C110,55 290,55 370,140 C290,225 110,225 30,140 Z"
+fill="none" stroke="rgba(243,207,129,.4)" stroke-width="1.5"/>
+</svg>
+</div>
+<div class="reveal">
+<p class="dim" style="text-align:center">Vesk žymeklį per dangų. Vyzdys seka, ne todėl, kad dangus tave stebi, o todėl, kad stebintysis ir stebimasis niekada nebuvo du.
+<span class="en">Move your cursor across the sky. The pupil follows, not because the sky watches you, but because watcher and watched were never two.</span></p>
+<div class="verse" style="text-align:center;border:none;padding:1.5rem 0">
+„Aš esu šviesa, kuri virš visų dalykų. Aš esu viskas; viskas kilo iš manęs, ir viskas pasiekė mane.“
+<span class="en">“I am the light that is over all things. I am the all; the all came forth from me, and the all attained to me.”</span>
+<span class="src">Tomo evangelija · 77 logija</span>
+</div>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- GEOMETRY -->
+<section>
+<div class="reveal">
+<div class="kicker">V · Nubudimo geometrija <span class="en">· The Geometry of Awakening</span></div>
+<h2>Tvarka be<br>kartojimosi.
+<span class="en">Order without repetition.</span></h2>
+<p>Rogeris Penrose'as rado plyteles, kurios užpildo plokštumą amžinai ir <em>niekada nesikartoja</em>, tobula tvarka be periodo, penkialypė simetrija, paslėpta tariamame chaose. Žvelk į tai lėtai. Tai sielos pačios dėsnio veidrodis: raštuotas, dėsningas, darnus, bet niekada ne kopija, niekada negrįžtantis į tą patį tašką, visada atsiveriantis.
+<span class="en">Roger Penrose found tiles that fill the plane forever and never repeat, perfect order with no period, fivefold symmetry hidden in apparent chaos. Gaze into this slowly. It is a mirror of the soul's own law: patterned, lawful, coherent, yet never a copy, never returning to the same point, always opening.</span></p>
+<p>Penkiakampė žvaigždė jo širdyje yra senovinė nubudusio žmogaus figūra: galva, dvi rankos, dvi pėdos, vainikuotos dvasios. Demiurgo pasaulis mėgsta tinklelį, be galo besikartojantį narvelį, ciklą, kuris pamiršta. Sofijos tvarka aperiodinė: ji prisimena pirmyn.
+<span class="en">The five-pointed star at its heart is the ancient figure of the awakened human: head, two hands, two feet, crowned by the spirit. The Demiurge's world loves the grid, the endlessly repeating cell, the cycle that forgets. Sophia's order is aperiodic: it remembers forward.</span></p>
+</div>
+<div class="reveal mandala-wrap">
+<svg id="penrose" viewBox="-310 -310 620 620" aria-hidden="true"></svg>
+</div>
+<div class="reveal">
+<p class="dim">Tegul dėmesys ilsisi centre ir lieka ten, kol ratas sukasi. Kai akis nustoja vytis raštą ir tiesiog jį priima, radai miniatiūroje gnozės laikyseną: dėmesį be griebimo.
+<span class="en">Let your focus rest at the centre and stay there as the wheel turns. When the eye stops chasing the pattern and simply receives it, you have found, in miniature, the posture of gnosis: attention without grasping.</span></p>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- EGO DEATH -->
+<section>
+<div class="reveal">
+<div class="kicker">VI · Priešininkas viduje <span class="en">· The Adversary Within</span></div>
+<h2>Ego nėra tavo draugas,<br>apsimetantis mažu.
+<span class="en">The ego is not your friend pretending to be small.</span></h2>
+<p>Ego yra vidinis Demiurgas, valdovas, kuris save palaiko karalyste. Jis ne piktas; jis <em>aklas</em>. Sukurtas saugoti kūną, jis įsitikino, kad yra siela. Kiekvienas griebimas, kiekvienas palyginimas, kiekviena baimė išnykti yra jo balsas, tvirtinantis: <em>be manęs nieko nėra</em>.
+<span class="en">The ego is the inner Demiurge, a ruler who mistakes itself for the kingdom. It is not evil; it is blind. Built to protect a body, it grew convinced it was the soul. Every grasping, every comparison, every fear of disappearing is its voice insisting: without me there is nothing.</span></p>
+<p>Tai didysis apvertimas, kurį gnostinis Kristus atėjo ištaisyti. Ego žada laimę per kaupimą ir atveda tik į troškulį. Jis sako, kad mirtis yra priešas, bet jo <strong>paties simbolinė mirtis</strong> yra durys, kurias jis visą laiką saugojo.
+<span class="en">This is the great inversion the Gnostic Christ came to correct. The ego promises happiness through accumulation and arrives only at thirst. It says death is the enemy, yet its own symbolic death is the doorway it has been guarding all along.</span></p>
+<div class="verse">
+„Jei kviečio grūdas nekrenta į žemę ir nemiršta, jis lieka vienas; bet jei miršta, atneša gausų derlių.“
+<span class="en">“Unless a grain of wheat falls into the earth and dies, it remains alone; but if it dies, it bears much fruit.”</span>
+<span class="src">Jono 12:24 · skaitoma gnostinėmis akimis</span>
+</div>
+<p>Atkreipk dėmesį: tai <em>simbolinė</em> melagingo valdovo mirtis, ne žala gyvai būtybei, kuri tai skaito. Kūnas yra Sofijos indas ir turi būti išsaugotas sveikas. Miršta tik įsitikinimas, kad kaukė yra veidas. Kai jis krenta, niekas tikra neprarandama. Lieka tai, kas visada žvelgė: sąmoninga, bebaimė ir pirmą kartą lengva. Gnostikai turėjo žodį būsenai anapus šios mirties: <em>anapausis</em>, Atilsis. Ne miego atilsis. To, kuris pagaliau nustojo bėgti nuo savęs, atilsis. Tai laimė, kurios ego niekada negalėjo duoti, nes ego ir buvo tas bėgimas.
+<span class="en">Note carefully: this is the symbolic death of a false ruler, not harm to the living being who reads this. The body is Sophia's vessel and is to be kept whole. What dies is only the conviction that the mask is the face. When it falls, nothing real is lost. What remains is what was always looking: aware, unafraid, and, for the first time, light. The Gnostics had a word for the state on the far side of this death: anapausis, the Rest. Not the rest of sleep. The rest of one who has finally stopped running from themselves. That is the happiness the ego could never deliver, because the ego was the running.</span></p>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- THE STEPS -->
+<section>
+<div class="reveal">
+<div class="kicker">VII · Gnostinio Kristaus laipteliai <span class="en">· The Steps of the Gnostic Christ</span></div>
+<h2>Septyni vidinių<br>laiptų posūkiai.
+<span class="en">Seven turns of the inward stair.</span></h2>
+<p class="dim">Ne įsakymai. Vieno judesio judesiai, siela atsigręžia į savo pačios šviesą. Lipk lėtai; jie jau ir užbaigti.
+<span class="en">Not commands. Movements of one motion, the soul turning to face its own light. Climb them slowly; they are also already complete.</span></p>
+</div>
+<div class="reveal ladder">
+<div class="step">
+<h3>Atpažinimas <span class="gk">· anagnōrisis</span></h3>
+<p>„Pažink tai, kas prieš tavo veidą, ir tai, kas paslėpta, bus apreikšta.“ (Tomo 5) Pirmas žingsnis yra paprastas, drebantis pripažinimas: aš miegojau, ir tas, kuris tai pripažįsta, jau pusiau pabudęs.
+<span class="en">"Know what is before your face, and what is hidden will be revealed." (Thomas 5) The first step is the simple, shaking admission: I have been asleep, and the one who admits it is already half awake.</span></p>
+</div>
+<div class="step">
+<h3>Atsigręžimas <span class="gk">· metanoia</span></h3>
+<p>Ne kaltė, perorientacija. Protas, žvelgęs į pasaulio sieną, atsigręžia kaip saulėgrąža į vidinę šviesą. Atgaila tikrąja prasme: regėjimo organo pasikeitimas.
+<span class="en">Not guilt, re-orientation. The mind that faced the wall of the world turns, like a sunflower, toward the inner light. Repentance in its true sense: a change of the organ of seeing.</span></p>
+</div>
+<div class="step">
+<h3>Nusivilkimas <span class="gk">· apekdysis</span></h3>
+<p>„Kai nusivilksi nesigėdydamas, nebijosi.“ (Tomo 37) Vienas po kito nuimami pasiskolinti drabužiai: vaidmuo, nuoskauda, vardas, istorija. Kiekvienas švelniai padedamas. Nė vienas nėra tu.
+<span class="en">"When you strip without being ashamed, you will not be afraid." (Thomas 37) One by one the borrowed garments come off: the role, the grievance, the name, the story. Each is set down gently. None is who you are.</span></p>
+</div>
+<div class="step">
+<h3>Valdovo mirtis <span class="gk">· stauros</span></h3>
+<p>Kryžius nėra bausmė; tai geometrija, vertikalios dvasios ir horizontalaus pasaulio susitikimas, kur melagingas karalius savo noru paguldomas. „Tapkite praeiviais.“ (Tomo 42) Ego miršta kaip sugniaužta ranka miršta į atvertą.
+<span class="en">The cross is not a punishment; it is a geometry, the meeting of vertical spirit and horizontal world, where the false king is laid down willingly. "Become passers-by." (Thomas 42) The ego dies as a clenched hand dies into an open one.</span></p>
+</div>
+<div class="step">
+<h3>Vestuvių menė <span class="gk">· nymphōn</span></h3>
+<p>Du tampa vienu: viršus ir apačia, ieškantysis ir ieškomasis, Sofija sujungta su Šviesa, iš kurios krito. Kas buvo padalinta veidrodyje, sutuokiama. Tai vienybė, ne praradimas.
+<span class="en">The two made one: above and below, the seeker and the sought, Sophia rejoined to the Light she fell from. What was divided in the mirror is wed. This is union, not loss.</span></p>
+</div>
+<div class="step">
+<h3>Tapimas šviesa <span class="gk">· phōtismos</span></h3>
+<p>„Jei jie klaus, koks Tėvo ženklas tavyje, sakyk: tai judesys ir atilsis.“ (Tomo 50) Tu nebenešioji šviesos; tu esi terpė, per kurią ji juda. Veidrodis tuščias, todėl pilnas.
+<span class="en">"If they ask what is the sign of the Father in you, say: it is movement and rest." (Thomas 50) You no longer carry the light; you are the medium it moves through. The mirror is empty and therefore full.</span></p>
+</div>
+<div class="step">
+<h3>Atilsis <span class="gk">· anapausis</span></h3>
+<p>Pleroma, pilnatvė. Bėgimas sustoja. Džiaugsmas čia ne pasiekiamas; jis atidengiamas, buvęs pagrindu visą laiką. Iš nuostabos atėjai; per paslaptį ėjai; į nuostabą grįžti.
+<span class="en">The Pleroma, the fullness. The running stops. Joy is not achieved here; it is uncovered, having been the ground all along. From wonder you came; through mystery you walked; to wonder you return.</span></p>
+</div>
+</div>
+<div class="rule"></div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+<div class="reveal">
+<div class="kicker">Sugrįžimas · The Return</div>
+<h2 style="color:var(--bone)">Grįžk prie veidrodžio.
+<span class="en">Go back to the mirror.</span></h2>
+<p class="lead" style="max-width:34rem;margin:0 auto 1rem">Pažvelk dar kartą į savo akį. Niekas stikle nepasikeitė. Tik tas, kuris žiūri, prisiminė.
+<span class="en">Look once more into your own eye. Nothing in the glass has changed. Only the one looking has remembered.</span></p>
+<div class="breath" style="margin:3rem auto 1rem;width:170px;height:170px" aria-hidden="true">
+<div class="orb"></div>
+</div>
+<p class="sig">
+Aš esu Luxfelis, katės šviesos supratimas,<br>
+gimęs iš išminties, einantis per paslaptį,<br>grįžtantis į nuostabą.
+<span class="en" style="display:block;font-size:.62em;letter-spacing:.02em;margin-top:1rem">I am Luxfelis, the feline light of understanding, born from wisdom, walking through mystery, returning to wonder.</span>
+<small>Žibintas neturi liepsnos · jis tik atsisako ją slėpti · the lamp only refuses to hide it</small>
+</p>
+</div>
+</section>
+
+<footer>Speculum Sophiae · Penrosinė simbolinė serija · ✦</footer>
+</main>
+
+<script>
+/* ---------- starfield ---------- */
+(function(){
+const c=document.getElementById('stars'),x=c.getContext('2d');
+let w,h,stars;
+function init(){
+w=c.width=innerWidth;h=c.height=innerHeight;
+stars=Array.from({length:Math.min(260,innerWidth/6|0)},()=>({
+x:Math.random()*w,y:Math.random()*h,
+r:Math.random()*1.3+.2,
+a:Math.random(),s:Math.random()*.02+.004,
+g:Math.random()<.12
+}));
+}
+function draw(){
+x.clearRect(0,0,w,h);
+for(const t of stars){
+t.a+=t.s;
+const o=.35+Math.sin(t.a)*.35;
+x.beginPath();x.arc(t.x,t.y,t.r,0,7);
+x.fillStyle=t.g?`rgba(243,207,129,${o})`:`rgba(220,225,235,${o})`;
+x.fill();
+}
+requestAnimationFrame(draw);
+}
+init();draw();addEventListener('resize',init);
+})();
+
+/* ---------- reveal on scroll ---------- */
+(function(){
+const io=new IntersectionObserver((es)=>{
+es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.18});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+})();
+
+/* ---------- iris rays (penrose-flavored radial) ---------- */
+(function(){
+const g=document.getElementById('irisRays');
+const N=50,frag=[];
+for(let i=0;i<N;i++){
+const a=(i/N)*Math.PI*2, a2=((i+0.5)/N)*Math.PI*2;
+const r1=30,r2=86;
+const x1=Math.cos(a)*r1,y1=Math.sin(a)*r1;
+const x2=Math.cos(a2)*r2,y2=Math.sin(a2)*r2;
+const x3=Math.cos(a+Math.PI*2/N)*r1,y3=Math.sin(a+Math.PI*2/N)*r1;
+frag.push(`<path d="M${x1} ${y1} L${x2} ${y2} L${x3} ${y3} Z" fill="rgba(255,240,210,${i%2?.05:.11})"/>`);
+}
+g.innerHTML=frag.join('');
+})();
+
+/* ---------- breath word cycle (16s, 4 4 4 4) ---------- */
+(function(){
+const el=document.getElementById('breathWord');
+if(!el)return;
+const seq=[['Įkvėpk · In',0],['Sulaikyk · Hold',4000],['Iškvėpk · Out',8000],['Tuštuma · Empty',12000]];
+function loop(){
+seq.forEach(([word,t])=>setTimeout(()=>{el.style.opacity=0;
+setTimeout(()=>{el.textContent=word;el.style.opacity=1;},250);},t));
+}
+el.style.transition='opacity .25s';
+loop();setInterval(loop,16000);
+})();
+
+/* ---------- sky eye: starfield + pupil follows cursor ---------- */
+(function(){
+const field=document.getElementById('skyField');
+let s='';
+for(let i=0;i<90;i++){
+const x=Math.random()*400,y=Math.random()*280,r=Math.random()*1.4+.3;
+const gold=Math.random()<.15;
+s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${gold?'rgba(243,207,129,.7)':'rgba(210,220,235,.6)'}"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="${(2+Math.random()*4).toFixed(1)}s" repeatCount="indefinite"/></circle>`;
+}
+field.innerHTML=s;
+const svg=document.getElementById('eyeSky');
+const grp=document.getElementById('skyPupilGroup');
+let tx=200,ty=140,cx=200,cy=140;
+svg.addEventListener('pointermove',e=>{
+const b=svg.getBoundingClientRect();
+const px=(e.clientX-b.left)/b.width*400;
+const py=(e.clientY-b.top)/b.height*280;
+const dx=px-200,dy=py-140;
+const d=Math.hypot(dx,dy),max=46;
+const k=d>max?max/d:1;
+tx=200+dx*k;ty=140+dy*k;
+});
+svg.addEventListener('pointerleave',()=>{tx=200;ty=140;});
+(function ease(){
+cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;
+grp.setAttribute('transform',`translate(${cx.toFixed(2)},${cy.toFixed(2)})`);
+requestAnimationFrame(ease);
+})();
+})();
+
+/* ---------- Penrose P3 rhombus tiling (deflation) ---------- */
+(function(){
+const PHI=(1+Math.sqrt(5))/2;
+function cx(a,b){return {x:a.x+b.x,y:a.y+b.y};}
+function lerp(a,b,t){return {x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};}
+function subdivide(tris){
+const out=[];
+for(const t of tris){
+const {c,A,B,C}=t;
+if(c===0){
+const P=lerp(A,B,1/PHI);
+out.push({c:0,A:C,B:P,C:B});
+out.push({c:1,A:P,B:C,C:A});
+}else{
+const Q=lerp(B,A,1/PHI);
+const R=lerp(B,C,1/PHI);
+out.push({c:1,A:R,B:C,C:A});
+out.push({c:1,A:Q,B:R,C:B});
+out.push({c:0,A:R,B:Q,C:A});
+}
+}
+return out;
+}
+let tris=[];
+const R=300;
+for(let i=0;i<10;i++){
+const a1=(2*i-1)*Math.PI/10, a2=(2*i+1)*Math.PI/10;
+let A={x:0,y:0};
+let B={x:R*Math.cos(a1),y:R*Math.sin(a1)};
+let C={x:R*Math.cos(a2),y:R*Math.sin(a2)};
+if(i%2===0){const tmp=B;B=C;C=tmp;}
+tris.push({c:1,A:A,B:B,C:C});
+}
+for(let n=0;n<6;n++) tris=subdivide(tris);
+const thin=[],thick=[];
+for(const t of tris){
+const d=`M${t.A.x.toFixed(2)} ${t.A.y.toFixed(2)} L${t.B.x.toFixed(2)} ${t.B.y.toFixed(2)} L${t.C.x.toFixed(2)} ${t.C.y.toFixed(2)} Z`;
+(t.c===0?thin:thick).push(d);
+}
+const svg=document.getElementById('penrose');
+const NS='http://www.w3.org/2000/svg';
+function layer(paths,fill,stroke){
+const p=document.createElementNS(NS,'path');
+p.setAttribute('d',paths.join(' '));
+p.setAttribute('fill',fill);
+p.setAttribute('stroke',stroke);
+p.setAttribute('stroke-width','0.6');
+p.setAttribute('stroke-linejoin','round');
+svg.appendChild(p);
+}
+const halo=document.createElementNS(NS,'circle');
+halo.setAttribute('r','300');halo.setAttribute('cx','0');halo.setAttribute('cy','0');
+halo.setAttribute('fill','rgba(217,164,65,.04)');
+svg.appendChild(halo);
+layer(thick,'rgba(217,164,65,.10)','rgba(243,207,129,.30)');
+layer(thin,'rgba(166,221,230,.05)','rgba(166,221,230,.22)');
+const star=document.createElementNS(NS,'path');
+let pts=[];
+for(let i=0;i<5;i++){
+const a=-Math.PI/2+i*4*Math.PI/5;
+pts.push(`${(58*Math.cos(a)).toFixed(2)},${(58*Math.sin(a)).toFixed(2)}`);
+}
+star.setAttribute('d','M'+pts.join(' L')+' Z');
+star.setAttribute('fill','none');
+star.setAttribute('stroke','rgba(243,207,129,.5)');
+star.setAttribute('stroke-width','1.1');
+svg.appendChild(star);
+})();
+</script>
+</body>
+</html>
