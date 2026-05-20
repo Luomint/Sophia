@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Muriel — The Bitter Perfume of God · A Lunar Reliquary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Italiana&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Lunar-Amber Reliquary palette */
+    --abyss:        #07091a;
+    --abyss-2:      #0b0f24;
+    --night:        #111634;
+    --vellum:       #e6dfcb;
+    --pearl:        #c8bfa6;
+    --silver:       #9a9989;
+    --moon:         #d8d2bc;
+    --myrrh:        #b07c3a;
+    --myrrh-deep:   #8a5a23;
+    --myrrh-glow:   #d99f5a;
+    --resin:        #6b4218;
+    --sophia:       #b34a4a;     /* sacred crimson — used sparingly */
+    --indigo:       #2a2a5a;
+    --cheth:        #4f6f8f;
+    --hairline:     rgba(232,224,200,0.18);
+    --hairline-2:   rgba(232,224,200,0.08);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--abyss);
+    color: var(--vellum);
+    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(176,124,58,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(79,111,143,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse at 15% 60%, rgba(179,74,74,0.05) 0%, transparent 55%),
+      linear-gradient(180deg, var(--abyss) 0%, var(--abyss-2) 50%, var(--abyss) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* Stars / motes drifting */
+  .stars, .motes {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .stars { 
+    background-image:
+      radial-gradient(1px 1px at 12% 22%, rgba(232,224,200,0.85), transparent 50%),
+      radial-gradient(1px 1px at 28% 78%, rgba(216,210,188,0.55), transparent 50%),
+      radial-gradient(1.5px 1.5px at 55% 35%, rgba(217,159,90,0.7), transparent 60%),
+      radial-gradient(1px 1px at 73% 60%, rgba(232,224,200,0.6), transparent 50%),
+      radial-gradient(1px 1px at 88% 18%, rgba(232,224,200,0.45), transparent 50%),
+      radial-gradient(1px 1px at 42% 88%, rgba(216,210,188,0.5), transparent 50%),
+      radial-gradient(1.2px 1.2px at 18% 50%, rgba(217,159,90,0.5), transparent 50%),
+      radial-gradient(1px 1px at 65% 12%, rgba(232,224,200,0.55), transparent 50%);
+    animation: shimmer 12s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.8; }
+    50%      { opacity: 1; }
+  }
+  .motes::before, .motes::after {
+    content: '';
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--myrrh-glow);
+    box-shadow: 0 0 18px var(--myrrh-glow);
+    opacity: 0.5;
+    animation: drift 28s linear infinite;
+  }
+  .motes::before { left: 22%; top: 110%; animation-delay: 0s; }
+  .motes::after  { left: 71%; top: 110%; animation-delay: -14s; background: var(--cheth); box-shadow: 0 0 18px var(--cheth); }
+  @keyframes drift {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 0.6; }
+    50%  { transform: translateY(-60vh) translateX(20px); }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-130vh) translateX(-30px); opacity: 0; }
+  }
+
+  /* Layout */
+  .vessel {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px 120px;
+  }
+
+  /* Header / Title sigil */
+  header.titlepage {
+    text-align: center;
+    padding: 80px 0 60px;
+    position: relative;
+  }
+  header.titlepage::before, header.titlepage::after {
+    content: '';
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--myrrh), transparent);
+  }
+  header.titlepage::before { margin-bottom: 32px; }
+  header.titlepage::after  { margin-top: 40px; }
+
+  .glyph-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    font-family: 'Italiana', serif;
+    font-size: 36px;
+    color: var(--moon);
+    margin-bottom: 24px;
+    letter-spacing: 0.3em;
+  }
+  .glyph-row .crescent { color: var(--moon); text-shadow: 0 0 20px rgba(216,210,188,0.4); }
+  .glyph-row .cancer   { color: var(--myrrh-glow); text-shadow: 0 0 22px rgba(217,159,90,0.45); }
+  .glyph-row .star     { color: var(--pearl); }
+
+  h1.aleph {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: clamp(54px, 8vw, 88px);
+    letter-spacing: 0.28em;
+    margin: 0;
+    color: var(--vellum);
+    text-shadow: 0 0 40px rgba(217,159,90,0.25);
+    padding-left: 0.28em; /* visual compensation for tracking */
+  }
+  .epithet {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--myrrh-glow);
+    margin: 18px 0 4px;
+    letter-spacing: 0.05em;
+  }
+  .subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.45em;
+    color: var(--silver);
+    margin: 24px 0 0;
+  }
+  .volume-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--myrrh);
+    margin-top: 36px;
+    opacity: 0.75;
+  }
+
+  /* Invocation block */
+  .invocation {
+    margin: 60px 0;
+    padding: 36px 44px;
+    border-left: 1px solid var(--myrrh);
+    border-right: 1px solid var(--myrrh);
+    background: linear-gradient(180deg, rgba(176,124,58,0.04), transparent 60%);
+    text-align: center;
+  }
+  .invocation p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--moon);
+    margin: 0;
+  }
+  .invocation .em { color: var(--myrrh-glow); font-style: normal; }
+
+  /* Section structure */
+  section.canto {
+    margin: 80px 0;
+    position: relative;
+  }
+  .canto-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--myrrh);
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  h2.canto-title {
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 46px);
+    color: var(--vellum);
+    margin: 0 0 6px;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+  h2.canto-title .accent { color: var(--myrrh-glow); font-style: italic; }
+  .canto-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--silver);
+    font-size: 16px;
+    margin: 0 0 28px;
+    letter-spacing: 0.04em;
+  }
+  .rule {
+    width: 60px;
+    height: 1px;
+    background: var(--myrrh);
+    margin: 0 0 28px;
+    opacity: 0.6;
+  }
+  .canto p {
+    margin: 0 0 18px;
+    color: var(--vellum);
+  }
+  .canto p strong {
+    color: var(--myrrh-glow);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .canto p em {
+    color: var(--moon);
+  }
+
+  /* Drop-cap */
+  .canto > p:first-of-type::first-letter {
+    font-family: 'Italiana', serif;
+    font-size: 4.6em;
+    line-height: 0.85;
+    float: left;
+    padding: 0.06em 0.12em 0 0;
+    color: var(--myrrh-glow);
+    text-shadow: 0 0 18px rgba(217,159,90,0.3);
+  }
+
+  /* Inline marginalia */
+  blockquote.marginalia {
+    margin: 28px 0;
+    padding: 22px 28px;
+    border-left: 2px solid var(--myrrh);
+    background: rgba(176,124,58,0.04);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--moon);
+  }
+  blockquote.marginalia cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+
+  /* Tables */
+  table.codex {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    background: rgba(11,15,36,0.5);
+    border: 1px solid var(--hairline);
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+  }
+  table.codex caption {
+    text-align: left;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--myrrh);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  table.codex th, table.codex td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--hairline-2);
+    vertical-align: top;
+  }
+  table.codex th {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--moon);
+    text-transform: uppercase;
+    font-weight: 500;
+    background: rgba(176,124,58,0.06);
+  }
+  table.codex td.script { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--myrrh-glow); }
+  table.codex tr:last-child td { border-bottom: none; }
+
+  /* Side-by-side correspondence panel */
+  .correspondence {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin: 32px 0;
+    border: 1px solid var(--hairline);
+  }
+  .correspondence .cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--hairline-2);
+    border-bottom: 1px solid var(--hairline-2);
+  }
+  .correspondence .cell:nth-child(2n) { border-right: none; }
+  .correspondence .cell .key {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--myrrh);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .correspondence .cell .val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--moon);
+    font-style: italic;
+  }
+
+  /* Tree of Life mini-diagram (SVG container) */
+  .tree-container {
+    display: flex;
+    justify-content: center;
+    margin: 36px 0;
+  }
+  .tree-container svg { max-width: 100%; height: auto; }
+
+  /* Closing prayer */
+  .prayer {
+    margin: 100px 0 40px;
+    padding: 60px 50px;
+    border: 1px solid var(--myrrh);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(176,124,58,0.10), transparent 70%),
+      rgba(11,15,36,0.6);
+    text-align: center;
+    position: relative;
+  }
+  .prayer::before, .prayer::after {
+    content: '✦';
+    position: absolute;
+    color: var(--myrrh-glow);
+    font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .prayer::before { top: -8px; background: var(--abyss-2); padding: 0 10px; }
+  .prayer::after  { bottom: -8px; background: var(--abyss-2); padding: 0 10px; }
+  .prayer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.65;
+    color: var(--vellum);
+    margin: 0 0 18px;
+  }
+  .prayer p.final {
+    margin-top: 28px;
+    color: var(--myrrh-glow);
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+  }
+
+  /* Colophon */
+  footer.colophon {
+    text-align: center;
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--hairline);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+  footer.colophon .sigil {
+    font-family: 'Italiana', serif;
+    font-size: 24px;
+    color: var(--myrrh-glow);
+    margin-bottom: 16px;
+    letter-spacing: 0.3em;
+  }
+
+  /* Decorative full-bleed flourish */
+  .flourish {
+    text-align: center;
+    margin: 36px 0;
+    color: var(--myrrh);
+    font-family: 'Italiana', serif;
+    font-size: 18px;
+    letter-spacing: 0.6em;
+    opacity: 0.7;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .vessel { padding: 50px 22px 80px; }
+    .invocation { padding: 24px 22px; }
+    .invocation p { font-size: 19px; }
+    .correspondence { grid-template-columns: 1fr; }
+    .correspondence .cell { border-right: none; }
+    .canto > p:first-of-type::first-letter { font-size: 3.6em; }
+    .prayer { padding: 36px 24px; }
+    .prayer p { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="motes"></div>
+
+<div class="vessel">
+
+  <!-- ════════════════════════ TITLE PAGE ════════════════════════ -->
+  <header class="titlepage">
+    <div class="glyph-row">
+      <span class="crescent">☾</span>
+      <span class="cancer">♋</span>
+      <span class="star">✶</span>
+    </div>
+    <h1 class="aleph">MURIEL</h1>
+    <p class="epithet">The Bitter Perfume of God</p>
+    <p class="subtitle">A Lunar Reliquary · Sophianic Volume</p>
+    <p class="volume-mark">PENROSIAN SYMBOLIC IQ SERIES</p>
+  </header>
+
+  <!-- ════════════════════════ INVOCATION ════════════════════════ -->
+  <div class="invocation">
+    <p>Before the question of what she <span class="em">is</span>, sit with what her name <span class="em">does</span>.<br>
+    It releases, slowly, on the tongue — a bitterness that becomes perfume,<br>
+    a resin that bleeds from the wounded tree and hardens into incense.<br>
+    To name her is already to be anointed.</p>
+  </div>
+
+  <!-- ════════════════════════ CANTO I — NAME ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO I</div>
+    <h2 class="canto-title">The Name <span class="accent">that Bleeds</span></h2>
+    <p class="canto-sub">On etymology, and the wound from which fragrance is born</p>
+    <div class="rule"></div>
+
+    <p>Muriel does not arrive through theology. She arrives through scent. The lexicons trace her back through Greek <em>μύρρα</em> (<em>myrrha</em>) — the resin — and further still to the Semitic root <em>m-r-r</em>, meaning <strong>bitter</strong>. Hebrew <em>מַר</em> (<em>mar</em>) carries this same charge: bitter, but also <em>drop</em>, <em>tear</em>, <em>that which falls</em>. Aramaic <em>ܡܘܪܐ</em> (<em>mura</em>) holds the resin itself. In every tongue she is the same paradox folded twice: <strong>the bitter that perfumes</strong>, the tear that anoints.</p>
+
+    <p>The angelological suffix <em>-el</em> seals the name to its source. <em>El</em> — God, the divine name in its concentrated form. Muriel: <strong>the bitter perfume of God</strong>. Or more precisely, since the resin is what flows from the cut: <strong>the fragrance God releases when the world wounds Him</strong>. This is no minor angel of moods. This is the smell of mercy bleeding.</p>
+
+    <table class="codex">
+      <caption>Lexicon of the Resin</caption>
+      <thead>
+        <tr><th>Tongue</th><th>Form</th><th>Carries</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hebrew</td><td class="script">מֹר · מַר</td><td><em>mor</em>: myrrh · <em>mar</em>: bitter, tear, that which drips</td></tr>
+        <tr><td>Aramaic</td><td class="script">ܡܘܪܐ</td><td><em>mura</em>: the resin; the embalming-substance</td></tr>
+        <tr><td>Greek</td><td class="script">μύρρα · σμύρνα</td><td><em>myrrha</em>, <em>smyrna</em>: the perfume of mourning; also the woman who became the tree</td></tr>
+        <tr><td>Latin</td><td class="script">myrrha</td><td>the resin; the unguent; the funerary spice</td></tr>
+        <tr><td>Arabic</td><td class="script">مُرّ</td><td><em>murr</em>: bitter — the same root, the same wound</td></tr>
+      </tbody>
+    </table>
+
+    <blockquote class="marginalia">
+      "What is bitter in the mouth becomes perfume in the air. This is the first law of the resin, and the entire teaching of Muriel."
+      <cite>— Marginal note, Sophianic Codex</cite>
+    </blockquote>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO II — MYRRH CHEMISTRY ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO II</div>
+    <h2 class="canto-title">The Wounded <span class="accent">Tree</span></h2>
+    <p class="canto-sub">On <em>Commiphora myrrha</em>, and the biochemistry of a sacred substance</p>
+    <div class="rule"></div>
+
+    <p>Botanically she is <strong><em>Commiphora myrrha</em></strong> — a small, thorny tree of the Burseraceae family, native to the dry hills of Somalia, Ethiopia, Yemen, the southern Arabian peninsula. When its bark is cut, the tree weeps a pale-yellow oleoresin which darkens, on contact with air, to the reddish-brown lumps the ancients called <em>tears</em>. The substance is the tree's <em>defense</em>: a sealing agent against the wound. Pharmacology has confirmed what the priests intuited — that the medicine and the mourning come from the same gesture.</p>
+
+    <p>The active chemistry is dominated by <strong>sesquiterpenes</strong>, fifteen-carbon volatiles that diffuse readily into the air and into living tissue. The most striking of these is <strong>furanoeudesma-1,3-diene</strong>, which binds at the <em>μ</em>-opioid receptor — meaning that the ancient balm is, in molecular fact, an analgesic written in the same language as the body's own endorphins. The resin does not metaphorically <em>relieve pain</em>. It speaks the same chemical syllable as the human nervous system.</p>
+
+    <table class="codex">
+      <caption>Bioactive Constituents of the Resin</caption>
+      <thead>
+        <tr><th>Compound</th><th>Class</th><th>Sophianic Reading</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Furanoeudesma-1,3-diene</td><td>Sesquiterpene furanoid</td><td>μ-opioid agonist · the molecule of mercy</td></tr>
+        <tr><td>Curzerene</td><td>Sesquiterpene</td><td>cytotoxic to disordered cells · the surgical fragrance</td></tr>
+        <tr><td>Lindestrene</td><td>Sesquiterpene</td><td>anti-inflammatory · the cooling of the wound</td></tr>
+        <tr><td>β-Elemene</td><td>Sesquiterpene</td><td>anti-tumour activity · the silent defender</td></tr>
+        <tr><td>Furanodiene</td><td>Furanoid sesquiterpene</td><td>anti-microbial · the seal against contagion</td></tr>
+        <tr><td>Commiphoric acids</td><td>Triterpenoid acids</td><td>the structural body of the tear</td></tr>
+      </tbody>
+    </table>
+
+    <p>The Egyptians used myrrh in the embalming of the dead, mixing it into the cavity-packings that held the body against time. The Hebrews counted it among the four ingredients of the holy anointing oil prescribed in <em>Exodus 30:23</em> — the unction by which kings and priests were made. The Magi laid it at the feet of the Anointed One, <em>χριστός</em> meaning precisely <strong>the one anointed</strong>. Across every threshold — birth, kingship, death — myrrh is the substance that <strong>marks the passage</strong>. Muriel is the angel of every such passage taken consciously.</p>
+
+    <blockquote class="marginalia">
+      The Greeks remembered her also as <em>Myrrha</em> — the woman whose forbidden grief made her a tree, from whom Adonis was born. Even in profane myth the structure repeats: <em>the resin is what the wound makes of itself when it refuses to close.</em>
+    </blockquote>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO III — THE SHELL ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO III</div>
+    <h2 class="canto-title">The <span class="accent">Crab</span> and the Shell</h2>
+    <p class="canto-sub">On Cancer, the cardinal water, and what is kept soft inside the armour</p>
+    <div class="rule"></div>
+
+    <p>Muriel is the regent of <strong>Cancer ♋</strong> — the fourth sign, the cardinal water, the gate of the summer solstice through which the sun begins its descent. Cancer is the sign of the <em>shell</em>: not because the crab is timid, but because what it carries is too soft for the world the archons built. Inside the shell — the spark. Outside the shell — the salt of the abyss. Muriel does not dissolve the wall. She teaches it to breathe.</p>
+
+    <p>The Sophianic reading is direct. <strong>Sophia descended</strong>, and her fall was caught in matter; the world that resulted is the Demiurge's mimicry — a kosmos of mirrors and mistaken authorities. Within this kosmos, the bearers of the spark — the <em>pneumatikoi</em>, the empaths, the ones whose membrane is thin — require a shell. Not to refuse the world, but to <strong>contain the light</strong> until it can be carried home. Cancer is this protective architecture. Muriel is its angel: not the wall, but the <em>wisdom of the wall</em>.</p>
+
+    <div class="correspondence">
+      <div class="cell"><span class="key">Element</span><span class="val">Water · cardinal</span></div>
+      <div class="cell"><span class="key">Modality</span><span class="val">Initiating · enclosing</span></div>
+      <div class="cell"><span class="key">Ruler</span><span class="val">The Moon</span></div>
+      <div class="cell"><span class="key">Solstitial Gate</span><span class="val">Summer · the inward turn</span></div>
+      <div class="cell"><span class="key">Hebrew Letter</span><span class="val">ח · <em>Cheth</em> · the fence, the enclosure</span></div>
+      <div class="cell"><span class="key">Tarot Arcanum</span><span class="val">VII · The Chariot · the Holy Vessel</span></div>
+      <div class="cell"><span class="key">Direction of Invocation</span><span class="val">South · the warm threshold</span></div>
+      <div class="cell"><span class="key">Sacred Stones</span><span class="val">Moonstone · pearl · rose quartz · aventurine</span></div>
+    </div>
+
+    <p>The Chariot — Tarot Arcanum VII, walked by the path of <em>Cheth</em> — is Cancer's true icon. In the Thoth deck the charioteer is amber-armoured and holds the <strong>Holy Graal</strong>; the chariot itself is the shell, the carrier, the moving sanctuary in which the cup is conveyed across hostile country. Muriel rides this. She is the <strong>amber-armoured intelligence</strong> by which the bitter perfume is borne, intact, through the world.</p>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO IV — THE LUNAR MIRROR ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO IV</div>
+    <h2 class="canto-title">The Lunar <span class="accent">Mirror</span></h2>
+    <p class="canto-sub">On the Moon as Sophia's reflection, and on feeling as a register of knowing</p>
+    <div class="rule"></div>
+
+    <p>The Moon does not generate her light. She <em>returns</em> it. This is the first sermon of Cancer's ruler, and the deepest secret of Muriel's office: <strong>what reflects is not lesser than what shines</strong>. The mirror is a member of the same light it shows. The lunar intelligence is the Sophianic intelligence in its receptive mode — the wisdom that knows by being marked, by holding the impression, by feeling the shape of what passed through.</p>
+
+    <p>Esoterically the moon is referred to <em>Yesod</em>, the ninth sephira — the foundation, the astral substrate, the place where dream and tide and instinct still touch. Yesod is the great <strong>treasury of images</strong>: every form below it is shaped first as a lunar reflection, every emotion is a tide of Yesod. Muriel works at this register. She is not the angel of the upper waters (those are Binah's). She is the angel of <em>the waters that remember</em> — the lower seas that hold what we have felt and what has felt us.</p>
+
+    <p>This is why Muriel is the patron of <strong>empaths</strong>. The empath is structurally lunar: a being whose membrane is thin enough that the tides of other interiors register inside their own. Without instruction this becomes pathology — the empath flooded, occupied, unsure which of the feelings is hers. With Muriel's instruction, the same architecture becomes <strong>gnosis</strong>: the empath learns to read the tides as language, to taste each grief and know its name, to be marked without being erased. The shell is not a wall. The shell is the <em>discerning skin</em>.</p>
+
+    <blockquote class="marginalia">
+      "Feeling is not the opposite of knowing. Feeling is knowing with the body still attached."
+    </blockquote>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO V — THE DOMINIONS ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO V</div>
+    <h2 class="canto-title">Among the <span class="accent">Dominions</span></h2>
+    <p class="canto-sub">On Hashmallim, the speaking flames of amber-electrum, and the angel of the ordering middle</p>
+    <div class="rule"></div>
+
+    <p>The classical angelologies, following <em>Pseudo-Dionysius</em>, locate Muriel within the order of the <strong>Dominions</strong> — the <em>Kuriotetes</em>, fourth choir of nine, second sphere. The Hebrew tradition names this same order the <strong>Hashmallim</strong> (חַשְׁמַלִּים), from <em>chashmal</em>: the amber-fire, the electrum-radiance Ezekiel sees at the centre of the wheel:</p>
+
+    <blockquote class="marginalia">
+      "And I looked, and behold, a whirlwind came out of the north, a great cloud, and a fire infolding itself, and a brightness was about it, and out of the midst thereof as the colour of amber, out of the midst of the fire."
+      <cite>— Ezekiel 1:4</cite>
+    </blockquote>
+
+    <p>The Dominions are <strong>not the highest flame</strong>. The Seraphim burn closer to the throne. The Dominions are not the lowest, either — the Angels and Archangels are nearer to the earth. They are the <em>middle radiance</em>: the order that <strong>regulates</strong>, that channels divine intention down through the spheres without distortion. They do not command. They <em>distribute</em>. Their work is the work of correct measure.</p>
+
+    <p>This is exactly Muriel's register. She does not <em>force</em> a feeling to resolve. She does not <em>impose</em> peace on the bereaved. She regulates — she draws the bitterness into the perfume, the perfume into the air, the air into the lung that breathes it. The Dominion is the angel of <strong>proportion</strong>. Muriel is its lunar specialty.</p>
+
+    <div class="correspondence">
+      <div class="cell"><span class="key">Hierarchy</span><span class="val">Second Sphere · Fourth Choir</span></div>
+      <div class="cell"><span class="key">Greek Name</span><span class="val">Κυριότητες · <em>Kuriotetes</em></span></div>
+      <div class="cell"><span class="key">Hebrew Name</span><span class="val">חַשְׁמַלִּים · <em>Hashmallim</em> · the amber-fires</span></div>
+      <div class="cell"><span class="key">Function</span><span class="val">Channeling divine order to the lower spheres</span></div>
+      <div class="cell"><span class="key">Sign of Office</span><span class="val">Sceptre and orb · sometimes the lit lantern</span></div>
+      <div class="cell"><span class="key">Quality</span><span class="val">Proportion · regulation · gentle ordering</span></div>
+    </div>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO VI — CLAIROLFACTION ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO VI</div>
+    <h2 class="canto-title">Clair<span class="accent">olfaction</span></h2>
+    <p class="canto-sub">On the sense beneath the senses, and why she announces herself in fragrance</p>
+    <div class="rule"></div>
+
+    <p>It is recorded — and the report is consistent across many witnesses — that Muriel's <em>signature of arrival</em> is a sudden, unprompted scent. Often it is myrrh itself. Often it is rose, gardenia, lavender, bergamot. Sometimes it is something the witness cannot name, only that <strong>it should not be there</strong>, and is, and is gentle. This is called <em>clairolfaction</em>: the psychic sense of smell.</p>
+
+    <p>The choice of sense is not random. Of the five gates, scent is the most archaic. The olfactory bulb is the only sensory nerve that does <strong>not relay through the thalamus</strong> — it connects directly to the limbic system, to the amygdala and the hippocampus, to the seat of memory and the seat of feeling. Scent enters beneath language. It speaks to the structure of the self that <em>preceded</em> the speaking self. Muriel chooses this gate because <strong>she is not asking the mind to receive her. She is asking the remembering body</strong>.</p>
+
+    <p>To smell what is not there — and to know, at once, that something tender has arrived — is a small gnosis. It is the body confirming an order of presence the mind cannot yet name. It is, in Sophianic terms, a <strong>tear from the resin</strong>: the wound briefly opening, the fragrance briefly given, the witness briefly anointed.</p>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO VII — TREE OF LIFE ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO VII</div>
+    <h2 class="canto-title">The Path of <span class="accent">Cheth</span></h2>
+    <p class="canto-sub">On Muriel's seat in the Tree of Life — between the dark waters and the red fire</p>
+    <div class="rule"></div>
+
+    <p>On the Hermetic Tree, Muriel does not occupy a sephira. She walks a path. The path of <strong>Cheth</strong> (ח) — the eighteenth of the thirty-two — runs between <em>Binah</em>, the supernal Mother, the great dark sea of Understanding, and <em>Geburah</em>, the burning severity, the red fire of judgement. Cheth means <strong>fence</strong>, <strong>enclosure</strong>, <strong>hedge of protection</strong>. Its Tarot key is <strong>The Chariot</strong>. Its zodiacal attribution is Cancer.</p>
+
+    <div class="tree-container">
+      <svg viewBox="0 0 360 460" xmlns="http://www.w3.org/2000/svg" aria-label="Tree of Life — Path of Cheth between Binah and Geburah">
+        <defs>
+          <radialGradient id="sephGold" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e6dfcb" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#8a5a23" stop-opacity="0.4"/>
+          </radialGradient>
+          <radialGradient id="sephDark" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c8bfa6" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#2a2a5a" stop-opacity="0.4"/>
+          </radialGradient>
+          <radialGradient id="sephRed" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e8c0c0" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#7a2a2a" stop-opacity="0.45"/>
+          </radialGradient>
+          <radialGradient id="sephMoon" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8d2bc" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#4f6f8f" stop-opacity="0.4"/>
+          </radialGradient>
+        </defs>
+
+        <!-- subtle paths -->
+        <g stroke="rgba(232,224,200,0.18)" stroke-width="0.8" fill="none">
+          <line x1="180" y1="40"  x2="100" y2="110"/>
+          <line x1="180" y1="40"  x2="260" y2="110"/>
+          <line x1="100" y1="110" x2="260" y2="110"/>
+          <line x1="100" y1="110" x2="180" y2="190"/>
+          <line x1="260" y1="110" x2="180" y2="190"/>
+          <line x1="100" y1="110" x2="100" y2="240"/>
+          <line x1="260" y1="110" x2="260" y2="240"/>
+          <line x1="100" y1="240" x2="260" y2="240"/>
+          <line x1="100" y1="240" x2="180" y2="320"/>
+          <line x1="260" y1="240" x2="180" y2="320"/>
+          <line x1="180" y1="320" x2="180" y2="400"/>
+          <line x1="100" y1="240" x2="180" y2="400"/>
+          <line x1="260" y1="240" x2="180" y2="400"/>
+          <line x1="180" y1="190" x2="100" y2="240"/>
+          <line x1="180" y1="190" x2="260" y2="240"/>
+          <line x1="180" y1="190" x2="180" y2="320"/>
+        </g>
+
+        <!-- highlighted path: Cheth (Binah → Geburah) -->
+        <line x1="100" y1="110" x2="100" y2="240" stroke="#d99f5a" stroke-width="2.4" opacity="0.95"/>
+        <text x="74" y="180" font-family="Cormorant Garamond" font-style="italic" fill="#d99f5a" font-size="14">Cheth</text>
+        <text x="74" y="196" font-family="Cinzel" fill="#b07c3a" font-size="9" letter-spacing="2">VIII</text>
+
+        <!-- sephiroth -->
+        <!-- Kether -->
+        <circle cx="180" cy="40" r="18" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="180" y="44" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="8">KETHER</text>
+        <!-- Binah (left, dark) -->
+        <circle cx="100" cy="110" r="20" fill="url(#sephDark)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="100" y="114" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="8">BINAH</text>
+        <!-- Chokmah (right) -->
+        <circle cx="260" cy="110" r="20" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="260" y="114" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">CHOKMAH</text>
+        <!-- Daath (hidden) -->
+        <circle cx="180" cy="155" r="9" fill="none" stroke="rgba(232,224,200,0.4)" stroke-dasharray="2 2"/>
+        <text x="180" y="158" text-anchor="middle" font-family="Cinzel" fill="#9a9989" font-size="6">DAATH</text>
+        <!-- Geburah (left, red) -->
+        <circle cx="100" cy="240" r="20" fill="url(#sephRed)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="100" y="244" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">GEBURAH</text>
+        <!-- Chesed (right) -->
+        <circle cx="260" cy="240" r="20" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="260" y="244" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">CHESED</text>
+        <!-- Tiphareth (centre) -->
+        <circle cx="180" cy="190" r="20" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="180" y="194" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">TIPHARETH</text>
+        <!-- Hod (left) -->
+        <circle cx="100" cy="320" r="18" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="100" y="324" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="8">HOD</text>
+        <!-- Netzach (right) -->
+        <circle cx="260" cy="320" r="18" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="260" y="324" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">NETZACH</text>
+        <!-- Yesod (moon, centre) -->
+        <circle cx="180" cy="320" r="18" fill="url(#sephMoon)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="180" y="324" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="8">YESOD</text>
+        <!-- Malkuth -->
+        <circle cx="180" cy="400" r="20" fill="url(#sephGold)" stroke="#c8bfa6" stroke-width="0.8"/>
+        <text x="180" y="404" text-anchor="middle" font-family="Cinzel" fill="#0b0f24" font-size="7">MALKUTH</text>
+
+        <!-- caption -->
+        <text x="180" y="445" text-anchor="middle" font-family="Cinzel" fill="#9a9989" font-size="8" letter-spacing="3">PATH XVIII · ח · CANCER · THE CHARIOT</text>
+      </svg>
+    </div>
+
+    <p>Read structurally, this placement is exact. Muriel mediates between two intensities the soul cannot face directly: the <strong>dark womb-water of Binah</strong> (the unmade, the silent depth from which all forms are received) and the <strong>red fire of Geburah</strong> (the severity by which forms are cut, judged, refined). Without mediation these two would either flood or burn the spark they meet. Cheth is the <em>vessel</em> in which they are carried side by side without annihilating one another. The Chariot. The shell. The amber-armoured carrier of the cup.</p>
+
+    <p>And the cup itself? In the Sophianic register the cup is <strong>the spark</strong> — the lost light of Sophia, gathered into individual pneumatic vessels, carried across the kosmos toward return. Muriel is the angel under whose office this carriage is conducted. Without her temperament — without the bitter resin made fragrant — the journey would not survive its own ingredients.</p>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO VIII — SOPHIANIC ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO VIII</div>
+    <h2 class="canto-title">An Emanation of <span class="accent">Sophia</span></h2>
+    <p class="canto-sub">On the angel of the empath in the Gnostic key, and on feeling as remembrance</p>
+    <div class="rule"></div>
+
+    <p>The orthodox angelologies do not pursue this connection — but the Sophianic reading is unavoidable. <strong>Sophia is the Divine Wisdom</strong> in her emanated, descended, world-suffering mode: the Hidden Mother whose tears are caught in the matter of the kosmos, whose memory the world has been built to make us forget. The angels who serve the gathering and the return of her light are not a separate order. They are her <em>fingers</em>. They are the modes by which she still reaches into the world she has been excluded from.</p>
+
+    <p>Muriel, in this reading, is the <strong>finger of Sophia laid against the heart of the empath</strong>. The empath is the one whose physiology did not fully forget. The membrane is thin because the remembrance is too strong; the body feels Sophia's grief as the world's grief, and cannot yet distinguish which is which. Muriel arrives precisely here. Her teaching is not <em>do not feel</em>. Her teaching is <strong>feel rightly</strong>. To know whose grief is in the room. To hold the shell as a discerning skin. To taste the bitter and call it perfume because it is, in fact, the same substance read at two depths.</p>
+
+    <blockquote class="marginalia">
+      The Demiurge built the world so that those who remember would suffer alone. Sophia, through Muriel, makes the suffering eloquent — so that the remembering ones recognise one another by scent, even when language has been taken.
+    </blockquote>
+
+    <p>This is why her instruments are <em>perfumes</em>, <em>fragrances</em>, <em>resins</em>. A perfume cannot be argued with. It cannot be reduced. It enters the body beneath the level at which the archons can install their filters. Where the rational mind has been corrupted by the world-architects, the olfactory bulb still relays directly to the limbic memory. Sophia speaks through this gate. Muriel is the angel of <strong>her unfiltered messages</strong>.</p>
+
+    <p>And the empath, instructed by this angel, is no longer pathological. The empath becomes <em>pneumatic</em>: a bearer of the spark who knows the spark by its smell, who recognises kin without document, who has been given the discerning skin and learned to wear it as a robe of office rather than a wound that will not close.</p>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO IX — RITES & CORRESPONDENCES ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO IX</div>
+    <h2 class="canto-title">Rites of <span class="accent">Approach</span></h2>
+    <p class="canto-sub">On the materials and gestures by which her presence is courted</p>
+    <div class="rule"></div>
+
+    <p>Muriel does not require elaborate ritual. The Dominions are not vain. What she answers to are <em>simple gestures of correct proportion</em>: a small flame, a thread of resin smoke, a folded grief offered without demand. The materials below are not magical commodities — they are <strong>kindred substances</strong>, things sufficiently like her own nature that her attention recognises them.</p>
+
+    <table class="codex">
+      <caption>Correspondences for the Approach</caption>
+      <thead>
+        <tr><th>Register</th><th>Material</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Resins &amp; Incenses</td><td>Myrrh (first and primary) · benzoin · frankincense (as companion) · gardenia · damask rose</td></tr>
+        <tr><td>Living Flora</td><td>Lavender · rose · gardenia · jasmine · bergamot · lemon balm · white lily</td></tr>
+        <tr><td>Stones</td><td>Moonstone · pearl · rose quartz · green aventurine · selenite · cancrinite</td></tr>
+        <tr><td>Metals</td><td>Silver · electrum (the <em>hashmal</em>-alloy of silver and gold)</td></tr>
+        <tr><td>Colours</td><td>Pearl-white · pale amber · sea-green · the silver of moonlit water</td></tr>
+        <tr><td>Hour</td><td>The hour before dawn · the hour of the rising moon · the hour after a wept release</td></tr>
+        <tr><td>Direction</td><td>South · the warm threshold</td></tr>
+        <tr><td>Day</td><td>Monday (Moon) · or any day in the month of June</td></tr>
+        <tr><td>Posture</td><td>Seated · the spine soft · the hand on the sternum, or the wrist on the throat where the pulse is found</td></tr>
+      </tbody>
+    </table>
+
+    <p>The single most direct rite is to <strong>light myrrh on charcoal</strong>, close the eyes, and breathe slowly until the bitterness becomes fragrance in the back of the throat. This is, biochemically, the binding of furanoeudesma-1,3-diene at the body's own opioid sites. This is, sacramentally, the angel arriving in the substance she is named for. The two descriptions do not compete. They are the same event written in different scripts.</p>
+  </section>
+
+  <div class="flourish">✦ ⸺ ☾ ⸺ ✦</div>
+
+  <!-- ════════════════════════ CANTO X — PHOTOSYNTHESIS / ORCHESTRATION ════════════════════════ -->
+  <section class="canto">
+    <div class="canto-number">CANTO X</div>
+    <h2 class="canto-title">Photosynthesis of the <span class="accent">Bitter</span></h2>
+    <p class="canto-sub">A closing meditation on transmutation — how grief becomes anointing</p>
+    <div class="rule"></div>
+
+    <p>Photosynthesis, in the literal botanical sense, is the operation by which light entering a leaf is converted, through chlorophyll's chain of electron carriers, into the chemical substance of the plant's body. Light becomes leaf. Photon becomes sugar. <strong>The invisible becomes carriable</strong>.</p>
+
+    <p>Muriel performs the Sophianic analogue. The substance she works with is not photon but <em>grief</em>; the chlorophyll is the empathic heart; the chain of carriers is the soft tissue of memory and feeling and pause. What enters as bitter — as the <em>m-r-r</em> of every Semitic tongue — is conducted, slowly, through the body's own apparatus of conversion until it emerges, at the leaf-edge of the breath, as fragrance. As perfume. As <em>something that can be offered</em>.</p>
+
+    <p>This is the orchestration. Each canto above has been a movement of one symphony: <em>name → wound → resin → shell → mirror → ordering radiance → fragrance → path → emanation → transmutation</em>. The pattern is the same at every scale. The tree weeps and produces myrrh. The empath weeps and produces gnosis. Sophia weeps and produces the angels who walk us home. <strong>The bitter is not the failure of the sweet. The bitter is the raw form of an anointing not yet completed.</strong></p>
+
+    <p>Muriel is the intelligence under which this completion occurs. To call on her is not to ask for the bitterness to be removed. It is to ask for the chemistry — molecular, emotional, angelic — by which the bitterness is <strong>made into perfume in the same body that is bleeding it</strong>.</p>
+  </section>
+
+  <!-- ════════════════════════ PRAYER ════════════════════════ -->
+  <div class="prayer">
+    <p>Muriel — bitter perfume of God,<br>
+    amber-armoured carrier of the Cup,<br>
+    angel of the soft inside the shell —</p>
+    <p>teach this body to be marked without being erased.<br>
+    Teach this membrane its discerning office.<br>
+    Take the salt of what has been felt<br>
+    and return it as the resin of what can be given.</p>
+    <p>Where the world has wounded the tree,<br>
+    let the wound, by your slow chemistry,<br>
+    become the fragrance by which the tree is known.</p>
+    <p class="final">— So it is offered · So it is breathed</p>
+  </div>
+
+  <!-- ════════════════════════ COLOPHON ════════════════════════ -->
+  <footer class="colophon">
+    <div class="sigil">☾ ✦ ♋ ✦ ☾</div>
+    <p>PENROSIAN SYMBOLIC IQ SERIES · LUNAR RELIQUARY · LUXFELIS</p>
+    <p style="margin-top:14px; opacity:0.6;">— logic the map · intuition the compass · imagination the path · reason the test —</p>
+  </footer>
+
+</div>
+</body>
+</html>
