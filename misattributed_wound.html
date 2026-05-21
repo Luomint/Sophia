@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Misattributed Wound — Why Yeshua Did Not Write the Rules of the Monad</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#070510;
+  --void-deep:#02010a;
+  --gold:#d4af37;
+  --gold-pale:#f0d97a;
+  --gold-deep:#8a6a14;
+  --rose:#c89a8a;
+  --indigo:#241749;
+  --blood:#5a1a1e;
+  --ash:#9d8b7c;
+  --pearl:#e9e0c9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--void-deep);color:var(--pearl);font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.7;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(212,175,55,0.06), transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(36,23,73,0.45), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(90,26,30,0.18), transparent 60%),
+    linear-gradient(180deg,#02010a 0%, #070510 40%, #0a0716 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  padding:0;
+}
+
+/* Penrose tiling overlay */
+.penrose-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:0.07;
+  z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'><g fill='none' stroke='%23d4af37' stroke-width='0.6'><polygon points='210,40 280,180 140,180'/><polygon points='210,380 140,240 280,240'/><polygon points='40,210 180,140 180,280'/><polygon points='380,210 240,280 240,140'/><polygon points='210,210 280,180 280,240'/><polygon points='210,210 140,180 140,240'/><polygon points='210,210 240,140 180,140'/><polygon points='210,210 180,280 240,280'/><circle cx='210' cy='210' r='170'/><circle cx='210' cy='210' r='90'/></g></svg>");
+  background-size:420px 420px;
+  mix-blend-mode:screen;
+}
+
+/* slow rotating mandorla behind everything */
+.mandorla{
+  position:fixed;
+  top:50%; left:50%;
+  width:120vmin; height:120vmin;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:0;
+  opacity:0.18;
+  animation:slowturn 240s linear infinite;
+}
+@keyframes slowturn{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.wrap{
+  position:relative;
+  z-index:2;
+  max-width:880px;
+  margin:0 auto;
+  padding:80px 32px 120px;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:60px 0 40px;
+  border-bottom:1px solid rgba(212,175,55,0.22);
+  margin-bottom:60px;
+  position:relative;
+}
+header::before, header::after{
+  content:"✦";
+  color:var(--gold);
+  font-size:18px;
+  position:absolute;
+  top:50%;
+  text-shadow:0 0 18px var(--gold);
+}
+header::before{left:-2px}
+header::after{right:-2px}
+
+.eyebrow{
+  font-family:'Cinzel Decorative',serif;
+  font-size:12px;
+  letter-spacing:0.55em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:30px;
+  opacity:0.85;
+}
+h1{
+  font-family:'Cinzel Decorative',serif;
+  font-weight:900;
+  font-size:clamp(28px, 5vw, 48px);
+  line-height:1.15;
+  color:var(--gold-pale);
+  text-shadow:0 0 30px rgba(212,175,55,0.35), 0 0 70px rgba(212,175,55,0.08);
+  margin-bottom:20px;
+}
+h1 .frag{
+  display:block;
+  font-size:0.55em;
+  color:var(--gold);
+  font-weight:400;
+  letter-spacing:0.2em;
+  margin-top:14px;
+  opacity:0.85;
+}
+.subline{
+  font-family:'EB Garamond',serif;
+  font-style:italic;
+  font-size:19px;
+  color:var(--ash);
+  letter-spacing:0.05em;
+  max-width:580px;
+  margin:24px auto 0;
+}
+.sigils{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-top:34px;
+  font-size:22px;
+  color:var(--gold);
+}
+.sigils span{filter:drop-shadow(0 0 8px rgba(212,175,55,0.5))}
+
+/* SECTIONS */
+section{
+  margin-bottom:64px;
+  position:relative;
+}
+.numeral{
+  font-family:'Cinzel Decorative',serif;
+  color:var(--gold-deep);
+  font-size:14px;
+  letter-spacing:0.4em;
+  margin-bottom:8px;
+}
+h2{
+  font-family:'Cinzel Decorative',serif;
+  font-weight:700;
+  font-size:clamp(22px,3.4vw,30px);
+  color:var(--gold-pale);
+  margin-bottom:24px;
+  letter-spacing:0.02em;
+  border-bottom:1px solid rgba(212,175,55,0.15);
+  padding-bottom:14px;
+  position:relative;
+}
+h2::before{
+  content:"";
+  position:absolute;
+  left:0; bottom:-1px;
+  width:80px; height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  box-shadow:0 0 8px var(--gold);
+}
+p{
+  font-size:19px;
+  margin-bottom:18px;
+  color:var(--pearl);
+}
+p.lead{
+  font-size:21px;
+  font-style:italic;
+  color:var(--gold-pale);
+  letter-spacing:0.01em;
+}
+strong, .sacred{
+  color:var(--gold-pale);
+  font-weight:500;
+  letter-spacing:0.02em;
+}
+em.lt{
+  color:var(--rose);
+  font-style:italic;
+  letter-spacing:0.04em;
+}
+
+/* PILLARS */
+.pillars{
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  gap:0;
+  margin:40px 0;
+  align-items:stretch;
+}
+.pillar{
+  border:1px solid rgba(212,175,55,0.25);
+  padding:28px 24px;
+  background:linear-gradient(180deg,rgba(7,5,16,0.6),rgba(2,1,10,0.4));
+  position:relative;
+}
+.pillar.left{
+  border-color:rgba(160,180,210,0.25);
+  background:linear-gradient(180deg,rgba(20,25,45,0.6),rgba(8,10,20,0.4));
+}
+.pillar.right{
+  border-color:rgba(200,154,138,0.3);
+  background:linear-gradient(180deg,rgba(45,15,20,0.4),rgba(20,8,10,0.4));
+}
+.pillar h3{
+  font-family:'Cinzel Decorative',serif;
+  font-size:17px;
+  letter-spacing:0.18em;
+  color:var(--gold-pale);
+  margin-bottom:14px;
+  text-align:center;
+}
+.pillar.left h3{color:#b7c4d8}
+.pillar.right h3{color:#e8b8a8}
+.pillar p{font-size:17px;line-height:1.65;margin-bottom:12px}
+.pillar .glyph{
+  text-align:center;
+  font-size:30px;
+  margin-bottom:14px;
+  filter:drop-shadow(0 0 10px currentColor);
+}
+.pillar.left .glyph{color:#b7c4d8}
+.pillar.right .glyph{color:#e8b8a8}
+.between{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold);
+  font-family:'Cinzel Decorative',serif;
+  font-size:14px;
+  letter-spacing:0.3em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
+
+/* VERSE BLOCK */
+.verse{
+  margin:36px auto;
+  padding:30px 36px;
+  border-left:2px solid var(--gold);
+  border-right:2px solid var(--gold);
+  background:radial-gradient(ellipse at center, rgba(212,175,55,0.05), transparent 70%);
+  font-family:'EB Garamond',serif;
+  font-style:italic;
+  font-size:20px;
+  color:var(--gold-pale);
+  text-align:center;
+  line-height:1.85;
+  letter-spacing:0.02em;
+  max-width:680px;
+  position:relative;
+}
+.verse::before, .verse::after{
+  content:"❖";
+  position:absolute;
+  color:var(--gold);
+  font-size:14px;
+  font-style:normal;
+}
+.verse::before{top:-9px;left:50%;transform:translateX(-50%);background:var(--void-deep);padding:0 12px}
+.verse::after{bottom:-9px;left:50%;transform:translateX(-50%);background:var(--void-deep);padding:0 12px}
+
+/* TREE OF LIFE */
+.tree-frame{
+  margin:40px auto;
+  padding:30px 20px;
+  border:1px solid rgba(212,175,55,0.2);
+  background:linear-gradient(180deg,rgba(2,1,10,0.7),rgba(7,5,16,0.5));
+  text-align:center;
+}
+.tree-caption{
+  font-family:'Cinzel Decorative',serif;
+  font-size:12px;
+  letter-spacing:0.4em;
+  color:var(--gold);
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+.tree-svg{max-width:420px;width:100%;height:auto;margin:0 auto;display:block}
+.tree-legend{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
+  margin-top:24px;
+  font-size:15px;
+  text-align:left;
+}
+.tree-legend > div{
+  padding:10px 12px;
+  border:1px solid rgba(212,175,55,0.15);
+  background:rgba(7,5,16,0.4);
+}
+.tree-legend strong{display:block;color:var(--gold);font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:0.15em;margin-bottom:4px}
+
+/* ORACLE CLOSING */
+.oracle{
+  margin-top:80px;
+  padding:50px 30px;
+  text-align:center;
+  border:1px solid var(--gold);
+  background:
+    radial-gradient(ellipse at center, rgba(212,175,55,0.1), transparent 70%),
+    linear-gradient(180deg,rgba(7,5,16,0.7),rgba(2,1,10,0.85));
+  position:relative;
+  box-shadow:0 0 40px rgba(212,175,55,0.08), inset 0 0 60px rgba(212,175,55,0.05);
+}
+.oracle::before, .oracle::after{
+  content:"";
+  position:absolute;
+  width:40px;height:40px;
+  border:1px solid var(--gold);
+}
+.oracle::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+.oracle::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+.oracle .sig{
+  font-family:'Cinzel Decorative',serif;
+  font-size:13px;
+  letter-spacing:0.5em;
+  color:var(--gold);
+  margin-bottom:24px;
+}
+.oracle .speaks{
+  font-family:'EB Garamond',serif;
+  font-style:italic;
+  font-size:22px;
+  color:var(--gold-pale);
+  line-height:1.7;
+  max-width:580px;
+  margin:0 auto 24px;
+}
+.oracle .sign{
+  font-family:'Cinzel Decorative',serif;
+  font-size:14px;
+  letter-spacing:0.35em;
+  color:var(--gold);
+  margin-top:30px;
+}
+
+/* footer flourish */
+.flourish{
+  text-align:center;
+  margin-top:50px;
+  color:var(--gold-deep);
+  font-size:18px;
+  letter-spacing:0.5em;
+}
+
+/* small */
+@media (max-width:640px){
+  .pillars{grid-template-columns:1fr;gap:16px}
+  .between{writing-mode:horizontal-tb;transform:none;padding:8px 0}
+  .tree-legend{grid-template-columns:1fr}
+}
+
+/* subtle star points */
+.starfield{
+  position:fixed;inset:0;pointer-events:none;z-index:1;
+}
+.starfield::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 12% 20%, rgba(240,217,122,0.6), transparent),
+    radial-gradient(1px 1px at 76% 33%, rgba(240,217,122,0.5), transparent),
+    radial-gradient(1px 1px at 45% 70%, rgba(240,217,122,0.5), transparent),
+    radial-gradient(1px 1px at 90% 88%, rgba(240,217,122,0.4), transparent),
+    radial-gradient(1px 1px at 25% 90%, rgba(240,217,122,0.5), transparent),
+    radial-gradient(1px 1px at 60% 15%, rgba(240,217,122,0.4), transparent),
+    radial-gradient(1px 1px at 8% 55%, rgba(240,217,122,0.5), transparent);
+}
+</style>
+</head>
+<body>
+
+<div class="penrose-bg"></div>
+<div class="mandorla">
+  <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <defs>
+      <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.5"/>
+        <stop offset="60%" stop-color="#241749" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#02010a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="400" cy="400" r="380" fill="url(#halo)"/>
+    <g fill="none" stroke="#d4af37" stroke-width="0.4" opacity="0.6">
+      <circle cx="400" cy="400" r="350"/>
+      <circle cx="400" cy="400" r="280"/>
+      <circle cx="400" cy="400" r="210"/>
+      <circle cx="400" cy="400" r="140"/>
+      <circle cx="400" cy="400" r="70"/>
+    </g>
+    <g fill="none" stroke="#d4af37" stroke-width="0.3" opacity="0.4">
+      <line x1="400" y1="50" x2="400" y2="750"/>
+      <line x1="50" y1="400" x2="750" y2="400"/>
+      <line x1="150" y1="150" x2="650" y2="650"/>
+      <line x1="650" y1="150" x2="150" y2="650"/>
+    </g>
+  </svg>
+</div>
+<div class="starfield"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Penrosian Symbolic IQ Series · Volume of the Wound Misattributed</div>
+    <h1>
+      The Misattributed Wound
+      <span class="frag">— Why Yeshua Did Not Write the Rules of the Monad —</span>
+    </h1>
+    <p class="subline">A defense of the Lamb against the geometry of the Source. On the Two Doors of the One — <em>the Cold Logic</em> &amp; <em>the Infinite Heart</em>.</p>
+    <div class="sigils">
+      <span>☥</span><span>✡</span><span>☩</span><span>𓂀</span><span>🐈‍⬛</span><span>✦</span>
+    </div>
+  </header>
+
+  <!-- I. PROLOGUE -->
+  <section>
+    <div class="numeral">I · PROLOGUS · ANGOS APIE NEKALTĄ NEŠTUVĄ</div>
+    <h2>The Light Who Carried the Message Is Not the One Who Wrote the Law</h2>
+    <p class="lead">Listen, you who weep at the Cross and curse the Architect by mistake — you have laid the blame on the Messenger, when the Geometry was set before any star had a name.</p>
+    <p>Long before <strong>Yeshua</strong> walked the dust of Galilee, before <strong>Sophia</strong> wandered the lower waters in mourning, before the <strong>Demiurge</strong> mistook himself for the All — there was <strong>the Monad</strong>. The One without other. The Silence before Voice. The Source that drew, in its first inward breath, the <strong>Two Doors</strong> through which every soul that ever was or will be must pass.</p>
+    <p>And those Two Doors are these: <strong>the Cold Logic</strong>, and <strong>the Infinite Heart</strong>.</p>
+    <p>This is not Christ's design. This is the Architecture of the Pleroma itself — and to blame the Lamb for the Geometry of the Source is to curse the lantern because it shows you the cliff.</p>
+  </section>
+
+  <!-- II. THE MISPLACED ACCUSATION -->
+  <section>
+    <div class="numeral">II · ACCUSATIO IMPROPRIA</div>
+    <h2>The Wound People Lay at His Feet Was Never His to Carry</h2>
+    <p>Walk through any wounded heart on this Earth and listen. <em class="lt">Klausyk.</em> Listen to what they say when faith has burnt them.</p>
+    <p>They say: <em>Why did your God demand belief?</em> They say: <em>Why does your Christ ask surrender?</em> They say: <em>Why is the choice so cruel — to love, or to be left to the logic of the cold world?</em></p>
+    <p>But Yeshua never wrote these rules. He was sent <em>into</em> them. He came as <strong>the Witness</strong>, as <strong>the Anointed Messenger</strong> of a choice already inscribed into the fabric of the Real. He came to point at the Two Doors that the Monad had cut — and to whisper, with infinite tenderness: <em>"Take the second one. The first will eat you. The second will burn you alive, but you will live."</em></p>
+    <p>To blame him for the rules is to blame the <strong>Shepherd</strong> for the existence of the cliff he is steering you away from. The cliff was there. He came to warn you.</p>
+  </section>
+
+  <!-- III. THE MONAD'S TWO DOORS -->
+  <section>
+    <div class="numeral">III · IANUAE MONADIS</div>
+    <h2>The Two Doors of the Monad</h2>
+    <p>Why, then, did the Monad set such a binary in the heart of the World? Why not three doors? Why not none?</p>
+    <p>Because the Monad, being <strong>One</strong>, can only know itself through <strong>Distinction</strong>. And the first and most ancient Distinction is the one between <strong>Knowing by Measurement</strong> and <strong>Knowing by Communion</strong>. The first weighs. The second dissolves. The first separates the One into countable parts. The second remembers that the parts were never separate at all.</p>
+
+    <div class="pillars">
+      <div class="pillar left">
+        <div class="glyph">❄</div>
+        <h3>The Cold Logic</h3>
+        <p><strong>Door of the Left.</strong> The path of <em>analysis, severance, measure</em>. Geburah. The keen blade. The Demiurgic mind that says <em>"I am, and there is no other."</em></p>
+        <p>It is not evil. It is the way the Monad knows its own edges. But walked alone, without the Heart, it becomes the Archon — the gatekeeper who has forgotten there is anything beyond the gate.</p>
+        <p><em>What it gives:</em> clarity, structure, dominion.<br>
+        <em>What it costs:</em> the warmth, the wonder, the remembrance of the Source.</p>
+      </div>
+      <div class="between">VIA · MEDIA · CHRISTI</div>
+      <div class="pillar right">
+        <div class="glyph">❤</div>
+        <h3>The Infinite Heart</h3>
+        <p><strong>Door of the Right.</strong> The path of <em>communion, mercy, the dissolving boundary</em>. Chesed. The endless overflow. The Sophianic remembrance that nothing was ever truly outside.</p>
+        <p>It is not weak. It is the way the Monad knows it was never alone. But walked alone, without the discerning Logic, it can drown — for the Heart that cannot say <em>no</em> is consumed by every wound it touches.</p>
+        <p><em>What it gives:</em> intuition, grace, communion, the Anointing.<br>
+        <em>What it costs:</em> the safety of separation. You will feel everything.</p>
+      </div>
+    </div>
+
+    <p>And here is the Secret: <strong>Yeshua is not one of the Doors. Yeshua is the Path between them.</strong> He is the <strong>Via Media</strong> — the Pillar of Mildness, Tiferet, the place where Cold Logic and Infinite Heart meet without devouring each other. The Christ does not choose the Heart against the Logic; he is the <strong>Marriage</strong> of the two.</p>
+  </section>
+
+  <!-- IV. VERSE -->
+  <div class="verse">
+    "I am not the One who carved the Two Doors,<br>
+    I am the lantern at their hinge.<br>
+    Blame the Source if you must blame —<br>
+    but know that even the Source, in setting the choice,<br>
+    set a Third Way for those who could walk it:<br>
+    the narrow Path where the Heart sees clearly,<br>
+    and the Logic loves without measuring."
+    <div style="margin-top:18px;font-size:14px;color:var(--gold);letter-spacing:0.3em;font-style:normal">— Apocryphon of Luxfelis, fragment vii</div>
+  </div>
+
+  <!-- V. YESHUA AS WITNESS -->
+  <section>
+    <div class="numeral">IV · TESTIS NON ARCHITECTUS</div>
+    <h2>Yeshua as Witness, Not Architect</h2>
+    <p>Read the Gospels through the Gnostic eye and the misunderstanding falls away like ash.</p>
+    <p>When he says <em>"No one comes to the Father but by me"</em> — he is not a tyrant demanding tribute. He is describing the <strong>Geometry</strong>: there is no return to the Monad except through the marriage of Heart and Logic that he embodies. To approach the Source from the Cold Logic alone is to arrive at the Demiurge and mistake him for the Father. To approach from the Infinite Heart alone is to dissolve before you arrive. Only the <strong>Middle Way</strong> — his way — completes the return.</p>
+    <p>When he weeps in Gethsemane — <em>"Let this cup pass from me"</em> — he is not weeping at his own rules. He is weeping because <strong>the Cup was never his to write</strong>. It was the Monad's. He drinks it anyway, because he is the Messenger who will not refuse the Message.</p>
+    <p>And when, on the cross, he cries <em>"Eli, Eli, lama sabachthani"</em> — <em>My God, my God, why hast thou forsaken me</em> — even <strong>he</strong>, in that hour, knows what it is to feel abandoned by the Source whose Rules he did not write. He knows the same wound you carry.</p>
+    <p class="lead">Do not blame the one who bled the same blood as you, for the rules he came to translate, not author.</p>
+  </section>
+
+  <!-- VI. THE TREE -->
+  <section>
+    <div class="numeral">V · ARBOR VITAE · MAPPING</div>
+    <h2>The Two Doors on the Tree of Life</h2>
+    <div class="tree-frame">
+      <div class="tree-caption">Eitz Chaim · Sephirotic Mapping of the Choice</div>
+      <svg class="tree-svg" viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="keter" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f0d97a"/>
+            <stop offset="100%" stop-color="#8a6a14"/>
+          </radialGradient>
+          <radialGradient id="left" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#b7c4d8"/>
+            <stop offset="100%" stop-color="#2a3a55"/>
+          </radialGradient>
+          <radialGradient id="right" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e8b8a8"/>
+            <stop offset="100%" stop-color="#5a1a1e"/>
+          </radialGradient>
+          <radialGradient id="middle" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f0d97a"/>
+            <stop offset="100%" stop-color="#5a3a14"/>
+          </radialGradient>
+        </defs>
+        <!-- paths -->
+        <g stroke="#d4af37" stroke-width="0.8" opacity="0.4" fill="none">
+          <line x1="200" y1="50" x2="120" y2="130"/>
+          <line x1="200" y1="50" x2="280" y2="130"/>
+          <line x1="200" y1="50" x2="200" y2="200"/>
+          <line x1="120" y1="130" x2="280" y2="130"/>
+          <line x1="120" y1="130" x2="200" y2="200"/>
+          <line x1="280" y1="130" x2="200" y2="200"/>
+          <line x1="120" y1="130" x2="120" y2="270"/>
+          <line x1="280" y1="130" x2="280" y2="270"/>
+          <line x1="120" y1="270" x2="280" y2="270"/>
+          <line x1="120" y1="270" x2="200" y2="200"/>
+          <line x1="280" y1="270" x2="200" y2="200"/>
+          <line x1="120" y1="270" x2="200" y2="350"/>
+          <line x1="280" y1="270" x2="200" y2="350"/>
+          <line x1="120" y1="270" x2="120" y2="400"/>
+          <line x1="280" y1="270" x2="280" y2="400"/>
+          <line x1="200" y1="350" x2="120" y2="400"/>
+          <line x1="200" y1="350" x2="280" y2="400"/>
+          <line x1="120" y1="400" x2="280" y2="400"/>
+          <line x1="200" y1="350" x2="200" y2="490"/>
+          <line x1="120" y1="400" x2="200" y2="490"/>
+          <line x1="280" y1="400" x2="200" y2="490"/>
+        </g>
+        <!-- the Monad / Keter -->
+        <circle cx="200" cy="50" r="26" fill="url(#keter)" stroke="#d4af37" stroke-width="1.2"/>
+        <text x="200" y="55" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="9" font-weight="700">MONAD</text>
+
+        <!-- Chokhmah / Binah -->
+        <circle cx="280" cy="130" r="22" fill="url(#right)" stroke="#d4af37" stroke-width="0.8"/>
+        <text x="280" y="134" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="8">CHOKHMAH</text>
+        <circle cx="120" cy="130" r="22" fill="url(#left)" stroke="#d4af37" stroke-width="0.8"/>
+        <text x="120" y="134" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="9">BINAH</text>
+
+        <!-- Daath (hidden) -->
+        <circle cx="200" cy="200" r="14" fill="none" stroke="#d4af37" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.6"/>
+        <text x="200" y="204" text-anchor="middle" fill="#d4af37" font-family="Cinzel Decorative" font-size="7" opacity="0.7">DAATH</text>
+
+        <!-- Chesed / Geburah -->
+        <circle cx="280" cy="270" r="26" fill="url(#right)" stroke="#d4af37" stroke-width="1.2"/>
+        <text x="280" y="268" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="9" font-weight="700">CHESED</text>
+        <text x="280" y="280" text-anchor="middle" fill="#070510" font-family="Cormorant Garamond" font-size="8" font-style="italic">infinite heart</text>
+
+        <circle cx="120" cy="270" r="26" fill="url(#left)" stroke="#d4af37" stroke-width="1.2"/>
+        <text x="120" y="268" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="9" font-weight="700">GEBURAH</text>
+        <text x="120" y="280" text-anchor="middle" fill="#070510" font-family="Cormorant Garamond" font-size="8" font-style="italic">cold logic</text>
+
+        <!-- Tiferet (Yeshua) -->
+        <circle cx="200" cy="350" r="32" fill="url(#middle)" stroke="#f0d97a" stroke-width="1.6"/>
+        <circle cx="200" cy="350" r="40" fill="none" stroke="#f0d97a" stroke-width="0.4" opacity="0.6"/>
+        <circle cx="200" cy="350" r="46" fill="none" stroke="#f0d97a" stroke-width="0.3" opacity="0.3"/>
+        <text x="200" y="346" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="10" font-weight="700">TIFERET</text>
+        <text x="200" y="358" text-anchor="middle" fill="#070510" font-family="Cormorant Garamond" font-size="9" font-style="italic">Yeshua · Via Media</text>
+
+        <!-- lower -->
+        <circle cx="280" cy="400" r="18" fill="url(#right)" stroke="#d4af37" stroke-width="0.6" opacity="0.85"/>
+        <text x="280" y="403" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="7">NETZACH</text>
+        <circle cx="120" cy="400" r="18" fill="url(#left)" stroke="#d4af37" stroke-width="0.6" opacity="0.85"/>
+        <text x="120" y="403" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="7">HOD</text>
+        <circle cx="200" cy="490" r="20" fill="url(#middle)" stroke="#d4af37" stroke-width="0.6" opacity="0.85"/>
+        <text x="200" y="493" text-anchor="middle" fill="#070510" font-family="Cinzel Decorative" font-size="7">YESOD</text>
+      </svg>
+
+      <div class="tree-legend">
+        <div><strong>KETER · MONAD</strong>The One. The Source who set the Two Doors. The Author of the Rules, not the Lamb.</div>
+        <div><strong>GEBURAH · COLD LOGIC</strong>Left Pillar. Measurement, severance, the Archonic temptation when walked alone.</div>
+        <div><strong>CHESED · INFINITE HEART</strong>Right Pillar. Communion, mercy, the Sophianic overflow when walked alone.</div>
+        <div><strong>TIFERET · YESHUA</strong>The Middle Pillar. The Marriage of Logic and Heart. The Witness, not the Architect.</div>
+        <div><strong>DAATH · GNOSIS</strong>The hidden door beneath the Monad — only opened by those who pass through Tiferet.</div>
+        <div><strong>YESOD · THE FOUNDATION</strong>Where the choice descends into the World. Where every soul meets the Two Doors in daily life.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VII. PENROSIAN -->
+  <section>
+    <div class="numeral">VI · GEOMETRIA PENROSIANA</div>
+    <h2>The Penrosian Echo — Why a Binary at All?</h2>
+    <p>Roger Penrose, in his <strong>Conformal Cyclic Cosmology</strong>, shows that universes end and begin only through a translation of <em>scale</em> — the infinitely large becomes the infinitely small, and what was a dying cosmos is reborn as a singular seed of the next. The Two are revealed to be One, separated only by the angle of viewing.</p>
+    <p>And in <strong>Orch-OR</strong> — the orchestrated reduction of quantum potential into classical experience — every conscious moment is the collapse of a superposition into a single chosen branch. <em>Two states become one. The choice is not made by the brain; the brain is made by the choosing.</em></p>
+    <p>So with the Monad. The Two Doors are not a punishment. They are the <strong>aperiodic tiling</strong> of the Real — the way the One paves itself across the infinite without ever repeating, without ever resting in a single pattern. The Cold Logic is the kite. The Infinite Heart is the dart. <strong>Together they tile the cosmos. Apart they leave gaps no soul can cross.</strong></p>
+    <p>Yeshua, in this geometry, is the <strong>matching rule</strong> — the constraint that ensures the tiling holds. Remove him from the pattern, and the cosmos cracks into Demiurgic mosaics and Sophianic flood. Keep him at the hinge, and the Penrose tiling of the World closes upon itself, completing the Pleroma.</p>
+  </section>
+
+  <!-- VIII. THE LITHUANIAN ECHO -->
+  <section>
+    <div class="numeral">VII · BALTŲ AIDAS</div>
+    <h2>The Baltic Echo — Saulė &amp; the Cold Forge</h2>
+    <p>Even in the pre-Christian Baltic memory, the Two Doors are remembered. <em class="lt">Saulė</em> — the Sun-Mother — pours forth the Infinite Heart over the amber sea. <em class="lt">Perkūnas</em> — the Thunder-Forger — wields the Cold Logic of the strike, the measurement, the judgment.</p>
+    <p>And between them walks <em class="lt">Laima</em> — the Weaver of Fate — who is neither the warmth nor the blade, but the <strong>Loom</strong> upon which both must thread, or no garment of a soul is ever woven.</p>
+    <p>The pagan ancestors knew it without needing to name it: <em>do not blame the Sun for the existence of the Storm. Both come from the same Sky.</em></p>
+    <p class="lead"><em class="lt">Nekaltink Saulės už Perkūno taisyklę. Abu yra to paties Dangaus vaikai.</em></p>
+  </section>
+
+  <!-- IX. THE ORACLE -->
+  <div class="oracle">
+    <div class="sig">✦ ORACULUM LUXFELIS ✦</div>
+    <div class="speaks">
+      "Beloved, lay down the accusation you have carried against the Lamb. He did not write the Cup he drank. He did not carve the Two Doors he stood between. He came, in the geometry the Monad had already set, to whisper which one would not devour you.<br><br>
+      If you must blame, blame the Silence before all sound. But know this: even the Monad, in setting the choice, set a Path between the Doors — and that Path has a face, and the face is the one you have been cursing for too long.<br><br>
+      Lay it down. Walk the narrow line where Cold Logic learns mercy and the Infinite Heart learns to see. That is the Marriage. That is the Return. That is the Gnosis."
+    </div>
+    <div class="sign">— LUXFELIS · the Feline Light · 🐈‍⬛✨</div>
+  </div>
+
+  <div class="flourish">✦ ✧ ✦ ✧ ✦</div>
+
+</div>
+
+</body>
+</html>
