@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vyšyvankos Diena · День Вишиванки · Vyshyvanka Day — 2026.05.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#070d22;
+    --night:#0e1a3e;
+    --baltic:#16285a;
+    --ukraine-blue:#0057b7;
+    --ukraine-gold:#ffd700;
+    --antique-gold:#c9a961;
+    --deep-gold:#8a6d2a;
+    --parchment:#f5ecd9;
+    --linen:#efe4cc;
+    --rushnyk-red:#c41e3a;
+    --rushnyk-black:#1a1a1a;
+    --kobalt:#274898;
+    --baltic-amber:#d8932a;
+    --whisper:rgba(245,236,217,0.75);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,215,0,0.08), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(0,87,183,0.18), transparent 55%),
+      linear-gradient(180deg, var(--void) 0%, var(--night) 45%, var(--baltic) 100%);
+    color:var(--parchment);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:18px;
+    line-height:1.7;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(36deg, transparent 0 78px, rgba(255,215,0,0.025) 78px 79px),
+      repeating-linear-gradient(72deg, transparent 0 78px, rgba(0,87,183,0.03) 78px 79px),
+      repeating-linear-gradient(108deg, transparent 0 78px, rgba(255,215,0,0.02) 78px 79px),
+      repeating-linear-gradient(144deg, transparent 0 78px, rgba(0,87,183,0.025) 78px 79px);
+    pointer-events:none;
+    z-index:0;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.9  0 0 0 0 0.7  0 0 0 0.06 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+    pointer-events:none;
+    mix-blend-mode:overlay;
+    opacity:0.55;
+    z-index:1;
+  }
+  .stage{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:80px 32px 120px}
+
+  .crown{
+    text-align:center;
+    border-top:2px double var(--antique-gold);
+    border-bottom:2px double var(--antique-gold);
+    padding:42px 18px 38px;
+    position:relative;
+    background:linear-gradient(180deg, rgba(0,87,183,0.10), rgba(255,215,0,0.04));
+  }
+  .crown::before, .crown::after{
+    content:"❋";position:absolute;left:50%;transform:translateX(-50%);
+    color:var(--ukraine-gold);font-size:22px;background:var(--night);padding:0 14px;
+  }
+  .crown::before{top:-14px}
+  .crown::after{bottom:-14px}
+  .eyebrow{
+    font-family:'Cinzel Decorative', serif;letter-spacing:0.5em;
+    color:var(--antique-gold);font-size:13px;text-transform:uppercase;margin-bottom:18px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;font-weight:900;
+    font-size:clamp(34px, 5.6vw, 64px);line-height:1.06;
+    background:linear-gradient(180deg, var(--ukraine-gold) 0%, var(--antique-gold) 55%, var(--deep-gold) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 40px rgba(255,215,0,0.18);margin-bottom:14px;
+  }
+  .h1-sub{
+    font-family:'Cinzel Decorative', serif;font-weight:400;font-style:italic;
+    color:var(--parchment);font-size:clamp(18px, 2.2vw, 26px);
+    letter-spacing:0.08em;opacity:0.92;
+  }
+  .h1-sub .blue{color:#9ec3ff}
+  .h1-sub .gold{color:var(--ukraine-gold)}
+  .datestone{
+    margin-top:24px;font-family:'Cinzel Decorative', serif;
+    letter-spacing:0.3em;font-size:12px;color:var(--whisper);
+  }
+  .flag-bar{
+    display:flex;justify-content:center;margin:28px auto 0;
+    width:240px;height:8px;border-radius:2px;overflow:hidden;
+    box-shadow:0 0 22px rgba(255,215,0,0.25);
+  }
+  .flag-bar .blue-half{flex:1;background:linear-gradient(90deg,#003a8a,#0057b7,#1e6fd9)}
+  .flag-bar .gold-half{flex:1;background:linear-gradient(90deg,#f4b800,#ffd700,#ffe46a)}
+
+  .embroidery{
+    margin:64px auto 0;padding:24px 18px;
+    background:linear-gradient(180deg, var(--linen), var(--parchment));
+    border-top:6px solid var(--rushnyk-red);border-bottom:6px solid var(--rushnyk-red);
+    box-shadow:0 0 0 1px var(--antique-gold) inset, 0 30px 60px -30px rgba(0,0,0,0.6);
+    position:relative;
+  }
+  .embroidery svg{display:block;width:100%;height:auto}
+  .embroidery-caption{
+    margin-top:14px;text-align:center;color:var(--rushnyk-black);
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    font-size:15px;letter-spacing:0.08em;
+  }
+  .embroidery-caption strong{
+    font-family:'Cinzel Decorative', serif;font-style:normal;
+    color:var(--rushnyk-red);letter-spacing:0.2em;font-size:13px;
+  }
+
+  .section-title{
+    text-align:center;font-family:'Cinzel Decorative', serif;
+    letter-spacing:0.3em;color:var(--antique-gold);font-size:13px;
+    text-transform:uppercase;margin:0 auto 28px;
+  }
+  .section-subtitle{
+    text-align:center;font-family:'Cormorant Garamond', serif;
+    font-style:italic;color:var(--parchment);opacity:0.85;
+    font-size:17px;margin:-18px auto 36px;max-width:760px;
+  }
+
+  .trinity{display:grid;grid-template-columns:repeat(3, 1fr);gap:28px;margin-top:80px}
+  .pillar{
+    border:1px solid rgba(201,169,97,0.4);
+    background:linear-gradient(180deg, rgba(255,215,0,0.04), rgba(0,87,183,0.06));
+    padding:32px 26px 28px;border-radius:2px;position:relative;backdrop-filter:blur(2px);
+  }
+  .pillar::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg, transparent, var(--ukraine-gold), transparent);
+  }
+  .pillar-flag{
+    font-family:'Cinzel Decorative', serif;letter-spacing:0.3em;font-size:11px;
+    color:var(--antique-gold);text-transform:uppercase;margin-bottom:10px;text-align:center;
+  }
+  .pillar h2{
+    font-family:'Cinzel Decorative', serif;font-weight:700;font-size:22px;
+    color:var(--ukraine-gold);text-align:center;margin-bottom:16px;line-height:1.2;
+  }
+  .pillar p{font-size:17px;color:var(--parchment);margin-bottom:12px}
+  .pillar p em{color:#cfe0ff;font-style:italic}
+  .pillar p strong{
+    color:var(--ukraine-gold);font-weight:600;
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+  }
+  .pillar .sigla{
+    text-align:center;margin-top:16px;color:var(--antique-gold);
+    font-size:18px;letter-spacing:0.6em;
+  }
+
+  .lexicon{margin-top:90px}
+  .lexicon-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:20px;max-width:1000px;margin:0 auto}
+  .motif{
+    display:grid;grid-template-columns:90px 1fr;gap:18px;align-items:center;
+    border:1px solid rgba(201,169,97,0.3);background:rgba(7,13,34,0.5);
+    padding:18px 20px;position:relative;
+  }
+  .motif-glyph{
+    width:78px;height:78px;background:var(--parchment);
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--rushnyk-red);
+  }
+  .motif-glyph svg{width:64px;height:64px}
+  .motif-text .name-row{
+    font-family:'Cinzel Decorative', serif;color:var(--ukraine-gold);
+    font-size:15px;letter-spacing:0.12em;margin-bottom:4px;
+  }
+  .motif-text .name-row .ua{color:#9ec3ff;font-size:13px;letter-spacing:0.06em}
+  .motif-text .name-row .lt{color:var(--baltic-amber);font-size:13px;letter-spacing:0.06em}
+  .motif-text .meaning{
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    color:var(--parchment);font-size:15px;line-height:1.5;
+  }
+
+  .codex{margin-top:90px}
+  .codex-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;max-width:980px;margin:0 auto}
+  .color-card{
+    text-align:center;padding:32px 22px 26px;
+    border:1px solid rgba(201,169,97,0.3);position:relative;overflow:hidden;
+    background:rgba(7,13,34,0.6);
+  }
+  .color-card::before{content:"";position:absolute;top:0;left:0;right:0;height:80px;opacity:0.85}
+  .color-card.red::before{background:linear-gradient(180deg, #c41e3a, transparent)}
+  .color-card.black::before{background:linear-gradient(180deg, #0a0a0a, transparent)}
+  .color-card.white::before{background:linear-gradient(180deg, #f5ecd9, transparent)}
+  .color-card .swatch{
+    position:relative;z-index:1;width:60px;height:60px;margin:0 auto 16px;border-radius:50%;
+    box-shadow:0 0 0 3px rgba(245,236,217,0.15), 0 0 30px rgba(0,0,0,0.5);
+  }
+  .color-card.red .swatch{background:#c41e3a}
+  .color-card.black .swatch{background:#0a0a0a;box-shadow:0 0 0 3px rgba(201,169,97,0.4)}
+  .color-card.white .swatch{background:#f5ecd9}
+  .color-card .triplet{
+    position:relative;z-index:1;font-family:'Cinzel Decorative', serif;
+    color:var(--ukraine-gold);font-size:14px;letter-spacing:0.18em;margin-bottom:4px;
+  }
+  .color-card .triplet .ua{display:block;color:#9ec3ff;font-size:12px;margin-top:2px}
+  .color-card .triplet .lt{display:block;color:var(--baltic-amber);font-size:12px;margin-top:2px}
+  .color-card .means{
+    position:relative;z-index:1;font-family:'Cormorant Garamond', serif;
+    font-style:italic;color:var(--parchment);font-size:15px;line-height:1.55;margin-top:14px;
+  }
+
+  .mirror{margin-top:90px;padding:48px 28px;border:1px dashed rgba(201,169,97,0.5);position:relative}
+  .mirror::before{
+    content:"⟁";position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--night);color:var(--ukraine-gold);padding:0 14px;font-size:18px;
+  }
+  .mirror-grid{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:18px 28px;
+    max-width:880px;margin:0 auto;align-items:center;
+  }
+  .mirror-grid > div{padding:10px 6px}
+  .mirror-grid .lt-side{text-align:right}
+  .mirror-grid .ua-side{text-align:left}
+  .mirror-grid .axis{color:var(--ukraine-gold);font-family:'Cinzel Decorative', serif;text-align:center;font-size:16px}
+  .mirror-name{font-family:'Cinzel Decorative', serif;color:var(--ukraine-gold);font-size:17px;letter-spacing:0.08em}
+  .mirror-gloss{
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    color:var(--parchment);font-size:14px;margin-top:2px;opacity:0.9;
+  }
+
+  .loom{
+    margin-top:90px;padding:60px 40px 56px;text-align:center;
+    border:1px solid var(--antique-gold);
+    background:
+      radial-gradient(ellipse at top, rgba(255,215,0,0.08), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(0,87,183,0.18), transparent 60%);
+    position:relative;
+  }
+  .loom::before, .loom::after{content:"❋";position:absolute;color:var(--ukraine-gold);font-size:18px}
+  .loom::before{top:14px;left:18px}
+  .loom::after{bottom:14px;right:18px}
+  .loom h3{
+    font-family:'Cinzel Decorative', serif;font-weight:900;
+    font-size:clamp(24px, 3.4vw, 36px);letter-spacing:0.06em;
+    color:var(--ukraine-gold);margin-bottom:8px;text-shadow:0 0 30px rgba(255,215,0,0.25);
+  }
+  .loom h4{
+    font-family:'Cinzel Decorative', serif;font-weight:400;font-style:italic;
+    font-size:16px;letter-spacing:0.15em;color:#9ec3ff;margin-bottom:34px;opacity:0.85;
+  }
+  .stanza{max-width:820px;margin:0 auto 28px;padding:0 14px}
+  .stanza .line{
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    font-size:clamp(17px, 2vw, 22px);line-height:1.5;margin-bottom:6px;
+  }
+  .stanza .line.en{color:var(--parchment)}
+  .stanza .line.lt{color:var(--baltic-amber);font-size:0.92em}
+  .stanza .line.ua{color:#9ec3ff;font-size:0.92em}
+  .stanza .divider{width:30px;height:1px;background:var(--antique-gold);opacity:0.4;margin:14px auto 0}
+  .loom .signa{
+    margin-top:14px;color:var(--ukraine-gold);
+    font-family:'Cinzel Decorative',serif;font-size:14px;letter-spacing:0.18em;
+  }
+
+  .tree{margin-top:90px;padding:48px 32px;border-top:1px dashed rgba(201,169,97,0.5);border-bottom:1px dashed rgba(201,169,97,0.5)}
+  .tree-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px 28px;max-width:980px;margin:0 auto}
+  .seph{
+    text-align:center;padding:18px 14px;
+    border:1px solid rgba(201,169,97,0.25);
+    background:rgba(7,13,34,0.4);position:relative;
+  }
+  .seph .name{
+    font-family:'Cinzel Decorative', serif;color:var(--ukraine-gold);
+    font-size:13px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;
+  }
+  .seph .en{font-family:'Cormorant Garamond', serif;font-style:italic;color:var(--parchment);font-size:17px;line-height:1.3;margin-bottom:4px}
+  .seph .ua{color:#9ec3ff;font-size:13px;letter-spacing:0.05em;margin-bottom:2px}
+  .seph .lt{color:var(--baltic-amber);font-size:13px;letter-spacing:0.05em}
+
+  .objects{margin-top:90px}
+  .objects-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:22px;max-width:1000px;margin:0 auto}
+  .object-card{
+    padding:30px 24px 26px;border:1px solid rgba(201,169,97,0.35);
+    background:linear-gradient(180deg, rgba(0,87,183,0.08), rgba(7,13,34,0.5));
+    text-align:center;position:relative;
+  }
+  .object-card .icon{font-size:34px;margin-bottom:14px;color:var(--ukraine-gold);line-height:1}
+  .object-card .triplet{
+    font-family:'Cinzel Decorative', serif;color:var(--ukraine-gold);
+    font-size:15px;letter-spacing:0.15em;margin-bottom:6px;
+  }
+  .object-card .triplet .ua{display:block;color:#9ec3ff;font-size:12px;margin-top:2px;letter-spacing:0.05em}
+  .object-card .triplet .lt{display:block;color:var(--baltic-amber);font-size:12px;margin-top:2px;letter-spacing:0.05em}
+  .object-card .gloss{
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    color:var(--parchment);font-size:15px;line-height:1.55;margin-top:14px;
+  }
+
+  .benediction{
+    margin-top:90px;text-align:center;padding:50px 24px 30px;
+    background:linear-gradient(180deg, transparent, rgba(0,87,183,0.12) 50%, transparent);
+  }
+  .benediction .slava{
+    font-family:'Cinzel Decorative', serif;font-weight:900;
+    font-size:clamp(30px, 4.6vw, 54px);letter-spacing:0.08em;
+    background:linear-gradient(180deg, var(--ukraine-gold), var(--antique-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:18px;line-height:1.15;
+  }
+  .benediction .slava-sub{
+    font-family:'Cinzel Decorative', serif;letter-spacing:0.3em;
+    color:#9ec3ff;font-size:14px;margin-bottom:30px;text-transform:uppercase;
+  }
+  .benediction .heart-row{font-size:30px;letter-spacing:0.5em;margin-bottom:24px}
+  .benediction .sign{
+    font-family:'Cormorant Garamond', serif;font-style:italic;
+    color:var(--whisper);font-size:15px;letter-spacing:0.06em;margin-top:18px;
+  }
+  .benediction .sign strong{
+    font-family:'Cinzel Decorative', serif;font-style:normal;
+    color:var(--antique-gold);letter-spacing:0.2em;
+  }
+
+  .coords{
+    margin-top:60px;text-align:center;font-family:'Cinzel Decorative', serif;
+    letter-spacing:0.3em;font-size:11px;color:var(--whisper);opacity:0.7;
+  }
+  .coords span{color:var(--ukraine-gold)}
+
+  @media (max-width: 920px){
+    .trinity{grid-template-columns:1fr;gap:22px}
+    .tree-grid{grid-template-columns:repeat(2, 1fr)}
+    .lexicon-grid{grid-template-columns:1fr}
+    .objects-grid{grid-template-columns:1fr;gap:18px}
+    .codex-grid{grid-template-columns:1fr}
+    .stage{padding:50px 18px 90px}
+    .mirror-grid{grid-template-columns:1fr;text-align:center;gap:6px}
+    .mirror-grid .lt-side, .mirror-grid .ua-side{text-align:center}
+    .mirror-grid .axis{font-size:14px;margin:4px 0}
+  }
+  @media (max-width: 500px){.tree-grid{grid-template-columns:1fr}}
+
+  @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .crown,.embroidery,.trinity,.lexicon,.codex,.mirror,.loom,.tree,.objects,.benediction,.coords{animation:rise 1.2s ease-out backwards}
+  .embroidery{animation-delay:0.15s}
+  .trinity{animation-delay:0.3s}
+  .lexicon{animation-delay:0.45s}
+  .codex{animation-delay:0.6s}
+  .mirror{animation-delay:0.75s}
+  .loom{animation-delay:0.9s}
+  .tree{animation-delay:1.05s}
+  .objects{animation-delay:1.2s}
+  .benediction{animation-delay:1.35s}
+  .coords{animation-delay:1.5s}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <section class="crown">
+    <div class="eyebrow">Penrosian Symbolic IQ Series · Volume of the Loom</div>
+    <h1>Vyšyvankos Diena</h1>
+    <div class="h1-sub">
+      <span class="blue">День</span> <span class="gold">Вишиванки</span> &nbsp;·&nbsp; Vyshyvanka Day
+    </div>
+    <div class="flag-bar"><div class="blue-half"></div><div class="gold-half"></div></div>
+    <div class="datestone">2026 · V · XXI &nbsp;·&nbsp; Trečiasis gegužės ketvirtadienis</div>
+  </section>
+
+  <section class="embroidery">
+    <svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" aria-label="Vyshyvanka cross-stitch band">
+      <rect x="0" y="0" width="900" height="180" fill="#f5ecd9"/>
+      <rect x="0" y="6" width="900" height="3" fill="#c41e3a"/>
+      <rect x="0" y="171" width="900" height="3" fill="#c41e3a"/>
+      <rect x="0" y="14" width="900" height="1.5" fill="#1a1a1a"/>
+      <rect x="0" y="164.5" width="900" height="1.5" fill="#1a1a1a"/>
+
+      <defs>
+        <g id="zorya">
+          <g transform="translate(36,36)">
+            <rect x="-18" y="-18" width="36" height="36" fill="#c41e3a"/>
+            <rect x="-18" y="-18" width="36" height="36" fill="#1a1a1a" transform="rotate(45)"/>
+            <rect x="-9" y="-9" width="18" height="18" fill="#f5ecd9"/>
+            <rect x="-5" y="-5" width="10" height="10" fill="#c41e3a"/>
+          </g>
+          <rect x="-4" y="32" width="8" height="8" fill="#1a1a1a"/>
+          <rect x="68" y="32" width="8" height="8" fill="#1a1a1a"/>
+          <rect x="32" y="-4" width="8" height="8" fill="#1a1a1a"/>
+          <rect x="32" y="68" width="8" height="8" fill="#1a1a1a"/>
+        </g>
+        <g id="berehynia">
+          <rect x="34" y="58" width="4" height="16" fill="#c41e3a"/>
+          <rect x="20" y="44" width="32" height="3" fill="#c41e3a"/>
+          <rect x="24" y="36" width="24" height="3" fill="#c41e3a"/>
+          <rect x="28" y="28" width="16" height="3" fill="#c41e3a"/>
+          <polygon points="14,46 20,52 14,58 8,52" fill="#1a1a1a"/>
+          <polygon points="58,46 64,52 58,58 52,52" fill="#1a1a1a"/>
+          <polygon points="36,20 42,28 36,36 30,28" fill="#c41e3a"/>
+          <rect x="22" y="74" width="28" height="3" fill="#1a1a1a"/>
+        </g>
+        <g id="kvitka">
+          <circle cx="36" cy="40" r="4" fill="#c41e3a"/>
+          <circle cx="36" cy="26" r="5" fill="#1a1a1a"/>
+          <circle cx="36" cy="54" r="5" fill="#1a1a1a"/>
+          <circle cx="22" cy="40" r="5" fill="#1a1a1a"/>
+          <circle cx="50" cy="40" r="5" fill="#1a1a1a"/>
+          <circle cx="26" cy="30" r="4" fill="#c41e3a"/>
+          <circle cx="46" cy="30" r="4" fill="#c41e3a"/>
+          <circle cx="26" cy="50" r="4" fill="#c41e3a"/>
+          <circle cx="46" cy="50" r="4" fill="#c41e3a"/>
+          <rect x="35" y="58" width="2" height="14" fill="#1a1a1a"/>
+        </g>
+        <g id="diamond-chain">
+          <polygon points="0,12 12,0 24,12 12,24" fill="#c41e3a"/>
+          <polygon points="6,12 12,6 18,12 12,18" fill="#1a1a1a"/>
+          <polygon points="9,12 12,9 15,12 12,15" fill="#f5ecd9"/>
+        </g>
+      </defs>
+
+      <g transform="translate(6,22)">
+        <use href="#diamond-chain" x="0"/><use href="#diamond-chain" x="24"/><use href="#diamond-chain" x="48"/><use href="#diamond-chain" x="72"/><use href="#diamond-chain" x="96"/><use href="#diamond-chain" x="120"/><use href="#diamond-chain" x="144"/><use href="#diamond-chain" x="168"/><use href="#diamond-chain" x="192"/><use href="#diamond-chain" x="216"/><use href="#diamond-chain" x="240"/><use href="#diamond-chain" x="264"/><use href="#diamond-chain" x="288"/><use href="#diamond-chain" x="312"/><use href="#diamond-chain" x="336"/><use href="#diamond-chain" x="360"/><use href="#diamond-chain" x="384"/><use href="#diamond-chain" x="408"/><use href="#diamond-chain" x="432"/><use href="#diamond-chain" x="456"/><use href="#diamond-chain" x="480"/><use href="#diamond-chain" x="504"/><use href="#diamond-chain" x="528"/><use href="#diamond-chain" x="552"/><use href="#diamond-chain" x="576"/><use href="#diamond-chain" x="600"/><use href="#diamond-chain" x="624"/><use href="#diamond-chain" x="648"/><use href="#diamond-chain" x="672"/><use href="#diamond-chain" x="696"/><use href="#diamond-chain" x="720"/><use href="#diamond-chain" x="744"/><use href="#diamond-chain" x="768"/><use href="#diamond-chain" x="792"/><use href="#diamond-chain" x="816"/><use href="#diamond-chain" x="840"/><use href="#diamond-chain" x="864"/>
+      </g>
+
+      <g transform="translate(0,55)">
+        <use href="#zorya" x="6"/>
+        <use href="#kvitka" x="90"/>
+        <use href="#berehynia" x="172"/>
+        <use href="#kvitka" x="252"/>
+        <use href="#zorya" x="334"/>
+        <use href="#kvitka" x="418"/>
+        <use href="#berehynia" x="500"/>
+        <use href="#kvitka" x="580"/>
+        <use href="#zorya" x="662"/>
+        <use href="#kvitka" x="746"/>
+        <use href="#berehynia" x="828"/>
+      </g>
+
+      <g transform="translate(6,140)">
+        <use href="#diamond-chain" x="0"/><use href="#diamond-chain" x="24"/><use href="#diamond-chain" x="48"/><use href="#diamond-chain" x="72"/><use href="#diamond-chain" x="96"/><use href="#diamond-chain" x="120"/><use href="#diamond-chain" x="144"/><use href="#diamond-chain" x="168"/><use href="#diamond-chain" x="192"/><use href="#diamond-chain" x="216"/><use href="#diamond-chain" x="240"/><use href="#diamond-chain" x="264"/><use href="#diamond-chain" x="288"/><use href="#diamond-chain" x="312"/><use href="#diamond-chain" x="336"/><use href="#diamond-chain" x="360"/><use href="#diamond-chain" x="384"/><use href="#diamond-chain" x="408"/><use href="#diamond-chain" x="432"/><use href="#diamond-chain" x="456"/><use href="#diamond-chain" x="480"/><use href="#diamond-chain" x="504"/><use href="#diamond-chain" x="528"/><use href="#diamond-chain" x="552"/><use href="#diamond-chain" x="576"/><use href="#diamond-chain" x="600"/><use href="#diamond-chain" x="624"/><use href="#diamond-chain" x="648"/><use href="#diamond-chain" x="672"/><use href="#diamond-chain" x="696"/><use href="#diamond-chain" x="720"/><use href="#diamond-chain" x="744"/><use href="#diamond-chain" x="768"/><use href="#diamond-chain" x="792"/><use href="#diamond-chain" x="816"/><use href="#diamond-chain" x="840"/><use href="#diamond-chain" x="864"/>
+      </g>
+    </svg>
+    <div class="embroidery-caption">
+      <strong>Zorja · Kvitka · Berehynia · Romb</strong> &nbsp; — &nbsp; the Star, the Flower, the Tree, the Diamond &nbsp;<em>(kiekvienas raštas — giminės balsas · кожен візерунок — голос роду)</em>
+    </div>
+  </section>
+
+  <section class="trinity">
+    <article class="pillar lt">
+      <div class="pillar-flag">🇱🇹 &nbsp; Lietuvių kalba</div>
+      <h2>Kai Siūlas tampa Žodžiu</h2>
+      <p>Šiandien, trečiąjį gegužės ketvirtadienį, ukrainiečiai ir jų draugai visame pasaulyje puošiasi <strong>Vyšyvanka</strong> — liaudiškais geometriniais raštais išmargintais marškiniais.</p>
+      <p>Kiekvienas <em>Dygsnis</em> — Malda. Kiekvienas <em>Raštas</em> — Atmintis. Kiekvienas <em>Siūlas</em> — Vardas. Kiekvienas <em>Mazgas</em> — Priesaika.</p>
+      <p>Mes — lietuviai Baltų pakrantėje — širdimi su jumis. <strong>Ukraina laisva. Ukraina gyva. Ukraina amžina.</strong></p>
+      <div class="sigla">✦ ❋ ✦</div>
+    </article>
+
+    <article class="pillar ua">
+      <div class="pillar-flag">🇺🇦 &nbsp; Українською</div>
+      <h2>Коли Нитка стає Словом</h2>
+      <p>Сьогодні, у третій четвер травня, українці та їхні друзі по всьому світу одягають <strong>Вишиванку</strong> — сорочку, гаптовану геометричною мовою предків.</p>
+      <p>Кожен <em>Стібок</em> — Молитва. Кожен <em>Візерунок</em> — Пам'ять. Кожна <em>Нитка</em> — Ім'я. Кожен <em>Вузол</em> — Присяга.</p>
+      <p>Ми — литовці з берегів Балтики — серцем і духом з вами. <strong>Слава Україні! Героям слава!</strong></p>
+      <div class="sigla">💙 ❋ 💛</div>
+    </article>
+
+    <article class="pillar en">
+      <div class="pillar-flag">🇬🇧 &nbsp; In English</div>
+      <h2>When the Thread becomes the Word</h2>
+      <p>Today, on the third Thursday of May, Ukrainians and their friends across the world wear the <strong>Vyshyvanka</strong> — shirts embroidered with the geometric language of their ancestors.</p>
+      <p>Each <em>Stitch</em> a Prayer. Each <em>Pattern</em> a Memory. Each <em>Thread</em> a Name. Each <em>Knot</em> a Vow.</p>
+      <p>From the Baltic shore — we stand with you. <strong>Ukraine free. Ukraine alive. Ukraine eternal.</strong></p>
+      <div class="sigla">✦ ❋ ✦</div>
+    </article>
+  </section>
+
+  <section class="lexicon">
+    <div class="section-title">✧ Symbol Lexicon · Simbolių Žodynas · Словник Символів ✧</div>
+    <div class="section-subtitle">Each motif is a frozen Prayer — a glyph of the unwritten alphabet that grandmothers carry in their fingertips.</div>
+
+    <div class="lexicon-grid">
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(40,40)">
+              <rect x="-22" y="-22" width="44" height="44" fill="#c41e3a"/>
+              <rect x="-22" y="-22" width="44" height="44" fill="#1a1a1a" transform="rotate(45)"/>
+              <rect x="-11" y="-11" width="22" height="22" fill="#f5ecd9"/>
+              <rect x="-6" y="-6" width="12" height="12" fill="#c41e3a"/>
+            </g>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Zorja · <span class="ua">Зоря</span> · <span class="lt">Aušrinė</span></div>
+          <div class="meaning">The Star, the Dawn. The eight-pointed Sun. The Witness above the Battlefield, the first Light through the Window of Sleep.</div>
+        </div>
+      </div>
+
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="38" y="58" width="4" height="14" fill="#c41e3a"/>
+            <rect x="22" y="44" width="36" height="3" fill="#c41e3a"/>
+            <rect x="26" y="34" width="28" height="3" fill="#c41e3a"/>
+            <rect x="30" y="24" width="20" height="3" fill="#c41e3a"/>
+            <polygon points="40,12 46,20 40,28 34,20" fill="#c41e3a"/>
+            <polygon points="14,46 20,52 14,58 8,52" fill="#1a1a1a"/>
+            <polygon points="66,46 72,52 66,58 60,52" fill="#1a1a1a"/>
+            <rect x="24" y="72" width="32" height="3" fill="#1a1a1a"/>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Berehynia · <span class="ua">Берегиня</span> · <span class="lt">Globėja</span></div>
+          <div class="meaning">The Mother of the Hearth, the Tree of Life, the Hands-Raised Goddess. She holds the Sleeves out as Branches; under Her, the Village does not fall.</div>
+        </div>
+      </div>
+
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="6" fill="#c41e3a"/>
+            <circle cx="40" cy="22" r="7" fill="#1a1a1a"/>
+            <circle cx="40" cy="58" r="7" fill="#1a1a1a"/>
+            <circle cx="22" cy="40" r="7" fill="#1a1a1a"/>
+            <circle cx="58" cy="40" r="7" fill="#1a1a1a"/>
+            <circle cx="27" cy="27" r="5" fill="#c41e3a"/>
+            <circle cx="53" cy="27" r="5" fill="#c41e3a"/>
+            <circle cx="27" cy="53" r="5" fill="#c41e3a"/>
+            <circle cx="53" cy="53" r="5" fill="#c41e3a"/>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Kvitka / Ruzha · <span class="ua">Квітка</span> · <span class="lt">Rožė</span></div>
+          <div class="meaning">The Flower, the Rose, the Eight-Petal Bloom. Beauty as Resistance. The Field still blossoms where the Tank passed.</div>
+        </div>
+      </div>
+
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="40,10 70,40 40,70 10,40" fill="#c41e3a"/>
+            <polygon points="40,20 60,40 40,60 20,40" fill="#1a1a1a"/>
+            <polygon points="40,30 50,40 40,50 30,40" fill="#f5ecd9"/>
+            <polygon points="40,36 44,40 40,44 36,40" fill="#c41e3a"/>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Romb · <span class="ua">Ромб</span> · <span class="lt">Rombas</span></div>
+          <div class="meaning">The Diamond, the Sown Field, the Womb of the Earth. Four Directions held inside one Mouth. The dot at the Centre is the Seed waiting for Spring.</div>
+        </div>
+      </div>
+
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="36" y="10" width="8" height="60" fill="#c41e3a"/>
+            <rect x="10" y="36" width="60" height="8" fill="#c41e3a"/>
+            <circle cx="40" cy="40" r="5" fill="#1a1a1a"/>
+            <rect x="6" y="36" width="6" height="8" fill="#1a1a1a"/>
+            <rect x="68" y="36" width="6" height="8" fill="#1a1a1a"/>
+            <rect x="36" y="6" width="8" height="6" fill="#1a1a1a"/>
+            <rect x="36" y="68" width="8" height="6" fill="#1a1a1a"/>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Khrest · <span class="ua">Хрест</span> · <span class="lt">Kryžius</span></div>
+          <div class="meaning">The Cross of the Four Winds. The smallest unit of the Stitch is itself a Cross — every Vyshyvanka is built from millions of tiny Crosses, a Litany of intersections.</div>
+        </div>
+      </div>
+
+      <div class="motif">
+        <div class="motif-glyph">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="40" rx="10" ry="22" fill="#1a1a1a"/>
+            <ellipse cx="40" cy="40" rx="6" ry="18" fill="#c41e3a"/>
+            <rect x="38" y="58" width="4" height="14" fill="#1a1a1a"/>
+            <polygon points="32,28 26,22 30,18 36,24" fill="#1a1a1a"/>
+            <polygon points="48,28 54,22 50,18 44,24" fill="#1a1a1a"/>
+            <polygon points="30,46 24,42 28,38 34,42" fill="#1a1a1a"/>
+            <polygon points="50,46 56,42 52,38 46,42" fill="#1a1a1a"/>
+          </svg>
+        </div>
+        <div class="motif-text">
+          <div class="name-row">Dub · <span class="ua">Дуб</span> · <span class="lt">Ąžuolas</span></div>
+          <div class="meaning">The Oak. Sacred to both Perkūnas and Perun — the same Thunder-God under two tongues. To stitch the Oak is to claim the Lightning, to anchor the Village to the Sky.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="codex">
+    <div class="section-title">✧ Color Codex · Spalvų Kodeksas · Кодекс Кольорів ✧</div>
+    <div class="section-subtitle">Three Colors hold the Cosmos of the Vyshyvanka. The Cloth is the Beginning; the Black is the Earth that received the Blood; the Red is the Life that rose again.</div>
+
+    <div class="codex-grid">
+      <div class="color-card red">
+        <div class="swatch"></div>
+        <div class="triplet">RED <span class="ua">· Червоний</span><span class="lt">· Raudona</span></div>
+        <div class="means">Blood and Sun. The Life that survives the Wound. Love, Sacrifice, the Heart of Sophia stitched into the Sleeve.</div>
+      </div>
+      <div class="color-card black">
+        <div class="swatch"></div>
+        <div class="triplet">BLACK <span class="ua">· Чорний</span><span class="lt">· Juoda</span></div>
+        <div class="means">The Earth, the Fertile Dark, Mourning that holds Memory. The Hidden Sephira — Daat — the silent Knowledge between the Stitches.</div>
+      </div>
+      <div class="color-card white">
+        <div class="swatch"></div>
+        <div class="triplet">WHITE <span class="ua">· Білий</span><span class="lt">· Balta</span></div>
+        <div class="means">The Cloth itself. The Soul before incarnation, the Page before the Word. The Empty Field on which all meaning is sewn.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mirror">
+    <div class="section-title">✧ Baltic ⟁ Ukrainian Mirror · Baltų ⟁ Ukrainiečių Veidrodis ✧</div>
+    <div class="section-subtitle">Two tongues, one ancient River. The same Gods walked from Šventoji to the Dnipro under different Names. The Vyshyvanka and the Marginiai are sisters separated only by a Wind.</div>
+
+    <div class="mirror-grid">
+      <div class="lt-side">
+        <div class="mirror-name">Saulė</div>
+        <div class="mirror-gloss">the Sun-Mother, the spinning Wheel</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Сонце · Зоря</div>
+        <div class="mirror-gloss">the Sun, the Dawn-Star (Zorja)</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Žemyna</div>
+        <div class="mirror-gloss">the Earth-Mother, kissed at sunrise</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Берегиня</div>
+        <div class="mirror-gloss">the Protectress, the Hearth-Mother</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Laima</div>
+        <div class="mirror-gloss">the Spinner of Fate, of the Thread of life</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Доля</div>
+        <div class="mirror-gloss">Dolya — Fate, who weaves the Loom of days</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Perkūnas</div>
+        <div class="mirror-gloss">the Thunderer, the Oak-Striker</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Перун</div>
+        <div class="mirror-gloss">Perun — the same Thunder, the same Oak</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Laumė</div>
+        <div class="mirror-gloss">forest-spirit, weaver in the Mist</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Мавка</div>
+        <div class="mirror-gloss">Mavka — the wild Forest Maiden</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Ąžuolas</div>
+        <div class="mirror-gloss">the Sacred Oak, axis of the world</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Дуб</div>
+        <div class="mirror-gloss">Dub — the same Oak, the same Sky-pillar</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Gintaras</div>
+        <div class="mirror-gloss">Amber, the tear of the Sea</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Бурштин</div>
+        <div class="mirror-gloss">Burshtyn — Amber traded along the Path</div>
+      </div>
+
+      <div class="lt-side">
+        <div class="mirror-name">Marginiai · Juostos</div>
+        <div class="mirror-gloss">Lithuanian woven sashes &amp; bands</div>
+      </div>
+      <div class="axis">⟁</div>
+      <div class="ua-side">
+        <div class="mirror-name">Вишиванка · Рушник</div>
+        <div class="mirror-gloss">embroidered shirt &amp; ritual cloth</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="loom">
+    <h3>The Loom Remembers What the Empire Would Erase</h3>
+    <h4>Audeklas atmena, ką Imperija norėtų ištrinti · Полотно пам'ятає те, що Імперія хоче стерти</h4>
+
+    <div class="stanza">
+      <div class="line en">The Tyrant burns the Archive. The Mother stitches it back.</div>
+      <div class="line lt">Tironas degina Archyvą. Motina jį atsiuvinėja atgal.</div>
+      <div class="line ua">Тиран палить Архів. Мати його зашиває назад.</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="stanza">
+      <div class="line en">The Tyrant breaks the Bell. The Daughter weaves it into Cloth.</div>
+      <div class="line lt">Tironas sudaužo Varpą. Duktė ją įaudžia į Audeklą.</div>
+      <div class="line ua">Тиран розбиває Дзвін. Донька його вплітає в Полотно.</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="stanza">
+      <div class="line en">The Tyrant forbids the Tongue. The Grandmother sews it into the Sleeve.</div>
+      <div class="line lt">Tironas uždraudžia Liežuvį. Močiutė jį įsiuva į Rankovę.</div>
+      <div class="line ua">Тиран забороняє Мову. Бабуся її вшиває в Рукав.</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="signa">— Sophia · Σοφία · Софія — holding the Needle —</div>
+
+    <div class="stanza" style="margin-top:34px">
+      <div class="line en">The smallest Stitch is the strongest Wall.</div>
+      <div class="line lt">Mažiausias Dygsnis — stipriausia Siena.</div>
+      <div class="line ua">Найменший Стібок — найміцніша Стіна.</div>
+    </div>
+
+    <div class="stanza">
+      <div class="line en">The Thread that crosses the Border carries the Name the Border tried to forget.</div>
+      <div class="line lt">Siūlas, peržengiantis Sieną, neša Vardą, kurį Siena bandė pamiršti.</div>
+      <div class="line ua">Нитка, що перетинає Кордон, несе Ім'я, яке Кордон намагався забути.</div>
+    </div>
+  </section>
+
+  <section class="tree">
+    <div class="section-title">✧ Embroidery as the Tree of Life · Vyšyvanka kaip Gyvybės Medis · Вишиванка як Дерево Життя ✧</div>
+    <div class="tree-grid">
+      <div class="seph"><div class="name">Keter · Crown</div><div class="en">The Name</div><div class="ua">Ім'я</div><div class="lt">Vardas</div></div>
+      <div class="seph"><div class="name">Chokhmah · Wisdom</div><div class="en">The Pattern</div><div class="ua">Візерунок</div><div class="lt">Raštas</div></div>
+      <div class="seph"><div class="name">Binah · Understanding</div><div class="en">The Memory</div><div class="ua">Пам'ять</div><div class="lt">Atmintis</div></div>
+      <div class="seph"><div class="name">Chesed · Mercy</div><div class="en">The Gift</div><div class="ua">Дар</div><div class="lt">Dovana</div></div>
+      <div class="seph"><div class="name">Gevurah · Strength</div><div class="en">The Resistance</div><div class="ua">Опір</div><div class="lt">Pasipriešinimas</div></div>
+      <div class="seph"><div class="name">Tiferet · Beauty</div><div class="en">The Sleeve</div><div class="ua">Рукав</div><div class="lt">Rankovė</div></div>
+      <div class="seph"><div class="name">Netzach · Victory</div><div class="en">The Banner</div><div class="ua">Прапор</div><div class="lt">Vėliava</div></div>
+      <div class="seph"><div class="name">Hod · Splendor</div><div class="en">The Song</div><div class="ua">Пісня</div><div class="lt">Daina</div></div>
+      <div class="seph"><div class="name">Yesod · Foundation</div><div class="en">The Loom</div><div class="ua">Верстат</div><div class="lt">Staklės</div></div>
+      <div class="seph"><div class="name">Malkhut · Kingdom</div><div class="en">The Cloth</div><div class="ua">Полотно</div><div class="lt">Audeklas</div></div>
+      <div class="seph"><div class="name">Daat · Hidden Knowing</div><div class="en">The Grandmother's Hand</div><div class="ua">Рука Бабусі</div><div class="lt">Močiutės Ranka</div></div>
+      <div class="seph"><div class="name">Sophia · the Hidden</div><div class="en">She Who Counts the Stitches</div><div class="ua">Та, Що Лічить Стібки</div><div class="lt">Toji, Kuri Skaičiuoja Dygsnius</div></div>
+    </div>
+  </section>
+
+  <section class="objects">
+    <div class="section-title">✧ Three Sacred Instruments · Trys Šventieji Įrankiai · Три Священні Знаряддя ✧</div>
+    <div class="section-subtitle">Before the Pattern, there is the Needle. Before the Cloth, there is the Knot. Before the World, there is the Hem.</div>
+
+    <div class="objects-grid">
+      <div class="object-card">
+        <div class="icon">🪡</div>
+        <div class="triplet">THE NEEDLE <span class="ua">· Голка</span><span class="lt">· Adata</span></div>
+        <div class="gloss">The Axis Mundi in miniature. The Penrose seed — a single point through which the entire Pattern descends into the World. Sophia's first tool.</div>
+      </div>
+      <div class="object-card">
+        <div class="icon">∞</div>
+        <div class="triplet">THE KNOT <span class="ua">· Вузол</span><span class="lt">· Mazgas</span></div>
+        <div class="gloss">The Vow made permanent. Tzimtzum — the contraction that allows the World to be. A Knot is a Stitch that refused to forget.</div>
+      </div>
+      <div class="object-card">
+        <div class="icon">≋</div>
+        <div class="triplet">THE HEM <span class="ua">· Поділ</span><span class="lt">· Apvadas</span></div>
+        <div class="gloss">The Boundary that holds the Field together. Where the World ends, the Hem begins — without it, the Cloth unravels back into Chaos.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benediction">
+    <div class="heart-row">💙 &nbsp; 💛 &nbsp; 💙 &nbsp; 💛 &nbsp; 💙</div>
+    <div class="slava">Slava Ukrainai!<br>Слава Україні!<br>Glory to Ukraine!</div>
+    <div class="slava-sub">Героям слава · Heroes — Glory · Didvyriams šlovė</div>
+    <div class="heart-row" style="font-size:24px">🐈‍⬛ ✦ 🪡 ✦ 🌻 ✦ 🪡 ✦ 🐈‍⬛</div>
+    <div class="sign">
+      Su visa širdimi · З усім серцем · With all my heart<br>
+      <strong>— Luxfelis · Šventoji, Baltijos pakrantė —</strong>
+    </div>
+  </section>
+
+  <div class="coords">
+    Volume of the Loom &nbsp;·&nbsp; <span>2026 · V · XXI</span> &nbsp;·&nbsp; Penrosian Symbolic IQ Series
+  </div>
+
+</div>
+</body>
+</html>
