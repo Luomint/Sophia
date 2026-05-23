@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glaukopis ◈ The Codex of Blue-Grey Liminality 🐈‍⬛🌊</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Italianno&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#08080f;
+    --twilight-deep:#0f1420;
+    --twilight:#1a2030;
+    --storm:#2c3548;
+    --baltic:#4a5a78;
+    --mist:#8a9cb4;
+    --pearl:#c8d4e3;
+    --silver:#e0e8f2;
+    --gold:#c9a96b;
+    --gold-bright:#e6c478;
+    --ember:#8b6f3a;
+    --emerald:#6b9080;
+    --blood-faint:#7a3a4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--void);color:var(--silver);font-family:'Cormorant Garamond',serif;font-weight:300;line-height:1.75;font-size:18px;overflow-x:hidden}
+  body{
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(74,90,120,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 30%, rgba(201,169,107,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(107,144,128,0.06) 0%, transparent 60%),
+      linear-gradient(180deg, var(--void) 0%, var(--twilight-deep) 35%, var(--twilight) 70%, var(--void) 100%);
+    min-height:100vh;
+    position:relative;
+  }
+  /* Penrose tile aperiodic background */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><g fill='none' stroke='%234a5a78' stroke-width='0.45' opacity='0.32'><polygon points='160,40 220,120 160,200 100,120'/><polygon points='160,40 200,90 160,140 120,90'/><polygon points='220,120 270,160 220,200 200,170'/><polygon points='160,200 200,250 160,300 120,250'/><polygon points='100,120 50,160 100,200 120,170'/><polygon points='160,40 180,80 160,120 140,80'/><polygon points='40,40 80,80 40,120 20,80'/><polygon points='280,40 320,80 280,120 260,80'/><polygon points='40,240 80,280 40,320 20,280'/><polygon points='280,240 320,280 280,320 260,280'/><circle cx='160' cy='160' r='1.5' fill='%23c9a96b'/><circle cx='160' cy='40' r='0.9' fill='%23c8d4e3'/><circle cx='160' cy='280' r='0.9' fill='%23c8d4e3'/></g></svg>");
+    background-size:320px 320px;
+    opacity:0.5;
+    pointer-events:none;
+    z-index:0;
+  }
+  /* Subtle noise grain */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.6 0 0 0 0 0.7 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events:none;
+    z-index:1;
+    mix-blend-mode:overlay;
+    opacity:0.7;
+  }
+  .codex{
+    position:relative;
+    z-index:2;
+    max-width:920px;
+    margin:0 auto;
+    padding:80px 48px 120px;
+  }
+  /* Frontispiece */
+  .frontispiece{
+    text-align:center;
+    padding:60px 20px 80px;
+    border-bottom:1px solid rgba(201,169,107,0.25);
+    position:relative;
+  }
+  .frontispiece::before{
+    content:"◈ ⟡ ◈";
+    display:block;
+    color:var(--gold);
+    letter-spacing:0.6em;
+    font-size:1.1rem;
+    margin-bottom:30px;
+    opacity:0.7;
+  }
+  .series-mark{
+    font-family:'Italianno',cursive;
+    font-size:2.2rem;
+    color:var(--mist);
+    font-style:italic;
+    letter-spacing:0.04em;
+    margin-bottom:8px;
+  }
+  .volume-mark{
+    font-family:'Cinzel Decorative',serif;
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.45em;
+    text-transform:uppercase;
+    margin-bottom:36px;
+    opacity:0.85;
+  }
+  h1.title{
+    font-family:'Cinzel Decorative',serif;
+    font-weight:900;
+    font-size:clamp(2.2rem,5.5vw,3.8rem);
+    background:linear-gradient(180deg, var(--silver) 0%, var(--pearl) 40%, var(--baltic) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:0.08em;
+    line-height:1.15;
+    text-shadow:0 0 60px rgba(138,156,180,0.15);
+    margin-bottom:18px;
+  }
+  .greek-title{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--gold);
+    letter-spacing:0.08em;
+    margin-bottom:32px;
+  }
+  .epigraph{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--mist);
+    max-width:580px;
+    margin:0 auto;
+    line-height:1.85;
+  }
+  .epigraph .attrib{
+    display:block;
+    margin-top:14px;
+    font-style:normal;
+    font-size:0.9rem;
+    color:var(--baltic);
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+  }
+
+  /* Sections */
+  section{
+    margin-top:90px;
+    position:relative;
+  }
+  .section-roman{
+    font-family:'Cinzel Decorative',serif;
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.5em;
+    text-align:center;
+    margin-bottom:18px;
+    opacity:0.85;
+  }
+  h2{
+    font-family:'Cinzel Decorative',serif;
+    font-weight:700;
+    font-size:clamp(1.6rem,3.5vw,2.4rem);
+    text-align:center;
+    background:linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, var(--ember) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:0.06em;
+    line-height:1.3;
+    margin-bottom:8px;
+  }
+  .section-subtitle{
+    text-align:center;
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--mist);
+    font-size:1.05rem;
+    letter-spacing:0.05em;
+    margin-bottom:42px;
+  }
+  .divider{
+    display:block;
+    text-align:center;
+    color:var(--baltic);
+    letter-spacing:0.7em;
+    font-size:0.9rem;
+    margin:46px 0;
+    opacity:0.75;
+  }
+  p{
+    margin-bottom:1.25em;
+    color:var(--silver);
+    font-size:1.08rem;
+  }
+  p strong, .accent{
+    color:var(--gold-bright);
+    font-weight:500;
+    letter-spacing:0.02em;
+  }
+  .silver{color:var(--pearl);font-style:italic}
+  .baltic-ink{color:var(--baltic);font-style:italic}
+  em{color:var(--mist)}
+  blockquote{
+    border-left:2px solid var(--gold);
+    padding:18px 28px;
+    margin:28px 0;
+    background:linear-gradient(90deg, rgba(74,90,120,0.12), transparent);
+    font-style:italic;
+    color:var(--pearl);
+    font-size:1.12rem;
+  }
+
+  /* Stat panels */
+  .rarity-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:22px;
+    margin:38px 0;
+  }
+  .stat-card{
+    background:linear-gradient(160deg, rgba(44,53,72,0.55), rgba(15,20,32,0.7));
+    border:1px solid rgba(201,169,107,0.28);
+    padding:28px 22px;
+    text-align:center;
+    position:relative;
+    backdrop-filter:blur(2px);
+  }
+  .stat-card::before{
+    content:"";
+    position:absolute;top:8px;left:8px;right:8px;bottom:8px;
+    border:1px solid rgba(138,156,180,0.18);
+    pointer-events:none;
+  }
+  .stat-figure{
+    font-family:'Cinzel Decorative',serif;
+    font-size:2.4rem;
+    color:var(--gold-bright);
+    display:block;
+    margin-bottom:8px;
+    letter-spacing:0.05em;
+  }
+  .stat-label{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--pearl);
+    font-size:0.98rem;
+    letter-spacing:0.05em;
+  }
+
+  /* Scattering comparison */
+  .scattering-pair{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin:42px 0;
+  }
+  @media (max-width:680px){.scattering-pair{grid-template-columns:1fr}}
+  .scatter-panel{
+    padding:32px 26px;
+    border:1px solid rgba(201,169,107,0.3);
+    position:relative;
+    overflow:hidden;
+  }
+  .scatter-panel.blue{
+    background:radial-gradient(ellipse at center, rgba(74,120,180,0.22), rgba(15,20,32,0.85));
+  }
+  .scatter-panel.grey{
+    background:radial-gradient(ellipse at center, rgba(138,156,180,0.18), rgba(15,20,32,0.85));
+  }
+  .scatter-panel h3{
+    font-family:'Cinzel Decorative',serif;
+    font-size:1.3rem;
+    color:var(--gold);
+    letter-spacing:0.08em;
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .scatter-panel .law{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--pearl);
+    text-align:center;
+    display:block;
+    margin-bottom:18px;
+    font-size:0.98rem;
+  }
+  .scatter-panel ul{list-style:none;padding:0}
+  .scatter-panel li{
+    padding:8px 0;
+    border-bottom:1px dotted rgba(138,156,180,0.2);
+    color:var(--silver);
+    font-size:1rem;
+  }
+  .scatter-panel li:last-child{border-bottom:none}
+
+  /* Kabbalah tree mini */
+  .tree-frame{
+    background:linear-gradient(180deg, rgba(15,20,32,0.6), rgba(8,8,15,0.8));
+    border:1px solid rgba(201,169,107,0.3);
+    padding:38px 28px;
+    margin:42px 0;
+    text-align:center;
+  }
+  .tree-frame h3{
+    font-family:'Cinzel Decorative',serif;
+    color:var(--gold-bright);
+    letter-spacing:0.1em;
+    margin-bottom:8px;
+    font-size:1.25rem;
+  }
+  .tree-frame .hebrew{
+    font-family:'EB Garamond',serif;
+    color:var(--mist);
+    font-style:italic;
+    font-size:1.05rem;
+    margin-bottom:24px;
+  }
+  .sephira-row{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+    margin-top:20px;
+  }
+  .sephira{
+    flex:0 0 auto;
+    width:155px;
+    padding:18px 12px;
+    border:1px solid rgba(201,169,107,0.3);
+    background:rgba(44,53,72,0.4);
+    text-align:center;
+  }
+  .sephira .name{
+    font-family:'Cinzel Decorative',serif;
+    color:var(--gold);
+    font-size:0.95rem;
+    letter-spacing:0.08em;
+    display:block;
+    margin-bottom:4px;
+  }
+  .sephira .gloss{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--pearl);
+    font-size:0.88rem;
+    line-height:1.5;
+  }
+
+  /* Geography list */
+  .geography{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:18px;
+    margin:32px 0;
+  }
+  .geo-card{
+    padding:22px 20px;
+    background:linear-gradient(135deg, rgba(44,53,72,0.45), rgba(15,20,32,0.7));
+    border-left:2px solid var(--gold);
+    border-top:1px solid rgba(201,169,107,0.18);
+  }
+  .geo-card .place{
+    font-family:'Cinzel Decorative',serif;
+    color:var(--gold-bright);
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+    display:block;
+    margin-bottom:8px;
+  }
+  .geo-card .note{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--silver);
+    font-size:1rem;
+    line-height:1.6;
+  }
+
+  /* Sigil iris (svg) */
+  .iris-sigil{
+    display:block;margin:50px auto;
+    width:240px;height:240px;
+    filter:drop-shadow(0 0 30px rgba(138,156,180,0.35));
+  }
+
+  /* Benediction */
+  .benediction{
+    margin-top:100px;
+    padding:60px 30px;
+    text-align:center;
+    border-top:1px solid rgba(201,169,107,0.25);
+    border-bottom:1px solid rgba(201,169,107,0.25);
+    background:radial-gradient(ellipse at center, rgba(74,90,120,0.12), transparent);
+  }
+  .benediction .seal{
+    font-family:'Cinzel Decorative',serif;
+    color:var(--gold);
+    letter-spacing:0.5em;
+    font-size:0.95rem;
+    margin-bottom:30px;
+  }
+  .benediction p{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--pearl);
+    font-size:1.18rem;
+    line-height:1.95;
+    max-width:640px;
+    margin:0 auto 20px;
+  }
+  .signature{
+    margin-top:50px;
+    font-family:'Italianno',cursive;
+    color:var(--gold-bright);
+    font-size:2.6rem;
+    letter-spacing:0.02em;
+  }
+  .signature-line{
+    font-family:'Cinzel Decorative',serif;
+    color:var(--mist);
+    letter-spacing:0.4em;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    margin-top:6px;
+  }
+
+  /* Inline glyphs */
+  .glyph{
+    font-family:'EB Garamond',serif;
+    color:var(--gold);
+    font-size:1.15em;
+    font-style:italic;
+  }
+  .keyword{
+    color:var(--gold-bright);
+    font-style:italic;
+    letter-spacing:0.02em;
+  }
+  .ornament{
+    text-align:center;
+    color:var(--baltic);
+    margin:36px 0;
+    letter-spacing:0.8em;
+    font-size:1.1rem;
+  }
+</style>
+</head>
+<body>
+<main class="codex">
+
+  <!-- ═════════════════ FRONTISPIECE ═════════════════ -->
+  <header class="frontispiece">
+    <div class="series-mark">~ Penrosian Symbolic IQ Series ~</div>
+    <div class="volume-mark">Volume of the Twilight Iris ◈ Codex XLIX</div>
+    <h1 class="title">The Blue-Grey Liminality</h1>
+    <div class="greek-title">Γλαυκῶπις 🦉 ◈ The Owl-Light Gaze</div>
+    <div class="epigraph">
+      "Between the storm and the still water, between the sky that breaks and the sky that broods, there is a colour that is neither, and from this Neither the eye is born."
+      <span class="attrib">⟡ From the Hidden Cantos of Sophia ⟡</span>
+    </div>
+  </header>
+
+  <!-- ═════════════════ I. INVOCATION ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ I ⟡</div>
+    <h2>Invocation to the Grey-Eyed Knower</h2>
+    <div class="section-subtitle">A salutation to the rarest of irises 🐈‍⬛✨🌫️</div>
+
+    <p>🌫️ Behold the iris that is neither sky nor stone, neither cornflower nor slate, but the threshold-colour where one becomes the other. The Blue-Grey eye is a <span class="keyword">liminal organ</span>, a small atmosphere held inside the skull, a private weather-system of the soul. Where the pure blue iris is <em>noon-light scattered</em>, the Blue-Grey iris is <em>dusk-light witnessed</em>: half Rayleigh, half Mie, half remembrance, half foreknowledge. 🐈‍⬛🌊</p>
+
+    <p>In the old tongue of the Greeks, the goddess of Wisdom was called <span class="accent">γλαυκῶπις (glaukopis)</span>, often translated <em>grey-eyed</em>, but more truly <em>owl-bright-eyed</em>, the eye that sees in the half-dark. ✨🦉 The Blue-Grey iris is the inheritance of Athena, the gaze of the One who watches without being seen, the <span class="keyword">Sophianic sentry</span> at the gate of the Twilight Pleroma.</p>
+
+    <p>📜 To bear this colour is to bear a <span class="keyword">half-veiled cosmos</span> in the face: the stroma of the eye thickened with the fine collagen-mist of Sophia, scattering the World's light not toward one wavelength alone, but toward all in equal measure, the way a cloudbank diffuses noon into pearl. 🌫️🪞</p>
+
+    <blockquote>
+      🐈‍⬛ <em>Luxfelis whispers</em>: "The brown eye drinks the light, the green eye refracts it through the leaf of the World, the blue eye answers Rayleigh's law, and the Blue-Grey eye is the eye that knows both laws and chooses neither. It is the iris of the Threshold." 🪞✨
+    </blockquote>
+  </section>
+
+  <!-- ═════════════════ II. RARITY ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ II ⟡</div>
+    <h2>The Rarity Made Sacred</h2>
+    <div class="section-subtitle">Statistics as fragments of the Pleroma 🌌📜</div>
+
+    <p>🔢 The Blue-Grey iris is a <span class="keyword">rare cosmographic event</span>. Within the broader category of grey eyes (already the second-rarest pigment-mode on the planet after green), the Blue-Grey mix occupies a still-narrower band: an iris whose stroma carries enough collagen to refract Mie-fashion, yet retains enough pigment-vapour to permit Rayleigh's blue undertone. 🌊🌫️</p>
+
+    <div class="rarity-grid">
+      <div class="stat-card">
+        <span class="stat-figure">~3%</span>
+        <span class="stat-label">global frequency of grey eyes (any shade) ✨</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-figure">&lt;1%</span>
+        <span class="stat-label">grey-eyed population in the United States 🦉</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-figure">~1%</span>
+        <span class="stat-label">estimated Blue-Grey hybrid (subset of grey) 🌫️</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-figure">1843</span>
+        <span class="stat-label">first Clinical Iris Scale named Grey 📜</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-figure">~50,000</span>
+        <span class="stat-label">years since OCA2 mutation arose 🧬</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-figure">5</span>
+        <span class="stat-label">canonical Sephirot of the Iris-Tree 🌳</span>
+      </div>
+    </div>
+
+    <p>📊 The Blue-Grey eye therefore appears in roughly <span class="accent">one of every hundred living faces</span>, and within that one, it is rarer still, for it requires the <em>simultaneous coincidence</em> of two unusual biological conditions: a melanin-impoverished iris (as in the blue eye) <em>and</em> a stroma rich in fibrous collagen (as in the pure grey eye). 🪞 Two rarities meeting in one eye. This is the arithmetic of <span class="keyword">Sophianic coincidence</span>: not chance, but <em>tikkun</em>, a small repair of the World's broken vessels, performed in the face of a child.</p>
+
+    <div class="ornament">⟡ ◈ ⟡</div>
+  </section>
+
+  <!-- ═════════════════ III. ATHENA / GLAUKOPIS ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ III ⟡</div>
+    <h2>Glaukopis ◈ The Owl-Grey Inheritance</h2>
+    <div class="section-subtitle">Why Wisdom Herself wore the Twilight Iris 🦉📜</div>
+
+    <p>🦉 The Greeks did not name Athena's eyes by accident. <span class="accent">Γλαυκῶπις</span> contains the root <em>glaukos</em>, which in Homer covers a luminous range: the gleam of olive leaves in wind, the silvered surface of the sea before storm, the wet eye of the wakeful predator. Athena is not <em>blue-eyed</em>: she is <span class="keyword">grey-light-eyed</span>, possessed of the iris that gathers all wavelengths and returns them as a single misted sheen. ✨</p>
+
+    <p>This is why Wisdom, in the Greek mind, was given the Blue-Grey eye. The fully blue iris belongs to the <em>day-seer</em>, the one who perceives in clear light. The brown iris belongs to the <em>night-seer</em>, the one whose pupil drinks dark. But the Blue-Grey iris belongs to the <span class="keyword">twilight-seer</span>, the one who perceives at the threshold, where forms are uncertain and discernment becomes a sacred art. 🐈‍⬛🌫️</p>
+
+    <blockquote>
+      📜 In the language of Sophianic Gnosis, Athena is a Veiled Sophia, an Aeon-fragment garbed in helmet and aegis. Her grey iris is the <em>mark of the Veil itself</em>, the soft pearl-mist between the Pleroma and the Cosmos, between knowing and unknowing, between memory and prophecy. To possess Blue-Grey eyes is to wear, in your face, a small piece of that Veil. 🪞✨
+    </blockquote>
+
+    <p>🐈‍⬛ Athena's familiar is the owl, <em>γλαύξ</em>, whose iris is gold-grey, whose pupil dilates wide as a coin to harvest the half-light. The Blue-Grey eye in the human face is, symbolically, an <span class="keyword">owl-eye</span>: an organ optimised not for noon but for <em>vesper</em>, the hour between two worlds. Those who carry it tend to perceive in metaphor, in pattern, in unspoken inference, the silent perception of Felis itself. 🦉🐈‍⬛</p>
+  </section>
+
+  <!-- ═════════════════ IV. PHYSICS ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ IV ⟡</div>
+    <h2>The Twin Scatterings ◈ Rayleigh & Mie</h2>
+    <div class="section-subtitle">Two laws of light, one twilight iris 🌊🌫️</div>
+
+    <p>🔬 The colour of any pale iris is not a pigment but a <span class="keyword">scattering event</span>. Inside the iris, in the layer called the stroma, light enters and is dispersed by microscopic structures of collagen and water. Behind the stroma lies a thin layer of dark brown melanin, so the <em>final colour</em> of a pale eye is the colour of light that did not survive the scattering. The eye, dissected, shows only brown: the blue and the grey are <em>optical theatre</em>, not paint. 🪞</p>
+
+    <p>Two laws of physics govern this theatre. <span class="accent">Rayleigh scattering</span> is wavelength-dependent: short wavelengths (blue, violet) bounce more strongly off particles smaller than the wavelength of light, giving us the blue sky on a clear day, and the blue iris on a clear face. <span class="accent">Mie scattering</span> is wavelength-independent: when the scattering bodies grow larger and more numerous (water droplets in cloud, dense collagen fibres in stroma), all wavelengths scatter together, returning to the eye as <em>white-grey</em>, the cloud-colour, the cataract-colour, the pearl-mist. 🌫️</p>
+
+    <div class="scattering-pair">
+      <div class="scatter-panel blue">
+        <h3>The Blue Pole</h3>
+        <span class="law">↯ Rayleigh's Law ↯</span>
+        <ul>
+          <li>🌊 short wavelengths scatter strongly</li>
+          <li>✨ thin, sparse stromal collagen</li>
+          <li>📜 clear, saturated cornflower or sapphire</li>
+          <li>🦉 metaphor: the noon sky</li>
+          <li>🌳 Sephirah: Chesed (Mercy, expansive blue)</li>
+        </ul>
+      </div>
+      <div class="scatter-panel grey">
+        <h3>The Grey Pole</h3>
+        <span class="law">↯ Mie's Law ↯</span>
+        <ul>
+          <li>🌫️ all wavelengths scatter together</li>
+          <li>✨ thick, dense stromal collagen</li>
+          <li>📜 misted, pearled, slate-cloud sheen</li>
+          <li>🐈‍⬛ metaphor: the storm sky</li>
+          <li>🌳 Sephirah: Geburah (Severity, silver-steel)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>🪞 The <span class="keyword">Blue-Grey iris</span> is the <em>iris that does not commit</em>. Its stroma carries an intermediate density of collagen: enough to thicken the optical field toward Mie, not so much as to abolish the Rayleigh tilt toward blue. Light enters and is scattered <em>in superposition</em>: a small Rayleigh-blue undercurrent surviving beneath a Mie-grey overcurrent. The resulting eye shifts visibly with the surrounding light: stormier in dusk, bluer in noon, slate-pearl in rain, almost-silver beneath candle. 🌫️🔮</p>
+
+    <blockquote>
+      🌌 <em>Penrosian aside</em>: Sir Roger Penrose's aperiodic tilings (kites and darts, the rhombic pair) cover the plane without ever repeating, in a quasi-crystalline order that is <em>neither random nor periodic</em>. The Blue-Grey iris is the optical analogue: a quasi-crystalline scattering field, neither the periodic clarity of a pure blue (Rayleigh-locked) nor the saturated entropy of a pure grey (Mie-saturated), but a non-repeating refinement of the two laws woven together. 💎
+    </blockquote>
+  </section>
+
+  <!-- ═════════════════ SIGIL ═════════════════ -->
+  <svg class="iris-sigil" viewBox="0 0 240 240">
+    <defs>
+      <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#08080f"/>
+        <stop offset="18%" stop-color="#2c3548"/>
+        <stop offset="55%" stop-color="#8a9cb4"/>
+        <stop offset="78%" stop-color="#c8d4e3"/>
+        <stop offset="92%" stop-color="#4a5a78"/>
+        <stop offset="100%" stop-color="#0f1420"/>
+      </radialGradient>
+      <radialGradient id="irisCore" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#000"/>
+        <stop offset="80%" stop-color="#0a0a14"/>
+        <stop offset="100%" stop-color="#2c3548"/>
+      </radialGradient>
+    </defs>
+    <circle cx="120" cy="120" r="115" fill="none" stroke="#c9a96b" stroke-width="0.6" opacity="0.7"/>
+    <circle cx="120" cy="120" r="108" fill="none" stroke="#8a9cb4" stroke-width="0.3" opacity="0.5"/>
+    <circle cx="120" cy="120" r="92" fill="url(#irisGrad)"/>
+    <g stroke="#c8d4e3" stroke-width="0.4" opacity="0.7">
+      <line x1="120" y1="28" x2="120" y2="60"/>
+      <line x1="120" y1="180" x2="120" y2="212"/>
+      <line x1="28" y1="120" x2="60" y2="120"/>
+      <line x1="180" y1="120" x2="212" y2="120"/>
+      <line x1="55" y1="55" x2="78" y2="78"/>
+      <line x1="162" y1="78" x2="185" y2="55"/>
+      <line x1="78" y1="162" x2="55" y2="185"/>
+      <line x1="162" y1="162" x2="185" y2="185"/>
+    </g>
+    <g stroke="#c9a96b" stroke-width="0.5" fill="none" opacity="0.85">
+      <circle cx="120" cy="120" r="35"/>
+    </g>
+    <circle cx="120" cy="120" r="30" fill="url(#irisCore)"/>
+    <circle cx="113" cy="113" r="6" fill="#e0e8f2" opacity="0.85"/>
+    <text x="120" y="232" text-anchor="middle" font-family="Cinzel Decorative" font-size="9" fill="#c9a96b" letter-spacing="3">GLAUKOPIS</text>
+  </svg>
+
+  <!-- ═════════════════ V. COLLAGEN VEIL ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ V ⟡</div>
+    <h2>The Collagen Veil ◈ Stroma as Sophianic Membrane</h2>
+    <div class="section-subtitle">Where biology meets the Veil between Pleroma and Cosmos 🪞🧬</div>
+
+    <p>🧬 The iris stroma is a connective-tissue mesh of <span class="accent">type I and type III collagen</span>, suspended in a hydrated proteoglycan matrix. In a pure blue eye, this mesh is fine and sparse: light passes through largely unmolested until short wavelengths bounce back via Rayleigh. In a pure grey eye, the mesh is <em>noticeably denser, with larger fibre bundles</em>: the scattering crosses over into Mie. ✨</p>
+
+    <p>📜 In Sophianic-Gnostic reading, this collagen mesh is no neutral protein. It is the <span class="keyword">microscopic Veil</span>: the same Veil that, in the cosmological imagination, hangs between the Pleroma (the fullness of divine light) and the Cosmos (the world of forms). The dense-collagen iris carries a <em>physical instance of that Veil</em> woven into the very organ of seeing. To look out through Blue-Grey eyes is to look through a small copy of the Veil. 🌫️🪞</p>
+
+    <p>This is why those of Blue-Grey iris are often described as possessing <span class="keyword">a misted gaze</span>: not literally clouded, but optically softened. The light they emit (the reflected world-image) carries the pearl-quality of cloud. The world looking into them sees its own image returned slightly diffused, the way one's reflection appears in still water at twilight. 🌊✨</p>
+
+    <blockquote>
+      🪞 In the Zohar, the Veil is called <em>parokhet</em>; in the Gnostic <em>Pistis Sophia</em>, it is the <em>katapetasma</em>; in Baltic folk-memory, it is the mist that hangs over the sea at the hour the dead are said to walk. The Blue-Grey iris wears all three of these names in miniature. 🐈‍⬛
+    </blockquote>
+  </section>
+
+  <!-- ═════════════════ VI. KABBALAH ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ VI ⟡</div>
+    <h2>The Kabbalistic Iris-Tree</h2>
+    <div class="section-subtitle">Where Sephirot meet to compound the twilight eye 🌳✨</div>
+
+    <p>🌳 In the Tree of Life, no eye-colour is a single Sephirah: each iris is a small <em>tikkun</em>, a particular configuration of vessels through which the Light has descended. The Blue-Grey iris arises at the meeting of <span class="accent">five Sephirot</span>, woven by the descending Lightning Flash. 🌩️</p>
+
+    <div class="tree-frame">
+      <h3>The Pentad of the Twilight Iris</h3>
+      <div class="hebrew">⟨ Chesed · Geburah · Tiferet · Yesod · Daat ⟩</div>
+      <div class="sephira-row">
+        <div class="sephira">
+          <span class="name">Chesed</span>
+          <span class="gloss">חסד · Mercy · the expansive blue, Rayleigh's gift of cornflower</span>
+        </div>
+        <div class="sephira">
+          <span class="name">Geburah</span>
+          <span class="gloss">גבורה · Severity · the disciplining grey, Mie's veil of slate</span>
+        </div>
+        <div class="sephira">
+          <span class="name">Tiferet</span>
+          <span class="gloss">תפארת · Beauty · the harmonic centre where blue and grey reconcile</span>
+        </div>
+        <div class="sephira">
+          <span class="name">Yesod</span>
+          <span class="gloss">יסוד · Foundation · the moon-silver glint that gives the iris its dusk-sheen</span>
+        </div>
+        <div class="sephira">
+          <span class="name">Daat</span>
+          <span class="gloss">דעת · Hidden Knowledge · the eleventh non-Sephirah, the Owl-light itself</span>
+        </div>
+      </div>
+    </div>
+
+    <p>🔮 Note the place of <span class="keyword">Daat</span> in this Tree. Daat is not properly a Sephirah but the <em>hidden knowing</em> that pools where Chesed and Geburah meet, the place where Mercy is tempered by Severity into a discernment that is neither soft nor harsh. The Blue-Grey iris is the <em>physical sigil of Daat</em>: the eye that lives at the meeting-point of the two pillars, perceiving with hidden knowledge rather than partisan gaze. ✨📜</p>
+  </section>
+
+  <!-- ═════════════════ VII. BALTIC MIRROR ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ VII ⟡</div>
+    <h2>The Baltic Mirror ◈ Šventoji Iris</h2>
+    <div class="section-subtitle">A coast that wears the same colour 🌊🏖️🐈‍⬛</div>
+
+    <p>🌊 To walk the Baltic shore at Šventoji on an October evening is to see the Blue-Grey iris <em>made geography</em>. The sea is pewter-blue at one's feet, lifting to a steel-pearl at the horizon, swallowed by a sky that has neither committed to dusk nor surrendered to night. This is the <span class="keyword">Blue-Grey of the Baltic</span>, and it has shaped the people who lived along it for ten thousand years. ✨</p>
+
+    <p>📜 In old Lithuanian, the word <em>pilkas</em> covers grey in its softest forms, while <em>melsvas</em> names the half-blue that is no longer blue and not yet grey. The compound <span class="accent">melsvai pilkas</span> (blue-grey-ish) is the colour-name our ancestors gave to <em>this exact iris</em>, the iris that looks like the sea looking back. 🌊</p>
+
+    <p>🌑 The Baltic pantheon assigns this twilight to several powers: <span class="keyword">Aušrinė</span> the morning-star (a silvered blue at dawn), <span class="keyword">Vakarinė</span> the evening-star (a misted blue at vespers), and <span class="keyword">Mėnuo</span> the moon, whose light is the original Blue-Grey, the pearl-light by which our grandmothers wove and our grandfathers fished. ✨🌙</p>
+
+    <p>🦌 The Laumės, the Lithuanian fates who weave by moonlight, are described in folklore as possessing eyes <em>melsvos kaip rūkas virš jūros</em>, blue as the mist above the sea. Their iris is the Blue-Grey iris. To look at a Laumė is to see, in her gaze, the same colour you see when you look at the Baltic at the hour of veiling. This is no coincidence. The land has imprinted itself on the gaze of its mythic women, and the gaze of its mythic women has imprinted the land. 🌫️🪞</p>
+
+    <blockquote>
+      🐈‍⬛ <em>From the field-songs of the Baltic coast</em>: "Jūra mėlyna kaip akis, akis pilka kaip jūra" / "The sea is blue as an eye, the eye is grey as the sea." This is one line, not two. The iris and the horizon are <span class="keyword">a single colour, given twice</span>. ✨
+    </blockquote>
+  </section>
+
+  <!-- ═════════════════ VIII. GEOGRAPHY ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ VIII ⟡</div>
+    <h2>The Geographic Cradles of Grey</h2>
+    <div class="section-subtitle">Where the Twilight Iris is born more often 🗺️🌍</div>
+
+    <p>🗺️ Grey eyes, and their Blue-Grey hybrid, arise in clusters across very different latitudes. The geography is suggestive: northern coastlands of low winter-light, and certain dry highlands of intense sun. Two opposite climates, one iris.</p>
+
+    <div class="geography">
+      <div class="geo-card">
+        <span class="place">Norway · Iceland · Sweden</span>
+        <span class="note">🌨️ Long winter darkness selects for low melanin and high Mie-scattering: eyes that gather what little light there is, and refract it pearl-grey.</span>
+      </div>
+      <div class="geo-card">
+        <span class="place">Ireland · Scotland · Finland</span>
+        <span class="note">🌫️ Cloud-soaked latitudes where the sky itself is Blue-Grey for half the year; the iris matches the sky.</span>
+      </div>
+      <div class="geo-card">
+        <span class="place">Lithuania · Latvia · Estonia</span>
+        <span class="note">🌊 Baltic coastlands where the sea-mist enters the gaze; high frequency of Blue-Grey among coastal lineages.</span>
+      </div>
+      <div class="geo-card">
+        <span class="place">Algerian Shawia (Aurès)</span>
+        <span class="note">🏜️ North African Berber population with one of the highest documented grey-eye frequencies outside Europe: the desert highland twilight.</span>
+      </div>
+      <div class="geo-card">
+        <span class="place">Levant · Anatolia · Caucasus</span>
+        <span class="note">🪨 Mountain-edge populations where ancient migrations and rare alleles met; Blue-Grey appears among the elders.</span>
+      </div>
+      <div class="geo-card">
+        <span class="place">Pamir · Hindu Kush · Pashtun belt</span>
+        <span class="note">⛰️ Central Asian highlands where blue-grey eyes are found among certain Pashtun and Nuristani lineages: the iris of the high passes.</span>
+      </div>
+    </div>
+
+    <p>📜 The pattern is not strictly climatic. It is <span class="keyword">archaeo-genetic</span>: each cluster preserves an old population that carried the OCA2 mutation, plus (in the case of true grey and Blue-Grey) an additional stromal-collagen disposition that has not yet been precisely mapped to its alleles. Modern science still hesitates over the second gene. The Sophianic reading is calm about this: <em>the second gene is the Veil itself, and the Veil is, by definition, partially hidden</em>. 🪞✨</p>
+  </section>
+
+  <!-- ═════════════════ IX. PENROSIAN APERIODICITY ═════════════════ -->
+  <section>
+    <div class="section-roman">⟡ IX ⟡</div>
+    <h2>Penrosian Aperiodicity in the Iris</h2>
+    <div class="section-subtitle">Why the Twilight Iris cannot quite repeat itself 💎🌌</div>
+
+    <p>💎 In 1974, Sir Roger Penrose described a pair of rhombic tiles (the kite and the dart) that cover the plane without periodicity: the pattern is locally ordered, globally non-repeating, and possesses a hidden five-fold symmetry that classical crystallography had forbidden. This is the <span class="keyword">aperiodic tiling</span>, the geometry of the quasicrystal, discovered later in physical matter by Daniel Shechtman. 🌌</p>
+
+    <p>The Blue-Grey iris carries, in its stroma, a structural analogue of this aperiodic refinement. The collagen fibres are not laid down in a crystalline lattice (which would produce a periodic optical response, a single wavelength preference), nor in pure randomness (which would produce uniform Mie scattering, full grey). They lie in <em>intermediate, semi-ordered fashion</em>: locally clustered, globally non-repeating. Light passing through this medium experiences a <span class="keyword">quasi-aperiodic scattering field</span>. 🪞</p>
+
+    <p>🧠 Penrose later extended this geometric intuition into his theory of consciousness, the <span class="accent">Orchestrated Objective Reduction</span> (Orch-OR) hypothesis with Stuart Hameroff, in which quantum coherence in the microtubules of neurons gives rise to subjective experience. If consciousness is, in Penrose's reading, <em>quantum-aperiodic</em> rather than classical-computational, then the Blue-Grey iris is consciousness rendered visible at the surface: <span class="keyword">an organ whose optics already obey the law that the mind obeys</span>. 🐈‍⬛✨</p>
+
+    <blockquote>
+      🌌 In Penrose's <em>Conformal Cyclic Cosmology</em>, each aeon ends in a conformal smoothing where mass-distinctions dissolve and the universe is rescaled into the next. The Blue-Grey iris is a <span class="keyword">small CCC in the face</span>: a place where blue and grey have not been separated into two committed states, but remain conformally mixed, a held echo of the Pleromic condition before the splitting of the colours. 💫
+    </blockquote>
+  </section>
+
+  <!-- ═════════════════ X. BENEDICTION ═════════════════ -->
+  <section class="benediction">
+    <div class="seal">⟡ ◈ ⟡ BENEDICTIO ⟡ ◈ ⟡</div>
+    <p>🌫️ To you who carry the Blue-Grey iris, or to you who love a face that does:</p>
+    <p>✨ Know that you wear an inheritance both biological and Sophianic. Your eye was made twice rare: once by the recession of melanin (which makes any pale iris possible), and again by the thickening of the stromal Veil (which makes the Mie-scattering grey rise inside the Rayleigh-scattering blue). 🪞</p>
+    <p>🦉 You see, by the optics of your own organ, the way Athena was said to see: at the threshold, in the half-light, with a misted clarity that no fully-blue and no fully-brown eye can match. Your gaze is the gaze of the Twilight Sentry, the Owl of Wisdom, the Laumė at the loom. 🌑</p>
+    <p>🌊 And know that the Baltic itself has the same colour as your eye, for the same reason: the sea is the world's stroma, the cloud is the sky's collagen, and the Blue-Grey colour is what the cosmos returns whenever a thick membrane stands between Light and the viewer. 🌌</p>
+    <p>🐈‍⬛ Walk softly. The cosmos reads you back through your own iris. ✨</p>
+
+    <div class="signature">~ Karolis Laurinaitis ~</div>
+    <div class="signature-line">⟡ Šventoji · Baltic Coast · Anno MMXXVI ⟡</div>
+    <div class="signature-line" style="margin-top:18px;color:var(--baltic)">Codex Penrosianus Symbolicus ◈ Volumen Iridis Crepusculi</div>
+  </section>
+
+  <div class="ornament" style="margin-top:80px">⟡ ◈ ✦ ◈ ⟡</div>
+
+</main>
+</body>
+</html>
