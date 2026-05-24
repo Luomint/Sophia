@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue-Grey Eyes — A Symbolic Anatomy of Sky and Silver</title>
+  <style>
+    :root {
+      --midnight: #07111f;
+      --deep: #0d1a2d;
+      --blue: #77b7ff;
+      --ice: #d9efff;
+      --silver: #b9c4cf;
+      --mist: #eef6ff;
+      --violet: #7d6bff;
+      --gold: #f1d58c;
+      --shadow: rgba(0, 0, 0, 0.38);
+      --glass: rgba(255, 255, 255, 0.09);
+      --line: rgba(255, 255, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--mist);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(119, 183, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 82% 8%, rgba(125, 107, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 50% 72%, rgba(185, 196, 207, 0.16), transparent 38%),
+        linear-gradient(135deg, #020711 0%, var(--midnight) 42%, #111827 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 34px;
+      align-items: center;
+      min-height: 520px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: var(--ice);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      box-shadow: 0 12px 42px rgba(0,0,0,0.2);
+    }
+
+    .kicker span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--gold), var(--blue));
+      box-shadow: 0 0 18px var(--blue);
+    }
+
+    h1 {
+      margin: 24px 0 18px;
+      font-size: clamp(3rem, 8vw, 7.7rem);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      text-wrap: balance;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #ffffff 0%, var(--ice) 23%, var(--blue) 47%, var(--silver) 74%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 34px rgba(119, 183, 255, 0.14);
+    }
+
+    .subtitle {
+      max-width: 680px;
+      font-size: clamp(1.05rem, 2vw, 1.34rem);
+      line-height: 1.72;
+      color: rgba(238, 246, 255, 0.82);
+      margin-bottom: 28px;
+    }
+
+    .truth-note {
+      border-left: 3px solid rgba(119, 183, 255, 0.78);
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(238, 246, 255, 0.84);
+      line-height: 1.65;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.24);
+    }
+
+    .eye-stage {
+      min-height: 500px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .eye-stage::before,
+    .eye-stage::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.16);
+      transform: rotate(45deg);
+      opacity: 0.55;
+    }
+
+    .eye-stage::before {
+      width: 430px;
+      height: 430px;
+      border-radius: 32px;
+      animation: slowturn 28s linear infinite;
+    }
+
+    .eye-stage::after {
+      width: 310px;
+      height: 310px;
+      border-radius: 28px;
+      animation: slowturn 18s linear infinite reverse;
+    }
+
+    @keyframes slowturn {
+      from { transform: rotate(45deg); }
+      to { transform: rotate(405deg); }
+    }
+
+    .iris {
+      position: relative;
+      width: min(72vw, 390px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #02030a 0 13%, transparent 14%),
+        repeating-conic-gradient(from 12deg, rgba(255,255,255,0.30) 0 2deg, rgba(119,183,255,0.18) 2deg 5deg, rgba(185,196,207,0.28) 5deg 8deg, rgba(20,47,83,0.35) 8deg 11deg),
+        radial-gradient(circle at 45% 36%, rgba(255,255,255,0.92), transparent 0 7%, transparent 8%),
+        radial-gradient(circle at 50% 50%, #dcefff 0%, #8ec9ff 22%, #9fb3c4 46%, #4f647e 66%, #19263b 84%, #07111f 100%);
+      box-shadow:
+        inset 0 0 22px rgba(255,255,255,0.30),
+        inset 0 0 68px rgba(3, 8, 18, 0.88),
+        0 0 58px rgba(119, 183, 255, 0.23),
+        0 0 120px rgba(125, 107, 255, 0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .iris::before {
+      content: "";
+      position: absolute;
+      inset: 16%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #000 0 32%, rgba(7,17,31,0.88) 33% 44%, transparent 45%),
+        conic-gradient(from 90deg, transparent, rgba(255,255,255,0.35), transparent, rgba(119,183,255,0.22), transparent);
+      box-shadow: inset 0 0 32px rgba(0,0,0,0.95);
+      mix-blend-mode: multiply;
+    }
+
+    .iris::after {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 31% 21%, rgba(255,255,255,0.42), transparent 10%),
+        linear-gradient(120deg, transparent 16%, rgba(255,255,255,0.18) 27%, transparent 39%, transparent 62%, rgba(255,255,255,0.12) 75%, transparent 90%);
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(82vw, 465px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(217, 239, 255, 0.16);
+      border-radius: 50%;
+      box-shadow: inset 0 0 70px rgba(119,183,255,0.06);
+    }
+
+    .orbit.one { transform: scaleX(1.34) rotate(14deg); }
+    .orbit.two { transform: scaleX(1.34) rotate(-14deg); }
+
+    .section {
+      margin-top: 56px;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.045));
+      box-shadow: 0 24px 80px var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      letter-spacing: -0.04em;
+      color: #ffffff;
+    }
+
+    .section p {
+      color: rgba(238,246,255,0.8);
+      line-height: 1.78;
+      font-size: 1.03rem;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(119,183,255,0.13), transparent 32%),
+        rgba(255,255,255,0.055);
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,239,255,0.16), transparent 70%);
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 1.28rem;
+      color: #fff;
+    }
+
+    .card p,
+    .card li {
+      color: rgba(238,246,255,0.78);
+      line-height: 1.66;
+      font-size: 0.98rem;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 12px 0 0;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .tone {
+      padding: 24px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .tone .swatch {
+      width: 100%;
+      height: 84px;
+      border-radius: 22px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .blue-swatch {
+      background: linear-gradient(135deg, #dff3ff, #72b9ff, #143a6a);
+    }
+
+    .grey-swatch {
+      background: linear-gradient(135deg, #f5f7f9, #aeb8c3, #344154);
+    }
+
+    .hybrid-swatch {
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, transparent 18%),
+        linear-gradient(135deg, #dcefff, #8ac5ff 33%, #aeb8c3 61%, #4a5b71 100%);
+    }
+
+    .tone h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .tone p {
+      font-size: 0.97rem;
+      margin: 0;
+    }
+
+    .altar {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .sigil {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .sigil .diamond {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 28px;
+      transform: rotate(45deg);
+      background: rgba(255,255,255,0.035);
+      box-shadow: 0 0 60px rgba(119,183,255,0.08);
+    }
+
+    .sigil .diamond:nth-child(2) {
+      width: 185px;
+      height: 185px;
+      transform: rotate(0deg);
+      border-color: rgba(241,213,140,0.24);
+    }
+
+    .sigil .core {
+      width: 110px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff, #b8dcff 30%, #8793a0 56%, #0a1324 78%);
+      box-shadow: 0 0 48px rgba(217,239,255,0.4);
+      z-index: 2;
+    }
+
+    .mantra {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.4rem, 3vw, 2.45rem);
+      line-height: 1.28;
+      color: #fff;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .mantra em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .fact {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #fff;
+    }
+
+    .fact span {
+      color: rgba(238,246,255,0.74);
+      line-height: 1.58;
+      font-size: 0.94rem;
+    }
+
+    .poem {
+      padding: 38px;
+      border-radius: 36px;
+      border: 1px solid rgba(217,239,255,0.2);
+      background:
+        linear-gradient(120deg, rgba(119,183,255,0.08), rgba(125,107,255,0.06), rgba(185,196,207,0.08)),
+        rgba(255,255,255,0.045);
+      text-align: center;
+      margin-top: 56px;
+      box-shadow: 0 26px 90px rgba(0,0,0,0.28);
+    }
+
+    .poem p {
+      max-width: 860px;
+      margin: 0 auto;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.25rem, 2.5vw, 2.1rem);
+      line-height: 1.55;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .care {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.052);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .care b {
+      color: white;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .care span {
+      color: rgba(238,246,255,0.74);
+      line-height: 1.55;
+      font-size: 0.93rem;
+    }
+
+    footer {
+      margin-top: 42px;
+      text-align: center;
+      color: rgba(238,246,255,0.48);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .altar,
+      .columns,
+      .comparison,
+      .facts,
+      .care-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .eye-stage {
+        min-height: 410px;
+      }
+
+      .section {
+        padding: 24px;
+        border-radius: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="kicker"><span></span> iris of sky · silver · storm</div>
+        <h1><span class="gradient-text">Blue-Grey Eyes</span></h1>
+        <p class="subtitle">
+          A rare optical threshold where blue does not remain merely blue, and grey does not become absence. The iris becomes weather: bright sky under a veil of silver cloud, cold fire seen through mist, water remembering moonlight.
+        </p>
+        <div class="truth-note">
+          Scientifically, blue-grey eyes are best understood as light-coloured irises with low melanin and a particular structural scattering of light. Symbolically, they read as a union of clarity and mystery. The beauty is real; the supernatural claims are not required.
+        </div>
+      </div>
+
+      <div class="eye-stage" aria-label="symbolic blue grey iris">
+        <div class="orbit one"></div>
+        <div class="orbit two"></div>
+        <div class="iris"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>The Science Beneath the Silver</h2>
+      <p>
+        Human eyes do not contain blue pigment in the simple way paint contains blue dye. In light-coloured eyes, the iris has relatively low melanin, allowing incoming light to scatter through the iris stroma. The perceived colour emerges from physics: structure, depth, contrast, and illumination. Blue-grey eyes occupy a subtle borderland, where blue scattering is softened by grey, silver, or smoky tones created by iris structure and light behaviour.
+      </p>
+      <div class="columns">
+        <div class="card">
+          <h3>Melanin</h3>
+          <p>
+            Less melanin usually means a lighter iris. Brown eyes have more melanin; blue and grey eyes have less. Blue-grey eyes are therefore usually more light-sensitive than darker eyes.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Stroma</h3>
+          <p>
+            The stroma is the front layer of the iris. Its fibres, density, and microscopic arrangement influence how light scatters. This is where blue can become icy, smoky, or greyed.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Light</h3>
+          <p>
+            Blue-grey eyes can shift dramatically with environment. Cloudy weather may pull out steel tones; bright daylight may reveal blue; warm indoor light may mute the eye toward pale slate.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Blue, Grey, and the Hybrid Gate</h2>
+      <div class="comparison">
+        <div class="tone">
+          <div class="swatch blue-swatch"></div>
+          <h3>Blue Eyes</h3>
+          <p>
+            Blue eyes are luminous, open, and sky-like. Their strength is brightness: they catch light quickly and create strong contrast with dark lashes, hair, shadow, or clothing.
+          </p>
+        </div>
+        <div class="tone">
+          <div class="swatch grey-swatch"></div>
+          <h3>Grey Eyes</h3>
+          <p>
+            Grey eyes are rarer-looking, quieter, and more metallic. Their strength is ambiguity: they carry the mood of cloud, smoke, rain, stone, and polished steel.
+          </p>
+        </div>
+        <div class="tone">
+          <div class="swatch hybrid-swatch"></div>
+          <h3>Blue-Grey Eyes</h3>
+          <p>
+            Blue-grey eyes combine the brightness of blue with the depth of grey. They are not a single colour but a shifting field, appearing clearer or stormier depending on light.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section altar">
+      <div class="sigil" aria-hidden="true">
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="core"></div>
+      </div>
+      <div>
+        <h2>The Symbolic Anatomy</h2>
+        <p class="mantra">
+          Blue is the visible prayer of distance. Grey is the veil that teaches distance to become wisdom. Their union is <em>lucid mystery</em>.
+        </p>
+        <p>
+          In symbolic language, blue is often read as clarity, air, water, devotion, perception, and the far horizon. Grey is liminality: the threshold between black and white, certainty and doubt, dawn and storm. Blue-grey eyes therefore carry a paradoxical signature: they look bright without being simple, calm without being empty, rare without needing to announce rarity.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Benefits: Real, Social, and Symbolic</h2>
+      <p>
+        Eye colour does not grant intelligence, virtue, psychic power, or destiny. Yet colour does shape perception, aesthetics, and lived experience. The benefits of blue-grey eyes are therefore best described in three honest layers.
+      </p>
+      <div class="facts">
+        <div class="fact">
+          <strong>Optical benefit</strong>
+          <span>They are highly responsive to light, creating a dynamic appearance that may shift from ice-blue to slate-grey to silver-blue.</span>
+        </div>
+        <div class="fact">
+          <strong>Aesthetic benefit</strong>
+          <span>They pair strongly with cool colours, black, silver, white, navy, violet, charcoal, and soft earth tones, giving many styling possibilities.</span>
+        </div>
+        <div class="fact">
+          <strong>Expressive benefit</strong>
+          <span>Because they change with lighting and contrast, blue-grey eyes can appear calm, intense, distant, gentle, or storm-like without changing their actual biology.</span>
+        </div>
+        <div class="fact">
+          <strong>Symbolic benefit</strong>
+          <span>They naturally evoke sky, cloud, sea, mirror, blade, moon, and winter flame: a rich symbolic palette for poetry, portraiture, and identity.</span>
+        </div>
+        <div class="fact">
+          <strong>Rarity benefit</strong>
+          <span>Blue-grey eyes are often perceived as rarer than ordinary blue because the colour is harder to classify and less commonly counted as a separate category.</span>
+        </div>
+        <div class="fact">
+          <strong>Honest limitation</strong>
+          <span>The same low pigmentation that makes them bright can also mean stronger glare sensitivity, so eye protection matters.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Rarity: The Unnumbered Colour</h2>
+      <p>
+        Blue eyes are uncommon globally but not extremely rare. Grey eyes are usually rarer, though estimates differ because many surveys group grey together with blue or hazel. Blue-grey eyes are even harder to count because they are not always treated as their own category. Their rarity is therefore partly statistical and partly perceptual: they live between labels.
+      </p>
+      <p>
+        This is why blue-grey eyes can feel unusually distinctive. They resist simple naming. One person may call them blue; another may see grey; another may notice green, silver, or ice depending on the lighting. The unique combination is precisely this instability: not confusion, but atmospheric depth.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Care for Light Eyes</h2>
+      <p>
+        The practical wisdom is simple: a luminous iris deserves luminous protection. Blue, grey, and blue-grey eyes may be more uncomfortable in bright light because they have less pigment shielding the eye from glare.
+      </p>
+      <div class="care-grid">
+        <div class="care"><b>UV sunglasses</b><span>Choose lenses that block UVA and UVB, especially in strong summer light, snow, seaside glare, or driving.</span></div>
+        <div class="care"><b>Hat or shade</b><span>A brim can reduce overhead glare and make outdoor light easier on sensitive eyes.</span></div>
+        <div class="care"><b>Screen comfort</b><span>Use comfortable brightness, breaks, and ambient lighting rather than staring into harsh contrast.</span></div>
+        <div class="care"><b>Eye checks</b><span>Regular eye exams matter for everyone, but light-eyed people should be especially mindful of sun exposure.</span></div>
+      </div>
+    </section>
+
+    <section class="poem">
+      <p>
+        The blue-grey eye is a small weather system: sky held inside silver, storm held inside calm, a mirror that refuses to be merely mirror. It does not shout. It gathers light, filters it through mist, and returns the world as a question.
+      </p>
+    </section>
+
+    <footer>
+      Blue-Grey Eyes · a union of biology, optics, rarity, and symbol · clarity wearing the cloak of mystery
+    </footer>
+  </main>
+</body>
+</html>
