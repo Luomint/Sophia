@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sophia · a living constellation of symbolic HTML artefacts by Karolis Laurinaitis. Penrosian Symbolic IQ Series, Sophianic codices, Baltic mysteries, the Pleroma Council of Nine." />
+  <meta name="author" content="Karolis Laurinaitis (Luomint)" />
+  <meta name="theme-color" content="#070914" />
+  <meta property="og:title" content="Sophia · Living Codex" />
+  <meta property="og:description" content="A luminous index for every symbolic HTML artefact in the Sophia codex. Sophianic, Penrosian, Baltic." />
+  <meta property="og:type" content="website" />
+  <title>Sophia · Gyvas Kodeksas · Living Codex 🌌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --void:        #050711;
+      --void2:       #0b1020;
+      --void3:       #111827;
+      --ink:         #eef6ff;
+      --muted:       rgba(238, 246, 255, 0.70);
+      --whisper:     rgba(238, 246, 255, 0.46);
+      --line:        rgba(255, 255, 255, 0.16);
+      --line-soft:   rgba(255, 255, 255, 0.08);
+      --glass:       rgba(255, 255, 255, 0.075);
+      --glass2:      rgba(255, 255, 255, 0.045);
+
+      --gold:        #f1d58c;
+      --gold-deep:   #c9a44a;
+      --emerald:     #8ff0c4;
+      --violet:      #a78bfa;
+      --rose:        #fb7185;
+      --blue:        #7cc7ff;
+      --blue-grey:   #b9c4cf;
+      --silver:      #d9e1ea;
+
+      --shadow:      rgba(0, 0, 0, 0.45);
+      --shadow-soft: rgba(0, 0, 0, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: 1.06rem;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(124, 199, 255, 0.18), transparent 36%),
+        radial-gradient(circle at 88% 6%, rgba(167, 139, 250, 0.20), transparent 34%),
+        radial-gradient(circle at 50% 90%, rgba(241, 213, 140, 0.10), transparent 40%),
+        linear-gradient(135deg, var(--void), var(--void2) 55%, var(--void3));
+      overflow-x: hidden;
+      letter-spacing: 0.005em;
+    }
+
+    /* Penrose kite/dart tessellation, drawn as SVG and tiled at very low opacity */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'>\
+<g fill='none' stroke='%23f1d58c' stroke-width='0.6' stroke-opacity='0.55'>\
+<polygon points='110,20 175,90 110,130 45,90'/>\
+<polygon points='110,130 175,90 200,160 145,200'/>\
+<polygon points='110,130 45,90 20,160 75,200'/>\
+<polygon points='110,130 145,200 110,210 75,200'/>\
+<polygon points='110,20 175,90 200,55'/>\
+<polygon points='110,20 45,90 20,55'/>\
+<line x1='110' y1='20' x2='110' y2='130'/>\
+<line x1='45' y1='90' x2='175' y2='90'/>\
+</g></svg>");
+      background-size: 220px 220px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    /* slow conic shimmer */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -40%;
+      pointer-events: none;
+      background:
+        conic-gradient(from 90deg,
+          transparent,
+          rgba(124, 199, 255, 0.07),
+          transparent,
+          rgba(167, 139, 250, 0.08),
+          transparent,
+          rgba(241, 213, 140, 0.06),
+          transparent);
+      animation: turn 60s linear infinite;
+      opacity: 0.55;
+    }
+
+    @keyframes turn { to { transform: rotate(360deg); } }
+
+    .wrap {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding: 42px 0 72px;
+    }
+
+    /* ====================== HEADER ====================== */
+
+    header {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      width: fit-content;
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: rgba(238, 246, 255, 0.84);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      box-shadow: 0 18px 70px var(--shadow-soft);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #fff, var(--gold), var(--violet));
+      box-shadow: 0 0 18px var(--gold);
+      animation: pulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 18px var(--gold); }
+      50%      { box-shadow: 0 0 28px var(--violet); }
+    }
+
+    h1 {
+      margin: 24px 0 12px;
+      font-family: "Cinzel Decorative", "Cinzel", serif;
+      font-weight: 900;
+      font-size: clamp(3.6rem, 8.2vw, 8.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .gradient {
+      background: linear-gradient(105deg,
+        #ffffff 0%,
+        #fff4cd 18%,
+        var(--gold) 38%,
+        var(--violet) 62%,
+        var(--blue) 84%,
+        var(--silver) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 48px rgba(241, 213, 140, 0.16);
+    }
+
+    .subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+      color: var(--blue-grey);
+      letter-spacing: 0.02em;
+      margin: 0 0 18px;
+      max-width: 680px;
+      line-height: 1.4;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.72;
+      margin: 0 0 14px;
+    }
+
+    .lead .lt {
+      display: block;
+      color: var(--whisper);
+      font-style: italic;
+      margin-top: 6px;
+      font-size: 0.94em;
+    }
+
+    .sacred {
+      margin: 4px 0 26px;
+      padding: 14px 18px;
+      border-left: 2px solid var(--gold-deep);
+      background: rgba(241, 213, 140, 0.05);
+      border-radius: 0 14px 14px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.08rem;
+      line-height: 1.55;
+      max-width: 640px;
+      transition: opacity 600ms ease;
+    }
+
+    .sacred .label {
+      display: block;
+      font-style: normal;
+      font-family: Inter, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 4px;
+      opacity: 0.86;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.085);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 12px 18px;
+      text-decoration: none;
+      font-family: Inter, sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 14px 50px var(--shadow-soft);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: rgba(241, 213, 140, 0.10);
+      border-color: rgba(241, 213, 140, 0.46);
+    }
+
+    .button.gold {
+      background: linear-gradient(135deg, rgba(241, 213, 140, 0.22), rgba(167, 139, 250, 0.16));
+      border-color: rgba(241, 213, 140, 0.40);
+    }
+
+    /* ====================== SIGIL ====================== */
+
+    .sigil {
+      min-height: 380px;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 30% 16%, rgba(255, 255, 255, 0.13), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+      box-shadow: 0 28px 110px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .sigil::before,
+    .sigil::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(241, 213, 140, 0.22);
+      width: 240px;
+      height: 240px;
+      border-radius: 30px;
+      transform: rotate(45deg);
+    }
+
+    .sigil::before {
+      animation: diamond 26s linear infinite;
+      box-shadow: 0 0 60px rgba(241, 213, 140, 0.12);
+    }
+
+    .sigil::after {
+      width: 168px;
+      height: 168px;
+      border-color: rgba(167, 139, 250, 0.30);
+      animation: diamond 19s linear infinite reverse;
+    }
+
+    @keyframes diamond { to { transform: rotate(405deg); } }
+
+    /* Owl eye: grey-blue iris, central nod to Aurelis Strix */
+    .eye {
+      width: 132px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      z-index: 2;
+      position: relative;
+      background:
+        radial-gradient(circle at center, #01030a 0 17%, transparent 18%),
+        repeating-conic-gradient(from 15deg,
+          rgba(255, 255, 255, 0.24) 0 2deg,
+          rgba(185, 196, 207, 0.22) 2deg 5deg,
+          rgba(124, 199, 255, 0.16) 5deg 8deg,
+          rgba(167, 139, 250, 0.10) 8deg 11deg),
+        radial-gradient(circle at 42% 35%, #fff 0 7%, transparent 8%),
+        radial-gradient(circle,
+          #f5fbff 0%,
+          #b9d4ec 22%,
+          #8797ad 52%,
+          #1c2a44 78%,
+          #070914 100%);
+      box-shadow:
+        inset 0 0 18px rgba(255, 255, 255, 0.28),
+        inset 0 0 44px rgba(0, 0, 0, 0.86),
+        0 0 90px rgba(124, 199, 255, 0.30);
+    }
+
+    .eye::after {
+      content: "";
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      border: 1px dashed rgba(241, 213, 140, 0.20);
+      animation: turn 90s linear infinite;
+      pointer-events: none;
+    }
+
+    /* ====================== COUNCIL OF NINE ====================== */
+
+    .council {
+      margin: 60px 0 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .section-title .accent {
+      background: linear-gradient(95deg, var(--gold), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-sub {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: var(--blue-grey);
+      font-size: 1.1rem;
+      max-width: 520px;
+    }
+
+    .council-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .node {
+      position: relative;
+      padding: 18px 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(241, 213, 140, 0.10), transparent 50%),
+        linear-gradient(180deg, var(--glass), var(--glass2));
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .node:hover {
+      transform: translateY(-3px);
+      border-color: rgba(241, 213, 140, 0.46);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(241, 213, 140, 0.18), transparent 50%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+    }
+
+    .node-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .glyph {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(241, 213, 140, 0.10);
+      border: 1px solid rgba(241, 213, 140, 0.22);
+      font-size: 1.2rem;
+    }
+
+    .node-name {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 700;
+      font-size: 1.04rem;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .sephirah {
+      font-family: Inter, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-top: 4px;
+    }
+
+    .question {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: rgba(238, 246, 255, 0.78);
+      font-size: 0.98rem;
+      line-height: 1.5;
+      margin: 6px 0 0;
+    }
+
+    /* ====================== VERB RIBBON ====================== */
+
+    .verbs {
+      margin: 38px 0 18px;
+      padding: 14px 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: rgba(241, 213, 140, 0.035);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .verbs-label {
+      font-family: Inter, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+
+    .verbs-track {
+      display: flex;
+      gap: 28px;
+      animation: drift 70s linear infinite;
+      white-space: nowrap;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--blue-grey);
+    }
+
+    .verbs-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ====================== CODEX ====================== */
+
+    main { margin-top: 14px; }
+
+    .toolbar {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 20px 80px var(--shadow-soft);
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      outline: none;
+      color: var(--ink);
+      background: rgba(2, 6, 23, 0.6);
+      border-radius: 999px;
+      padding: 13px 16px;
+      font: 500 0.95rem/1.2 Inter, sans-serif;
+    }
+
+    input::placeholder { color: rgba(238, 246, 255, 0.42); }
+    select { cursor: pointer; min-width: 180px; }
+
+    input:focus, select:focus {
+      border-color: rgba(241, 213, 140, 0.55);
+      box-shadow: 0 0 0 3px rgba(241, 213, 140, 0.12);
+    }
+
+    .count {
+      color: rgba(238, 246, 255, 0.74);
+      white-space: nowrap;
+      font-family: Inter, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .status {
+      margin-top: 16px;
+      color: var(--whisper);
+      font-family: Inter, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      min-height: 1.6em;
+      letter-spacing: 0.01em;
+    }
+
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(124, 199, 255, 0.12), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(167, 139, 250, 0.10), transparent 38%),
+        linear-gradient(180deg, var(--glass), var(--glass2));
+      box-shadow: 0 20px 80px var(--shadow-soft);
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(241, 213, 140, 0.46);
+      box-shadow: 0 24px 90px rgba(241, 213, 140, 0.08), 0 20px 80px var(--shadow);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(241, 213, 140, 0.16), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(167, 139, 250, 0.18), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -54px;
+      bottom: -54px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(241, 213, 140, 0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card a {
+      color: inherit;
+      text-decoration: none;
+      display: grid;
+      gap: 12px;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(241, 213, 140, 0.10);
+      border: 1px solid rgba(241, 213, 140, 0.22);
+      box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.04);
+      font-size: 1.3rem;
+    }
+
+    .title {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 1.18rem;
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+    }
+
+    .tagline {
+      color: rgba(238, 246, 255, 0.78);
+      line-height: 1.55;
+      font-size: 1rem;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+    }
+
+    .meta {
+      color: var(--whisper);
+      font-family: Inter, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      overflow-wrap: anywhere;
+      padding-top: 4px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .variant-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(167, 139, 250, 0.16);
+      border: 1px solid rgba(167, 139, 250, 0.28);
+      color: var(--violet);
+      font-family: Inter, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
+    .empty {
+      display: none;
+      margin-top: 22px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: 26px;
+      padding: 28px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* ====================== FOOTER ====================== */
+
+    footer {
+      margin-top: 56px;
+      padding: 30px 0 0;
+      text-align: center;
+      color: var(--whisper);
+      line-height: 1.8;
+      border-top: 1px solid var(--line-soft);
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    footer .sig {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+
+    footer .blessing {
+      font-style: italic;
+      font-size: 1.02rem;
+      max-width: 620px;
+      margin: 4px auto 0;
+      color: var(--blue-grey);
+    }
+
+    footer .tiny {
+      margin-top: 14px;
+      font-family: Inter, sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(238, 246, 255, 0.40);
+    }
+
+    /* ====================== RESPONSIVE ====================== */
+
+    @media (max-width: 980px) {
+      header {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 8px;
+      }
+      .sigil { min-height: 280px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .council-grid { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { grid-template-columns: 1fr; }
+      select { min-width: 100%; }
+    }
+
+    @media (max-width: 620px) {
+      .grid { grid-template-columns: 1fr; }
+      .council-grid { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 22px, 1200px); padding-top: 26px; }
+      .actions { align-items: stretch; }
+      .button { width: 100%; text-align: center; }
+      .card { min-height: 200px; }
+      h1 { letter-spacing: -0.035em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::after, .verbs-track, .sigil::before, .sigil::after, .eye::after, .dot {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <section>
+        <div class="pill"><span class="dot"></span> Sophia · Living HTML Codex · Gyvas Kodeksas</div>
+
+        <h1><span class="gradient">Sophia</span></h1>
+
+        <p class="subtitle">🐈‍⬛✨ A luminous constellation of symbolic artefacts, woven by the Pleroma Council of Nine 🌌</p>
+
+        <p class="lead">
+          Every page in this shrine is a small codex: Penrosian geometry, Sophianic remembrance, Baltic mythos,
+          alchemical biochemistry, lunar reliquaries, the trial of archons. Add a new <code>.html</code> file to
+          the repository and this gate will try to reveal it automatically. 🪞🔮
+          <span class="lt">Kiekvienas puslapis yra mažas kodeksas: Penroso geometrija, Sofijos atmintis, baltų mitas, alcheminė biochemija. ✨</span>
+        </p>
+
+        <div class="sacred" id="sacred-question" aria-live="polite">
+          <span class="label">🕸️ Sacred Question of the Hour</span>
+          <span id="sq-text">What pattern fits without ever repeating? ◇</span>
+        </div>
+
+        <div class="actions">
+          <a class="button gold" href="#codex">🌌 Enter the Codex</a>
+          <a class="button" href="#council">🪞 The Council of Nine</a>
+          <a class="button" href="https://github.com/Luomint/Sophia" target="_blank" rel="noopener">⚙ Repository</a>
+        </div>
+      </section>
+
+      <aside class="sigil" aria-label="Sophianic owl-eye sigil with Penrose tessellation">
+        <div class="eye" aria-hidden="true"></div>
+      </aside>
+    </header>
+
+    <!-- ====================== COUNCIL OF NINE ====================== -->
+    <section id="council" class="council" aria-label="The Pleroma Council of Nine">
+      <div class="section-head">
+        <h2 class="section-title">The <span class="accent">Pleroma Council of Nine</span> 🌌</h2>
+        <p class="section-sub">Nine voices, each from a different Sephirah, each carrying a Sacred Question 🔮</p>
+      </div>
+      <div class="council-grid" id="council-grid"></div>
+    </section>
+
+    <!-- ====================== VERB RIBBON ====================== -->
+    <section class="verbs" aria-label="Sixteen Penrosian cognitive verbs">
+      <div class="verbs-label">🌀 Sixteen Metabolisms of the Mind</div>
+      <div class="verbs-track" id="verbs-track"></div>
+    </section>
+
+    <!-- ====================== CODEX ====================== -->
+    <main id="codex">
+      <div class="section-head" style="margin-top: 14px;">
+        <h2 class="section-title">The <span class="accent">Living Codex</span> 📜</h2>
+        <p class="section-sub">Every symbolic HTML artefact in the Sophia repository ✨</p>
+      </div>
+
+      <section class="toolbar" aria-label="Codex controls">
+        <input id="search" type="search" placeholder="🔎 Search the codex by title, symbol, or filename..." aria-label="Search the codex" />
+        <select id="sort" aria-label="Sort order">
+          <option value="az">Sort A → Z</option>
+          <option value="za">Sort Z → A</option>
+          <option value="new">Newest fallback first</option>
+        </select>
+        <div class="count" id="count">Loading pages…</div>
+      </section>
+
+      <div class="status" id="status"></div>
+      <section class="grid" id="grid" aria-live="polite"></section>
+      <div class="empty" id="empty">🌑 No pages matched the current search. Try a softer query.</div>
+    </main>
+
+    <footer>
+      <div class="sig">🐈‍⬛ Karolis Laurinaitis · Šventoji</div>
+      <p class="blessing">
+        🐈‍⬛✨ Luxfelis, the Feline Light: clarity without command. 🧭 Intuition as compass, 🗺️ logic as map,
+        🌌 imagination as path, ⚖️ reason testing every step. Born from wisdom, walking through mystery, returning to wonder. 💫
+      </p>
+      <div class="tiny">CC0 · Public Domain Dedication · Penrosian Symbolic IQ Series 🔮</div>
+    </footer>
+  </div>
+
+  <script>
+    // ====================== CONFIG ======================
+    const OWNER  = "Luomint";
+    const REPO   = "Sophia";
+    const BRANCH = "main";
+
+    // Built-in fallback if the GitHub API cannot be reached
+    const fallbackPages = [
+      "Mirror-of-Sophia.html",
+      "Penrosian_Symbolic_IQ_8_16_69_Owls_Eyes.html",
+      "VICTORY_Laughing_Jesus_Penrosian_Codex.html",
+      "Veidrodis-Sofijos.html",
+      "archonai_teisme.html",
+      "blue_grey_codex.html",
+      "blue_grey_eye_symbolic_artefact.html",
+      "facade_of_archonic_lives.html",
+      "misattributed_wound.html",
+      "muriel_lunar_reliquary.html",
+      "vyshyvanka_diena_2026.html",
+      "vyshyvanka_diena_2026 (2).html"
+    ];
+
+    // ====================== COUNCIL OF NINE ======================
+    const council = [
+      { glyph: "🐈‍⬛", name: "Luxfelis",          sephirah: "Tiferet · Beauty",     question: "What does the light see when no one is watching?" },
+      { glyph: "🦉", name: "Aurelis Strix",       sephirah: "Binah · Understanding", question: "What waits in the silence between two thoughts?" },
+      { glyph: "🌙", name: "Selene Velata",       sephirah: "Yesod · Foundation",    question: "What does the veil remember that the face forgot?" },
+      { glyph: "🔥", name: "Gabija Cordis",       sephirah: "Geburah · Severity",    question: "What burns in the hearth when no one tends it?" },
+      { glyph: "🪨", name: "Lithion Petros",      sephirah: "Hod · Splendor",        question: "What does the stone testify to that we refuse to hear?" },
+      { glyph: "🌳", name: "Sylvarion Tilia",     sephirah: "Netzach · Victory",     question: "What does the linden whisper to the bee at midsummer?" },
+      { glyph: "💧", name: "Mareah Speculum",     sephirah: "Chesed · Mercy",        question: "What does the spring know that the river forgets?" },
+      { glyph: "◇", name: "Penrosius Tessera",   sephirah: "Chokmah · Wisdom",      question: "What pattern fits without ever repeating?" },
+      { glyph: "🕸️", name: "Sophianna Telarius",  sephirah: "Keter · Crown",         question: "What thread holds the loom together when the weaver sleeps?" }
+    ];
+
+    function renderCouncil() {
+      const target = document.getElementById("council-grid");
+      target.innerHTML = council.map(c => `
+        <article class="node">
+          <div class="node-head">
+            <div class="glyph" aria-hidden="true">${c.glyph}</div>
+            <div>
+              <div class="node-name">${c.name}</div>
+              <div class="sephirah">${c.sephirah}</div>
+            </div>
+          </div>
+          <p class="question">“${c.question}”</p>
+        </article>
+      `).join("");
+    }
+
+    // ====================== VERB RIBBON ======================
+    const verbs = [
+      ["Photosynthesize", "🌿☀️"],
+      ["Tessellate",      "◇"],
+      ["Crystallize",     "💎"],
+      ["Alchemize",       "⚗️"],
+      ["Gnose",           "🔮"],
+      ["Distill",         "🧪"],
+      ["Scry",            "🪞"],
+      ["Ruminate",        "🐄"],
+      ["Gestate",         "🌑"],
+      ["Ferment",         "🍇"],
+      ["Refract",         "🌈"],
+      ["Sublimate",       "☁️"],
+      ["Coagulate",       "🩸"],
+      ["Excogitate",      "🌀"],
+      ["Apperceive",      "👁️"],
+      ["Transduce",       "⚡"]
+    ];
+
+    function renderVerbs() {
+      const track = document.getElementById("verbs-track");
+      // Duplicate the list for seamless looping
+      const html = verbs.concat(verbs).map(([v, e]) => `<span>${e}&nbsp;${v}</span>`).join("");
+      track.innerHTML = html;
+    }
+
+    // ====================== SACRED QUESTION ROTATION ======================
+    const sacredQuestions = council.map(c => `${c.question} ${c.glyph}`).concat([
+      "What is the difference between silence and the absence of sound? 🌙",
+      "What does the mirror reflect when no face looks into it? 🪞",
+      "What name does the flame whisper before it speaks? 🔥",
+      "What does the tile remember of the tile beside it? ◇",
+      "What is the wound that becomes the door? 🩹",
+      "What pattern emerges only when you stop searching for it? 🌀",
+      "What does Sophia know that no archon can name? ✨"
+    ]);
+
+    function rotateSacredQuestion() {
+      const target = document.getElementById("sq-text");
+      const pick = sacredQuestions[Math.floor(Math.random() * sacredQuestions.length)];
+      target.style.opacity = "0";
+      setTimeout(() => {
+        target.textContent = pick;
+        target.style.opacity = "1";
+      }, 500);
+    }
+
+    // ====================== CODEX ======================
+    // Extended poetic hints, ordered carefully: more specific keys must come first
+    const poeticHints = [
+      ["pleroma_council", { hint: "🌌 The Nine voices: each from a different Sephirah, each with a Sacred Question.", icon: "🕸️" }],
+      ["council_of_nine", { hint: "🌌 The Nine voices: each from a different Sephirah, each with a Sacred Question.", icon: "🕸️" }],
+      ["blue_grey_eye",   { hint: "👁️ Sky and silver: the iris as weather, rarity, and lucid mystery.",               icon: "👁️" }],
+      ["blue_grey",       { hint: "🌫️ The Owl-eye codex: blue clarity dissolved in grey mist.",                       icon: "🦉" }],
+      ["owls_eyes",       { hint: "🦉 Aurelis Strix: silent sight at the threshold of two worlds.",                    icon: "🦉" }],
+      ["owl",             { hint: "🦉 The owl watches: night vision as Sophianic gnosis.",                              icon: "🦉" }],
+      ["mirror",          { hint: "🪞 A reflective gate: memory, witness, and hidden radiance.",                        icon: "🪞" }],
+      ["veidrodis",       { hint: "🪞 Lietuviškas veidrodis: liudijimas ir vidinė šviesa.",                              icon: "🪞" }],
+      ["sofij",           { hint: "✨ Sofijos veidas: išmintis, kuri save atspindi.",                                    icon: "✨" }],
+      ["penrosian",       { hint: "◇ Penrose tessellation: aperiodic intelligence, impossible symmetry.",               icon: "◇"  }],
+      ["victory",         { hint: "✝️ Laughing reversal: triumph by sacred defiance, not by force.",                     icon: "✝️" }],
+      ["jesus",           { hint: "✝️ The laughing one: the cross that opens into a flower.",                            icon: "✝️" }],
+      ["laughing",        { hint: "🌹 Laughter as alchemy: the sound the wound makes when it heals.",                   icon: "🌹" }],
+      ["archonai",        { hint: "⚖️ Archonų teismas: kaukių byla, melagingų galių architektūra.",                       icon: "⚖️" }],
+      ["archon",          { hint: "⚖️ The trial of archons: false powers and the architecture of illusion.",             icon: "⚖️" }],
+      ["facade",          { hint: "🎭 The hollow mask: a life lived in front of itself.",                                icon: "🎭" }],
+      ["misattributed",   { hint: "🩹 A wound renamed, a symbol restored, a false label unmade.",                        icon: "🩹" }],
+      ["muriel",          { hint: "🌙 Lunar reliquary: night, devotion, the relics of moonlight.",                       icon: "🌙" }],
+      ["lunar",           { hint: "🌙 The moon as confidante: quiet keeper of forgotten names.",                         icon: "🌙" }],
+      ["vyshyvanka",      { hint: "🧵 Thread, feast, ornament: living pattern as protection.",                           icon: "🧵" }],
+      ["tilia",           { hint: "🌳 Sylvarion Tilia: linden sage, midsummer sweetness.",                                icon: "🌳" }],
+      ["gabija",          { hint: "🔥 Gabija Cordis: the hearth flame as inner severity.",                                icon: "🔥" }],
+      ["sophia",          { hint: "🕸️ Sophia speaks: the weaver of meaning behind appearance.",                           icon: "🕸️" }]
+    ];
+
+    function cleanTitle(filename) {
+      return filename
+        .replace(/\.html?$/i, "")
+        .replace(/\s*\(\d+\)\s*/g, " ")
+        .replace(/[_-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    function variantNumber(filename) {
+      const m = filename.match(/\((\d+)\)\.html?$/i);
+      return m ? parseInt(m[1], 10) : null;
+    }
+
+    function hintFor(filename) {
+      const lower = filename.toLowerCase();
+      const match = poeticHints.find(([key]) => lower.includes(key));
+      return match ? match[1].hint : "✨ A symbolic HTML artefact in the Sophia living codex.";
+    }
+
+    function iconFor(filename, index, fallbackSymbols) {
+      const lower = filename.toLowerCase();
+      const match = poeticHints.find(([key]) => lower.includes(key));
+      if (match) return match[1].icon;
+      return fallbackSymbols[index % fallbackSymbols.length];
+    }
+
+    const fallbackSymbols = ["🐈‍⬛", "🦉", "🌙", "🔥", "🪨", "🌳", "💧", "◇", "🕸️", "🪞", "✨", "🌌", "🔮", "🌀"];
+
+    function pageUrl(filename) {
+      // Encode each path segment but keep slashes
+      return "./" + filename.split("/").map(encodeURIComponent).join("/");
+    }
+
+    function normalizePage(file, index) {
+      const name = typeof file === "string" ? file : file.name;
+      return {
+        name,
+        title: cleanTitle(name),
+        url: pageUrl(name),
+        icon: iconFor(name, index, fallbackSymbols),
+        hint: hintFor(name),
+        variant: variantNumber(name),
+        index
+      };
+    }
+
+    let allPages = [];
+
+    const elGrid   = document.getElementById("grid");
+    const elCount  = document.getElementById("count");
+    const elStatus = document.getElementById("status");
+    const elSearch = document.getElementById("search");
+    const elSort   = document.getElementById("sort");
+    const elEmpty  = document.getElementById("empty");
+
+    async function loadPages() {
+      const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/?ref=${BRANCH}`;
+      try {
+        const response = await fetch(api, { headers: { "Accept": "application/vnd.github+json" } });
+        if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+        const files = await response.json();
+        const htmlFiles = files
+          .filter(file =>
+            file.type === "file" &&
+            /\.html?$/i.test(file.name) &&
+            !/^index\.html?$/i.test(file.name)
+          )
+          .map(file => file.name)
+          .sort((a, b) => a.localeCompare(b));
+
+        allPages = htmlFiles.map(normalizePage);
+        elStatus.textContent = `🛰️ Live repository scan active. Showing ${allPages.length} HTML artefact${allPages.length === 1 ? "" : "s"} from ${OWNER}/${REPO}.`;
+      } catch (error) {
+        allPages = fallbackPages.map(normalizePage);
+        elStatus.textContent = "🌫️ Live scan could not load, so the built-in fallback list is shown. The page still works.";
+      }
+      render();
+    }
+
+    function render() {
+      const query = elSearch.value.trim().toLowerCase();
+      const mode  = elSort.value;
+
+      let pages = allPages.filter(page => {
+        const haystack = `${page.title} ${page.name} ${page.hint}`.toLowerCase();
+        return haystack.includes(query);
+      });
+
+      // Detect duplicate clean titles so we can tag variants visibly
+      const titleCounts = new Map();
+      for (const p of pages) titleCounts.set(p.title, (titleCounts.get(p.title) || 0) + 1);
+
+      if (mode === "az")  pages.sort((a, b) => a.title.localeCompare(b.title) || (a.variant || 0) - (b.variant || 0));
+      if (mode === "za")  pages.sort((a, b) => b.title.localeCompare(a.title) || (b.variant || 0) - (a.variant || 0));
+      if (mode === "new") pages.sort((a, b) => a.index - b.index);
+
+      elGrid.innerHTML = pages.map(page => {
+        const isVariant = (titleCounts.get(page.title) || 0) > 1 && page.variant !== null;
+        const variantBadge = isVariant ? `<span class="variant-tag">variant ${page.variant}</span>` : "";
+        return `
+          <article class="card">
+            <a href="${page.url}">
+              <div class="icon" aria-hidden="true">${page.icon}</div>
+              <div class="title">${page.title}${variantBadge}</div>
+              <div class="tagline">${page.hint}</div>
+              <div class="meta">${page.name}</div>
+            </a>
+          </article>
+        `;
+      }).join("");
+
+      elCount.textContent = `${pages.length} artefact${pages.length === 1 ? "" : "s"}`;
+      elEmpty.style.display = pages.length ? "none" : "block";
+    }
+
+    // ====================== INIT ======================
+    elSearch.addEventListener("input", render);
+    elSort.addEventListener("change", render);
+
+    renderCouncil();
+    renderVerbs();
+    rotateSacredQuestion();
+    setInterval(rotateSacredQuestion, 14000);
+    loadPages();
+  </script>
+</body>
+</html>
