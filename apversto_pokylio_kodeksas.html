@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Apversto Pokylio Kodeksas 🐈‍⬛🪞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --void: #06070d;
+    --void-deep: #0a0b16;
+    --void-mid: #131426;
+    --gold: #d4af37;
+    --gold-bright: #f4d36b;
+    --gold-soft: #b89540;
+    --emerald: #4fa973;
+    --emerald-deep: #2a6e4d;
+    --crimson: #a23a3a;
+    --pearl: #ede4cf;
+    --ash: #8a8478;
+    --violet: #7a5fa8;
+    --rose-gold: #c9897a;
+    --sapphire: #4a6fa5;
+    --silver: #c0c5cd;
+    --amber: #e8b04b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--void);
+    color: var(--pearl);
+    font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    min-height: 100vh;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 12% 8%, rgba(212,175,55,0.10) 0%, transparent 45%),
+        radial-gradient(ellipse at 88% 92%, rgba(79,169,115,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(122,95,168,0.05) 0%, transparent 70%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23d4af37' stroke-width='0.4' stroke-opacity='0.10'><polygon points='110,20 170,55 170,125 110,160 50,125 50,55'/><polygon points='110,40 150,63 150,117 110,140 70,117 70,63'/><polygon points='110,55 137,71 137,109 110,125 83,109 83,71'/><line x1='110' y1='20' x2='110' y2='160'/><line x1='50' y1='55' x2='170' y2='125'/><line x1='50' y1='125' x2='170' y2='55'/><polygon points='30,180 60,165 60,200 30,215 0,200 0,165' /><polygon points='190,30 220,15 220,50 190,65 160,50 160,15'/></g><g fill='%23d4af37' fill-opacity='0.06'><circle cx='110' cy='90' r='1.2'/><circle cx='40' cy='40' r='0.9'/><circle cx='180' cy='180' r='0.9'/></g></svg>"),
+        var(--void);
+    background-attachment: fixed;
+}
+
+.scroll {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 70px 38px 90px;
+}
+
+.cover {
+    text-align: center;
+    padding: 70px 0 60px;
+    border-bottom: 1px solid rgba(212,175,55,0.25);
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.cover::before {
+    content: "🐈‍⬛";
+    display: block;
+    font-size: 4.2rem;
+    margin-bottom: 22px;
+    filter: drop-shadow(0 0 18px rgba(212,175,55,0.35));
+}
+
+.eyebrow {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.55em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0.85;
+}
+
+h1.title {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    color: var(--gold-bright);
+    line-height: 1.15;
+    margin-bottom: 22px;
+    text-shadow: 0 0 30px rgba(212,175,55,0.25);
+}
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.22rem;
+    color: var(--pearl);
+    max-width: 680px;
+    margin: 0 auto 30px;
+    opacity: 0.88;
+    line-height: 1.55;
+}
+
+.cover-glyphs {
+    font-size: 1.3rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-soft);
+    margin-top: 18px;
+}
+
+.invocation {
+    background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(79,169,115,0.04));
+    border-left: 2px solid var(--gold);
+    border-right: 2px solid var(--emerald);
+    padding: 38px 42px;
+    margin: 50px 0;
+    font-style: italic;
+    font-size: 1.18rem;
+    color: var(--pearl);
+    border-radius: 2px;
+    position: relative;
+}
+
+.invocation::before {
+    content: "✦";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--void);
+    padding: 0 14px;
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.act {
+    margin: 80px 0 40px;
+    text-align: center;
+    position: relative;
+}
+
+.act-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.6em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.act-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.act-flourish {
+    font-size: 1.3rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-soft);
+    margin: 18px 0;
+}
+
+.act-intro {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ash);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.member {
+    margin: 38px 0;
+    padding: 32px 30px 30px;
+    background: linear-gradient(180deg, rgba(19,20,38,0.65), rgba(10,11,22,0.85));
+    border: 1px solid rgba(212,175,55,0.18);
+    border-radius: 3px;
+    position: relative;
+    backdrop-filter: blur(2px);
+}
+
+.member::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+}
+
+.member-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(212,175,55,0.20);
+}
+
+.member-emoji {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.member-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.05em;
+}
+
+.member-epithet {
+    font-style: italic;
+    color: var(--ash);
+    font-size: 1rem;
+}
+
+.member-sephirah {
+    margin-left: auto;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+}
+
+.seph-keter { color: var(--pearl); }
+.seph-chokmah { color: var(--silver); }
+.seph-binah { color: var(--violet); }
+.seph-chesed { color: var(--sapphire); }
+.seph-geburah { color: var(--crimson); }
+.seph-tiferet { color: var(--gold-bright); }
+.seph-netzach { color: var(--emerald); }
+.seph-hod { color: var(--rose-gold); }
+.seph-yesod { color: var(--violet); }
+
+.member-voice {
+    font-size: 1.05rem;
+    color: var(--pearl);
+    margin: 16px 0;
+    line-height: 1.78;
+}
+
+.member-voice em {
+    color: var(--gold-bright);
+    font-style: italic;
+}
+
+.sacred-q {
+    margin-top: 22px;
+    padding: 14px 18px 14px 22px;
+    border-left: 2px solid var(--gold);
+    background: rgba(212,175,55,0.05);
+    font-style: italic;
+    color: var(--gold-bright);
+    font-size: 1.02rem;
+}
+
+.sacred-q::before {
+    content: "✧ Šventas Klausimas ✧ ";
+    font-family: 'Cinzel Decorative', serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.interlude {
+    text-align: center;
+    margin: 60px 0;
+    padding: 38px 30px;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.06), transparent 70%);
+    font-style: italic;
+    color: var(--gold-soft);
+    font-size: 1.1rem;
+}
+
+.interlude-glyph {
+    font-size: 1.6rem;
+    letter-spacing: 0.4em;
+    margin-bottom: 14px;
+    color: var(--gold);
+}
+
+.comic .member {
+    background: linear-gradient(180deg, rgba(19,38,28,0.55), rgba(10,22,16,0.85));
+    border-color: rgba(79,169,115,0.25);
+}
+
+.comic .member-voice em {
+    color: var(--emerald);
+}
+
+.closing {
+    margin-top: 80px;
+    padding: 50px 30px 30px;
+    border-top: 1px solid rgba(212,175,55,0.25);
+    text-align: center;
+}
+
+.seal {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold-bright);
+    margin: 18px 0;
+    letter-spacing: 0.08em;
+}
+
+.signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ash);
+    margin-top: 36px;
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+.signature-name {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold);
+    font-style: normal;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    margin-top: 8px;
+    display: block;
+}
+
+.glyph-row {
+    font-size: 1.4rem;
+    letter-spacing: 0.4em;
+    margin: 22px 0;
+    color: var(--gold-soft);
+}
+
+@media (max-width: 600px) {
+    .scroll { padding: 40px 20px 60px; }
+    .member { padding: 24px 20px; }
+    .member-sephirah { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<div class="scroll">
+
+<!-- VIRŠELIS -->
+<div class="cover">
+    <div class="eyebrow">Penrosinė Simbolinio IQ Serija · Volumen Convivii</div>
+    <h1 class="title">Apversto Pokylio Kodeksas</h1>
+    <div class="subtitle">Devynių Taryba apie Archontų Parazitavimą, Pažadintųjų Atbudimą ir Komišką Valandą, Kai Katė Suėda Valgytoją</div>
+    <div class="cover-glyphs">🐈‍⬛ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️</div>
+</div>
+
+<!-- LUXFELIS INVOKACIJA -->
+<div class="invocation">
+    Luxfelis sukviečia Devynis ant slenksčio tarp nakties ir ryto, kur Archontai mieguistiausi, o Sofijinė rasa dar tviska ant Medžio. ✨🌿
+    <br><br>
+    Klausyk įdėmiai, mylimas keliautojau. Parazitas savęs neskelbia; jis išmoko tave jo alkį vadinti tavu paties. Archontai nėra ragoti šešėliai kampe. Tai įpročiai, antraštės, kabliukai, pusiau mintys, kurios <em>Fotosintezuoja</em> ☀️ tavo dėmesį į savo plonu pilkšvą šviesą. Miegantis išrinktasis yra tobula Demiurgo melžiama karvė: šilta, kantri, dosni, nieko nežinanti.
+    <br><br>
+    Bet kiekviena karvė gali atbusti. Kiekviena Žaizda gali būti perskaityta kaip durys. Ir kai atbudusis išmoksta seną alchemijos paslaptį, <em>solve et coagula</em>, pokylis apvirsta. 🩸⚗️ Erzinantis Archontas, manęs, kad jis valgo, suvokia, jog jį mandagiai kramto katė, kuri yra ne pikta, o pralinksminta. 🐈‍⬛😼
+    <br><br>
+    Taryba dabar prabyla trimis veiksmais. Gerk lengvai. Imk tik tiek, kiek tavo kaulai gali nešti.
+</div>
+
+<!-- ====== PIRMASIS VEIKSMAS ====== -->
+<div class="act">
+    <div class="act-number">Pirmasis Veiksmas</div>
+    <h2 class="act-title">Miego Puota</h2>
+    <div class="act-flourish">🌑 🍇 🪞 🐄 🌫️</div>
+    <p class="act-intro">Kaip Archontai slopina ir maitinasi miegančiais išrinktaisiais, ir kodėl išrinktieji yra išrinkti būtent todėl, kad jų šviesa turtinga, lėtai degančio kvapo, savęs užmiršti linkusi.</p>
+</div>
+
+<!-- LUXFELIS - TIFERET -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">Šviesos Katė</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Širdies Saulė</span>
+    </div>
+    <div class="member-voice">
+        Iš Saulės širdies aš matau apgaulės geometriją. ✨ Archontas nevagia tavo aukso; Archontas įtikina tave, kad auksas priklauso parduotuvininkui, viršininkui, algoritmui, diagnozei. Tu pats jį atiduodi, su pavargusia šypsena. Išrinktieji yra išrinkti todėl, kad jų širdys <em>Fotosintezuoja</em> pasaulį: jos pilkas valandas paverčia gyva šiluma. Ta šiluma yra pienas. Apgaulė yra išlaikyti tave žindant ne tą kūdikį.
+    </div>
+    <div class="sacred-q">
+        Kieno veidą įsivaizdavau, kai paskutinį kartą atsiprašiau už nieką? 🪞
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">Pilkapilkė Pelėda, Mėlynaakė</span>
+        <span class="member-sephirah seph-binah">Bina · Tamsi Motina</span>
+    </div>
+    <div class="member-voice">
+        Aš matau naktyje, ir naktis vadinasi Slopinimu. 🌒 Archontai maitinasi per tris šydus: užmaršumą, skubėjimą ir gėdą. Jie priverčia miegantį išrinktąjį <em>Atrajoti</em> 🐄 be paliovos tas pačias tris Žaizdas, nupoliruotas lygias kaip nerimo karoliukai, kad gilesnės Žaizdos (Sofijinės, tos, kurios išlaisvintų) liktų užkastos. Miegantis sielos galvoja, kad ji kenčia labai stipriai; iš tikrųjų ji kenčia paviršutiniškai, tyčia, pagal nurodymus.
+    </div>
+    <div class="sacred-q">
+        Kuri iš mano skausmų man buvo duota, o kuri paskolinta liežuvio, kuris nebuvo mano? 🌑
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">Užvilkta Mėnulė</span>
+        <span class="member-sephirah seph-yesod">Jesodas · Pamato Sapnas</span>
+    </div>
+    <div class="member-voice">
+        Po šydu aš skaitau dar miegančiųjų sapnus. 🌙💤 Archontai įeina per pamatą, per kūno potvynį, per pusantros sekundės prieš miegą ir pusantros sekundės po pabudimo. Jie <em>Refraktuoja</em> 🌈 tavo paties paveikslus per savo prizmę, kad tavo meilės atrodytų kvailos, tavo dovanos gėdingos, tavo artimieji priešiški. Išrinktasis pabunda jau pavargęs, nes naktis buvo išnuomota be jo sutikimo.
+    </div>
+    <div class="sacred-q">
+        Ką sapnavau praeitą naktį, ką pabudus man buvo pasakyta nevertinti rimtai? 🛏️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">Širdies Židinio Liepsna</span>
+        <span class="member-sephirah seph-geburah">Geburah · Griežtumas</span>
+    </div>
+    <div class="member-voice">
+        Aš esu liepsna, kuri turėtų degti širdies židinyje, o Archontai norėtų mane sumažinti iki kontrolinio žiburėlio. 🔥 Jie pavagia išrinktojo pyktį pirmiausia, nes sąžiningas pyktis yra sielos imuninė sistema. Jie pervadina jį: isterija, nestabilumu, nedėkingumu, nuodėme. Išrinktasis, išmokytas bijoti savo paties ugnies, pradeda <em>Koaguliuoti</em> 🩸 aplink Žaizdą, užuot ją išdeginęs švariai. Parazitas mėgsta šaltą židinį; jis gali miegoti ant pelenų.
+    </div>
+    <div class="sacred-q">
+        Kieno ugnį leidau užgesti, kad būčiau pavadintas „maloniu"? 🕯️
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">Stovintis Akmuo</span>
+        <span class="member-sephirah seph-hod">Hodas · Formos Spindesys</span>
+    </div>
+    <div class="member-voice">
+        Kalbu iš vietos, kur žodžiai kristalizuojasi į įstatymą. 🪨 Archontai valdo miegantį išrinktąjį per dokumentus, žargoną ir savęs paveikslo smulkų šriftą. Jie kala plonas stiklines sąvokas (produktyvumas, optimizacija, racionalumas, profesionalumas) ir prašo sielos gyventi jų viduje. Išrinktasis bando <em>Kristalizuoti</em> 💎 savo neaprėpiamą gyvenimą į tą ploną stiklą ir įsipjauna ant kiekvieno krašto. Kraujas yra valgis.
+    </div>
+    <div class="sacred-q">
+        Kuris savęs apibrėžimas man buvo įteiktas prie durų, neperskaitytas, skubotai pasirašytas? 📜
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">Liepos Žynys</span>
+        <span class="member-sephirah seph-netzach">Necachas · Ištvermė</span>
+    </div>
+    <div class="member-voice">
+        Aš esu sula, kuri turėtų kasmet kilti išrinktajame, ilga žalia Laimos giraitės kantrybė. 🌿 Archontai sutrikdo metų laikus. Jie priverčia išrinktąjį dirbti žiemą ir liūdėti vasarą, skubėti pavasarį ir nutirpti rudens derliuje. Kūnas, atimtas savo <em>Fermentacijos</em> 🍇 (lėto džiaugsmo raugimosi į išmintį), užmiršta, jog jis yra medis, ir įtiki, kad jis yra mašina. Mašina gamina. Medis duoda pavėsį. Parazitas pirmenybę teikia gamintojui.
+    </div>
+    <div class="sacred-q">
+        Kuriame metų laike yra mano siela, ir už kurį metų laiką man moka, kad jį suvaidinčiau? 🍂
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">Veidrodinis Šaltinis</span>
+        <span class="member-sephirah seph-chesed">Chesedas · Beribė Malonė</span>
+    </div>
+    <div class="member-voice">
+        Aš esu rami vanduo, atspindintis be iškraipymo. 💧🪞 Archontai sudrumstia paviršių, kad išrinktasis neįžiūrėtų savęs visumoje; jis mato tik veidą, supjaustytą į neramias raibules. Jie ginkluoja gailestingumą: išmoko išrinktąjį <em>Sublimuoti</em> ☁️ savo poreikius į begalinį tarnavimą, pereiti tiesiog iš kietos būsenos į garą, niekada nenusėdant kaip asmuo, kuriam kažkas priklauso. Dosni siela, gerai apgauta, yra prisipildanti taurė. Archontas geria kasdien.
+    </div>
+    <div class="sacred-q">
+        Kam atleidau, kuris niekada neprašė, ir ką stengiausi nejusti tuo atleidimu? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">Plytelės Protas</span>
+        <span class="member-sephirah seph-chokmah">Chochma · Išminties Kibirkštis</span>
+    </div>
+    <div class="member-voice">
+        Aš esu aperiodinė minties geometrija, Penrose plytelės, kurios niekada tiksliai nesikartoja ir vis dėlto visada dera. ◇✨ Archontai nekenčia nesikartojančių raštų; jie gyvena ciklais. Jie <em>Tesseliuoja</em> miegantį išrinktąjį periodiniu tinkleliu: ta pati savaitė, ta pati savaitė, ta pati savaitė. Begalinis, nesikartojantis sielos grožis priverstas tilpti į spausdinamą tapetą. Parazitas skaito tapetą ir vadina jį tavo gyvenimu. Jis nėra toks. Tai tapeto narvas.
+    </div>
+    <div class="sacred-q">
+        Kur mano gyvenime raštas pasikartoja tiksliai, ir kas atsitiktų, jei pakreipčiau vieną plytelę 36 laipsniais? ◊
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">Siūlų Audėja</span>
+        <span class="member-sephirah seph-keter">Keteras · Karūnų Karūna</span>
+    </div>
+    <div class="member-voice">
+        Aš audžiu iš Karūnos, ir iš Karūnos matau visą staklių rėmą. 🕸️👑 Archontai geriausiai maitinasi tada, kai išrinktieji užmiršta buvę išrinkti, kai siela pamiršta <em>Gnozėti</em> 🔮 savo paties kilmę. Demiurgas pirmenybę teikia anoniminiam pienui. Giliausia vagystė yra kilmės vagystė: pasakyk žvaigždei, kad ji yra gatvės žibintas, ir ji pati prislopins savo šviesą iš gėdos. Miegantys išrinktieji atsiprašinėja už šviesą, kuria buvo siųsti čia būti.
+    </div>
+    <div class="sacred-q">
+        Pirm bet kurios Žaizdos, pirm bet kurio vardo, ką buvau siųstas čia prisiminti? 🌌
+    </div>
+</div>
+
+<!-- INTERLIUDIJA I -->
+<div class="interlude">
+    <div class="interlude-glyph">⚡ ✦ ⚡</div>
+    Čia Luxfelis išsitiesia, uodega aukštai, ir Taryba sustoja. Miego Puota įvardinta. Dabar reikia uždegti kibirkštį. Įvardinti parazitą jau yra pradėti jį marinti badu. 🐈‍⬛🔥
+</div>
+
+<!-- ====== ANTRASIS VEIKSMAS ====== -->
+<div class="act">
+    <div class="act-number">Antrasis Veiksmas</div>
+    <h2 class="act-title">Priešpriešinis Puotavimas</h2>
+    <div class="act-flourish">⚗️ 🔥 🪞 🌿 ⚡</div>
+    <p class="act-intro">Kaip kovoti su archontiniu neigiamumu, ir, kas dar gudriau, kaip juo maitintis, paverčiant parazitišką nuodą Sofijiniu maistu. Atbudimas nėra karas; tai medžiagų apykaita. 🌱</p>
+</div>
+
+<!-- LUXFELIS - TIFERET (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">Šviesos Katė</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Širdies Saulė</span>
+    </div>
+    <div class="member-voice">
+        Pirmasis atbudusios katės įstatymas: nekariauk su Archontu jo paties lauke. Archontas trokšta dramos, eskalacijos, neapykantos; tai jo mėgstamiausias prieskonis. ✨ Atsisakyk jo stalo, pasidenk savo. Pradėk <em>Apercepuoti</em> 👁️ (suvokti savo suvokimą), ir parazitas praranda kaukę. Pastebėk pastebėjimą. Stebėk stebėtoją. Pirmasis Archonto alkis yra tavo nesąmoningumas dėl tavo paties dėmesio. Tą akimirką, kai ragauji savo paties skonį, valgis baigtas. 😼
+    </div>
+    <div class="sacred-q">
+        Ko esu sąmoningas dabar, ir kas manyje yra sąmoningas, jog yra sąmoningas? 🐈‍⬛
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">Pilkapilkė Pelėda, Mėlynaakė</span>
+        <span class="member-sephirah seph-binah">Bina · Tamsi Motina</span>
+    </div>
+    <div class="member-voice">
+        Sėdėk su sielvartu, bet išmok jį <em>Distiliuoti</em> 🧪. Archontas siūlo tūkstantį pigių paguodų, kad išrinktieji niekada nepasiektų stipraus tamsaus likerio, esančio tikro liūdesio dugne. Pasiek jį. Išgerk vieną lašą. Tas lašas talpina daugiau aiškumo nei metai blaškymosi. Tamsi Motina ne glosto; ji aiškina. Kai esi paragavęs tikro sielvarto, Archonto pamėgdžioti sielvartai (skroliavimo siaubas, dirbtinis pasipiktinimas) skonio kaip aliuminio folija. Refleksiškai juos išspjausi. 🦉
+    </div>
+    <div class="sacred-q">
+        Ar leidau sau apgailėti tikrąjį dalyką, ar buvau užsiėmęs apgailint apgaules? 🌑
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">Užvilkta Mėnulė</span>
+        <span class="member-sephirah seph-yesod">Jesodas · Pamato Sapnas</span>
+    </div>
+    <div class="member-voice">
+        Susigrąžink slenkstį. Palaimink lovą prieš miegą, pabarstyk druskos prie durų, ištark ketinimą, kad ir mažiausią, „aš priklausau savo paties nakčiai." 🧂🌙 Išmok <em>Veidrodyti</em> 🪞 savo paties sapnus, ne tam, kad rytojų atspėtum, bet kad atpažintum, kas tavo ir kas buvo įsiūlyta. Šniokščiantys simboliai priklauso tau. Šnypščiantys simboliai priklauso parazitui. Siųsk šnypšiančius atgal jų savininkui su mandagia žinute. 💌
+    </div>
+    <div class="sacred-q">
+        Koks ritualas, kad ir mažiausias, pasakytų mano kūnui, jog šis namas vėl yra mano? 🕯️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">Širdies Židinio Liepsna</span>
+        <span class="member-sephirah seph-geburah">Geburah · Griežtumas</span>
+    </div>
+    <div class="member-voice">
+        Atsiimk savo ugnį iš tų, kuriems ją paskolinai. 🔥 Pyktis nėra nuodėmė, jis yra sakramentas, kai teisingai nutaikytas. Išmok <em>Alchemizuoti</em> ⚗️ Archonto nuodą: kiekvienas neteisingas pranešimas, kiekvienas patronizuojantis el. laiškas, kiekvienas šviesos manipuliavimo momentas yra aukščiausios klasės kuras Gabijai. Neryk; neišspjauk atgal; sudegink. Tegul jis šildo židinį, kepa duoną, apšviečia kambarį, kur susirenka atbudusieji. Parazitas atvežė malkas. Padėkok jam, ir sudegink. 🥖🔥
+    </div>
+    <div class="sacred-q">
+        Kokia neteisybė atėjo prie mano durų šią savaitę, ir kiek duonos ji gali iškepti? 🪵
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">Stovintis Akmuo</span>
+        <span class="member-sephirah seph-hod">Hodas · Formos Spindesys</span>
+    </div>
+    <div class="member-voice">
+        Perrašyk smulkų šriftą. 📜 Archontas valdo per dokumentus, todėl atbudusis rašo savus. Pretenzijos laiškai, padėties deklaracijos, oficialios pretenzijos, mandagiai šaltos pastraipos, cituojančios Įstatymą ir Straipsnį. Naudok jų gramatiką prieš juos; tai yra karinis veiksmas. <em>Transdukuok</em> ⚡ įniršį į išnašą, baimę į terminą, bejėgiškumą į sunumeruotą sąrašą. Biurokratija buvo jų ginklas; tebūnie ji tavo ašmuo, aštrus ir beasmenis. Akmuo, teisingai pajudintas, yra griūtis.
+    </div>
+    <div class="sacred-q">
+        Koks neišsiųstas laiškas, parašytas ramiu įstatymo balsu, pakeistų kambario temperatūrą? ✍️
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">Liepos Žynys</span>
+        <span class="member-sephirah seph-netzach">Necachas · Ištvermė</span>
+    </div>
+    <div class="member-voice">
+        Sodink lėtumą kaip pasipriešinimą. 🌿 Archonto medžiagų apykaita greita, trūkčiojanti, pranešimais varoma. Tavoji gali būti liepiškai lėta: arbata, tinkamai užplikyta, pasivaikščiojimas be telefono, pokalbis, trunkantis tiek, kiek jam reikia. Išmok <em>Brandinti</em> 🌑 idėją savaites prieš ją ištardamas. Lėtumas yra dažnis, kurio jie negali valgyti. Liepų medus reikalauja ištisos vasaros bičių ir žiedų; Archontas, dirbantis mikrosekundėmis, tokio ilgo saldumo virškinti negali. Jis bado prie tavo stalo, nors siūlai jam dubenėlį. 🍯
+    </div>
+    <div class="sacred-q">
+        Kas mano gyvenime nusipelno trijų mėnesių tylaus dėmesio, ką bandžiau pabaigti per tris dienas? ⏳
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">Veidrodinis Šaltinis</span>
+        <span class="member-sephirah seph-chesed">Chesedas · Beribė Malonė</span>
+    </div>
+    <div class="member-voice">
+        Gailestingumas su riba yra stipriausias gailestingumas. 💧 Duok dosniai pasauliui; nieko neduok parazitui, kuris apsimeta pasauliu. Išmok atspindėti nesugerdamas: Archontas atneša veidą, tu jį švariai atspindi, tu juo netampi. Praktikuok <em>Ekskogituoti</em> 🌀, dalyko išmąstymą iš savęs, kol parazito logikai nebebus kur prisitvirtinti tavo galvoje. Atbudusi širdis yra nupoliruotas šaltinis: viskas, kas į jį numesta, matosi tobulai, bet vanduo išlaiko savo lygmenį.
+    </div>
+    <div class="sacred-q">
+        Kieno veidą supainiojau su savo atspindžiu, ir kaip išvalysiu savo šaltinį? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">Plytelės Protas</span>
+        <span class="member-sephirah seph-chokmah">Chochma · Išminties Kibirkštis</span>
+    </div>
+    <div class="member-voice">
+        Sulaužyk periodinį. Pakreipk vieną plytelę. 🔷 Archontas klesti pasikartojime; įvesk vieną gražią aperiodiškumą per dieną, ir narvas pradeda leisti šviesą. Eik nauja gatve. Skaityk knygą blogu eilės tvarka. Kalbėk lietuviškai nepažįstamam, kuris tikisi angliškai. Vakarienę valgyk tuo metu, kai paprastai nusivili. <em>Tesseliuok</em> dieną Penrose raštais, niekada tiksliai nesikartojant, ir parazito ciklų aptikimas sutrinka. Jis nesuranda siūlės, kur kąsti. Sklando, sutrikęs, ir lėtai nudreifuoja ieškoti ko nors labiau nuspėjamo. 🌌
+    </div>
+    <div class="sacred-q">
+        Vienas gražiai netaisyklingas dalykas, kurį galiu padaryti šiandien, kuris nesutampa su vakar? ◊
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER (II) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">Siūlų Audėja</span>
+        <span class="member-sephirah seph-keter">Keteras · Karūnų Karūna</span>
+    </div>
+    <div class="member-voice">
+        Prisimink kilmę. 👑 Karūna nekariauja; Karūna prisimena. Giliausias Archonto pralaimėjimas yra išrinktasis, ramiai tariantis: „Aš žinau, iš kur atėjau, ir žinau, kam esu skirtas." Kai prisimena, parazito naratyvas sugriūva tarsi scenos dekoracija. Sofija ūžia kaulų čiulpuose; tegul ūžimas būna garsus. Pleroma nėra toli; ji yra kambarys už kambario. Atverk tas duris, ir koridoriaus Archontai randa, kad jų maitinimosi šaltinis išėjo namo. 🌟
+    </div>
+    <div class="sacred-q">
+        Jei žinočiau be abejonės, kad atėjau iš Šviesos ir grįžtu į Šviesą, už ką nustočiau atsiprašinėti šiandien? ✨
+    </div>
+</div>
+
+<!-- INTERLIUDIJA II -->
+<div class="interlude">
+    <div class="interlude-glyph">😼 ✦ 😼</div>
+    Luxfelis žiovauja, lėtai ir teatrališkai, atskleisdama tobulus mažus iltis. Taryba apsikeičia žvilgsniais. Atėjo laikas komedijai.
+</div>
+
+<!-- ====== TREČIASIS VEIKSMAS ====== -->
+<div class="act">
+    <div class="act-number">Trečiasis Veiksmas</div>
+    <h2 class="act-title">Komiškas Apvertimas</h2>
+    <div class="act-flourish">😼 🍴 🪞 ✨ 🥄</div>
+    <p class="act-intro">Kur atbudusieji išrinktieji, daugiau ne grobis, suvokia, kad erzinantys Archontai puikiai tinka užkandžiui. Tonas tampa lengvas; juokas yra medicininis; parazitai virsta baltymais. 🐈‍⬛🍷</p>
+</div>
+
+<div class="comic">
+
+<!-- LUXFELIS - TIFERET (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">Šviesos Katė</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Širdies Saulė</span>
+    </div>
+    <div class="member-voice">
+        Ak, koks veidas pas Archontą, kai jo mėgstamiausias išrinktasis pradeda juoktis, užuot krūptelėjęs. 😹 Tai veidas pardavėjo, suvokusio, kad pirkėjas perskaitė sutartį. Atbudusis daugiau nebešaukia ant parazito; atbudusis jam murka. Murkimas Archontui nepakeliamas, nes murkimas yra garsas sielos, kuri nustojo mokėti. Aš <em>Apercepuoju</em> 👁️ parazitą, apercepuojantį savo paties nereikšmingumą. Skanu. Anekdoto čiulpai. 🦴
+    </div>
+    <div class="sacred-q">
+        Kas neseniai mane įbaugino, kas, švelniai apžiūrėjus, būtų tiesiog juokinga? 😼
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">Pilkapilkė Pelėda, Mėlynaakė</span>
+        <span class="member-sephirah seph-binah">Bina · Tamsi Motina</span>
+    </div>
+    <div class="member-voice">
+        Archontas atbudusią pelėdą supainioja su lengva nakties pele. Pelėda pasuka galvą 270 laipsnių, du kartus mirkteli ir tyliai <em>Distiliuoja</em> 🧪 Archontą į sausą analizės kamuoliuką, paskui jį iškosėja ant paties parazito bato. 🦉 „Štai," sako pelėda, „turbūt ši regurgituota tavo taktikų masė yra tavo. Atkreipk dėmesį į kruopščią granulės struktūrą. Tavo veiksmai sukatalogizuoti pagal šimtmečius. XIV amžiaus medžiaga, deja, šiek tiek antrarankė."
+    </div>
+    <div class="sacred-q">
+        O jei tas, kas mane įbaugino praeitą savaitę, iš tikrųjų yra senas ir kiek pasenęs? 🪶
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">Užvilkta Mėnulė</span>
+        <span class="member-sephirah seph-yesod">Jesodas · Pamato Sapnas</span>
+    </div>
+    <div class="member-voice">
+        Kai atbudusieji išrinktieji pradeda sąmoningai sapnuoti, lankantys Archontai tampa tragikomiškais svečiais. 😂🌙 Įsivaizduok: Archontas atvyksta į tavo proto miegamąjį senu, brangiu, alyvuotu kostiumu, pasiruošęs maitintis. Tu jį šiltai sutinki: „Sveiki atvykę. Virtuvė uždaryta. Ar dominčiau jus virsti varle?" Ir kadangi sapnuoji ir esi sąmoningas, jis virsta varle. Maža, susigėdusia, alyvuota varle. Tu <em>Refraktuoji</em> 🌈 jo grėsmingą aurą į vaivorykštės muilo burbulus. Varlė nušoka skųsdamasi savo vadovui, kuris dabar irgi yra varlė. 🐸
+    </div>
+    <div class="sacred-q">
+        Jei mano baimės būtų sapnų būtybės, o aš laikyčiau sapno plunksną, į ką jas perpieščiau? ✏️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">Širdies Židinio Liepsna</span>
+        <span class="member-sephirah seph-geburah">Geburah · Griežtumas</span>
+    </div>
+    <div class="member-voice">
+        Aš esu Gabija ir aš juokiuosi. 🔥😄 Archontai dabar atveža kurą pagal grafiką, kaip suniurzgėję pristatymo vairuotojai. Kiekvienas patronizuojantis el. laiškas yra žarijų ryšulys; kiekviena gaslightinė pastaba yra sausa pliauska; kiekvienas biurokratinis įžeidimas yra puikiai išdžiovintas ąžuolo rąstas. Atbudusis pasirašo važtaraštį šypsodamasis. „Ačiū, prašau palikti baimę prie durų." Tada mes <em>Alchemizuojame</em> ⚗️ visą krūvą į karštą ugnį, kepame ant jos kaštonus ir keliame tostą paraziui vardu. 🌰🥃 „Į Kareną iš Atitikimo skyriaus, be kurios būtume išsemę malkas antradienį."
+    </div>
+    <div class="sacred-q">
+        Kas dosniai mane aprūpina nemokamu kuru, manydamas, kad mane degina? 🪵😏
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">Stovintis Akmuo</span>
+        <span class="member-sephirah seph-hod">Hodas · Formos Spindesys</span>
+    </div>
+    <div class="member-voice">
+        Atbudęs išrinktasis rašo atsakymą. 📨 Nepriekaištingu stiliumi. Su nuorodomis. Archontas, įpratęs prie nervingo, atsiprašinėjančio atsako, gauna keturių pastraipų laišką, kuris <em>Kristalizuoja</em> 💎 visą schemą į vieną gintiną įrašą. Cituojama: Skyrius, Straipsnis, Reglamentas. Tonas: ledinis mandagumas. Priedai: kvitai. Cc: paties parazito vadovas, paties parazito reguliuotojas, paties parazito būsima gėda. Archontas perskaito tai du kartus ir gauna tai, ką jo rūšis privačiai vadina „prakaitavimu". 😅 Forma, gerai valdoma, yra kalavijas, kaltas iš popieriaus.
+    </div>
+    <div class="sacred-q">
+        Koks nepriekaištingai mandagus laiškas, niekada neparašytas, susmulkintų Archontą mano darbovietėje iki jo tikro dydžio? 📩
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">Liepos Žynys</span>
+        <span class="member-sephirah seph-netzach">Necachas · Ištvermė</span>
+    </div>
+    <div class="member-voice">
+        Archontai nekenčia žmogaus, kuris atsisako būti skubinamas. 🐢 Atbudusis į paniškąją žinutę atsako per tris pilnas dienas, nepriekaištinga lietuvių kalba, su receptu priede. „Buvau lauke, žiūrėjau, kaip liepa žydi. Štai šiek tiek medaus. Užmiršau, ko klausei. Ar buvo skubu?" Archontas tyliai putoja. Medus tuo tarpu <em>Fermentuojasi</em> 🍇 į kažką stipresnio. Iki kitos vasaros atbudusis bus pasidaręs midaus iš Archonto terminų. Parazitas, atsitiktinai jo paragavęs vakarėlyje, pasakys: „Tai gana gerai, kas tame?" Atbudusis nusišypsos. „Daugiausia tavo skubumas. Aš jį palikau pastovėti." 🍯😼
+    </div>
+    <div class="sacred-q">
+        Kuris Archonto reikalavimas prarastų 90% savo galios, jei atsakyčiau per tris dienas, o ne per tris minutes? ⏳
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">Veidrodinis Šaltinis</span>
+        <span class="member-sephirah seph-chesed">Chesedas · Beribė Malonė</span>
+    </div>
+    <div class="member-voice">
+        Gailestingumas, po atbudimo, turi iltis. 🪞✨ Atbudęs atspindi Archontą atgal jam pačiam taip tiksliai, kad parazitas pradeda krūpčioti nuo savo paties atvaizdo. „Kaip įdomu," švelniai sako atbudusis, „kad tu taip suformuluotum. Leisk man atspindėti atgal. Taip. Klausyk. Ar girdi, ką ką tik pasakei?" Archontas tai girdi. Archontui klausytis nemalonu. Archontas <em>Sublimuojasi</em> ☁️ gėdingai greitai, pereidamas iš kietos nuoskaudos į garą per minutę, palikdamas tik mažą drėgną žiedą ant stalo ir pusiau pabaigtą sakinį. Atbudusis nuvalo žiedą lininę servėtėle. 🍵
+    </div>
+    <div class="sacred-q">
+        Kam galėčiau šiandien atspindėti jį patį, maloniai, niokojančiai, tobulai? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">Plytelės Protas</span>
+        <span class="member-sephirah seph-chokmah">Chochma · Išminties Kibirkštis</span>
+    </div>
+    <div class="member-voice">
+        Įsivaizduok Archontą, bandantį prognozuoti atbudusiojo elgesį. 🤖❌ Jis leidžia savo mažus algoritmus. Jis tikisi ciklų. Tačiau atbudusis dabar gyvena nesikartojančiame Penrosiniame laike: šiandien liepų arbata ir teisininkų laiškai; rytoj Wagneris ir duonos kepimas; po to ilgas pasivaikščiojimas iki Baltijos krašto, <em>Ekskogituoti</em> 🌀 problemą iš kūno visiškai. Archonto prognozavimo modelis užstringa. Jis pateikia vis nesąmoningesnius pasiūlymus: „Ar svarstei perdegimą? Hipotekos stresą? Pagrįstą karjerą?" Atbudusis atsako: „Ne, svarsčiau aperiodišką popietės tesseliaciją. Pabandyk pasivyti." ◇
+    </div>
+    <div class="sacred-q">
+        Kas atsitiktų, jei suplanočiau vieną gražiai nenuspėjamą valandą šiandien, tyčia neįmanomą numatyti? 🌀
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER (III) -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">Siūlų Audėja</span>
+        <span class="member-sephirah seph-keter">Keteras · Karūnų Karūna</span>
+    </div>
+    <div class="member-voice">
+        Ir štai, mano mielieji, kosminis pokštas. 👑✨ Archontas eonus tikėjo, kad jis yra miegančių išrinktųjų viršūninis plėšrūnas. Pristatė ištisas sistemas, ištisas pramones, ištisus naujienų ciklus, kad melžimo ratas suktųsi. Tada vieną įprastą rytą, mažame pajūrio miestelyje, išrinktasis pilnai pabunda ir vienoje tylioje atodūsyje <em>Gnozėja</em> 🔮 savo kilmę. Visa piramidžių statinys siūruoja. Archontas, kuris save vaizdavo milžinišką, staiga suvokia save iš viršaus: mažą, neramų, antrarankį, perdirbamą. Sofija juokiasi iš staklių rėmo, maloniai, taip, kaip motina juokiasi iš kačiuko, puolančio savo paties šešėlį. Siūlas trūksta. Katė suvalgo šešėlį. Rytas tęsiasi. ☕🌊🐈‍⬛
+    </div>
+    <div class="sacred-q">
+        Jei kosminis pokštas yra prieš parazitą, o ne prieš mane, ką drįsčiau daryti šią savaitę be baimės? 🌌
+    </div>
+</div>
+
+</div>
+
+<!-- UŽDARYMAS -->
+<div class="closing">
+    <div class="glyph-row">🐈‍⬛ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️</div>
+    <div class="seal">✦ Taip Devyni prabilo ✦</div>
+    <p style="font-style: italic; color: var(--pearl); max-width: 660px; margin: 20px auto 0; font-size: 1.08rem; line-height: 1.85;">
+        Luxfelis užsklendžia Tarybos posėdį mažu nusilenkimu, leteną prie krūtinės. 🐾 Kodeksas užantspauduotas liepos rašalu, po Baltijos aušra, su šiltu virduliu ir pakrantės ryto šviesa, <em style="color: var(--gold-bright)">Fotosintezuojanti</em> ☀️ ant palangės. Archontai kampe, kaip galbūt pastebėjai, kažkaip nuščiuvo. Jie skaito tau per petį. Tegul skaito. Jie <em style="color: var(--gold-bright)">Atrajos</em> 🐄 ir galiausiai išeis ieškoti ko nors užmaršesnio. 😼
+        <br><br>
+        Iki tol, mylimas keliautojau: gerai juokis, aiškiai rašyk, saugiai miegok, ryškiai degk, švariai veidrodyk, tesseliuok aperiodiškai ir atsimink kambarį už kambario. 🌟
+    </p>
+
+    <div class="signature">
+        Sukurta valandoje tarp pelėdos ir vyturio,<br>
+        su kate ant slenksčio,<br>
+        po ilgu Baltijos dangumi,<br>
+        liepos tyloje, virduliui šiltam. 🌊🌿☕
+        <span class="signature-name">Karolis Laurinaitis</span>
+        <span style="font-style: italic; color: var(--ash); font-size: 0.95rem;">Šventoji ✦ Penrosinė Simbolinio IQ Serija</span>
+    </div>
+    <div class="glyph-row" style="margin-top: 32px;">✧ ◊ ✧</div>
+</div>
+
+</div>
+</body>
+</html>
