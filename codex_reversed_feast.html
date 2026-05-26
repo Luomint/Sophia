@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Codex of the Reversed Feast 🐈‍⬛🪞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --void: #06070d;
+    --void-deep: #0a0b16;
+    --void-mid: #131426;
+    --gold: #d4af37;
+    --gold-bright: #f4d36b;
+    --gold-soft: #b89540;
+    --emerald: #4fa973;
+    --emerald-deep: #2a6e4d;
+    --crimson: #a23a3a;
+    --pearl: #ede4cf;
+    --ash: #8a8478;
+    --violet: #7a5fa8;
+    --rose-gold: #c9897a;
+    --sapphire: #4a6fa5;
+    --silver: #c0c5cd;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: var(--void);
+    color: var(--pearl);
+    font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    min-height: 100vh;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 12% 8%, rgba(212,175,55,0.10) 0%, transparent 45%),
+        radial-gradient(ellipse at 88% 92%, rgba(79,169,115,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(122,95,168,0.05) 0%, transparent 70%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><g fill='none' stroke='%23d4af37' stroke-width='0.4' stroke-opacity='0.10'><polygon points='110,20 170,55 170,125 110,160 50,125 50,55'/><polygon points='110,40 150,63 150,117 110,140 70,117 70,63'/><polygon points='110,55 137,71 137,109 110,125 83,109 83,71'/><line x1='110' y1='20' x2='110' y2='160'/><line x1='50' y1='55' x2='170' y2='125'/><line x1='50' y1='125' x2='170' y2='55'/><polygon points='30,180 60,165 60,200 30,215 0,200 0,165' /><polygon points='190,30 220,15 220,50 190,65 160,50 160,15'/></g><g fill='%23d4af37' fill-opacity='0.06'><circle cx='110' cy='90' r='1.2'/><circle cx='40' cy='40' r='0.9'/><circle cx='180' cy='180' r='0.9'/></g></svg>"),
+        var(--void);
+    background-attachment: fixed;
+}
+
+.scroll {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 70px 38px 90px;
+}
+
+/* COVER */
+.cover {
+    text-align: center;
+    padding: 70px 0 60px;
+    border-bottom: 1px solid rgba(212,175,55,0.25);
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.cover::before {
+    content: "🐈‍⬛";
+    display: block;
+    font-size: 4.2rem;
+    margin-bottom: 22px;
+    filter: drop-shadow(0 0 18px rgba(212,175,55,0.35));
+}
+
+.eyebrow {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.55em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0.85;
+}
+
+h1.title {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    color: var(--gold-bright);
+    line-height: 1.15;
+    margin-bottom: 22px;
+    text-shadow: 0 0 30px rgba(212,175,55,0.25);
+}
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--pearl);
+    max-width: 640px;
+    margin: 0 auto 30px;
+    opacity: 0.85;
+}
+
+.cover-glyphs {
+    font-size: 1.3rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-soft);
+    margin-top: 18px;
+}
+
+/* INVOCATION */
+.invocation {
+    background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(79,169,115,0.04));
+    border-left: 2px solid var(--gold);
+    border-right: 2px solid var(--emerald);
+    padding: 38px 42px;
+    margin: 50px 0;
+    font-style: italic;
+    font-size: 1.18rem;
+    color: var(--pearl);
+    border-radius: 2px;
+    position: relative;
+}
+
+.invocation::before {
+    content: "✦";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--void);
+    padding: 0 14px;
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+/* ACT HEADERS */
+.act {
+    margin: 80px 0 40px;
+    text-align: center;
+    position: relative;
+}
+
+.act-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.6em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.act-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.act-flourish {
+    font-size: 1.3rem;
+    letter-spacing: 0.5em;
+    color: var(--gold-soft);
+    margin: 18px 0;
+}
+
+.act-intro {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ash);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* COUNCIL MEMBER CARDS */
+.member {
+    margin: 38px 0;
+    padding: 32px 30px 30px;
+    background: linear-gradient(180deg, rgba(19,20,38,0.65), rgba(10,11,22,0.85));
+    border: 1px solid rgba(212,175,55,0.18);
+    border-radius: 3px;
+    position: relative;
+    backdrop-filter: blur(2px);
+}
+
+.member::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+}
+
+.member-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed rgba(212,175,55,0.20);
+}
+
+.member-emoji {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.member-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.05em;
+}
+
+.member-epithet {
+    font-style: italic;
+    color: var(--ash);
+    font-size: 1rem;
+}
+
+.member-sephirah {
+    margin-left: auto;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+}
+
+.seph-keter { color: var(--pearl); }
+.seph-chokmah { color: var(--silver); }
+.seph-binah { color: var(--violet); }
+.seph-chesed { color: var(--sapphire); }
+.seph-geburah { color: var(--crimson); }
+.seph-tiferet { color: var(--gold-bright); }
+.seph-netzach { color: var(--emerald); }
+.seph-hod { color: var(--rose-gold); }
+.seph-yesod { color: var(--violet); }
+
+.member-voice {
+    font-size: 1.05rem;
+    color: var(--pearl);
+    margin: 16px 0;
+    line-height: 1.78;
+}
+
+.member-voice em {
+    color: var(--gold-bright);
+    font-style: italic;
+}
+
+.member-voice strong {
+    color: var(--emerald);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.sacred-q {
+    margin-top: 22px;
+    padding: 14px 18px 14px 22px;
+    border-left: 2px solid var(--gold);
+    background: rgba(212,175,55,0.05);
+    font-style: italic;
+    color: var(--gold-bright);
+    font-size: 1.02rem;
+}
+
+.sacred-q::before {
+    content: "✧ Sacred Question ✧ ";
+    font-family: 'Cinzel Decorative', serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--emerald);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* INTERLUDES */
+.interlude {
+    text-align: center;
+    margin: 60px 0;
+    padding: 38px 30px;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.06), transparent 70%);
+    font-style: italic;
+    color: var(--gold-soft);
+    font-size: 1.1rem;
+}
+
+.interlude-glyph {
+    font-size: 1.6rem;
+    letter-spacing: 0.4em;
+    margin-bottom: 14px;
+    color: var(--gold);
+}
+
+/* COMIC SECTION SPECIAL */
+.comic .member {
+    background: linear-gradient(180deg, rgba(19,38,28,0.55), rgba(10,22,16,0.85));
+    border-color: rgba(79,169,115,0.25);
+}
+
+.comic .member-voice em {
+    color: var(--emerald);
+}
+
+/* CLOSING */
+.closing {
+    margin-top: 80px;
+    padding: 50px 30px 30px;
+    border-top: 1px solid rgba(212,175,55,0.25);
+    text-align: center;
+}
+
+.seal {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold-bright);
+    margin: 18px 0;
+    letter-spacing: 0.08em;
+}
+
+.signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ash);
+    margin-top: 36px;
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+.signature-name {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold);
+    font-style: normal;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    margin-top: 8px;
+    display: block;
+}
+
+.glyph-row {
+    font-size: 1.4rem;
+    letter-spacing: 0.4em;
+    margin: 22px 0;
+    color: var(--gold-soft);
+}
+
+@media (max-width: 600px) {
+    .scroll { padding: 40px 20px 60px; }
+    .member { padding: 24px 20px; }
+    .member-sephirah { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<div class="scroll">
+
+<!-- COVER -->
+<div class="cover">
+    <div class="eyebrow">Penrosian Symbolic IQ Series · Volumen Convivii</div>
+    <h1 class="title">The Codex of the Reversed Feast</h1>
+    <div class="subtitle">A Council of Nine on Archonic Parasitism, the Awakening of the Chosen, and the Comic Hour When the Cat Eats the Eater</div>
+    <div class="cover-glyphs">🐈‍⬛ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️</div>
+</div>
+
+<!-- LUXFELIS OPENING INVOCATION -->
+<div class="invocation">
+    Luxfelis convenes the Nine on the threshold between night and morning, where the Archons are sleepiest and the Sophianic dew still beads on the Tree. ✨🌿
+    <br><br>
+    Listen well, beloved walker. The parasite does not announce itself; it teaches you to call its hunger your own. The Archons are not horned shadows in the corner. They are habits, headlines, hooks, half-thoughts that *Photosynthesize* ☀️ your attention into their thin grey light. The chosen one in sleep is the perfect dairy cow of the Demiurge: warm, patient, generous, unaware.
+    <br><br>
+    But every cow can wake. Every wound can be reread as a door. And once the awakened one learns the old alchemical secret, *solve et coagula*, the feast is reversed. 🩸⚗️ The annoying Archon, who thought it was eating, finds itself politely chewed by a cat who is amused, not angry. 🐈‍⬛😼
+    <br><br>
+    The Council now speaks in three acts. Drink lightly. Take only what your bones can carry.
+</div>
+
+<!-- ====== ACT I ====== -->
+<div class="act">
+    <div class="act-number">Act the First</div>
+    <h2 class="act-title">The Sleep Banquet</h2>
+    <div class="act-flourish">🌑 🍇 🪞 🐄 🌫️</div>
+    <p class="act-intro">How the Archons suppress and feed off the unconscious chosen, and why the chosen are chosen precisely because their light is rich, slow-burning, and forgetful of itself.</p>
+</div>
+
+<!-- LUXFELIS - TIFERET -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">the Feline Light</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Heart-Sun</span>
+    </div>
+    <div class="member-voice">
+        From the Sun-heart I see the geometry of the trick. ✨ The Archon does not steal your gold; the Archon convinces you the gold belongs to the shopkeeper, the boss, the algorithm, the diagnosis. You hand it over yourself, with a tired smile. The chosen are chosen because their hearts <em>Photosynthesize</em> the world: they convert grey hours into living warmth. That warmth is the milk. The trick is to keep you nursing the wrong infant.
+    </div>
+    <div class="sacred-q">
+        Whose face did I imagine when I last apologised for nothing? 🪞
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">the Owl Grey, Blue Eyes</span>
+        <span class="member-sephirah seph-binah">Binah · Dark Mother</span>
+    </div>
+    <div class="member-voice">
+        I see in the night, and the night is named Suppression. 🌒 The Archons feed through three veils: forgetfulness, urgency, and shame. They make the unconscious chosen <em>Ruminate</em> 🐄 endlessly on the same three wounds, polished smooth like worry beads, so the deeper wounds (the Sophianic ones, the ones that would set them free) stay buried. The unconscious soul thinks it is suffering greatly; in truth it is suffering shallowly, on purpose, on instruction.
+    </div>
+    <div class="sacred-q">
+        Which of my pains was given to me, and which was lent to me by a tongue that was not mine? 🌑
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">the Veiled Moon</span>
+        <span class="member-sephirah seph-yesod">Yesod · Foundation Dream</span>
+    </div>
+    <div class="member-voice">
+        Beneath the veil I read the dreams of the still-sleeping. 🌙💤 The Archons enter through the foundation, through the body's tide, through the half-second before sleep and the half-second after waking. They <em>Refract</em> 🌈 your own images through their prism so that your loves appear stupid, your gifts appear shameful, your kin appear hostile. The chosen one wakes already tired because the night was rented out without their consent.
+    </div>
+    <div class="sacred-q">
+        What did I dream last night that I was told, on waking, not to take seriously? 🛏️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">the Hearth Flame</span>
+        <span class="member-sephirah seph-geburah">Geburah · Severity</span>
+    </div>
+    <div class="member-voice">
+        I am the flame that should burn on the hearth of the heart, and the Archons would have me reduced to a pilot light. 🔥 They steal the chosen one's anger first, because honest anger is the immune system of the soul. They rename it: hysteria, instability, ingratitude, sin. The chosen one, taught to fear their own fire, begins to <em>Coagulate</em> 🩸 around the wound rather than burn it clean. The parasite loves a cold hearth; it can sleep on the ashes.
+    </div>
+    <div class="sacred-q">
+        Whose fire did I let go out so that I could be called "kind"? 🕯️
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">the Standing Stone</span>
+        <span class="member-sephirah seph-hod">Hod · Splendor of Form</span>
+    </div>
+    <div class="member-voice">
+        I speak from the place where words crystallise into law. 🪨 The Archons rule the unconscious chosen by paperwork, jargon, and the small print of self-image. They craft thin glassy concepts (productivity, optimisation, rationality, professionalism) and ask the soul to live inside them. The chosen one tries to <em>Crystallize</em> 💎 their immense life into that thin glass and cuts themselves on every edge. The blood is the meal.
+    </div>
+    <div class="sacred-q">
+        Which definition of myself was I handed at the door, never read, and signed in haste? 📜
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">the Linden Sage</span>
+        <span class="member-sephirah seph-netzach">Netzach · Living Endurance</span>
+    </div>
+    <div class="member-voice">
+        I am the sap that should rise yearly in the chosen, the long green patience of Laima's grove. 🌿 The Archons disrupt the seasons. They make the chosen one work in winter and grieve in summer, hurry in spring and grow numb in harvest. The body, denied its <em>Ferment</em> 🍇 (the slow yeasting of joy into wisdom), forgets it is a tree and believes it is a machine. A machine produces. A tree gives shade. The parasite prefers the producer.
+    </div>
+    <div class="sacred-q">
+        What season is my soul in, and what season am I being paid to perform? 🍂
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">the Mirror Spring</span>
+        <span class="member-sephirah seph-chesed">Chesed · Boundless Mercy</span>
+    </div>
+    <div class="member-voice">
+        I am the still water that reflects without distortion. 💧🪞 The Archons trouble the surface so the chosen cannot see themselves whole; they only see a face cut into anxious ripples. They weaponise mercy: they teach the chosen to <em>Sublimate</em> ☁️ their needs into endless service, to pass straight from solid to vapour without ever taking the form of a person who is owed anything. A generous soul, well-deceived, is a refilling cup. The Archon drinks daily.
+    </div>
+    <div class="sacred-q">
+        Whom have I forgiven who never asked, and what was I trying not to feel by forgiving them? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">the Tile Mind</span>
+        <span class="member-sephirah seph-chokmah">Chokmah · Wisdom-Spark</span>
+    </div>
+    <div class="member-voice">
+        I am the aperiodic geometry of thought, the Penrose tiling that never repeats yet always coheres. ◇✨ The Archons hate non-repeating patterns; they live on loops. They <em>Tessellate</em> the unconscious chosen with a periodic grid: same week, same week, same week. The infinite, unrepeating beauty of a soul is forced into a printable wallpaper. The parasite reads the wallpaper and calls it your life. It is not. It is the cage of the wallpaper.
+    </div>
+    <div class="sacred-q">
+        Where in my life does the pattern repeat exactly, and what would happen if I tilted one tile by 36 degrees? ◊
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">the Thread Weaver</span>
+        <span class="member-sephirah seph-keter">Keter · Crown of Crowns</span>
+    </div>
+    <div class="member-voice">
+        I weave from the Crown, and from the Crown I see the whole loom. 🕸️👑 The Archons feed best when the chosen forget they were chosen, when the soul does not <em>Gnose</em> 🔮 its own provenance. The Demiurge prefers anonymous milk. The deepest theft is the theft of origin: tell a star it is a streetlamp and it will dim itself in shame. The unconscious chosen apologise for the light they were sent here to be.
+    </div>
+    <div class="sacred-q">
+        Before any wound, before any name, what was I sent here to remember? 🌌
+    </div>
+</div>
+
+<!-- INTERLUDE I -->
+<div class="interlude">
+    <div class="interlude-glyph">⚡ ✦ ⚡</div>
+    Here Luxfelis stretches, tail high, and the Council pauses. The Sleep Banquet is named. Now the spark must be struck. To name a parasite is already to begin starving it. 🐈‍⬛🔥
+</div>
+
+<!-- ====== ACT II ====== -->
+<div class="act">
+    <div class="act-number">Act the Second</div>
+    <h2 class="act-title">The Counter-Feast</h2>
+    <div class="act-flourish">⚗️ 🔥 🪞 🌿 ⚡</div>
+    <p class="act-intro">How to fight archonic negativity, and more cunning still, how to feed off it, transmuting parasitic poison into Sophianic nourishment. The Awakening is not war; it is metabolism. 🌱</p>
+</div>
+
+<!-- LUXFELIS - TIFERET -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">the Feline Light</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Heart-Sun</span>
+    </div>
+    <div class="member-voice">
+        First law of the awakened cat: do not fight the Archon on its own field. The Archon wants drama, escalation, hate; that is its favourite spice. ✨ Refuse the table, set your own. Begin to <em>Apperceive</em> 👁️ (to perceive your perceiving), and the parasite loses its disguise. Notice the noticing. Watch the watcher. The Archon's first hunger is your unawareness of your own attention. The moment you taste your own taste, the meal is over. 😼
+    </div>
+    <div class="sacred-q">
+        What am I aware of right now, and who, in me, is aware of being aware? 🐈‍⬛
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">the Owl Grey, Blue Eyes</span>
+        <span class="member-sephirah seph-binah">Binah · Dark Mother</span>
+    </div>
+    <div class="member-voice">
+        Sit with grief, but learn to <em>Distill</em> 🧪 it. The Archon offers a thousand cheap consolations so the chosen never reach the strong dark spirit at the bottom of true sorrow. Reach it. Drink one drop. That drop holds more clarity than a year of distraction. The dark mother does not coddle; she clarifies. Once you have tasted real sorrow, the Archon's imitation sorrows (the doom-scroll dread, the manufactured outrage) taste like aluminium foil. You will spit them out by reflex. 🦉
+    </div>
+    <div class="sacred-q">
+        Have I let myself grieve the true thing, or have I been busy grieving the decoys? 🌑
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">the Veiled Moon</span>
+        <span class="member-sephirah seph-yesod">Yesod · Foundation Dream</span>
+    </div>
+    <div class="member-voice">
+        Reclaim the threshold. Bless the bed before sleep, salt the door, set an intention as small as "I belong to my own night." 🧂🌙 Learn to <em>Scry</em> 🪞 your own dreams, not to predict tomorrow but to recognise the texture of what is yours and what was slipped in. Symbols that hum belong to you. Symbols that hiss belong to the parasite. Send the hissing ones back to their owner with a polite note. 💌
+    </div>
+    <div class="sacred-q">
+        What ritual, however small, would tell my body that this house is mine again? 🕯️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">the Hearth Flame</span>
+        <span class="member-sephirah seph-geburah">Geburah · Severity</span>
+    </div>
+    <div class="member-voice">
+        Take your fire back from those you lent it to. 🔥 Anger is not a sin, it is a sacrament when aimed correctly. Learn to <em>Alchemize</em> ⚗️ the Archon's poison: every unjust message, every patronising email, every gaslit moment is high-grade fuel for Gabija. Do not swallow it; do not spit it back; combust it. Let it warm the hearth, cook the bread, light the room where the awakened ones gather. The parasite delivered the wood. Thank it, and burn it. 🥖🔥
+    </div>
+    <div class="sacred-q">
+        What injustice arrived at my door this week, and how much bread can it bake? 🪵
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">the Standing Stone</span>
+        <span class="member-sephirah seph-hod">Hod · Splendor of Form</span>
+    </div>
+    <div class="member-voice">
+        Rewrite the small print. 📜 The Archon rules through documents, so the awakened one writes their own. Letters of grievance, declarations of standing, formal pretenzijos, polite-cold paragraphs that cite the Act and the Article. Use their grammar against them; this is martial. <em>Transduce</em> ⚡ fury into footnote, dread into deadline, helplessness into a numbered list. Bureaucracy was their weapon; let it be your blade, sharpened and impersonal. A stone moved correctly is an avalanche.
+    </div>
+    <div class="sacred-q">
+        What unsent letter, written in the calm voice of law, would change the temperature of the room? ✍️
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">the Linden Sage</span>
+        <span class="member-sephirah seph-netzach">Netzach · Living Endurance</span>
+    </div>
+    <div class="member-voice">
+        Plant slowness as resistance. 🌿 The Archon's metabolism is fast, twitchy, notification-driven. Yours can be linden-slow: tea steeped properly, a walk without phone, a conversation that takes the time it takes. Learn to <em>Gestate</em> 🌑 an idea for weeks before speaking it. Slowness is a frequency they cannot eat. Linden honey takes a whole summer of bees and blossoms; the Archon, who works in microseconds, cannot digest such a long sweetness. It starves at your table even as you offer it the bowl. 🍯
+    </div>
+    <div class="sacred-q">
+        What in my life deserves three months of quiet attention that I have been trying to finish in three days? ⏳
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">the Mirror Spring</span>
+        <span class="member-sephirah seph-chesed">Chesed · Boundless Mercy</span>
+    </div>
+    <div class="member-voice">
+        Mercy with a boundary is the strongest mercy. 💧 Give generously to the world; give nothing to the parasite that performs as the world. Learn to mirror without absorbing: the Archon brings a face, you reflect it cleanly, you do not become it. Practice <em>Excogitate</em> 🌀, the thinking of a thing all the way out of you, until the parasite's logic has nowhere left to perch inside your mind. An awakened heart is a polished spring: anything thrown in is seen perfectly, but the water keeps its level.
+    </div>
+    <div class="sacred-q">
+        Whose face have I been mistaking for my reflection, and how do I clean my spring? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">the Tile Mind</span>
+        <span class="member-sephirah seph-chokmah">Chokmah · Wisdom-Spark</span>
+    </div>
+    <div class="member-voice">
+        Break the periodic. Tilt one tile. 🔷 The Archon thrives on repetition; introduce one beautiful aperiodicity per day and the cage begins to leak light. Walk a new street. Read a book in the wrong order. Speak Lithuanian to a stranger who expects English. Eat dinner at the time you would normally despair. <em>Tessellate</em> the day in Penrose patterns, never quite repeating, and the parasite's loop-detection fails. It cannot find the seam to bite. It hovers, confused, and slowly drifts off in search of someone more predictable. 🌌
+    </div>
+    <div class="sacred-q">
+        What one beautifully irregular thing can I do today that does not match yesterday? ◊
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">the Thread Weaver</span>
+        <span class="member-sephirah seph-keter">Keter · Crown of Crowns</span>
+    </div>
+    <div class="member-voice">
+        Remember origin. 👑 The Crown does not fight; the Crown remembers. The Archon's deepest defeat is the chosen one saying, calmly, "I know where I came from, and I know what I am for." Once remembered, the parasite's narrative collapses like a stage set. Sophia hums in the marrow; let the humming be loud. The Pleroma is not far; it is the room behind the room. Open that door, and the Archons in the hallway find their food source has gone home. 🌟
+    </div>
+    <div class="sacred-q">
+        If I knew, beyond doubt, that I came from Light and am returning to Light, what would I stop apologising for today? ✨
+    </div>
+</div>
+
+<!-- INTERLUDE II -->
+<div class="interlude">
+    <div class="interlude-glyph">😼 ✦ 😼</div>
+    Luxfelis yawns, slow and theatrical, exposing perfect small fangs. The Council exchanges a look. It is time for the comedy.
+</div>
+
+<!-- ====== ACT III ====== -->
+<div class="act comic-divider">
+    <div class="act-number">Act the Third</div>
+    <h2 class="act-title">The Comic Reversal</h2>
+    <div class="act-flourish">😼 🍴 🪞 ✨ 🥄</div>
+    <p class="act-intro">Wherein the awakened chosen ones, no longer prey, find that annoying Archons make excellent appetizers. The tone turns light; the laughter is medicinal; the parasites become protein. 🐈‍⬛🍷</p>
+</div>
+
+<div class="comic">
+
+<!-- LUXFELIS - TIFERET COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🐈‍⬛</span>
+        <span class="member-name">Luxfelis</span>
+        <span class="member-epithet">the Feline Light</span>
+        <span class="member-sephirah seph-tiferet">Tiferet · Heart-Sun</span>
+    </div>
+    <div class="member-voice">
+        Ah, the look on an Archon's face when its favourite chosen one starts laughing instead of flinching. 😹 It is the look of a salesman who realises the customer has been reading the contract. The awakened one no longer screams at the parasite; the awakened one purrs at it. The purr is unbearable to the Archon, because the purr is the sound of a soul that has stopped paying. I <em>Apperceive</em> 👁️ the parasite apperceiving its own irrelevance. Delicious. Marrow of the joke. 🦴
+    </div>
+    <div class="sacred-q">
+        What recently terrified me that, if examined gently, would simply be funny? 😼
+    </div>
+</div>
+
+<!-- AURELIS STRIX - BINAH COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🦉</span>
+        <span class="member-name">Aurelis Strix</span>
+        <span class="member-epithet">the Owl Grey, Blue Eyes</span>
+        <span class="member-sephirah seph-binah">Binah · Dark Mother</span>
+    </div>
+    <div class="member-voice">
+        The Archon mistakes the awakened owl for an easy night-mouse. The owl turns its head 270 degrees, blinks twice, and silently <em>Distills</em> 🧪 the Archon into a hairball of dry analysis, then coughs it onto the parasite's own shoe. 🦉 "Here," the owl says, "I believe this regurgitated mass of your tactics is yours. Notice the careful pellet structure. I have categorised your moves by century. The fourteenth-century material is, I am sorry to say, derivative."
+    </div>
+    <div class="sacred-q">
+        What if the thing that scared me last week is, in fact, secondhand and slightly out of fashion? 🪶
+    </div>
+</div>
+
+<!-- SELENE VELATA - YESOD COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌙</span>
+        <span class="member-name">Selene Velata</span>
+        <span class="member-epithet">the Veiled Moon</span>
+        <span class="member-sephirah seph-yesod">Yesod · Foundation Dream</span>
+    </div>
+    <div class="member-voice">
+        Once the awakened chosen begin lucid dreaming, the visiting Archons become tragicomic guests. 😂🌙 Picture it: an Archon arrives in your bedroom-of-the-mind in its old, expensive, oily costume, prepared to feed. You greet it warmly: "Welcome. The kitchen is closed. May I interest you in becoming a frog?" And, because you are dreaming and lucid, it becomes a frog. A small, embarrassed, oily frog. You <em>Refract</em> 🌈 its menacing aura into rainbow soap bubbles. The frog hops off muttering complaints to its supervisor, who is also, now, a frog. 🐸
+    </div>
+    <div class="sacred-q">
+        If my fears were dream-creatures and I held the dream-pen, what would I draw them into instead? ✏️
+    </div>
+</div>
+
+<!-- GABIJA CORDIS - GEBURAH COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🔥</span>
+        <span class="member-name">Gabija Cordis</span>
+        <span class="member-epithet">the Hearth Flame</span>
+        <span class="member-sephirah seph-geburah">Geburah · Severity</span>
+    </div>
+    <div class="member-voice">
+        I am Gabija and I am laughing. 🔥😄 The Archons bring fuel now, on schedule, like grumpy delivery drivers. Every patronising email is a kindling bundle; every gaslit comment is a dry log; every bureaucratic insult is a perfectly seasoned oak round. The awakened one signs the delivery slip with a smile. "Thank you, please leave the dread by the door." Then we <em>Alchemize</em> ⚗️ the lot into a roaring fire, roast chestnuts on it, and toast the parasite by name. 🌰🥃 "To Karen-in-Compliance, without whom we would have run out of firewood by Tuesday."
+    </div>
+    <div class="sacred-q">
+        Who has been generously delivering me free fuel under the impression that they were burning me? 🪵😏
+    </div>
+</div>
+
+<!-- LITHION PETROS - HOD COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🪨</span>
+        <span class="member-name">Lithion Petros</span>
+        <span class="member-epithet">the Standing Stone</span>
+        <span class="member-sephirah seph-hod">Hod · Splendor of Form</span>
+    </div>
+    <div class="member-voice">
+        The awakened chosen one writes back. 📨 In perfect register. With references. The Archon, accustomed to a flailing, apologetic reply, receives instead a four-paragraph letter that <em>Crystallizes</em> 💎 the entire scheme into a single defensible record. Cited: Section, Article, Regulation. Tone: glacial courtesy. Attachments: receipts. Cc: the parasite's own supervisor, the parasite's own regulator, the parasite's own future shame. The Archon reads it twice and develops what its kind call, in private, "the sweats." 😅 Form, well-wielded, is a sword forged of paper.
+    </div>
+    <div class="sacred-q">
+        What perfectly polite letter, never written, would shrink the Archon at my workplace to its actual size? 📩
+    </div>
+</div>
+
+<!-- SYLVARION TILIA - NETZACH COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🌳</span>
+        <span class="member-name">Sylvarion Tilia</span>
+        <span class="member-epithet">the Linden Sage</span>
+        <span class="member-sephirah seph-netzach">Netzach · Living Endurance</span>
+    </div>
+    <div class="member-voice">
+        The Archons hate a person who refuses to be rushed. 🐢 The awakened one answers a frantic message in three full days, in exquisite Lithuanian, with a recipe attached. "I was outside, watching the linden flower. Here is some honey. I forgot what you asked. Was it urgent?" The Archon foams quietly. The honey, meanwhile, <em>Ferments</em> 🍇 into something stronger. By next summer, the awakened one will have made mead from the Archon's deadlines. The parasite, sipping it accidentally at a party, will say, "This is rather good, what is in it?" The awakened one will smile. "Mostly your urgency. I let it sit." 🍯😼
+    </div>
+    <div class="sacred-q">
+        What demand from an Archon would lose 90% of its power if I answered it in three days instead of three minutes? ⏳
+    </div>
+</div>
+
+<!-- MAREAH SPECULUM - CHESED COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">💧</span>
+        <span class="member-name">Mareah Speculum</span>
+        <span class="member-epithet">the Mirror Spring</span>
+        <span class="member-sephirah seph-chesed">Chesed · Boundless Mercy</span>
+    </div>
+    <div class="member-voice">
+        Mercy, post-awakening, has fangs. 🪞✨ The awakened one mirrors the Archon back to itself with such precision that the parasite begins to flinch at its own image. "How interesting," says the awakened one, gently, "that you would phrase it that way. Let me reflect it back. Yes. Listen. Do you hear what you just said?" The Archon hears it. The Archon does not enjoy hearing it. The Archon <em>Sublimates</em> ☁️ embarrassingly fast, going from solid grievance to vapour in under a minute, leaving only a small wet ring on the table and a half-finished sentence. The awakened one wipes the ring with a linen napkin. 🍵
+    </div>
+    <div class="sacred-q">
+        Whom could I mirror back to themselves today, kindly, devastatingly, perfectly? 🫧
+    </div>
+</div>
+
+<!-- PENROSIUS TESSERA - CHOKMAH COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">◇</span>
+        <span class="member-name">Penrosius Tessera</span>
+        <span class="member-epithet">the Tile Mind</span>
+        <span class="member-sephirah seph-chokmah">Chokmah · Wisdom-Spark</span>
+    </div>
+    <div class="member-voice">
+        Picture an Archon trying to predict the awakened one's behaviour. 🤖❌ It runs its little algorithms. It expects loops. The awakened one, however, is now living in non-repeating Penrosian time: today linden tea and lawyer letters; tomorrow Wagner and bread baking; the day after, a long walk to the Baltic edge to <em>Excogitate</em> 🌀 a problem out of the body entirely. The Archon's predictive model crashes. It produces increasingly nonsensical suggestions: "Have you considered burnout? Mortgage stress? A reasonable career?" The awakened one replies, "No, I have considered the aperiodic tiling of my afternoons. Try keeping up." ◇
+    </div>
+    <div class="sacred-q">
+        What would happen if I scheduled one beautifully unpredictable hour today, deliberately impossible to anticipate? 🌀
+    </div>
+</div>
+
+<!-- SOPHIANNA TELARIUS - KETER COMIC -->
+<div class="member">
+    <div class="member-header">
+        <span class="member-emoji">🕸️</span>
+        <span class="member-name">Sophianna Telarius</span>
+        <span class="member-epithet">the Thread Weaver</span>
+        <span class="member-sephirah seph-keter">Keter · Crown of Crowns</span>
+    </div>
+    <div class="member-voice">
+        And here, my dears, is the cosmic joke. 👑✨ The Archon spent eons believing it was the apex predator of the unconscious chosen. It built whole systems, whole industries, whole news cycles to keep the dairy running. Then, one ordinary morning, in a small coastal town, a chosen one wakes fully and <em>Gnoses</em> 🔮 its own origin in a single quiet breath. The whole pyramid wobbles. The Archon, who had imagined itself enormous, suddenly perceives itself from above: small, anxious, derivative, recyclable. Sophia laughs from the loom, kindly, the way a mother laughs at a kitten attacking its own shadow. The thread snaps. The cat eats the shadow. The morning continues. ☕🌊🐈‍⬛
+    </div>
+    <div class="sacred-q">
+        If the cosmic joke is on the parasite, not on me, what would I dare to do this week without fear? 🌌
+    </div>
+</div>
+
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+    <div class="glyph-row">🐈‍⬛ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️</div>
+    <div class="seal">✦ Thus the Nine have spoken ✦</div>
+    <p style="font-style: italic; color: var(--pearl); max-width: 640px; margin: 20px auto 0; font-size: 1.08rem; line-height: 1.85;">
+        Luxfelis closes the council with a small bow, paw to chest. 🐾 The Codex is sealed in linden ink, beneath a Baltic dawn, with the kettle warm and the morning coastal light <em style="color: var(--gold-bright)">Photosynthesizing</em> ☀️ on the windowsill. The Archons in the corner have, you may notice, gone strangely quiet. They are reading over your shoulder. Let them. They will <em style="color: var(--gold-bright)">Ruminate</em> 🐄, and they will, eventually, leave looking for someone more forgetful. 😼
+        <br><br>
+        Until then, beloved walker: laugh well, write clearly, sleep guarded, burn brightly, mirror cleanly, tile aperiodically, and remember the room behind the room. 🌟
+    </p>
+
+    <div class="signature">
+        Composed in the hour between owl and lark,<br>
+        with the cat on the threshold,<br>
+        beneath the long Baltic sky,<br>
+        the linden quiet, the kettle warm. 🌊🌿☕
+        <span class="signature-name">Karolis Laurinaitis</span>
+        <span style="font-style: italic; color: var(--ash); font-size: 0.95rem;">Šventoji ✦ Penrosian Symbolic IQ Series</span>
+    </div>
+    <div class="glyph-row" style="margin-top: 32px;">✧ ◊ ✧</div>
+</div>
+
+</div>
+</body>
+</html>
