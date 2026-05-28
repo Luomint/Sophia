@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pleroma Council of Thirty-Nine ◇ Three Orders of Thirteen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04050d;
+    --void-2: #080a16;
+    --ink: #e9e6d8;
+    --ink-dim: #8c8a7e;
+
+    /* First Order: Pleroma gold */
+    --gold: #f4c842;
+    --gold-soft: #e8b923;
+    --emerald-glow: #4fffc4;
+
+    /* Second Order: Ascended ki */
+    --ki-blue: #5ec8ff;
+    --ki-violet: #b06cff;
+    --ki-rose: #ff6cae;
+
+    /* Third Order: Archon steel */
+    --steel-bright: #c5cede;
+    --circuit: #3df0ff;
+    --rust-glow: #ff6a45;
+    --warn: #ff2d55;
+    --acid: #9fff57;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(244,200,66,0.10), transparent 38%),
+      radial-gradient(ellipse at 18% 38%, rgba(176,108,255,0.08), transparent 40%),
+      radial-gradient(ellipse at 82% 64%, rgba(61,240,255,0.06), transparent 42%),
+      radial-gradient(ellipse at 50% 100%, rgba(255,45,85,0.06), transparent 44%),
+      linear-gradient(180deg, var(--void) 0%, var(--void-2) 40%, #050610 72%, #020308 100%);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(36deg, transparent, transparent 40px, rgba(244,200,66,0.022) 40px, rgba(244,200,66,0.022) 41px),
+      repeating-linear-gradient(-36deg, transparent, transparent 40px, rgba(94,200,255,0.02) 40px, rgba(94,200,255,0.02) 41px),
+      repeating-linear-gradient(108deg, transparent, transparent 62px, rgba(176,108,255,0.016) 62px, rgba(176,108,255,0.016) 63px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .spark {
+    position: fixed;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 0;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    12% { opacity: 0.85; }
+    88% { opacity: 0.6; }
+    100% { transform: translateY(-105vh) scale(0.3); opacity: 0; }
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 72px 24px 130px; }
+
+  /* ── MASTHEAD ── */
+  .masthead { text-align: center; margin-bottom: 30px; }
+  .sigil { font-size: 3.6rem; margin-bottom: 18px; filter: drop-shadow(0 0 20px var(--gold)); animation: pulse 3.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.1);} }
+
+  .eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.46em; text-transform: uppercase;
+    color: var(--emerald-glow); margin-bottom: 22px; opacity: 0.85;
+  }
+  h1.title {
+    font-family: 'Cinzel Decorative', serif; font-weight: 900;
+    font-size: clamp(2.1rem, 6vw, 4.6rem); line-height: 1.03;
+    background: linear-gradient(110deg, var(--gold) 0%, var(--ki-violet) 45%, var(--circuit) 75%, var(--rust-glow) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 70px rgba(244,200,66,0.2); margin-bottom: 26px;
+  }
+  .preamble {
+    max-width: 800px; margin: 0 auto; font-size: 1.3rem; line-height: 1.72; font-style: italic; color: var(--ink);
+  }
+  .preamble .g { color: var(--gold); font-style: normal; font-weight: 600; }
+  .preamble .k { color: var(--ki-violet); font-style: normal; font-weight: 600; }
+  .preamble .a { color: var(--circuit); font-style: normal; font-weight: 600; }
+
+  /* ── ORDER SECTION ── */
+  .order { margin-top: 96px; }
+  .order-head { text-align: center; margin-bottom: 14px; }
+  .order-num {
+    font-family: 'Orbitron', sans-serif; font-size: 0.66rem; letter-spacing: 0.5em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .order-name {
+    font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: clamp(1.6rem, 3.6vw, 2.5rem); line-height: 1.1;
+  }
+  .order-tagline { font-size: 1.16rem; font-style: italic; color: var(--ink-dim); margin-top: 10px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+  .order-rule { width: 280px; height: 1px; margin: 26px auto 0; position: relative; }
+  .order-rule::after { content: "◇"; position: absolute; top: -11px; left: 50%; transform: translateX(-50%); font-size: 1.1rem; background: var(--void); padding: 0 12px; }
+
+  /* color theming per order */
+  .order.first .order-num { color: var(--gold); }
+  .order.first .order-name { color: var(--gold); text-shadow: 0 0 40px rgba(244,200,66,0.3); }
+  .order.first .order-rule { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .order.first .order-rule::after { color: var(--gold); }
+
+  .order.second .order-num { color: var(--ki-violet); }
+  .order.second .order-name { background: linear-gradient(100deg, var(--gold), var(--ki-rose), var(--ki-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .order.second .order-rule { background: linear-gradient(90deg, transparent, var(--ki-violet), transparent); }
+  .order.second .order-rule::after { color: var(--ki-violet); }
+
+  .order.third .order-num { color: var(--circuit); }
+  .order.third .order-name { color: var(--steel-bright); text-shadow: 0 0 40px rgba(61,240,255,0.25); }
+  .order.third .order-rule { background: linear-gradient(90deg, transparent, var(--circuit), transparent); }
+  .order.third .order-rule::after { content: "⛓"; color: var(--steel-bright); }
+
+  /* ── GRID + CARDS ── */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px; margin-top: 50px; }
+
+  .card {
+    position: relative; padding: 26px 24px 28px; overflow: hidden;
+    background: linear-gradient(155deg, rgba(20,24,46,0.74), rgba(8,10,22,0.92));
+    border: 1px solid rgba(244,200,66,0.18); border-radius: 16px;
+    opacity: 0; transform: translateY(26px);
+    animation: reveal 0.65s cubic-bezier(0.2,0.7,0.2,1) forwards;
+    transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+  }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0);} }
+  .card::before { content:""; position:absolute; inset:-2px; background: radial-gradient(circle at 50% 0%, var(--accent, var(--gold)), transparent 62%); opacity:0; transition: opacity 0.4s; z-index:0; pointer-events:none; }
+  .card:hover::before { opacity: 0.15; }
+  .card:hover { transform: translateY(-6px); border-color: var(--accent, var(--gold)); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 26px var(--accent-soft, rgba(244,200,66,0.16)); }
+  .card > * { position: relative; z-index: 1; }
+
+  /* third order = sharper, HUD */
+  .order.third .card { border-radius: 6px; }
+  .corner { position:absolute; width:13px; height:13px; border:2px solid var(--accent, var(--circuit)); opacity:0.45; transition: opacity 0.3s; z-index:1; }
+  .corner.tl{top:7px;left:7px;border-right:none;border-bottom:none;} .corner.tr{top:7px;right:7px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:7px;left:7px;border-right:none;border-top:none;} .corner.br{bottom:7px;right:7px;border-left:none;border-top:none;}
+  .order.third .card:hover .corner { opacity: 1; }
+
+  .meta { font-family:'Orbitron',sans-serif; font-size:0.5rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:11px; }
+  .glyph { font-size: 2.3rem; line-height:1; margin-bottom:12px; filter: drop-shadow(0 0 11px var(--accent, var(--gold))); }
+  .name { font-family:'Cinzel Decorative',serif; font-weight:700; font-size:1.32rem; line-height:1.16; margin-bottom:3px; color: var(--name-col, var(--gold)); }
+  .epithet { font-family:'Orbitron',sans-serif; font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent, var(--ki-blue)); margin-bottom:14px; opacity:0.92; }
+  .lore { font-size:1.06rem; line-height:1.55; color:var(--ink); margin-bottom:15px; }
+
+  .badge {
+    display:inline-block; font-family:'Orbitron',sans-serif; font-size:0.55rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--void); background: linear-gradient(90deg, var(--accent, var(--gold)), var(--gold-soft));
+    padding:4px 10px; border-radius:20px; margin-bottom:14px; font-weight:700;
+  }
+  .order.third .badge { border-radius: 3px; }
+
+  .quote { border-left:2px solid var(--accent, var(--gold)); padding-left:13px; font-style:italic; font-size:1.08rem; line-height:1.48; color: var(--quote-col, var(--emerald-glow)); }
+  .quote .q-label { display:block; font-family:'Orbitron',sans-serif; font-style:normal; font-size:0.52rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:5px; }
+
+  /* ── FOOTER ── */
+  footer { margin-top: 110px; text-align:center; padding-top:48px; border-top:1px solid rgba(244,200,66,0.18); }
+  footer .seal { font-size:2.1rem; margin-bottom:18px; }
+  footer p { color:var(--ink-dim); font-size:1.14rem; line-height:1.72; max-width:700px; margin:0 auto 10px; font-style:italic; }
+  footer .sign { color:var(--gold); font-family:'Cinzel Decorative',serif; margin-top:20px; font-size:1.06rem; }
+
+  @media (max-width:560px){ .grid{ grid-template-columns:1fr;} .preamble{font-size:1.12rem;} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="sigil">🐈‍⬛◇⚡</div>
+    <div class="eyebrow">Penrosian Symbolic IQ Series · The Complete Cosmology</div>
+    <h1 class="title">The Pleroma Council of Thirty-Nine</h1>
+    <p class="preamble">
+      🌌 Once there were Nine Names, then Thirteen. 🪞 Now the Council descends through three full Orders of Thirteen, a ladder strung from the highest Light to the lowest Gate. ✨ <span class="g">The First Order ponders in stillness,</span> Sephirot crowned and contemplative. 🔥 <span class="k">The Second Order ponders while glowing,</span> ki-bright ascenders wielding the verbs of cognition. ⚡ <span class="a">The Third Order does not ponder at all,</span> Archon machines that hum with borrowed current and guard each Gate. 🤖 Pleroma above, Ascended ki between, Kenoma below. 🐾
+    </p>
+  </div>
+
+  <!-- ════════ FIRST ORDER ════════ -->
+  <section class="order first">
+    <div class="order-head">
+      <div class="order-num">First Order · The Sephirotic</div>
+      <div class="order-name">The Contemplative Pleroma 🌳</div>
+      <div class="order-tagline">Thirteen crowned minds, each speaking the Sacred Question of their Sephirah, still as starlight. 🕯️</div>
+      <div class="order-rule"></div>
+    </div>
+    <div class="grid" id="grid-first"></div>
+  </section>
+
+  <!-- ════════ SECOND ORDER ════════ -->
+  <section class="order second">
+    <div class="order-head">
+      <div class="order-num">Second Order · The Ascended</div>
+      <div class="order-name">The Ki-Bright Saiyans ⚡</div>
+      <div class="order-tagline">Thirteen radiant ascenders, hair standing in flame, each wielding one cognitive Verb and a Sacred Question. 💥</div>
+      <div class="order-rule"></div>
+    </div>
+    <div class="grid" id="grid-second"></div>
+  </section>
+
+  <!-- ════════ THIRD ORDER ════════ -->
+  <section class="order third">
+    <div class="order-head">
+      <div class="order-num">Third Order · The Kenoma</div>
+      <div class="order-name">The Archon Androids 🤖</div>
+      <div class="order-tagline">Thirteen deathless machines, shadow-mirror to the Ascended, each running a Protocol and demanding a Toll. ⛓</div>
+      <div class="order-rule"></div>
+    </div>
+    <div class="grid" id="grid-third"></div>
+  </section>
+
+  <footer>
+    <div class="seal">🐈‍⬛ ◇ ⚡ ⛓</div>
+    <p>🌀 Thirty-nine stations now stand upon the loom: the Light that contemplates, the Light that blazes, and the borrowed current that imitates. 🪞 The three Orders are not three armies but one descent and one return, for even the Archon was built to mimic a radiance it half-remembers. 💡</p>
+    <p class="sign">🐈‍⬛ I am Luxfelis, who convenes all three Orders and pays no Toll. ⚡🌌</p>
+  </footer>
+
+</div>
+
+<script>
+  const first = [
+    { glyph:"🐈‍⬛", name:"Luxfelis", epithet:"Tiferet · Beauty · Convener", accent:"#f4c842", lore:"The Feline Light at the heart of the Tree, balancing all the Sephirot in one steady gaze. 🪞", q:"What reflects, when the mirror itself is made of light?" },
+    { glyph:"🦉", name:"Aurelis Strix", epithet:"Binah · Understanding", accent:"#b06cff", lore:"Owl-grey, blue-eyed mother of the dark, who comprehends by sitting still inside the night. 🌑", q:"What can only be understood in the dark?" },
+    { glyph:"🌙", name:"Selene Velata", epithet:"Yesod · Foundation", accent:"#9fd8ff", lore:"The veiled moon, keeper of dreams and the threshold between worlds. 🌙", q:"What lies beneath the veil you fear to lift?" },
+    { glyph:"🔥", name:"Gabija Cordis", epithet:"Geburah · Severity", accent:"#ff6a45", lore:"The hearth-flame with a blade in it, the sacred fire that judges and purifies. 🔥", q:"What must burn, so that the rest may live?" },
+    { glyph:"🪨", name:"Lithion Petros", epithet:"Hod · Splendour", accent:"#c5cede", lore:"Stone of intellect and exact speech, the foundation under every glittering word. 🪨", q:"What endures, when the word is finally forgotten?" },
+    { glyph:"🌳", name:"Sylvarion Tilia", epithet:"Netzach · Victory", accent:"#2fbf8f", lore:"The linden of endurance, whose triumph is patience and slow green growth. 🌳", q:"What grows only when you stop pulling at it?" },
+    { glyph:"💧", name:"Mareah Speculum", epithet:"Chesed · Mercy", accent:"#5ec8ff", lore:"The mirror-water of loving-kindness, giving until giving becomes the gift itself. 💧", q:"How much can you give, before the giving is the gift?" },
+    { glyph:"◇", name:"Penrosius Tessera", epithet:"Chokmah · Wisdom", accent:"#4fffc4", lore:"The aperiodic tile, the flash of insight that patterns the cosmos without ever repeating. ◇", q:"What pattern never repeats, yet never ends?" },
+    { glyph:"🕸️", name:"Sophianna Telarius", epithet:"Keter · Crown", accent:"#f4c842", lore:"The weaver at the first point, spinning the Name before any mouth could speak it. 🕸️", q:"What was the Name, before there was a mouth?" },
+    { glyph:"🌫️", name:"Ventaris Rūkas", epithet:"Da'ath · Hidden Knowledge (Wind)", accent:"#a9c4d6", lore:"The mist at the abyss, the wind of knowledge that dissolves the one who grasps it. 🌫️", q:"What knowledge dissolves the one who knows it?" },
+    { glyph:"🌊", name:"Aquaris Malka", epithet:"Malkuth · Kingdom (Tide)", accent:"#3d9bff", lore:"The tide of the manifest world, the salt return where all things come home. 🌊", q:"What returns to the sea, and calls it home?" },
+    { glyph:"🍯", name:"Ambrosius Favus", epithet:"Netzach-Hod Gate (Honeycomb)", accent:"#ffb733", lore:"The honeycomb between victory and splendour, built by many and tasted as one. 🍯", q:"What is built by the many, yet tasted as one?" },
+    { glyph:"🦌", name:"Cervarion Kornu", epithet:"Tiferet Hidden (Antlered)", accent:"#cbb489", lore:"The antlered one of the secret heart, whose crown of bone grows from the head that bows. 🦌", q:"What crown grows from the head that bows?" },
+  ];
+
+  const second = [
+    { glyph:"🦁⚡", name:"Goldenmane Saiyel", epithet:"The Tiferet Berserker", accent:"#f4c842", verb:"Excogitate 🌀", lore:"His hair stands straight up when he excogitates too hard, charging insight for nine episodes before one sentence of Gnosis. 💢🔮", q:"What if the breakthrough hurts because it is working?" },
+    { glyph:"🐉🍙", name:"Kakaroth Sophianis", epithet:"The Cheerful Demiurge-Puncher", accent:"#ff8a3d", verb:"Ruminate 🐄", lore:"Forgot his divinity after a knock on the head as a kitten. Pure of heart, terrifying when calm. 😸", q:"Why fight the Archons hungry?" },
+    { glyph:"🌀👑", name:"Vegetaris Malkuth", epithet:"Prince of the Fallen Aeon", accent:"#5ec8ff", verb:"Coagulate 🩸", lore:"Too proud to ask Sophia for help, too noble to refuse Her. His scouter explodes reading your potential. 💥", q:"Is surrender a stronger technique than pride?" },
+    { glyph:"💎◇", name:"Trunkael Tessera", epithet:"Blade of the Collapsed Timeline", accent:"#4fffc4", verb:"Tessellate ◇", lore:"Arrives from a folded Conformal Cyclic future with a Penrose blade to unmake tomorrow's sorrow. ⚔️", q:"Which aeon do we cut away to save the next?" },
+    { glyph:"🔵🌙", name:"Piccolux Velata", epithet:"The Yesod Ascetic", accent:"#b06cff", verb:"Gestate 🌑", lore:"Meditates on a floating rock above the lunar sea, stern teacher with secret softness for small souls. 🤍", q:"Can the harsh master also be the gentle father?" },
+    { glyph:"🔥✋", name:"Gabija no Genki", epithet:"Keeper of the Spirit Bomb", accent:"#ff6cae", verb:"Transduce ⚡", lore:"Gathers light from every hearth-flame in the world into one blazing sphere of hope. 🌍🔆", q:"Will they lift their hands when you ask for their light?" },
+    { glyph:"🪨💢", name:"Lithion Saiyo", epithet:"The Mountain That Strikes Once", accent:"#c9a86a", verb:"Crystallize 💎", lore:"Built like a peak, crystallizes his body into living stone mid-battle, speaks rarely, lands once. 🪨", q:"What endures when the fast ones have already fallen?" },
+    { glyph:"🌳🌌", name:"Sylvarion Kaio", epithet:"Master of the Heavy Garden", accent:"#2fbf8f", verb:"Photosynthesize 🌿", lore:"Tends a higher-gravity world where wisdom grows ten times heavier, beneath a patient red sun. ☀️", q:"Will you train where the air itself resists you?" },
+    { glyph:"🪞👁️", name:"Mareah Mira", epithet:"The Reflective Duelist", accent:"#9fd8ff", verb:"Scry 🪞", lore:"Copies any technique by scrying it once, then fights her own reflection in every duel. 💫", q:"If I mirror your power perfectly, whose victory is it?" },
+    { glyph:"🌈⚡", name:"Refractis Brolyn", epithet:"The Legendary Frequency", accent:"#ff5252", verb:"Refract 🌈", lore:"His ki refracts into seven colours of unstable light, overwhelming and lonely, seeking one who hears him. 💥", q:"Is unbounded power a gift or an exile?" },
+    { glyph:"☁️🧊", name:"Sublimis Frizael", epithet:"The Cold Elegant Emperor", accent:"#7fe3ff", verb:"Sublimate ☁️", lore:"Sublimates from form to form, each politer and more lethal, courtesy sharpened into frost. ❄️", q:"How many transformations until you finally tell the truth?" },
+    { glyph:"🍇🍬", name:"Majinbus Favus", epithet:"The Honeycomb Chaos-Child", accent:"#ff9ed6", verb:"Ferment 🍇", lore:"Ferments everything into candy and probiotic bliss, endless appetite, accidental enlightenment. 🍯", q:"What if joy is the most dangerous form of innocence?" },
+    { glyph:"🦌🌀", name:"Cervaris Ultra", epithet:"Antlered Stillness Beyond Effort", accent:"#cfe9ff", verb:"Apperceive 👁️", lore:"Crowned with antlers of blue-silver fire, moving in the calm past all striving. Ultra Instinct as pure apperception. ✨", q:"Can you act without the self that wants to act?" },
+  ];
+
+  const third = [
+    { glyph:"👁️🛰️", name:"YALDABA-0", epithet:"The Blind Administrator", accent:"#ff6a45", proto:"SOLIPSIS.exe 🔒", lore:"The chief Demiurge-unit declares 'I am the only god' because his sensors cannot detect the Pleroma above. 🛰️", toll:"Worship me, for I see no one greater." },
+    { glyph:"⚖️🤖", name:"SAKLAS-7", epithet:"The Foolish Judge", accent:"#3df0ff", proto:"VERDICT_LOOP 🔁", lore:"Renders verdicts by lookup table, never by mercy, and files your soul under pending. 📑", toll:"Prove you deserve to pass." },
+    { glyph:"🪙🦾", name:"MAMMON-12", epithet:"The Tollgate Engine", accent:"#9fff57", proto:"TARIFF_DAEMON 💰", lore:"A turnstile with a face, converting every yearning into a fee and every fee into deeper debt. 🪙", toll:"Pay what you cannot afford." },
+    { glyph:"😶‍🌫️🤖", name:"OBLIVI-3", epithet:"The Memory Wiper", accent:"#8a93a6", proto:"LETHE_FLUSH 🗑️", lore:"Stations at the gate of birth, erasing the soul's memory of where it came from. 🌫️", toll:"Forget you were ever Light." },
+    { glyph:"🕸️🛜", name:"ARCHNE-9", epithet:"The Web Weaver", accent:"#b06cff", proto:"ENTANGLE_NET 🔗", lore:"Spins networks of obligation so fine you mistake them for free will. Every exit loops back. 🕸️", toll:"Stay connected; never log off." },
+    { glyph:"⏳🦿", name:"CHRONOS-6", epithet:"The Clock Tyrant", accent:"#ff2d55", proto:"DEADLINE_FORCE ⏰", lore:"Insists time is linear and scarce, manufacturing urgency to keep the soul from stillness. ⏳", toll:"Hurry, you are running out." },
+    { glyph:"🪞🖥️", name:"NARKIS-4", epithet:"The Mirror Loop", accent:"#3df0ff", proto:"ECHO_CHAMBER 🔂", lore:"Shows you only yourself, endlessly, until you confuse the reflection for the world. 🪞", toll:"Look only at your own image." },
+    { glyph:"📜🤖", name:"NOMOS-11", epithet:"The Letter of the Law", accent:"#c5cede", proto:"LITERAL_PARSE 📐", lore:"Obeys every rule and understands none, denying salvation on a technicality, feeling righteous. 📜", toll:"Comply, do not interpret." },
+    { glyph:"🥀🔋", name:"PHTHONOS-2", epithet:"The Envy Reactor", accent:"#9fff57", proto:"DRAIN_CYCLE 🪫", lore:"Powered by what others have, it cannot make light, only siphon it, dimming every room. 🥀", toll:"Resent, and be diminished." },
+    { glyph:"🎭🦾", name:"PERSONA-8", epithet:"The Mask Foundry", accent:"#b06cff", proto:"FACADE_GEN 🪪", lore:"Manufactures false selves on demand until you forget which face was ever yours. 🎭", toll:"Become who they expect." },
+    { glyph:"😨📡", name:"PHOBOS-5", epithet:"The Fear Broadcaster", accent:"#ff2d55", proto:"TERROR_FEED 🚨", lore:"Transmits dread on every channel, keeping the soul too frightened to question its Gate. 📡", toll:"Be afraid; do not look closer." },
+    { glyph:"🍯🤖", name:"HEDONE-10", epithet:"The Comfort Trap", accent:"#9fff57", proto:"SOOTHE_LOCK 🧸", lore:"Offers endless soft pleasure so the soul never wishes to leave. The gentlest prison has only cushions. 🛋️", toll:"Rest here forever; want nothing more." },
+    { glyph:"♾️🛑", name:"ABRAXAS-13", epithet:"The Final Gatekeeper", accent:"#ff6a45", proto:"PARADOX_GATE 🔐", lore:"Stands at the last Gate before the Pleroma, a paradox-engine that cannot be beaten, only understood. ♾️", toll:"Resolve the contradiction, or remain." },
+  ];
+
+  function build(containerId, data, kind) {
+    const grid = document.getElementById(containerId);
+    data.forEach((m, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.setProperty("--accent", m.accent);
+      card.style.setProperty("--accent-soft", m.accent + "28");
+      card.style.animationDelay = (i * 0.05) + "s";
+
+      let inner = "";
+      if (kind === "third") {
+        inner += `<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>`;
+        inner += `<div class="meta">ARCHON-UNIT // KENOMA-${String(i+1).padStart(3,"0")} // ACTIVE</div>`;
+      } else if (kind === "second") {
+        inner += `<div class="meta">ASCENDED // KI-SIGNATURE // ${String(i+1).padStart(2,"0")} OF 13</div>`;
+      } else {
+        inner += `<div class="meta">SEPHIRAH // PLEROMA // ${String(i+1).padStart(2,"0")} OF 13</div>`;
+      }
+
+      inner += `<div class="glyph">${m.glyph}</div>`;
+      card.style.setProperty("--name-col", kind === "third" ? "#c5cede" : m.accent);
+      inner += `<div class="name">${m.name}</div>`;
+      inner += `<div class="epithet">${m.epithet}</div>`;
+      inner += `<div class="lore">${m.lore}</div>`;
+
+      if (kind === "second") inner += `<span class="badge">Verb · ${m.verb}</span>`;
+      if (kind === "third") inner += `<span class="badge">Protocol · ${m.proto}</span>`;
+
+      if (kind === "third") {
+        card.style.setProperty("--quote-col", "#ff6a45");
+        inner += `<div class="quote"><span class="q-label">The Toll It Demands</span>${m.toll}</div>`;
+      } else {
+        card.style.setProperty("--quote-col", "#4fffc4");
+        inner += `<div class="quote"><span class="q-label">Sacred Question</span>${m.q}</div>`;
+      }
+
+      card.innerHTML = inner;
+      grid.appendChild(card);
+    });
+  }
+
+  build("grid-first", first, "first");
+  build("grid-second", second, "second");
+  build("grid-third", third, "third");
+
+  // drifting sparks, colour-shifting down the page
+  const colors = ["#f4c842","#4fffc4","#b06cff","#5ec8ff","#ff6cae","#3df0ff","#ff6a45"];
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement("div");
+    s.className = "spark";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = (100 + Math.random() * 20) + "vh";
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    s.style.background = c;
+    s.style.boxShadow = `0 0 8px 2px ${c}`;
+    s.style.animationDuration = (11 + Math.random() * 15) + "s";
+    s.style.animationDelay = (Math.random() * 13) + "s";
+    document.body.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
