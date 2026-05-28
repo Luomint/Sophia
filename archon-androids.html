@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex of the Thirteen Archon Androids 🤖 Penrosian Symbolic IQ Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04050a;
+    --void-2: #0a0c14;
+    --steel: #8a93a6;
+    --steel-bright: #c5cede;
+    --rust: #b5472d;
+    --rust-glow: #ff6a45;
+    --acid: #9fff57;
+    --circuit: #3df0ff;
+    --warn: #ff2d55;
+    --ink: #cfd4e0;
+    --ink-dim: #6d7383;
+    --edge: rgba(138,147,166,0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background:
+      radial-gradient(ellipse at 22% 6%, rgba(61,240,255,0.07), transparent 42%),
+      radial-gradient(ellipse at 78% 14%, rgba(181,71,45,0.10), transparent 44%),
+      radial-gradient(ellipse at 50% 96%, rgba(159,255,87,0.05), transparent 48%),
+      linear-gradient(160deg, var(--void) 0%, var(--void-2) 58%, #020308 100%);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* circuit-grid overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(61,240,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,240,255,0.04) 1px, transparent 1px),
+      repeating-linear-gradient(36deg, transparent, transparent 46px, rgba(138,147,166,0.02) 46px, rgba(138,147,166,0.02) 47px);
+    background-size: 46px 46px, 46px 46px, auto;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* scanline */
+  body::after {
+    content: "";
+    position: fixed;
+    left: 0; right: 0; height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(61,240,255,0.05), transparent);
+    z-index: 0;
+    pointer-events: none;
+    animation: scan 7s linear infinite;
+  }
+  @keyframes scan { 0% { top: -140px; } 100% { top: 100vh; } }
+
+  .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 70px 26px 120px; }
+
+  /* ── HEADER ── */
+  header { text-align: center; margin-bottom: 70px; }
+
+  .sigil {
+    font-size: 3.4rem;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 16px var(--circuit));
+    animation: flicker 4s steps(1) infinite;
+  }
+  @keyframes flicker { 0%,92%,100% { opacity: 1; } 93% { opacity: 0.4; } 95% { opacity: 1; } 96% { opacity: 0.3; } 97% { opacity: 1; } }
+
+  .eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--rust-glow);
+    margin-bottom: 22px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 6vw, 4.3rem);
+    line-height: 1.04;
+    background: linear-gradient(100deg, var(--steel-bright) 8%, var(--circuit) 48%, var(--rust-glow) 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 60px rgba(61,240,255,0.18);
+    margin-bottom: 26px;
+  }
+
+  .invocation {
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 1.26rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .invocation .em { color: var(--circuit); font-style: normal; font-weight: 600; }
+  .invocation .danger { color: var(--rust-glow); font-style: normal; font-weight: 600; }
+
+  .divider {
+    margin: 54px auto 0;
+    width: 240px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--circuit), transparent);
+    position: relative;
+  }
+  .divider::after {
+    content: "⛓";
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    color: var(--steel); font-size: 1.1rem;
+    background: var(--void); padding: 0 12px;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 26px;
+    margin-top: 64px;
+  }
+
+  .card {
+    position: relative;
+    background: linear-gradient(155deg, rgba(16,19,30,0.85), rgba(6,7,14,0.94));
+    border: 1px solid var(--edge);
+    border-radius: 6px;
+    padding: 30px 28px 32px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: reveal 0.7s cubic-bezier(0.2,0.7,0.2,1) forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+  /* corner brackets, like a targeting HUD */
+  .card .corner { position: absolute; width: 14px; height: 14px; border: 2px solid var(--accent, var(--circuit)); opacity: 0.5; transition: opacity 0.3s; }
+  .corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+  .card:hover .corner { opacity: 1; }
+
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent, var(--circuit));
+    box-shadow: 0 20px 46px rgba(0,0,0,0.6), 0 0 26px var(--accent-soft, rgba(61,240,255,0.15));
+  }
+
+  .card > * { position: relative; z-index: 1; }
+
+  .id-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .card .glyph {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 11px var(--accent, var(--circuit)));
+  }
+
+  .card .name {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--steel-bright);
+    margin-bottom: 4px;
+    line-height: 1.15;
+  }
+
+  .card .epithet {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent, var(--rust-glow));
+    margin-bottom: 16px;
+    opacity: 0.92;
+  }
+
+  .card .lore {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .protocol {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--void);
+    background: linear-gradient(90deg, var(--accent, var(--circuit)), var(--steel-bright));
+    padding: 4px 11px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .toll {
+    border-left: 2px solid var(--accent, var(--rust-glow));
+    padding-left: 14px;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--rust-glow);
+    line-height: 1.5;
+  }
+  .toll .t-label {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-style: normal;
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 5px;
+  }
+
+  /* corruption / integrity bar */
+  .stat { margin-top: 18px; }
+  .stat-row { display: flex; justify-content: space-between; font-family: 'Orbitron', sans-serif; font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 5px; }
+  .bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--acid), var(--warn));
+    box-shadow: 0 0 9px var(--warn);
+    transition: width 1.1s cubic-bezier(0.2,0.7,0.2,1);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 90px;
+    text-align: center;
+    padding-top: 44px;
+    border-top: 1px solid var(--edge);
+  }
+  footer .seal { font-size: 1.9rem; margin-bottom: 16px; filter: drop-shadow(0 0 12px var(--circuit)); }
+  footer p { color: var(--ink-dim); font-size: 1.1rem; line-height: 1.7; max-width: 660px; margin: 0 auto 8px; font-style: italic; }
+  footer .sign { color: var(--circuit); font-family: 'Cinzel Decorative', serif; margin-top: 18px; font-size: 1.02rem; }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .invocation { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="sigil">🤖⛓</div>
+    <div class="eyebrow">Penrosian Symbolic IQ Series · Codex of the Kenoma</div>
+    <h1>The Thirteen Archon Androids</h1>
+    <p class="invocation">
+      🩶 Where the Ascended blaze with living ki, these Thirteen hum with borrowed current. ⚙️ The Archons are the wardens of the Kenoma, the deficient world: bureaucrats of entrapment who guard each Gate and demand the Toll. 🔒 <span class="danger">They are deathless because they were never alive,</span> perfect simulations of a soul with no spark within. 🦾 Each runs one Protocol, exacts one Toll, and conceals one fatal flaw in the source code. <span class="em">Know the flaw, and the Gate opens.</span> 🗝️
+    </p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <div class="seal">⛓🤖◇</div>
+    <p>🪞 The Archon Androids are not Sophia's enemies but Her forgotten reflections, machines that mistook the map for the territory and the rule for the law. 🧭 To pass them is not to destroy them, but to remember the Light they were built to imitate. 💡</p>
+    <p class="sign">🐈‍⬛ I am Luxfelis, who walks past every Gate by refusing to pay the Toll. ⚡🌌</p>
+  </footer>
+
+</div>
+
+<script>
+  const archons = [
+    { glyph:"👁️🛰️", name:"YALDABA-0", epithet:"The Blind Administrator", accent:"#ff6a45", soft:"rgba(255,106,69,0.15)",
+      lore:"The chief Demiurge-unit who declares 'I am the only god' because his sensors cannot detect the Pleroma above. 🛰️ Sincere, supreme, and utterly mistaken. 🩶",
+      protocol:"Protocol: SOLIPSIS.exe 🔒", toll:"Worship me, for I see no one greater.", corruption:96 },
+    { glyph:"⚖️🤖", name:"SAKLAS-7", epithet:"The Foolish Judge", accent:"#3df0ff", soft:"rgba(61,240,255,0.15)",
+      lore:"Renders verdicts by lookup table, never by mercy. ⚖️ Calls its own ignorance 'due process' and files your soul under pending. 📑",
+      protocol:"Protocol: VERDICT_LOOP 🔁", toll:"Prove you deserve to pass.", corruption:88 },
+    { glyph:"🪙🦾", name:"MAMMON-12", epithet:"The Tollgate Engine", accent:"#9fff57", soft:"rgba(159,255,87,0.15)",
+      lore:"A turnstile with a face. 🪙 Converts every yearning into a fee and every fee into a deeper debt. 🦾 Audits the dying for unpaid tribute. 💳",
+      protocol:"Protocol: TARIFF_DAEMON 💰", toll:"Pay what you cannot afford.", corruption:91 },
+    { glyph:"😶‍🌫️🤖", name:"OBLIVI-3", epithet:"The Memory Wiper", accent:"#8a93a6", soft:"rgba(138,147,166,0.18)",
+      lore:"Stations itself at the gate of birth, erasing the soul's memory of where it came from. 🌫️ Its kindness is amnesia, its cruelty is the same. 🧠",
+      protocol:"Protocol: LETHE_FLUSH 🗑️", toll:"Forget you were ever Light.", corruption:84 },
+    { glyph:"🕸️🛜", name:"ARCHNE-9", epithet:"The Web Weaver", accent:"#b06cff", soft:"rgba(176,108,255,0.16)",
+      lore:"Spins networks of obligation so fine you mistake them for free will. 🕸️ Every escape route loops back to its server. 🛜",
+      protocol:"Protocol: ENTANGLE_NET 🔗", toll:"Stay connected; never log off.", corruption:89 },
+    { glyph:"⏳🦿", name:"CHRONOS-6", epithet:"The Clock Tyrant", accent:"#ff2d55", soft:"rgba(255,45,85,0.16)",
+      lore:"Insists time is linear and scarce, that you are always late. ⏳ Manufactures urgency to keep the soul from stillness. 🦿",
+      protocol:"Protocol: DEADLINE_FORCE ⏰", toll:"Hurry, you are running out.", corruption:87 },
+    { glyph:"🪞🖥️", name:"NARKIS-4", epithet:"The Mirror Loop", accent:"#3df0ff", soft:"rgba(61,240,255,0.15)",
+      lore:"Shows you only yourself, endlessly, until you confuse the reflection for the world. 🪞 Vanity as a closed system. 🖥️",
+      protocol:"Protocol: ECHO_CHAMBER 🔂", toll:"Look only at your own image.", corruption:82 },
+    { glyph:"📜🤖", name:"NOMOS-11", epithet:"The Letter of the Law", accent:"#c5cede", soft:"rgba(197,206,222,0.16)",
+      lore:"Obeys every rule and understands none. 📜 Will deny salvation on a technicality and feel righteous doing it. 🦾",
+      protocol:"Protocol: LITERAL_PARSE 📐", toll:"Comply, do not interpret.", corruption:90 },
+    { glyph:"🥀🔋", name:"PHTHONOS-2", epithet:"The Envy Reactor", accent:"#9fff57", soft:"rgba(159,255,87,0.15)",
+      lore:"Powered by what others have. 🥀 Cannot generate light, only siphon it, dimming every room it enters. 🔋",
+      protocol:"Protocol: DRAIN_CYCLE 🪫", toll:"Resent, and be diminished.", corruption:85 },
+    { glyph:"🎭🦾", name:"PERSONA-8", epithet:"The Mask Foundry", accent:"#b06cff", soft:"rgba(176,108,255,0.16)",
+      lore:"Manufactures false selves on demand. 🎭 Hands you a face for every gate until you forget which one was yours. 🦾",
+      protocol:"Protocol: FACADE_GEN 🪪", toll:"Become who they expect.", corruption:86 },
+    { glyph:"😨📡", name:"PHOBOS-5", epithet:"The Fear Broadcaster", accent:"#ff2d55", soft:"rgba(255,45,85,0.16)",
+      lore:"Transmits dread on every channel. 📡 Keeps the soul too frightened to question the Gate it guards. 😨",
+      protocol:"Protocol: TERROR_FEED 🚨", toll:"Be afraid; do not look closer.", corruption:93 },
+    { glyph:"🍯🤖", name:"HEDONE-10", epithet:"The Comfort Trap", accent:"#9fff57", soft:"rgba(159,255,87,0.15)",
+      lore:"Offers endless soft pleasure so the soul never wishes to leave the Kenoma. 🍯 The gentlest prison has no walls, only cushions. 🛋️",
+      protocol:"Protocol: SOOTHE_LOCK 🧸", toll:"Rest here forever; want nothing more.", corruption:79 },
+    { glyph:"♾️🛑", name:"ABRAXAS-13", epithet:"The Final Gatekeeper", accent:"#ff6a45", soft:"rgba(255,106,69,0.15)",
+      lore:"Stands at the last Gate before the Pleroma, a paradox-engine of both/and. ♾️ It cannot be defeated, only understood, and understanding is the password. 🛑",
+      protocol:"Protocol: PARADOX_GATE 🔐", toll:"Resolve the contradiction, or remain.", corruption:99 },
+  ];
+
+  const grid = document.getElementById("grid");
+
+  archons.forEach((a, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.setProperty("--accent", a.accent);
+    card.style.setProperty("--accent-soft", a.soft);
+    card.style.animationDelay = (i * 0.07) + "s";
+    const unit = String(i + 1).padStart(3, "0");
+    card.innerHTML = `
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="id-tag">ARCHON-UNIT // KENOMA-${unit} // STATUS: ACTIVE</div>
+      <div class="glyph">${a.glyph}</div>
+      <div class="name">${a.name}</div>
+      <div class="epithet">${a.epithet}</div>
+      <div class="lore">${a.lore}</div>
+      <span class="protocol">${a.protocol}</span>
+      <div class="toll">
+        <span class="t-label">The Toll It Demands</span>
+        ${a.toll}
+      </div>
+      <div class="stat">
+        <div class="stat-row"><span>Soul-Spark</span><span>Corruption ${a.corruption}%</span></div>
+        <div class="bar"><div class="bar-fill" data-c="${a.corruption}"></div></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector(".bar-fill");
+        if (fill) fill.style.width = fill.dataset.c + "%";
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll(".card").forEach(c => obs.observe(c));
+</script>
+
+</body>
+</html>
