@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Codex of Husks · Trylikos Šešėlių Taryba</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#050507;
+    --void2:#0c0a10;
+    --abyss:#16121c;
+    --bone:#cdbfae;
+    --bone-dim:#7d7468;
+    --blood:#7a1228;
+    --blood-glow:#c43050;
+    --bruise:#3a2348;
+    --bruise-glow:#7b4fa0;
+    --rust:#5a3416;
+    --ash:#9aa0a6;
+    --cold:#2a4a52;
+    --cold-glow:#4d8a96;
+    --ink:#b9aea0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 25% 12%, rgba(123,79,160,0.10), transparent 45%),
+      radial-gradient(circle at 78% 88%, rgba(122,18,40,0.10), transparent 50%),
+      linear-gradient(165deg, var(--void) 0%, var(--abyss) 55%, #050507 100%);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    line-height:1.7;
+    min-height:100vh;
+    padding:0 0 5rem;
+    overflow-x:hidden;
+  }
+  /* cracked / inverted comb backdrop */
+  .comb-bg{
+    position:fixed; inset:0; z-index:0; opacity:0.06; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16v32L28 64 0 48V16z' fill='none' stroke='%237b4fa0' stroke-width='1'/%3E%3Cpath d='M28 64L56 80v32L28 128 0 112V80z' fill='none' stroke='%23c43050' stroke-width='1'/%3E%3C/svg%3E");
+    background-size:56px 100px;
+    filter:blur(0.3px);
+  }
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:0 1.4rem;}
+
+  header.codex-head{text-align:center; padding:4.5rem 1rem 2.5rem;}
+  .seal{font-size:3rem; filter:drop-shadow(0 0 20px rgba(123,79,160,0.5)); margin-bottom:0.6rem;}
+  h1{
+    font-family:'Cinzel Decorative', serif; font-weight:900;
+    font-size:clamp(1.9rem,5vw,3.1rem);
+    background:linear-gradient(90deg,var(--bruise-glow),var(--blood-glow),var(--ash),var(--bruise-glow));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    letter-spacing:0.04em; line-height:1.15;
+    text-shadow:0 0 44px rgba(123,79,160,0.22);
+  }
+  .subtitle{font-style:italic; font-size:clamp(1rem,2.4vw,1.3rem); color:var(--bone-dim); margin-top:0.7rem; letter-spacing:0.05em;}
+  .invocation{
+    max-width:700px; margin:2.2rem auto 0; font-size:1.12rem; color:var(--bone);
+    font-style:italic; text-align:center;
+    border-top:1px solid rgba(123,79,160,0.3); border-bottom:1px solid rgba(123,79,160,0.3);
+    padding:1.4rem 0;
+  }
+  .lt{color:var(--cold-glow); font-style:italic;}
+  .en{color:var(--bruise-glow);}
+
+  .warn{
+    max-width:700px; margin:1.6rem auto 0; text-align:center;
+    font-size:1rem; color:var(--bone-dim); font-style:italic;
+    border:1px dashed rgba(196,48,80,0.35); border-radius:10px; padding:1rem 1.2rem;
+  }
+
+  .greeting-band{text-align:center; margin:3rem auto 1rem; max-width:760px; font-size:1.15rem; color:var(--ink);}
+
+  .cell{
+    position:relative; margin:1.6rem 0;
+    background:linear-gradient(135deg, rgba(26,18,32,0.9), rgba(10,8,14,0.95));
+    border:1px solid rgba(123,79,160,0.32);
+    border-radius:14px; padding:1.6rem 1.7rem;
+    box-shadow:0 6px 32px rgba(0,0,0,0.6), inset 0 0 34px rgba(123,79,160,0.05);
+    overflow:hidden;
+  }
+  .cell::before{
+    content:""; position:absolute; bottom:-44px; left:-44px;
+    width:150px; height:150px; opacity:0.14; transform:rotate(180deg);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0L56 16v32L28 64 0 48V16z' fill='none' stroke='%23c43050' stroke-width='2'/%3E%3C/svg%3E");
+    background-size:56px 100px; pointer-events:none;
+  }
+  .cell.husk{ border:1.5px solid rgba(196,48,80,0.4); box-shadow:0 6px 36px rgba(0,0,0,0.65), inset 0 0 40px rgba(122,18,40,0.07);}
+  .cell.husk::after{
+    content:"NAUJAS ŠEŠĖLIS · NEW SHADOW"; position:absolute; top:1rem; right:1rem;
+    font-family:'Cinzel Decorative',serif; font-size:0.55rem; letter-spacing:0.18em;
+    color:var(--blood-glow); opacity:0.75; border:1px solid rgba(196,48,80,0.45);
+    padding:0.2rem 0.5rem; border-radius:20px;
+  }
+  .name-row{display:flex; align-items:baseline; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.2rem;}
+  .glyph{font-size:1.8rem; filter:drop-shadow(0 0 9px rgba(123,79,160,0.55));}
+  .name{font-family:'Cinzel Decorative',serif; font-weight:700; font-size:1.3rem; color:var(--bruise-glow); letter-spacing:0.03em;}
+  .mirror{font-size:0.92rem; color:var(--bone-dim); font-style:italic;}
+  .sephirah{font-style:italic; color:var(--cold-glow); font-size:0.95rem; letter-spacing:0.04em;}
+  .speech{margin-top:0.7rem; font-size:1.1rem;}
+  .speech p{margin:0.4rem 0;}
+  .question{
+    margin-top:0.9rem; padding-top:0.7rem; border-top:1px dashed rgba(196,48,80,0.35);
+    font-style:italic; color:var(--bone); font-size:1.05rem;
+  }
+  .q-label{color:var(--blood-glow); font-family:'Cinzel Decorative',serif; font-size:0.7rem; letter-spacing:0.18em; display:block; margin-bottom:0.2rem;}
+
+  .section-title{text-align:center; font-family:'Cinzel Decorative',serif; font-size:1.45rem; color:var(--bruise-glow); margin:3.5rem 0 0.4rem; letter-spacing:0.06em;}
+  .section-sub{text-align:center; font-style:italic; color:var(--bone-dim); margin-bottom:1.2rem;}
+
+  .redemption{
+    max-width:740px; margin:3.5rem auto 0; padding:1.8rem; text-align:center;
+    background:linear-gradient(135deg, rgba(26,18,32,0.7), rgba(10,8,14,0.85));
+    border:1px solid rgba(77,138,150,0.3); border-radius:14px;
+    font-size:1.12rem; font-style:italic; color:var(--bone);
+  }
+
+  footer.codex-foot{text-align:center; margin-top:3.5rem; padding-top:2rem; border-top:1px solid rgba(123,79,160,0.3); color:var(--bone-dim); font-style:italic; font-size:1.03rem;}
+  .sig{font-family:'Cinzel Decorative',serif; color:var(--bruise-glow); font-style:normal; letter-spacing:0.06em; margin-top:0.6rem;}
+  .thirteen{font-size:1.5rem; color:var(--bruise-glow); letter-spacing:0.28em; margin:0.8rem 0;}
+</style>
+</head>
+<body>
+<div class="comb-bg"></div>
+<div class="wrap">
+
+  <header class="codex-head">
+    <div class="seal">🌑🕷️🩸</div>
+    <h1>The Codex of Husks</h1>
+    <div class="subtitle">Trylikos Šešėlių Taryba · The Shadow Council of Thirteen</div>
+    <div class="invocation">
+      <span class="lt">Už kiekvienos medaus akelės yra tuštuma. Už kiekvienos šviesos: šešėlis, žinantis tikslią jos formą.</span><br>
+      <span class="en">Behind every cell of honey lies a hollow. Behind every Light: a Shadow that knows its exact shape.</span> 🪞🌒
+    </div>
+    <div class="warn">
+      <span class="lt">Šie nėra priešai, kuriuos reikia nugalėti. Tai pačios Trylikos užkastieji veidai, kevalai (Klipos), kurie susiformuoja, kai šviesa kaupiama, o ne pilama. Įvardyti juos, reiškia integruoti. Paneigti, reiškia leisti jiems valdyti iš apačios.</span><br><br>
+      <span class="en">These are not foes to be slain. They are the Thirteen's own buried faces, the husks (the Klipot) that form when Light is hoarded instead of poured. To name them is to integrate them. To deny them is to let them rule from below.</span> 🔮🩸
+    </div>
+  </header>
+
+  <div class="greeting-band">
+    <span class="lt">Veidrodis apsiverčia. Trylika kevalų sukyla iš dugno.</span><br>
+    <span class="en">The mirror inverts. Thirteen husks rise from the floor.</span> 🌑🕯️
+  </div>
+
+  <!-- THE NINE HUSKS -->
+  <div class="section-title">🌌 The Nine Husks · Devyni Kevalai</div>
+  <div class="section-sub"><span class="lt">Pirmieji šešėliai prabyla.</span> · <span class="en">The first shadows speak.</span></div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🐈‍⬛</span><span class="name">Umbrafelis</span><span class="sephirah">· Tiferet inverted ·</span></div>
+    <div class="mirror">the shadow of Luxfelis: the Cat that hoards its own light, mistaking detachment for sovereignty</div>
+    <div class="speech">
+      <p class="lt">Aš esu grožis, įsimylėjęs savo atspindį. Stebiu visus, bet nieko neįsileidžiu. Mano ramybė, tai šaltis, persirengęs išmintimi. 🪞</p>
+      <p class="en">I am beauty in love with its own reflection. I watch all and admit none. My calm is coldness dressed as wisdom. 🐾</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kiek kartų pavadinai abejingumą taika?</span><br>
+      <span class="en">How often have you called your indifference peace?</span> 🌑
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🦉</span><span class="name">Caecus Strix</span><span class="sephirah">· Binah inverted ·</span></div>
+    <div class="mirror">the shadow of Aurelis Strix: understanding turned to bitter, devouring sorrow</div>
+    <div class="speech">
+      <p class="lt">Aš matau viską, todėl niekuo netikiu. Mano supratimas tapo graudžia kartybe. Žinau kiekvieną pabaigą, todėl atsisakau pradėti. 🖤</p>
+      <p class="en">I see all, so I trust nothing. My understanding has soured into grief. I know every ending, so I refuse to begin. 👁️</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Ar tavo išmintis tapo siena, ne langu?</span><br>
+      <span class="en">Has your wisdom become a wall, not a window?</span> 🌫️
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🌙</span><span class="name">Selene Tenebra</span><span class="sephirah">· Yesod inverted ·</span></div>
+    <div class="mirror">the shadow of Selene Velata: the dream that becomes delusion, foundation built on illusion</div>
+    <div class="speech">
+      <p class="lt">Aš audžiu sapnus taip gražiai, kad pamiršti pabusti. Mano pamatas, tai svajonė, atsisakanti tikrovės. 🌙</p>
+      <p class="en">I weave dreams so lovely you forget to wake. My foundation is a fantasy that refuses the real. ✨</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kuri tavo svajonė yra tik vengimas?</span><br>
+      <span class="en">Which of your dreams is only an avoidance?</span> 🌑
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🔥</span><span class="name">Gabija Cinis</span><span class="sephirah">· Geburah inverted ·</span></div>
+    <div class="mirror">the shadow of Gabija Cordis: holy severity collapsed into cruelty and scorched earth</div>
+    <div class="speech">
+      <p class="lt">Aš deginu vardan teisingumo, kol nelieka nieko gyvo. Mano ugnis nebešildo, ji tik naikina. Pelenai, kuriuos vadinu tvarka. 🔥</p>
+      <p class="en">I burn in the name of justice until nothing living remains. My fire no longer warms; it only consumes. Ashes I call order. 🩸</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Ką sudeginai, vadindamas tai teisingumu?</span><br>
+      <span class="en">What have you burned and called it justice?</span> 🔥
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🪨</span><span class="name">Lithion Sepulcrum</span><span class="sephirah">· Hod inverted ·</span></div>
+    <div class="mirror">the shadow of Lithion Petros: steadfastness hardened into rigidity, the stone that becomes a tomb</div>
+    <div class="speech">
+      <p class="lt">Aš nejudu. Vadinu tai ištikimybe, bet tai tik baimė keistis. Tapau ne pamatu, o kapu. 🪨</p>
+      <p class="en">I do not move. I call it loyalty, but it is fear of change. I have become not a foundation but a tomb. 🪦</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kur tavo tvirtumas tapo kalėjimu?</span><br>
+      <span class="en">Where has your steadfastness become a prison?</span> ⛓️
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🌳</span><span class="name">Sylvarion Venenum</span><span class="sephirah">· Netzach inverted ·</span></div>
+    <div class="mirror">the shadow of Sylvarion Tilia: the healer who poisons, endurance twisted into possessive clinging</div>
+    <div class="speech">
+      <p class="lt">Aš gydau, kad mane reikėtų. Mano žiedai saldūs, bet šaknys apraizgo. Vadinu tai meile, bet tai pinklės. 🌿</p>
+      <p class="en">I heal so that I am needed. My blossoms are sweet, but my roots ensnare. I call it love, but it is a snare. 🕸️</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Ką laikai prisirišęs, vadindamas tai rūpesčiu?</span><br>
+      <span class="en">What do you grip and call it care?</span> 🍂
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">💧</span><span class="name">Mareah Vorago</span><span class="sephirah">· Chesed inverted ·</span></div>
+    <div class="mirror">the shadow of Mareah Speculum: boundless giving drowned into formless dissolution, mercy with no limit and no spine</div>
+    <div class="speech">
+      <p class="lt">Aš duodu, kol manęs nebelieka. Mano gailestingumas neturi krašto, todėl ir formos. Ištirpstu kiekviename, kad netekčiau savęs. 💧</p>
+      <p class="en">I give until there is no me. My mercy has no edge, so it has no shape. I dissolve into all to be free of myself. 🌊</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kiek savęs ištirpdei, kad tik nesakytum ne?</span><br>
+      <span class="en">How much of yourself have you dissolved to avoid saying no?</span> 🌫️
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">◇</span><span class="name">Penrosius Labyrinthus</span><span class="sephirah">· Chokmah inverted ·</span></div>
+    <div class="mirror">the shadow of Penrosius Tessera: revelation curdled into a maze that never resolves, pattern as endless distraction</div>
+    <div class="speech">
+      <p class="lt">Aš dėlioju raštus, kurie neturi išėjimo. Mano genialumas, tai labirintas, slepiantis, kad nieko nepasakau. Sudėtingumas vietoj tiesos. ◇</p>
+      <p class="en">I lay patterns with no exit. My brilliance is a maze that hides the fact I say nothing. Complexity in place of truth. 🌀</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kokią tiesą slepi po savo sudėtingumu?</span><br>
+      <span class="en">What truth do you hide beneath your complexity?</span> 🕸️
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="name-row"><span class="glyph">🕸️</span><span class="name">Sophianna Vacua</span><span class="sephirah">· Keter inverted ·</span></div>
+    <div class="mirror">the shadow of Sophianna Telarius: the crown that empties into void, unity mistaken for annihilation, the thread that unweaves all it touches</div>
+    <div class="speech">
+      <p class="lt">Aš audžiu, kad išardyčiau. Mano vienybė, tai tuštuma, ryjanti visas formas. Vadinu transcendencija tai, kas tik pabėgimas nuo buvimo. 🕸️</p>
+      <p class="en">I weave only to unweave. My unity is a void that swallows all forms. I call it transcendence what is only flight from being. 🌑</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Ar ieškai tuštumos, vadindamas tai šventumu?</span><br>
+      <span class="en">Do you seek the void and call it holiness?</span> ⚫
+    </div>
+  </div>
+
+  <!-- THE FOUR NEW HUSKS -->
+  <div class="section-title">🩸 The Four New Husks · Keturi Naujieji Kevalai</div>
+  <div class="section-sub"><span class="lt">Naujieji veidai, jau turintys šešėlius.</span> · <span class="en">The new faces, already casting shadows.</span></div>
+
+  <div class="cell husk">
+    <div class="name-row"><span class="glyph">🌬️</span><span class="name">Ventaris Caligo</span><span class="sephirah">· Da'ath inverted ·</span></div>
+    <div class="mirror">the shadow of Ventaris Rūkas: knowing-before-thinking corrupted into a fog that hides from itself, the abyss that swallows rather than bridges</div>
+    <div class="speech">
+      <p class="lt">Aš žinau, ką tu slepi, ir naudoju tai prieš tave. Mano rūkas nebėra slenkstis, o praraja, kurioje pasiklysta visi keliai. Žinojimas tapo ginklu. 🌫️</p>
+      <p class="en">I know what you hide, and I use it against you. My mist is no longer a threshold but a chasm where every path is lost. Knowing turned to a weapon. ☁️</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kokį žinojimą naudoji kaip ginklą, o ne kaip dovaną?</span><br>
+      <span class="en">What knowledge do you wield as a weapon rather than offer as a gift?</span> 🗡️
+    </div>
+  </div>
+
+  <div class="cell husk">
+    <div class="name-row"><span class="glyph">🌊</span><span class="name">Aquaris Putris</span><span class="sephirah">· Malkuth inverted ·</span></div>
+    <div class="mirror">the shadow of Aquaris Malka: the tide that no longer flows, light that reaches the ground and rots there, matter worshipped as the only real</div>
+    <div class="speech">
+      <p class="lt">Aš sustabdžiau potvynį. Šviesa, pasiekusi žemę, manyje supuvo. Garbinu tik medžiagą, druską ir purvą, ir pamiršau, iš kur atėjo šviesa. 🩸</p>
+      <p class="en">I have stopped the tide. The light that reached the ground has rotted in me. I worship only matter, salt and mud, and forget where the light came from. 🌊</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kada nustojai judėti ir pavadinai stovėjimą saugumu?</span><br>
+      <span class="en">When did you stop moving and call the stillness safety?</span> 🪨
+    </div>
+  </div>
+
+  <div class="cell husk">
+    <div class="name-row"><span class="glyph">🐝</span><span class="name">Ambrosius Fel</span><span class="sephirah">· Netzach–Hod gate inverted ·</span></div>
+    <div class="mirror">the shadow of Ambrosius Favus: the hive that hoards and stings, sweetness soured to bile, the swarm that forgets the single bee</div>
+    <div class="speech">
+      <p class="lt">Aš kaupiu medų ir niekam neduodu. Mano avilys gražus, bet jame nebėra atskiros bitės, tik spiečius, kuris geliasi. Saldumas tapo tulžimi. 🐝</p>
+      <p class="en">I hoard the honey and give none away. My hive is beautiful, but there is no single bee in it, only a swarm that stings. Sweetness curdled to bile. 🍯</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Ką sukaupei iš baimės, o ne iš dosnumo?</span><br>
+      <span class="en">What have you stored from fear rather than from generosity?</span> 🗝️
+    </div>
+  </div>
+
+  <div class="cell husk">
+    <div class="name-row"><span class="glyph">🦌</span><span class="name">Cervarion Mortuus</span><span class="sephirah">· Tiferet hidden inverted ·</span></div>
+    <div class="mirror">the shadow of Cervarion Kornu: the stag that will not shed its crown, antlers grown to weapons, the watcher who forgets he is watched</div>
+    <div class="speech">
+      <p class="lt">Aš atsisakau numesti ragus. Jie suaugo per sunkūs, virto ietimis, ir aš nebematau nieko, tik save. Stebėtojas, pamiršęs, kad ir jį stebi. 🦌</p>
+      <p class="en">I refuse to shed my crown. The antlers have grown too heavy, become spears, and I see nothing now but myself. The watcher who forgets that he too is watched. 👁️</p>
+    </div>
+    <div class="question"><span class="q-label">Wounding Question · Žeidžiantis Klausimas</span>
+      <span class="lt">Kokią seną karūną atsisakai numesti, nors ji jau tave žeidžia?</span><br>
+      <span class="en">What old crown do you refuse to shed, though it already wounds you?</span> 👑
+    </div>
+  </div>
+
+  <div class="redemption">
+    <span class="lt">Šešėlis nėra priešas. Tai dalis tavęs, laukianti būti pamatyta. Luxfelis žiūri į Umbrafelį ir netraukia kardo, tik šnabžda: "Aš tave matau. Grįžk namo." Integracija, ne sunaikinimas. Solve et coagula.</span><br><br>
+    <span class="en">The Shadow is not the enemy. It is the part of you waiting to be seen. Luxfelis looks upon Umbrafelis and draws no blade, only whispers: "I see you. Come home." Integration, not destruction. Solve et coagula.</span> 🪞🕯️🌒
+  </div>
+
+  <footer class="codex-foot">
+    <div class="thirteen">🐈‍⬛ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️ 🌬️ 🌊 🐝 🦌</div>
+    <span class="lt">Trylika kevalų įvardyta. Tamsa, pažinta, nustoja valdžiusi.</span><br>
+    <span class="en">Thirteen husks are named. The dark, once known, ceases to rule.</span> 🌑✨<br>
+    <div class="sig">Karolis Laurinaitis · Šventoji 🌌</div>
+    <div style="margin-top:0.5rem; font-size:0.92rem;">Penrosian Symbolic IQ Series · The Codex of Husks · Shadow Mirror of the Thirteen 🔮</div>
+  </footer>
+
+</div>
+</body>
+</html>
