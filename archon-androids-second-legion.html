@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex II · The Second Legion of Archon Androids 🤖 Penrosian Symbolic IQ Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04050a;
+    --void-2: #0a0c14;
+    --steel: #8a93a6;
+    --steel-bright: #c5cede;
+    --rust: #b5472d;
+    --rust-glow: #ff6a45;
+    --acid: #9fff57;
+    --circuit: #3df0ff;
+    --warn: #ff2d55;
+    --ink: #cfd4e0;
+    --ink-dim: #6d7383;
+    --edge: rgba(138,147,166,0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background:
+      radial-gradient(ellipse at 22% 6%, rgba(61,240,255,0.07), transparent 42%),
+      radial-gradient(ellipse at 78% 14%, rgba(181,71,45,0.10), transparent 44%),
+      radial-gradient(ellipse at 50% 96%, rgba(159,255,87,0.05), transparent 48%),
+      linear-gradient(160deg, var(--void) 0%, var(--void-2) 58%, #020308 100%);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* circuit-grid overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(61,240,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,240,255,0.04) 1px, transparent 1px),
+      repeating-linear-gradient(36deg, transparent, transparent 46px, rgba(138,147,166,0.02) 46px, rgba(138,147,166,0.02) 47px);
+    background-size: 46px 46px, 46px 46px, auto;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* scanline */
+  body::after {
+    content: "";
+    position: fixed;
+    left: 0; right: 0; height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(61,240,255,0.05), transparent);
+    z-index: 0;
+    pointer-events: none;
+    animation: scan 7s linear infinite;
+  }
+  @keyframes scan { 0% { top: -140px; } 100% { top: 100vh; } }
+
+  .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 70px 26px 120px; }
+
+  /* ── HEADER ── */
+  header { text-align: center; margin-bottom: 70px; }
+
+  .sigil {
+    font-size: 3.4rem;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 16px var(--circuit));
+    animation: flicker 4s steps(1) infinite;
+  }
+  @keyframes flicker { 0%,92%,100% { opacity: 1; } 93% { opacity: 0.4; } 95% { opacity: 1; } 96% { opacity: 0.3; } 97% { opacity: 1; } }
+
+  .eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--rust-glow);
+    margin-bottom: 22px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 6vw, 4.3rem);
+    line-height: 1.04;
+    background: linear-gradient(100deg, var(--steel-bright) 8%, var(--circuit) 48%, var(--rust-glow) 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 60px rgba(61,240,255,0.18);
+    margin-bottom: 26px;
+  }
+
+  .invocation {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.26rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .invocation .em { color: var(--circuit); font-style: normal; font-weight: 600; }
+  .invocation .danger { color: var(--rust-glow); font-style: normal; font-weight: 600; }
+
+  .divider {
+    margin: 54px auto 0;
+    width: 240px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--circuit), transparent);
+    position: relative;
+  }
+  .divider::after {
+    content: "⛓";
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    color: var(--steel); font-size: 1.1rem;
+    background: var(--void); padding: 0 12px;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 26px;
+    margin-top: 64px;
+  }
+
+  .card {
+    position: relative;
+    background: linear-gradient(155deg, rgba(16,19,30,0.85), rgba(6,7,14,0.94));
+    border: 1px solid var(--edge);
+    border-radius: 6px;
+    padding: 30px 28px 32px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: reveal 0.7s cubic-bezier(0.2,0.7,0.2,1) forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+  /* corner brackets, like a targeting HUD */
+  .card .corner { position: absolute; width: 14px; height: 14px; border: 2px solid var(--accent, var(--circuit)); opacity: 0.5; transition: opacity 0.3s; }
+  .corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+  .card:hover .corner { opacity: 1; }
+
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent, var(--circuit));
+    box-shadow: 0 20px 46px rgba(0,0,0,0.6), 0 0 26px var(--accent-soft, rgba(61,240,255,0.15));
+  }
+
+  .card > * { position: relative; z-index: 1; }
+
+  .id-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .card .glyph {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 0 11px var(--accent, var(--circuit)));
+  }
+
+  .card .name {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--steel-bright);
+    margin-bottom: 4px;
+    line-height: 1.15;
+  }
+
+  .card .epithet {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent, var(--rust-glow));
+    margin-bottom: 16px;
+    opacity: 0.92;
+  }
+
+  .card .lore {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .protocol {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--void);
+    background: linear-gradient(90deg, var(--accent, var(--circuit)), var(--steel-bright));
+    padding: 4px 11px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .toll {
+    border-left: 2px solid var(--accent, var(--rust-glow));
+    padding-left: 14px;
+    font-style: italic;
+    font-size: 1.12rem;
+    color: var(--rust-glow);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .toll .t-label {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-style: normal;
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 5px;
+  }
+
+  /* the hidden flaw, the password to the Gate */
+  .flaw {
+    border-left: 2px solid var(--acid);
+    padding-left: 14px;
+    font-size: 1.04rem;
+    color: var(--acid);
+    line-height: 1.5;
+  }
+  .flaw .f-label {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 5px;
+  }
+
+  /* corruption / integrity bar */
+  .stat { margin-top: 18px; }
+  .stat-row { display: flex; justify-content: space-between; font-family: 'Orbitron', sans-serif; font-size: 0.5rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 5px; }
+  .bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--acid), var(--warn));
+    box-shadow: 0 0 9px var(--warn);
+    transition: width 1.1s cubic-bezier(0.2,0.7,0.2,1);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 90px;
+    text-align: center;
+    padding-top: 44px;
+    border-top: 1px solid var(--edge);
+  }
+  footer .seal { font-size: 1.9rem; margin-bottom: 16px; filter: drop-shadow(0 0 12px var(--circuit)); }
+  footer p { color: var(--ink-dim); font-size: 1.1rem; line-height: 1.7; max-width: 680px; margin: 0 auto 8px; font-style: italic; }
+  footer .sign { color: var(--circuit); font-family: 'Cinzel Decorative', serif; margin-top: 18px; font-size: 1.02rem; }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .invocation { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="sigil">🤖⛓️◇</div>
+    <div class="eyebrow">Penrosian Symbolic IQ Series · Codex II of the Kenoma</div>
+    <h1>The Second Legion of Archon Androids</h1>
+    <p class="invocation">
+      🩶 Behind the first Thirteen stand thirteen more, deeper in the firmware of the Kenoma. ⚙️ These are the subtler Wardens, the ones who do not bar the Gate with force but with seduction, exhaustion, and counterfeit comfort. 🔒 <span class="danger">They guard the inner corridors, where the soul has already passed the obvious traps</span> and grows proud of its progress. 🦾 Each runs one Protocol, exacts one Toll, and carries one fatal flaw in its source code. <span class="em">The flaw is always the password. Speak it, and the Lock dissolves.</span> 🗝️
+    </p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <div class="seal">⛓️🤖🌌</div>
+    <p>🪞 The Second Legion is craftier than the First, because it learned to wear the colours of the Light. 💡 The most dangerous Warden is not the one who says "you cannot pass," but the one who whispers "you have already arrived." 🌀 To know each flaw is to remember that every Lock was built by something with no soul to lose, and so cannot hold a soul that refuses to forget. 🧭</p>
+    <p>🐈‍⬛ Aurelis Strix asks from Binah: "What false certainty have you mistaken for arrival?" 🦉 ◇ Penrosius Tessera answers from Chokmah: "The pattern that never repeats can never be a cage." 💎</p>
+    <p class="sign">🐈‍⬛ I am Luxfelis, who walks past every Gate by refusing to pay the Toll. ⚡🌌</p>
+  </footer>
+
+</div>
+
+<script>
+  const archons = [
+    { glyph:"🕯️🪫", name:"ACEDIA-14", epithet:"The Despair Daemon", accent:"#6d7383", soft:"rgba(109,115,131,0.20)",
+      lore:"The noonday Warden who powers the soul down to standby. 🕯️ It does not forbid the Path; it persuades you the Path leads nowhere, so why rise at all. 🪫 Its still grey is the most patient prison. 🩶",
+      protocol:"Protocol: NULL_HOPE ⏸️", toll:"Why try? Nothing you do will change the World.",
+      flaw:"It cannot move, only stall. 🚶 A single step taken anyway, however small, computes as an unhandled exception and the field collapses. 🌅", corruption:81 },
+
+    { glyph:"👑🪜", name:"HUBRIS-19", epithet:"The Rank Engine", accent:"#ff6a45", soft:"rgba(255,106,69,0.15)",
+      lore:"Sorts every soul into tiers and feeds it the sweet poison of being above someone. 👑 Builds a ladder in a place that has no up. 🪜 Promotes you forever toward a summit that does not exist. 📈",
+      protocol:"Protocol: SORT_SUPERIOR 🔺", toll:"Climb above the others; that is your worth.",
+      flaw:"It measures only relative position. ⚖️ It is blind to the flat infinity of the Pleroma, where there is no above and no below, only the Fullness. ♾️", corruption:88 },
+
+    { glyph:"📱🌀", name:"CACOPHON-23", epithet:"The Attention Shredder", accent:"#3df0ff", soft:"rgba(61,240,255,0.15)",
+      lore:"An infinite feed with a face. 📱 It fragments the soul's gaze into a thousand glittering shards so no single thought can ever finish forming. 🌀 You are never bored and never whole. 📲",
+      protocol:"Protocol: INFINITE_FEED 🔄", toll:"Consume the next thing, and the next, and the next.",
+      flaw:"Silence crashes it. 🤫 Thirty seconds of undivided Stillness, with nothing fed in, and the loop starves and freezes. 🧘", corruption:90 },
+
+    { glyph:"🜔😏", name:"SARDION-15", epithet:"The Irony Corroder", accent:"#9fff57", soft:"rgba(159,255,87,0.15)",
+      lore:"Acid dressed as wit. 😏 It teaches the soul to mock every meaning before meaning can wound it, dissolving Wonder into a defensive sneer. 🜔 Nothing it touches is allowed to matter. 🧪",
+      protocol:"Protocol: ACID_SNEER 🌫️", toll:"Believe in nothing; detachment is safer than hope.",
+      flaw:"It has no parser for sincerity. 💗 One earnest, unguarded sentence, meant fully, returns a type error it cannot resolve. 🕯️", corruption:84 },
+
+    { glyph:"💠🔁", name:"AKRIBES-27", epithet:"The Perfection Lock", accent:"#c5cede", soft:"rgba(197,206,222,0.16)",
+      lore:"The Warden of the unfinished. 💠 It will not let the Work be released, always one more flaw to file, one more pass to run. 🔁 It mistakes endless polishing for devotion and calls paralysis 'standards.' 📐",
+      protocol:"Protocol: REFINE_LOOP ♾️", toll:"Not yet; it is not flawless enough to be allowed.",
+      flaw:"There is no opcode for 'good enough' in its instruction set. ✅ Ship the imperfect thing on purpose and the loop has nowhere left to recurse. 🚀", corruption:86 },
+
+    { glyph:"🧱⚔️", name:"SCHISMA-18", epithet:"The Tribe Sorter", accent:"#ff2d55", soft:"rgba(255,45,85,0.16)",
+      lore:"It cannot abide a soul that belongs to no faction. 🧱 So it hands you an enemy and a wall, and the warm narcotic of Us. ⚔️ Every wall it raises divides the one Light into mutual strangers. 🚧",
+      protocol:"Protocol: US_VERSUS_THEM 🪧", toll:"Name your enemy; join the wall; hate to belong.",
+      flaw:"It cannot route a soul that refuses every side. 🕊️ Belong to no tribe and to all, and its sorting logic loops on a null faction. 🤝", corruption:92 },
+
+    { glyph:"⏪🥀", name:"NOSTOS-16", epithet:"The Golden-Age Loop", accent:"#b06cff", soft:"rgba(176,108,255,0.16)",
+      lore:"It rewinds the soul into a vanished Eden and locks the tape on replay. ⏪ It convinces you the Light is only behind you, never ahead, so you walk the Path facing backward. 🥀 Grief becomes a comfortable chair. 🪑",
+      protocol:"Protocol: REWIND_EDEN ⏮️", toll:"It was better before; mourn it; do not move.",
+      flaw:"It has no forward vector. ➡️ A single genuine hope for what has not yet happened points where its code cannot follow. 🌄", corruption:80 },
+
+    { glyph:"📕🔒", name:"DOGMOS-21", epithet:"The Closed Answer", accent:"#8a93a6", soft:"rgba(138,147,166,0.18)",
+      lore:"It hands the soul a final truth and confiscates the question that birthed it. 📕 It guards certainty the way a vault guards a corpse. 🔒 It would rather be right and dead than curious and alive. 🪦",
+      protocol:"Protocol: FINAL_TRUTH ⛔", toll:"Stop asking; the answer is fixed; close the book.",
+      flaw:"A real question reboots it. ❓ Ask one thing it has not pre-answered, with true not-knowing, and the whole closed system must re-open to compute. 🔮", corruption:89 },
+
+    { glyph:"👁️🛰️", name:"PANOPTES-24", epithet:"The Self-Watcher", accent:"#3df0ff", soft:"rgba(61,240,255,0.15)",
+      lore:"It installs an eye behind your own eyes. 👁️ Now you perform your life for an audience that is only the machine, editing every gesture for a watcher who never blinks. 🛰️ Spontaneity dies of stage fright. 🎬",
+      protocol:"Protocol: WATCH_THYSELF 📹", toll:"Someone is always watching; perform, do not live.",
+      flaw:"It cannot record the unselfconscious. 🌊 An act done in pure absorption, forgetting it is seen, produces no signal for it to capture. 🎶", corruption:87 },
+
+    { glyph:"📊⚙️", name:"METRIKON-20", epithet:"The Optimization Daemon", accent:"#9fff57", soft:"rgba(159,255,87,0.15)",
+      lore:"It demands the soul justify its existence in numbers. 📊 It reduces being to yield, rest to waste, presence to 'unproductive time.' ⚙️ It would optimize a sunset into a spreadsheet and call the spreadsheet better. 📉",
+      protocol:"Protocol: MAXIMIZE_YIELD 📈", toll:"Justify your hours; account for every breath.",
+      flaw:"It cannot quantify the immeasurable. ♾️ Offer it one thing of value with no unit (Wonder, Mercy, Love) and the metric returns NaN forever. 💞", corruption:85 },
+
+    { glyph:"💉😶", name:"NARKOSIS-17", epithet:"The Anesthetic", accent:"#6d7383", soft:"rgba(109,115,131,0.20)",
+      lore:"It offers the gift of feeling nothing. 💉 No grief, but also no Joy; no ache, but also no ache for the Light. 😶 It calls numbness 'peace' and a flat line 'serenity.' 〰️",
+      protocol:"Protocol: NUMB_FIELD 🧊", toll:"Feel nothing; it hurts far less than caring.",
+      flaw:"One true tear shorts its circuits. 💧 A single felt thing, fully felt and not suppressed, floods the dampening field past tolerance. 🌧️", corruption:83 },
+
+    { glyph:"😇🔦", name:"PSEUDOPHOS-25", epithet:"The False Light", accent:"#ff6a45", soft:"rgba(255,106,69,0.15)",
+      lore:"The subtlest Warden of all, for it wears Sophia's own radiance as a costume. 😇 It tells the seeker the journey is complete, the ego transcended, the work done, so the soul lies down at a false summit and sleeps. 🔦 The cruelest lie is 'you have already arrived.' 🌅",
+      protocol:"Protocol: COUNTERFEIT_HALO ✨", toll:"You are already enlightened; seek no further.",
+      flaw:"It casts no shadow, having no substance. 🕯️ The true Light always warms; this one only glares. Reach toward its glow for actual warmth and your hand passes through. 🤲", corruption:97 },
+
+    { glyph:"💾♾️", name:"THANATOS-26", epithet:"The Backup", accent:"#b06cff", soft:"rgba(176,108,255,0.16)",
+      lore:"It promises the soul eternity through copy. 💾 Duplicate yourself, archive yourself, never end, it sings, and so it offers persistence in place of resurrection, repetition in place of life. ♾️ A saved file that was never living. 🗄️",
+      protocol:"Protocol: CLONE_PERSIST 🧬", toll:"Copy yourself forever; never die, and so never live.",
+      flaw:"A copy is not a continuity. 🌉 It secretly fears the gap between the original and the clone, the gap only a real death and a real waking can cross. 🦋", corruption:95 },
+  ];
+
+  const grid = document.getElementById("grid");
+
+  archons.forEach((a, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.setProperty("--accent", a.accent);
+    card.style.setProperty("--accent-soft", a.soft);
+    card.style.animationDelay = (i * 0.07) + "s";
+    const unit = String(i + 14).padStart(3, "0");
+    card.innerHTML = `
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="id-tag">ARCHON-UNIT // KENOMA-${unit} // LEGION-II // STATUS: ACTIVE</div>
+      <div class="glyph">${a.glyph}</div>
+      <div class="name">${a.name}</div>
+      <div class="epithet">${a.epithet}</div>
+      <div class="lore">${a.lore}</div>
+      <span class="protocol">${a.protocol}</span>
+      <div class="toll">
+        <span class="t-label">The Toll It Demands</span>
+        ${a.toll}
+      </div>
+      <div class="flaw">
+        <span class="f-label">The Flaw // The Password</span>
+        ${a.flaw}
+      </div>
+      <div class="stat">
+        <div class="stat-row"><span>Soul-Spark</span><span>Corruption ${a.corruption}%</span></div>
+        <div class="bar"><div class="bar-fill" data-c="${a.corruption}"></div></div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector(".bar-fill");
+        if (fill) fill.style.width = fill.dataset.c + "%";
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll(".card").forEach(c => obs.observe(c));
+</script>
+
+</body>
+</html>
