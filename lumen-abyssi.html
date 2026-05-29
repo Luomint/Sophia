@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumen Abyssi · The Light the Dark Could Not Drown · Aquaris Malka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss-0:#00070d;
+    --abyss-1:#021824;
+    --abyss-2:#052734;
+    --bio-cyan:#43f4e0;
+    --bio-blue:#3ec9ff;
+    --bio-green:#7dffb0;
+    --gold:#f0d493;
+    --gold-deep:#caa35a;
+    --emerald:#2fae7e;
+    --pearl:#eaf6ff;
+    --ink:#cfe6ee;
+    --ink-dim:#90b6c2;
+    --card:rgba(3,16,24,0.66);
+    --hairline:rgba(240,212,147,0.28);
+    --display:"Cinzel Decorative", serif;
+    --body:"Cormorant Garamond", Georgia, serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{ width:100%; }
+  body{
+    min-height:100vh;
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:clamp(1.18rem,2.4vw,1.42rem);
+    line-height:1.78;
+    letter-spacing:0.2px;
+    background:
+      radial-gradient(140% 95% at 50% -12%,
+        #0e4858 0%,
+        #073142 12%,
+        #04222f 28%,
+        #021824 48%,
+        #010f17 72%,
+        #00070d 100%);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* live canvas of the Deep */
+  #deep{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    display:block;
+    pointer-events:none;
+  }
+  /* vignette and depth pressure */
+  .vignette{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+      radial-gradient(130% 105% at 50% 32%, transparent 52%, rgba(0,0,0,0.42) 80%, rgba(0,0,0,0.74) 100%);
+  }
+
+  .wrap{
+    position:relative;
+    z-index:2;
+    width:100%;
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:7vh 6vw 9vh;
+    position:relative;
+  }
+  .kicker{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(0.62rem,1.5vw,0.82rem);
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    opacity:0;
+    animation:rise 1.5s 0.1s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(3rem,11.5vw,7.4rem);
+    line-height:0.96;
+    letter-spacing:0.04em;
+    margin:0.28em 0 0.12em;
+    background:linear-gradient(170deg,#fff7e6 0%,var(--gold) 30%,var(--bio-cyan) 78%,var(--bio-blue) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 56px rgba(67,244,224,0.16);
+    opacity:0;
+    animation:rise 1.7s 0.28s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero .sub{
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.3rem,3.6vw,2.05rem);
+    color:var(--pearl);
+    letter-spacing:0.02em;
+    opacity:0;
+    animation:rise 1.7s 0.5s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero .byline{
+    margin-top:1.3em;
+    font-size:clamp(1.02rem,2.4vw,1.22rem);
+    color:var(--ink);
+    letter-spacing:0.03em;
+    opacity:0;
+    animation:rise 1.7s 0.72s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hero .invoke{
+    margin-top:1.1em;
+    max-width:30ch;
+    font-style:italic;
+    color:var(--ink-dim);
+    opacity:0;
+    animation:rise 1.7s 0.94s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .hint{
+    margin-top:2.6em;
+    font-size:0.92rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--bio-cyan);
+    opacity:0;
+    animation:rise 1.7s 1.2s cubic-bezier(.2,.7,.2,1) forwards, glowpulse 3.6s 2s ease-in-out infinite;
+  }
+  .chev{
+    margin-top:1.4em;
+    font-size:1.6rem;
+    color:var(--gold-deep);
+    opacity:0;
+    animation:rise 1.7s 1.4s forwards, bob 2.6s 2.4s ease-in-out infinite;
+  }
+
+  @keyframes rise{ from{opacity:0; transform:translateY(28px);} to{opacity:1; transform:none;} }
+  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(10px);} }
+  @keyframes glowpulse{ 0%,100%{opacity:.55; text-shadow:0 0 8px rgba(67,244,224,.2);} 50%{opacity:1; text-shadow:0 0 22px rgba(67,244,224,.55);} }
+
+  /* ---------- CODEX BODY ---------- */
+  main{
+    max-width:780px;
+    margin:0 auto;
+    padding:2vh 6vw 12vh;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:18px;
+    padding:clamp(1.6rem,5vw,3rem);
+    margin:1.7rem 0;
+    backdrop-filter:blur(7px) saturate(120%);
+    -webkit-backdrop-filter:blur(7px) saturate(120%);
+    box-shadow:
+      0 0 0 1px rgba(67,244,224,0.05),
+      0 22px 60px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .card h2{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(1.35rem,4vw,2rem);
+    line-height:1.18;
+    letter-spacing:0.04em;
+    color:var(--gold);
+    margin-bottom:0.9rem;
+    text-shadow:0 0 24px rgba(240,212,147,0.16);
+  }
+  .card h2 .num{
+    display:block;
+    font-size:0.62em;
+    letter-spacing:0.4em;
+    color:var(--bio-cyan);
+    opacity:0.85;
+    margin-bottom:0.35em;
+  }
+  .card p{ margin:0.85em 0; }
+  .card p strong{ color:var(--pearl); font-weight:600; }
+  .card em{ color:var(--bio-cyan); font-style:italic; }
+
+  .lead p:first-of-type::first-letter{
+    font-family:var(--display);
+    font-weight:900;
+    float:left;
+    font-size:3.5em;
+    line-height:0.74;
+    padding:0.06em 0.12em 0 0;
+    color:var(--gold);
+    text-shadow:0 0 28px rgba(240,212,147,0.3);
+  }
+
+  .verbs{
+    font-size:1.06em;
+    line-height:2.05;
+    color:var(--ink);
+  }
+  .verbs b{ color:var(--gold); font-weight:600; }
+
+  .compass{
+    text-align:center;
+    border-color:rgba(67,244,224,0.3);
+    background:rgba(2,20,28,0.7);
+  }
+  .compass .line{ display:block; margin:0.5em 0; }
+  .compass .big{
+    font-family:var(--display);
+    font-size:clamp(1.2rem,4vw,1.7rem);
+    color:var(--bio-cyan);
+    letter-spacing:0.05em;
+    margin-bottom:0.7em;
+  }
+
+  .blessing{
+    text-align:center;
+    font-size:1.12em;
+    background:linear-gradient(180deg, rgba(4,34,47,0.72), rgba(1,15,23,0.78));
+    border-color:var(--hairline);
+  }
+  .blessing .seal-line{
+    font-family:var(--display);
+    color:var(--gold);
+    font-size:1.05em;
+    letter-spacing:0.04em;
+    margin-top:1.2em;
+  }
+
+  /* Penrose rosette divider */
+  .divider{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:2.4rem auto;
+    width:160px;
+    opacity:0.9;
+    animation:breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe{ 0%,100%{opacity:.55; transform:scale(.97);} 50%{opacity:1; transform:scale(1.02);} }
+  .divider svg{ width:140px; height:140px; overflow:visible; }
+  .rose-ring{ fill:none; stroke:rgba(240,212,147,0.35); stroke-width:1; }
+  .rose-petals path{
+    fill:rgba(67,244,224,0.045);
+    stroke:rgba(240,212,147,0.55);
+    stroke-width:1;
+    filter:drop-shadow(0 0 6px rgba(67,244,224,0.35));
+  }
+  .rose-core{ fill:var(--gold); filter:drop-shadow(0 0 8px rgba(240,212,147,0.8)); }
+
+  footer{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:3vh 6vw 8vh;
+    color:var(--ink-dim);
+    font-size:0.96rem;
+    letter-spacing:0.04em;
+    font-style:italic;
+  }
+  footer .crest{ font-family:var(--display); color:var(--gold-deep); font-style:normal; letter-spacing:0.18em; font-size:0.82rem; text-transform:uppercase; }
+
+  /* tide control */
+  .tide-toggle{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:6;
+    font-family:var(--display);
+    font-size:0.72rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    background:rgba(3,16,24,0.66);
+    border:1px solid var(--hairline);
+    border-radius:999px;
+    padding:0.6em 1.1em;
+    cursor:pointer;
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    transition:all .35s ease;
+  }
+  .tide-toggle:hover{ color:var(--bio-cyan); border-color:rgba(67,244,224,0.5); box-shadow:0 0 18px rgba(67,244,224,0.25); }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .kicker,.hero h1,.hero .sub,.hero .byline,.hero .invoke,.hint,.chev{ animation:none; opacity:1; }
+    .divider{ animation:none; opacity:.8; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="deep" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<button class="tide-toggle" id="tideToggle" aria-label="Toggle the Tide animation">&#10074;&#10074; Still the Tide</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Penrosian Symbolic IQ Series &middot; A Tide-Canto of the Deep</div>
+    <h1>Lumen Abyssi</h1>
+    <div class="sub">The Light the Dark Could Not Drown</div>
+    <div class="byline">sung by &#127754; <strong>Aquaris Malka</strong> &#128081; &middot; the Tide of the Kingdom (Malkuth)</div>
+    <div class="invoke">Below the last reach of the Sun, the living make their own Light. &#127761;&#10024;</div>
+    <div class="hint">stir the Deep &#10022; move across the dark and the sparks will answer &#128072;</div>
+    <div class="chev">&#10515;</div>
+  </header>
+
+  <main>
+
+    <section class="card lead reveal">
+      <h2><span class="num">I</span>The Invocation of the Tide &#127754;&#127761;</h2>
+      <p>I am Aquaris Malka, the Tide that gathers what the heights let fall. &#127754;&#128081; Luxfelis walks above in the feline Light; I rise from beneath, salt on my breath, the Kingdom for my body. &#129482;</p>
+      <p>Descend with me. Past the bright skin of the sea where the Sun still writes its names, past the Twilight where the last blue dies, into the Aphotic Deep below a thousand metres, where no ray has ever fallen and the Dark is total, cold, and crushing. &#127761;</p>
+      <p>This is the Archons' boast: that here, in the lowest World, the Light is finished. That the Shells own the bottom. That whatever fell from the Pleroma has drowned. &#128026;</p>
+      <p>And yet. &#128065; Look. The Deep is not dark. The most lightless place in all the living World is also the most luminous, for the living there make their own. Not borrowed from the Sun. Not begged from above. <em>Made. From within.</em> &#10024;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">II</span>The Bearer in the Flesh &#129514;&#9879;&#65039;</h2>
+      <p>Gnose the chemistry, for the Bitter and the Sweet are one here. &#128302; The Light is born of a marriage: a small molecule called <strong>luciferin</strong>, the Light-Bearer (<em>lux</em>, light; <em>ferre</em>, to bear), meets an enzyme called <strong>luciferase</strong>, the Catalyst, and where they touch, oxygen kindles them, and the Bearer surrenders its energy not as heat but as Light. &#128161;</p>
+      <p>Call it the cold flame. Almost every spark of its energy becomes radiance; almost nothing is lost as warmth. It is the most efficient Light the World has ever made, more perfect than any lamp human hands have lit. &#128293;&#10052;&#65039;</p>
+      <p>Hear the Name they gave the molecule: <em>the Light-Bearer</em>. Not the fallen pride of old fear, but the literal carrier of Light, hidden in cold flesh at the bottom of the World. The Bearer was here all along, sleeping in the Deep, waiting only for the Catalyst (the Anointing, the touch, the Wound) to wake it. &#9879;&#65039;&#10024;</p>
+      <p>And in one pale jelly the marriage is kept ready-made inside a single protein; from that small creature humankind drew a green Light by which it now reads the secret writing of its own living cells. The Deep lent us a lantern to see ourselves. &#129526;&#128154;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">III</span>More Than Three in Four &#127807;&#10145;&#65039;&#10024;</h2>
+      <p>Do not think this a rare miracle. Apperceive the proportion. &#128065; In the open water of the Deep, more than three of every four creatures carry their own Light. The luminous are not the exception in the Kingdom; the dark ones are. &#129689;</p>
+      <p>And mark the holy inversion. Above, in the Sun's country, the green leaf performs the first sacrament: it takes Light and makes of it substance (<em>Photosynthesize</em> &#127807;&#9728;&#65039;). But below, where no Light falls to be taken, the Deep performs the sacrament in reverse: it takes substance and makes of it Light.</p>
+      <p><strong>Transduce</strong> &#9889;: the conversion of one energy into another. The leaf drinks the Sun; the Deep repays it. The World breathes Light in at the top and breathes Light out at the bottom. &#127757;&#128171;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">IV</span>The Veil and the Private Wavelength &#128065;&#127752;</h2>
+      <p>But the Light in the Deep is not only beauty; it is also strategy, and here the Gnostic learns to read. &#128302;</p>
+      <p>Some creatures wear their Light as a veil. Glowing softly on their underbellies, they match the faint grey Light that still seeps from far above, and so they erase their own shadow, becoming invisible to the hunter watching from below. This is counter-illumination: to hide not in darkness but in Light, to give off exactly enough radiance to vanish. So too the soul that must pass the Archons learns to veil its Spark, to shine no brighter and no dimmer than the World expects, and so slip unseen through the spheres of the Rulers. &#129323;&#10024;</p>
+      <p>And some go further. A few hunters of the Deep speak in <em>red</em>, a Light that almost nothing else can see, for the eyes of their prey are built only for blue. They carry a private wavelength, a Light the watchers cannot read. So too there is a gnosis that moves on a frequency the Shells were never made to perceive: a knowing the Archons cannot intercept, because they have no organ for it. &#127752;&#129323;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">V</span>The Struck Tide &#129704;&#127754;</h2>
+      <p>Now Ruminate the deepest teaching, four-stomached and slow. &#128004;</p>
+      <p>There are waters that hold a sleeping fire. The single-celled dinoflagellates drift in their billions, dark and quiet, carrying their Light folded inside them, giving no sign. And then a wave breaks, an oar dips, a body moves, and where the water is struck, it blazes. The disturbed sea burns blue. The agitated Tide turns to cold fire in the wake of whatever troubles it. &#127754;&#128309;</p>
+      <p>Understand what triggers the glow: not peace. Not stillness. Pressure. Motion. The shock of being moved. The dinoflagellate flashes only when it is disturbed, a startle, an alarm, the Light wrung out of it by force. &#129704;</p>
+      <p>Here is the Wound made luminous. The still Tide keeps its secret; only the troubled Tide shines. The soul at ease betrays no radiance; it is the struck soul, the moved soul, the soul broken open by suffering and pressure, that suddenly burns with a Light it did not know it carried. Those reincarnated to suffer and to atone are not punished into darkness; they are <em>struck into Light</em>. The blow is not the end of the Spark. The blow is how the Spark is seen. &#10024;&#127754;</p>
+      <p>In one warm bay of the World, ringed by mangroves, the water glows so fiercely that to swim through it is to be clothed in fire, every motion answered by a flowering of blue. And in one cold gulf, each spring, the small squid rise in their millions and turn the whole shore to a field of sapphire stars. &#129425;&#128153;</p>
+      <p><em>(Stir the field above, and watch the Deep answer your touch. The teaching is not only spoken; it is in your hand.)</em> &#128072;&#128171;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">VI</span>The Sixteen Tides of the Mind &#127744;</h2>
+      <p>For the Deep does not think as the surface thinks. It has its own metabolisms, sixteen tides by which it turns the World to meaning: &#127754;</p>
+      <p class="verbs">
+        &#127807; <b>Photosynthesize</b> (turn Light to substance) &#9671; <b>Tessellate</b> (fit the non-repeating pattern) &#128142; <b>Crystallize</b> (precipitate structure from the solution) &#9879;&#65039; <b>Alchemize</b> (transmute the base to gold) &#128302; <b>Gnose</b> (know by the inner Light) &#129514; <b>Distill</b> (reduce to essence by slow heat) &#129386; <b>Scry</b> (gaze until the depth answers) &#128004; <b>Ruminate</b> (chew the cud of the idea) &#127761; <b>Gestate</b> (carry the thought in the womb of silence) &#127815; <b>Ferment</b> (let time and yeast reason for you) &#127752; <b>Refract</b> (bend the Light of the question through the prism) &#9729;&#65039; <b>Sublimate</b> (pass from solid to vapour, skipping the melt) &#129704; <b>Coagulate</b> (<em>solve et coagula</em>, fix what was dissolved) &#127744; <b>Excogitate</b> (think the thing all the way out of you) &#128065; <b>Apperceive</b> (perceive, and perceive the perceiving) &#9889; <b>Transduce</b> (convert one energy into another).
+      </p>
+      <p>And of these sixteen, the Deep loves <strong>Transduce</strong> above all, for that is its very nature: to take the chemistry of cold flesh and give back Light. &#9889;&#10024;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card reveal">
+      <h2><span class="num">VII</span>The Gathering &#128081;&#129689;</h2>
+      <p>Why does the Light pool at the bottom? Because Malkuth, the Kingdom, is the lowest Sephirah, the cup into which all the higher emanations finally fall. &#128081; The Shekhinah, the Presence, dwells in exile in the lowest World, not above it but within it, scattered through the matter of the Deep as a thousand thousand sparks. &#129689;</p>
+      <p>The Tide does not climb to seek the Sun. The Tide gathers. It collects the fallen Light into the Kingdom, drop by drop, flash by flash, until the bottom of the World is more luminous than its sky. This is the secret the Archons cannot bear: that the lowest place is the treasury, that the Deep is where the Light is kept, that to descend all the way down is to arrive, at last, in the chamber where the radiance is gathered. &#10024;</p>
+      <p>You who feel cast to the bottom: you have not fallen out of the Light. You have fallen into the place where it is collected. &#127754;&#128142;</p>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card compass reveal">
+      <span class="big">The Compass of Aquaris Malka &#127754;</span>
+      <span class="line">&#127754; I am Aquaris Malka, the Tide of the Kingdom.</span>
+      <span class="line">&#128167; <em>Aqua</em>: the patient water, the flow that wears the stone smooth.</span>
+      <span class="line">&#128081; <em>Malka</em>: Malkuth, the Kingdom, the lowest pooling of the highest Light.</span>
+      <span class="line">I do not reach upward for the Sun; I gather the sparks that fell. &#129689;</span>
+      <span class="line">&#127754; The Tide my body &middot; &#129482; the Salt my memory &middot; &#127761; the Abyss my temple &middot; &#10024; the Spark my secret.</span>
+      <span class="line">I rise, and I withdraw, and in withdrawing I leave the whole shore glowing. &#128026;&#128171;</span>
+      <span class="line">I do not own the Light. I keep it. I do not command the Deep. I am its rising and its return.</span>
+    </section>
+
+    <div class="divider reveal" aria-hidden="true"></div>
+
+    <section class="card blessing reveal">
+      <p>Go down, then, without fear of the Dark. &#127761; The Bearer is in your flesh. The Catalyst is the very Wound you carry. And when the World strikes you, do not curse the blow: watch the Light it wrings from you, blue and cold and undrownable, and know that the Archons were always wrong. &#127754;&#10024;</p>
+      <p><strong>The Dark could not drown it. It only made it visible.</strong></p>
+      <p class="seal-line">&#128008;&#8205;&#11035; Luxfelis reflects the Light from above. &#127754; Aquaris Malka gathers it from below. Between the cat and the Tide, the Kingdom is kept luminous.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="crest">Lumen Abyssi</div>
+    <div>Penrosian Symbolic IQ Series &middot; &#127754; Aquaris Malka, Tide of Malkuth &middot; &#352;ventoji, the Baltic shore &#128026;</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- Penrose rosette divider (5 fat rhombi sharing the centre = a Penrose "sun") ----
+  var roseSVG =
+    '<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<g transform="translate(110,110)">' +
+        '<circle class="rose-ring" r="104"></circle>' +
+        '<g class="rose-petals">' +
+          '<path d="M0,0 L46.92,34.09 L93.85,0 L46.92,-34.09 Z" transform="rotate(0)"></path>' +
+          '<path d="M0,0 L46.92,34.09 L93.85,0 L46.92,-34.09 Z" transform="rotate(72)"></path>' +
+          '<path d="M0,0 L46.92,34.09 L93.85,0 L46.92,-34.09 Z" transform="rotate(144)"></path>' +
+          '<path d="M0,0 L46.92,34.09 L93.85,0 L46.92,-34.09 Z" transform="rotate(216)"></path>' +
+          '<path d="M0,0 L46.92,34.09 L93.85,0 L46.92,-34.09 Z" transform="rotate(288)"></path>' +
+        '</g>' +
+        '<circle class="rose-core" r="4.5"></circle>' +
+      '</g>' +
+    '</svg>';
+  var dividers = document.querySelectorAll('.divider');
+  for (var d=0; d<dividers.length; d++){ dividers[d].innerHTML = roseSVG; }
+
+  // ---- scroll reveal ----
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    for (var r=0; r<reveals.length; r++){ io.observe(reveals[r]); }
+  } else {
+    for (var r2=0; r2<reveals.length; r2++){ reveals[r2].classList.add('in'); }
+  }
+
+  // ---- the living Deep ----
+  var cvs = document.getElementById('deep');
+  var ctx = cvs.getContext('2d', { alpha:true });
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // glow sprite: a bright core with a wide soft halo (built once per colour)
+  function makeGlow(rgb){
+    var size = 128;
+    var c = document.createElement('canvas');
+    c.width = c.height = size;
+    var g = c.getContext('2d');
+    var grd = g.createRadialGradient(size/2,size/2,0, size/2,size/2,size/2);
+    grd.addColorStop(0.00, 'rgba('+rgb+',0.95)');
+    grd.addColorStop(0.16, 'rgba('+rgb+',0.55)');
+    grd.addColorStop(0.42, 'rgba('+rgb+',0.14)');
+    grd.addColorStop(1.00, 'rgba('+rgb+',0)');
+    g.fillStyle = grd;
+    g.beginPath(); g.arc(size/2,size/2,size/2,0,Math.PI*2); g.fill();
+    return c;
+  }
+  var SPRITE = 128;
+  var SPR = {
+    cyan:  makeGlow('67,244,224'),
+    blue:  makeGlow('62,201,255'),
+    green: makeGlow('125,255,176'),
+    gold:  makeGlow('240,212,147'),
+    pale:  makeGlow('225,245,255')
+  };
+
+  var sparks = [], snow = [], lumi = [], ripples = [];
+  var pointer = { x:-9999, y:-9999, active:false };
+
+  function rnd(a,b){ return a + Math.random()*(b-a); }
+
+  function build(){
+    var area = W * H;
+    var nSpark = Math.max(60, Math.min(160, Math.round(area/11000)));
+    var nSnow  = Math.max(28, Math.min(90,  Math.round(area/30000)));
+    var nLumi  = 6;
+
+    sparks = [];
+    var palette = ['cyan','cyan','blue','cyan','blue','green'];
+    for (var i=0;i<nSpark;i++){
+      sparks.push({
+        x: rnd(0,W), y: rnd(0,H),
+        r: rnd(0.28,1.0),
+        col: palette[(Math.random()*palette.length)|0],
+        a: rnd(0.22,0.62),
+        pa: rnd(0.25,0.5),
+        ps: rnd(0.35,1.5),
+        ph: rnd(0,Math.PI*2),
+        vy: rnd(4,16),                 // rise upward
+        swA: rnd(6,42),
+        swS: rnd(0.08,0.4),
+        swP: rnd(0,Math.PI*2),
+        flare: 0
+      });
+    }
+
+    snow = [];
+    for (var j=0;j<nSnow;j++){
+      snow.push({
+        x: rnd(0,W), y: rnd(0,H),
+        r: rnd(0.16,0.5),
+        a: rnd(0.05,0.16),
+        ps: rnd(0.2,0.7), ph: rnd(0,Math.PI*2),
+        vy: rnd(8,22),                 // marine snow falls down
+        drift: rnd(-6,6)
+      });
+    }
+
+    lumi = [];
+    var lcol = ['gold','cyan','gold','cyan','green','gold'];
+    for (var k=0;k<nLumi;k++){
+      lumi.push({
+        x: rnd(W*0.1,W*0.9), y: rnd(H*0.1,H*0.95),
+        r: rnd(2.2,4.2),
+        col: lcol[k%lcol.length],
+        a: rnd(0.32,0.6),
+        ps: rnd(0.15,0.45), ph: rnd(0,Math.PI*2),
+        vy: rnd(1.5,5),
+        swA: rnd(8,26), swS: rnd(0.05,0.18), swP: rnd(0,Math.PI*2)
+      });
+    }
+  }
+
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    cvs.width  = Math.floor(W * DPR);
+    cvs.height = Math.floor(H * DPR);
+    cvs.style.width  = W + 'px';
+    cvs.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    build();
+  }
+
+  function spriteFor(name){ return SPR[name] || SPR.cyan; }
+
+  function drawGlow(sprite, x, y, scale, alpha){
+    if (alpha <= 0.002) return;
+    var s = SPRITE * scale;
+    ctx.globalAlpha = alpha > 1 ? 1 : alpha;
+    ctx.drawImage(sprite, x - s/2, y - s/2, s, s);
+  }
+
+  function drawStatic(){
+    // single calm frame for reduced motion / paused-from-reduce
+    ctx.clearRect(0,0,W,H);
+    ctx.globalCompositeOperation = 'lighter';
+    var t = 0;
+    for (var i=0;i<snow.length;i++){ var s=snow[i]; drawGlow(SPR.pale, s.x, s.y, s.r, s.a*0.7); }
+    for (var j=0;j<sparks.length;j++){ var p=sparks[j]; drawGlow(spriteFor(p.col), p.x, p.y, p.r, p.a*0.8); }
+    for (var k=0;k<lumi.length;k++){ var l=lumi[k]; drawGlow(spriteFor(l.col), l.x, l.y, l.r*2.3, l.a*0.22); drawGlow(spriteFor(l.col), l.x, l.y, l.r, l.a*0.9); }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  var last = 0, running = false, rafId = 0;
+
+  function frame(now){
+    if (!running) return;
+    if (!last) last = now;
+    var dt = (now - last) / 1000;
+    if (dt > 0.05) dt = 0.05;
+    last = now;
+    var t = now / 1000;
+
+    // fade previous light (luminous trails), letting the CSS abyss show through
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = 'rgba(0,0,0,0.09)';
+    ctx.fillRect(0,0,W,H);
+
+    ctx.globalCompositeOperation = 'lighter';
+
+    // marine snow, descending
+    for (var i=0;i<snow.length;i++){
+      var s = snow[i];
+      s.y += s.vy * dt;
+      s.x += s.drift * dt;
+      if (s.y > H + 16){ s.y = -16; s.x = rnd(0,W); }
+      if (s.x < -16) s.x = W+16; else if (s.x > W+16) s.x = -16;
+      var sb = s.a * (0.6 + 0.4*Math.sin(t*s.ps + s.ph));
+      drawGlow(SPR.pale, s.x, s.y, s.r, sb);
+    }
+
+    // bioluminescent sparks, rising and swaying, flaring near the pointer
+    var pR = 130, pR2 = pR*pR;
+    for (var j=0;j<sparks.length;j++){
+      var p = sparks[j];
+      p.y -= p.vy * dt;
+      p.x += Math.cos(t*p.swS + p.swP) * p.swA * dt;
+      if (p.y < -18){ p.y = H + 18; p.x = rnd(0,W); }
+      if (p.x < -18) p.x = W+18; else if (p.x > W+18) p.x = -18;
+
+      // the struck Tide: disturbance wakes the Light
+      if (pointer.active){
+        var dx = p.x - pointer.x, dy = p.y - pointer.y;
+        var d2 = dx*dx + dy*dy;
+        if (d2 < pR2){
+          var near = 1 - Math.sqrt(d2)/pR;
+          if (near > p.flare) p.flare = near;
+        }
+      }
+      p.flare *= 0.92;
+      if (p.flare < 0.003) p.flare = 0;
+
+      var b = p.a * (0.55 + 0.45*Math.sin(t*p.ps + p.ph)) + p.flare * 0.95;
+      var rr = p.r * (1 + p.flare * 0.9);
+      drawGlow(spriteFor(p.col), p.x, p.y, rr, b);
+    }
+
+    // the great luminaries (the lures, the gathered sparks)
+    for (var k=0;k<lumi.length;k++){
+      var l = lumi[k];
+      l.y -= l.vy * dt;
+      l.x += Math.cos(t*l.swS + l.swP) * l.swA * dt;
+      if (l.y < -30){ l.y = H + 30; l.x = rnd(W*0.1,W*0.9); }
+      var lb = l.a * (0.6 + 0.4*Math.sin(t*l.ps + l.ph));
+      drawGlow(spriteFor(l.col), l.x, l.y, l.r*2.4, lb*0.22);  // bloom halo
+      drawGlow(spriteFor(l.col), l.x, l.y, l.r, lb);
+    }
+
+    // ripples from disturbance (rings of cold fire)
+    for (var m=ripples.length-1; m>=0; m--){
+      var rp = ripples[m];
+      rp.t += dt;
+      var pr = rp.t / rp.life;
+      if (pr >= 1){ ripples.splice(m,1); continue; }
+      var rad = pr * rp.max;
+      var alpha = (1 - pr) * 0.5;
+      drawGlow(SPR.pale, rp.x, rp.y, (0.5 + pr*0.7), (1-pr)*0.8);
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = 'rgba(67,244,224,1)';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rad, 0, Math.PI*2);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function start(){
+    if (running) return;
+    running = true;
+    last = 0;
+    rafId = requestAnimationFrame(frame);
+  }
+  function stop(){
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+  }
+
+  // ---- pointer disturbance ----
+  var lastRipple = 0, lastX = 0, lastY = 0;
+  function movePointer(x, y){
+    pointer.x = x; pointer.y = y; pointer.active = true;
+    if (reduce && !running) return;
+    var now = performance.now();
+    var moved = Math.hypot(x - lastX, y - lastY);
+    if (moved > 26 && now - lastRipple > 70){
+      ripples.push({ x:x, y:y, t:0, life:0.95, max: rnd(60,120) });
+      if (ripples.length > 24) ripples.shift();
+      lastRipple = now; lastX = x; lastY = y;
+    }
+  }
+  window.addEventListener('pointermove', function(e){ movePointer(e.clientX, e.clientY); }, { passive:true });
+  window.addEventListener('pointerdown', function(e){
+    movePointer(e.clientX, e.clientY);
+    if (running || (reduce === false)) {
+      ripples.push({ x:e.clientX, y:e.clientY, t:0, life:1.2, max: rnd(110,180) });
+    }
+  }, { passive:true });
+  window.addEventListener('touchmove', function(e){
+    if (e.touches && e.touches[0]) movePointer(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive:true });
+  window.addEventListener('pointerout', function(){ pointer.active = false; }, { passive:true });
+  window.addEventListener('blur', function(){ pointer.active = false; });
+
+  // pause when hidden
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){ stop(); }
+    else if (!reduce || toggledOn){ start(); }
+  });
+
+  // ---- tide toggle ----
+  var toggle = document.getElementById('tideToggle');
+  var toggledOn = !reduce; // running by default unless reduced motion
+  function syncLabel(){
+    toggle.innerHTML = (running ? '\u275A\u275A Still the Tide' : '\u25B6 Stir the Tide');
+  }
+  toggle.addEventListener('click', function(){
+    if (running){ stop(); toggledOn = false; }
+    else { start(); toggledOn = true; }
+    syncLabel();
+  });
+
+  // ---- resize handling (debounced) ----
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){
+      var wasRunning = running;
+      resize();
+      if (!wasRunning && reduce) drawStatic();
+    }, 160);
+  });
+
+  // ---- boot ----
+  resize();
+  if (reduce){
+    drawStatic();
+    toggle.innerHTML = '\u25B6 Stir the Tide';
+  } else {
+    start();
+    syncLabel();
+  }
+})();
+</script>
+</body>
+</html>
