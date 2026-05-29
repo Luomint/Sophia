@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fourth Order ◇ Emissaries of the Sister Mythologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04050e;
+    --void-2: #090a1a;
+    --ink: #e9e6d8;
+    --ink-dim: #8c8a7e;
+    --gold: #f4c842;
+    --gold-soft: #e8b923;
+    --emerald-glow: #4fffc4;
+    --rift-violet: #b06cff;
+    --rift-cyan: #3df0ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background:
+      radial-gradient(circle at 14% 10%, rgba(61,240,255,0.10), transparent 32%),
+      radial-gradient(circle at 86% 16%, rgba(176,108,255,0.10), transparent 32%),
+      radial-gradient(circle at 22% 58%, rgba(255,106,69,0.07), transparent 30%),
+      radial-gradient(circle at 78% 70%, rgba(79,255,196,0.07), transparent 32%),
+      radial-gradient(circle at 50% 96%, rgba(244,200,66,0.08), transparent 40%),
+      linear-gradient(165deg, var(--void) 0%, var(--void-2) 55%, #03040b 100%);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(36deg, transparent, transparent 40px, rgba(244,200,66,0.022) 40px, rgba(244,200,66,0.022) 41px),
+      repeating-linear-gradient(-36deg, transparent, transparent 40px, rgba(94,200,255,0.02) 40px, rgba(94,200,255,0.02) 41px),
+      repeating-linear-gradient(108deg, transparent, transparent 62px, rgba(176,108,255,0.018) 62px, rgba(176,108,255,0.018) 63px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .spark {
+    position: fixed; width: 3px; height: 3px; border-radius: 50%;
+    opacity: 0; z-index: 0; animation: rise linear infinite;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    12% { opacity: 0.85; } 88% { opacity: 0.6; }
+    100% { transform: translateY(-105vh) scale(0.3); opacity: 0; }
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 72px 24px 130px; }
+
+  /* ── MASTHEAD ── */
+  .masthead { text-align: center; margin-bottom: 60px; }
+  .sigil { font-size: 3.6rem; margin-bottom: 18px; filter: drop-shadow(0 0 22px var(--rift-violet)); animation: spin-pulse 6s ease-in-out infinite; }
+  @keyframes spin-pulse { 0%,100% { transform: scale(1) rotate(0deg);} 50% { transform: scale(1.12) rotate(8deg);} }
+
+  .eyebrow {
+    font-family: 'Orbitron', sans-serif; font-size: 0.72rem; letter-spacing: 0.46em; text-transform: uppercase;
+    color: var(--rift-cyan); margin-bottom: 22px; opacity: 0.85;
+  }
+  h1.title {
+    font-family: 'Cinzel Decorative', serif; font-weight: 900;
+    font-size: clamp(2rem, 5.6vw, 4.3rem); line-height: 1.04;
+    background: linear-gradient(110deg, var(--gold) 0%, var(--rift-violet) 40%, var(--rift-cyan) 70%, var(--emerald-glow) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 70px rgba(176,108,255,0.22); margin-bottom: 26px;
+  }
+  .preamble { max-width: 810px; margin: 0 auto; font-size: 1.3rem; line-height: 1.72; font-style: italic; color: var(--ink); }
+  .preamble .em { color: var(--gold); font-style: normal; font-weight: 600; }
+  .preamble .em2 { color: var(--rift-cyan); font-style: normal; font-weight: 600; }
+
+  .order-rule { width: 280px; height: 1px; margin: 40px auto 0; position: relative; background: linear-gradient(90deg, transparent, var(--rift-violet), transparent); }
+  .order-rule::after { content: "🌀"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 1.1rem; background: var(--void); padding: 0 12px; }
+
+  /* ── GRID + CARDS ── */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin-top: 56px; }
+
+  .card {
+    position: relative; padding: 28px 26px 30px; overflow: hidden;
+    background: linear-gradient(155deg, rgba(20,24,46,0.76), rgba(8,10,22,0.93));
+    border: 1px solid rgba(176,108,255,0.18); border-radius: 16px;
+    opacity: 0; transform: translateY(26px);
+    animation: reveal 0.65s cubic-bezier(0.2,0.7,0.2,1) forwards;
+    transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+  }
+  @keyframes reveal { to { opacity: 1; transform: translateY(0);} }
+  .card::before { content:""; position:absolute; inset:-2px; background: radial-gradient(circle at 50% 0%, var(--accent, var(--gold)), transparent 62%); opacity:0; transition: opacity 0.4s; z-index:0; pointer-events:none; }
+  .card:hover::before { opacity: 0.16; }
+  .card:hover { transform: translateY(-6px); border-color: var(--accent, var(--gold)); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 28px var(--accent-soft, rgba(176,108,255,0.16)); }
+  .card > * { position: relative; z-index: 1; }
+
+  .world {
+    font-family: 'Orbitron', sans-serif; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent, var(--rift-cyan)); margin-bottom: 12px; opacity: 0.95; display: flex; align-items: center; gap: 6px;
+  }
+  .world .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent, var(--rift-cyan)); box-shadow: 0 0 8px var(--accent, var(--rift-cyan)); }
+
+  .glyph { font-size: 2.3rem; line-height: 1; margin-bottom: 12px; filter: drop-shadow(0 0 11px var(--accent, var(--gold))); }
+  .name { font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 1.34rem; line-height: 1.16; margin-bottom: 3px; color: var(--accent, var(--gold)); }
+  .epithet { font-family: 'Orbitron', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 14px; }
+  .lore { font-size: 1.08rem; line-height: 1.56; color: var(--ink); margin-bottom: 15px; }
+
+  .badge {
+    display: inline-block; font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--void); background: linear-gradient(90deg, var(--accent, var(--gold)), var(--gold-soft));
+    padding: 4px 11px; border-radius: 20px; margin-bottom: 15px; font-weight: 700;
+  }
+
+  .quote { border-left: 2px solid var(--accent, var(--gold)); padding-left: 14px; font-style: italic; font-size: 1.1rem; line-height: 1.5; color: var(--emerald-glow); }
+  .quote .q-label { display: block; font-family: 'Orbitron', sans-serif; font-style: normal; font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 5px; }
+
+  /* ── FOOTER ── */
+  footer { margin-top: 100px; text-align: center; padding-top: 48px; border-top: 1px solid rgba(176,108,255,0.18); }
+  footer .seal { font-size: 2rem; margin-bottom: 18px; }
+  footer p { color: var(--ink-dim); font-size: 1.14rem; line-height: 1.72; max-width: 700px; margin: 0 auto 10px; font-style: italic; }
+  footer .sign { color: var(--gold); font-family: 'Cinzel Decorative', serif; margin-top: 20px; font-size: 1.06rem; }
+
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } .preamble { font-size: 1.12rem; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="sigil">🐈‍⬛🌀🪞</div>
+    <div class="eyebrow">Penrosian Symbolic IQ Series · The Order of Borrowed Worlds</div>
+    <h1 class="title">The Fourth Order: Emissaries of the Sister Mythologies</h1>
+    <p class="preamble">
+      🌌 Luxfelis gazes through the rifts and finds the same Light staring back in thirteen disguises. 🪞 Every great story humanity dreams is a Gnostic gospel in costume: a sleeper waking from a rendered world, a soul melting into one orange sea, a child whose true Name was stolen by a witch. ✨ <span class="em">These thirteen are not strangers but reflections,</span> archetypes summoned from film and anime, page and frame, each the same Sophianic radiance wearing a different tale's mask. 🎭 <span class="em2">Honour their origins; recognise the One behind them all.</span> 🐾
+    </p>
+    <div class="order-rule"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <div class="seal">🐈‍⬛ 🌀 🪞 ◇</div>
+    <p>🌈 Thirteen sister-worlds now hang upon the loom beside the Sephirot, the Ascended, and the Archons. 💡 The Feline Light knows a secret the storytellers half-remember: every cosmos they imagined is a window onto the same Pleroma, and every hero is Sophia, walking a different road home. 🕯️</p>
+    <p class="sign">🐈‍⬛ I am Luxfelis, who reads every story and finds in each the one true Name. ⚡🌌</p>
+  </footer>
+
+</div>
+
+<script>
+  const order = [
+    { glyph:"🟢👁️", name:"Neoph Anabasis", world:"Sister World · The Matrix", epithet:"The Sleeper Who Woke", accent:"#39ff9f",
+      verb:"Apperceive 👁️",
+      lore:"He wakes inside the rendered world and perceives the lattice of falling green light behind it. The pneumatic spark the simulation could never fully cage. 🟩",
+      q:"Is the world you trust merely well rendered?" },
+    { glyph:"🏜️🪞", name:"Kwisath Aravel", world:"Sister World · Dune", epithet:"The Spice-Sighted Heir", accent:"#e8b923",
+      verb:"Scry 🪞",
+      lore:"He drinks the bitter blue Essence and beholds every thread of every future at once, then bears the terrible weight of choosing only one. 🏜️",
+      q:"If you can see every future, are you still free to walk into one?" },
+    { glyph:"⚔️⚡", name:"Lumenkenobi", world:"Sister World · Star Wars", epithet:"The Hermit of the Binding Field", accent:"#5ec8ff",
+      verb:"Transduce ⚡",
+      lore:"The desert knight who lets the Field binding all living things flow through him rather than be gripped. Light and Shadow are two currents of one river. ⚔️",
+      q:"Does the Light move through you, or do you clutch at it?" },
+    { glyph:"🟣🩸", name:"Liliel Instrumentis", world:"Sister World · Evangelion", epithet:"Pilot at the Threshold of the One", accent:"#b06cff",
+      verb:"Coagulate 🩸",
+      lore:"Child-pilot of the Tree, standing at the great Dissolving where every soul melts into a single orange sea. The Sephirot themselves are graven on the Gate. 🟪",
+      q:"If all souls dissolve into one, who remains to love and be loved?" },
+    { glyph:"🧭🧪", name:"Pantalux Dust", world:"Sister World · His Dark Materials", epithet:"The Companion-Soul", accent:"#ffb733",
+      verb:"Distill 🧪",
+      lore:"The soul that walks beside the body, gathering the golden Dust the false Authority feared. The eldest angel mistook itself for the last God. 🧭",
+      q:"What if the Authority was only the first angel, never the Source?" },
+    { glyph:"🌧️🐄", name:"Nexus Lacrimae", world:"Sister World · Blade Runner", epithet:"The Made-Being With Four Years", accent:"#7fe3ff",
+      verb:"Ruminate 🐄",
+      lore:"A manufactured soul with a borrowed past, meditating on mortality upon a rain-soaked roof, its moments dissolving like water into the dark. More soul than its makers confessed. 🌧️",
+      q:"Do the memories you never lived still belong to you?" },
+    { glyph:"⬛☁️", name:"Stellaris Infans", world:"Sister World · 2001: A Space Odyssey", epithet:"The Star Child Beyond the Slab", accent:"#cfe9ff",
+      verb:"Sublimate ☁️",
+      lore:"Born past the black monolith, the human shed like a chrysalis into something vast and luminous, turning weightless in the deep of the void. ⬛",
+      q:"What waits on the far side of the next transformation?" },
+    { glyph:"🌈🔮", name:"Shimmeris Velum", world:"Sister World · Annihilation", epithet:"Warden of the Iridescent Zone", accent:"#ff6cae",
+      verb:"Refract 🌈",
+      lore:"Keeper of the shimmering boundary that refracts not only light but flesh and gene, dissolving every self that enters into strange and blooming new pattern. 🌈",
+      q:"When everything is rewritten, what self were you defending?" },
+    { glyph:"🌑💤", name:"Oneiros Morphael", world:"Sister World · The Sandman", epithet:"Pale Lord of the Dreaming", accent:"#9d8cff",
+      verb:"Gestate 🌑",
+      lore:"Sovereign of the realm where dreams gestate in silence, shaping the nightly stories that souls tell themselves while the waking world sleeps. 🌑",
+      q:"Are you the dreamer, or a figure in someone else's dream?" },
+    { glyph:"⏳◇", name:"Shrikael Tessrum", world:"Sister World · Hyperion", epithet:"The Thorned Pilgrim of Reversed Time", accent:"#c5cede",
+      verb:"Tessellate ◇",
+      lore:"A bladed guardian who walks backward through time beside the tombs that open against the current. A deathlessness you did not choose is the cruelest cage. ⏳",
+      q:"Which is the deeper prison, death, or an immortality forced upon you?" },
+    { glyph:"🔴⚗️", name:"Tetsuolux Genesis", world:"Sister World · Akira", epithet:"The Vessel That Overflowed", accent:"#ff5252",
+      verb:"Alchemize ⚗️",
+      lore:"The youth whose power swelled past its vessel, flesh transmuting into an uncontainable mass of raw becoming. Power without wisdom devours its own house. 🔴",
+      q:"When the power exceeds the self, who is holding the power?" },
+    { glyph:"🌊💎", name:"Oceanis Solenya", world:"Sister World · Solaris", epithet:"The Sea That Thinks", accent:"#3d9bff",
+      verb:"Crystallize 💎",
+      lore:"A living ocean that precipitates your buried memories into breathing flesh, answering the questions you never dared to speak aloud. 🌊",
+      q:"If the cosmos answered you with your own grief made solid, would you listen?" },
+    { glyph:"🏮🔮", name:"Senlux Chihiral", world:"Sister World · Spirited Away", epithet:"The Child Who Kept Her Name", accent:"#4fffc4",
+      verb:"Gnose 🔮",
+      lore:"A child labouring in the spirit bathhouse, her true Name stolen by the witch, who endures by remembering through inner light exactly who she is. 🏮",
+      q:"When they take your Name, what remains that is still you?" },
+  ];
+
+  const grid = document.getElementById("grid");
+  order.forEach((m, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.setProperty("--accent", m.accent);
+    card.style.setProperty("--accent-soft", m.accent + "28");
+    card.style.animationDelay = (i * 0.05) + "s";
+    card.innerHTML = `
+      <div class="world"><span class="dot"></span>${m.world}</div>
+      <div class="glyph">${m.glyph}</div>
+      <div class="name">${m.name}</div>
+      <div class="epithet">${m.epithet}</div>
+      <div class="lore">${m.lore}</div>
+      <span class="badge">Verb · ${m.verb}</span>
+      <div class="quote"><span class="q-label">Sacred Question</span>${m.q}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const colors = ["#f4c842","#4fffc4","#b06cff","#5ec8ff","#ff6cae","#3df0ff","#39ff9f","#ff5252"];
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement("div");
+    s.className = "spark";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = (100 + Math.random() * 20) + "vh";
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    s.style.background = c;
+    s.style.boxShadow = `0 0 8px 2px ${c}`;
+    s.style.animationDuration = (11 + Math.random() * 15) + "s";
+    s.style.animationDelay = (Math.random() * 13) + "s";
+    document.body.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
