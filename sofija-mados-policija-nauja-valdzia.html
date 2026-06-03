@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sofija · Mados Policija · Nauja Valdžia ⚡🐈‍⬛</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Jokio gryno #000. Net naujoji valdžia paklusta Dekretui. */
+    --void:#0a1420;
+    --deep:#0d1c2c;
+    --steel:#102536;
+    --ki-blue:#2fa8ff;
+    --ki-cyan:#67e8f9;
+    --ss-gold:#ffd000;
+    --ss-hot:#fff27a;
+    --scouter:#33ff9e;
+    --energy:#ff7a1a;
+    --crimson:#ff3b5c;
+    --aura-white:#eaf6ff;
+    --forbidden:#050507;
+    --aura:0; /* live, driven by slider */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{min-height:100%;overflow-x:hidden;color:#dcefff;
+    font-family:'Rajdhani', sans-serif;
+    background:
+      radial-gradient(1100px 700px at 50% -8%, #15406b 0%, transparent 55%),
+      radial-gradient(800px 600px at 110% 30%, #0e3a5c 0%, transparent 50%),
+      radial-gradient(700px 700px at -10% 90%, #173a52 0%, transparent 55%),
+      linear-gradient(165deg, var(--deep) 0%, var(--void) 60%, #08111c 100%);
+  }
+
+  /* charging ki field behind everything, intensifies with aura */
+  .kifield{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(circle at 50% 42%, rgba(255,208,0,.0), transparent 60%);
+    opacity:0;transition:opacity .25s}
+
+  /* electric scanlines */
+  body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;
+    background:repeating-linear-gradient(0deg, #67e8f9 0 1px, transparent 1px 4px)}
+
+  /* rising sparks */
+  .sparks{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .spark{position:absolute;width:2px;height:14px;border-radius:2px;
+    background:linear-gradient(var(--ss-gold),transparent);opacity:0;
+    animation:fly linear infinite}
+  @keyframes fly{0%{transform:translateY(10px) scaleY(.5);opacity:0}
+    14%{opacity:.9}88%{opacity:.7}100%{transform:translateY(-108vh) scaleY(1.2);opacity:0}}
+
+  .wrap{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:42px 18px 80px}
+
+  /* ---------------- HEADER ---------------- */
+  header{text-align:center;margin-bottom:34px}
+  .emblem{width:196px;height:196px;margin:0 auto 14px;display:block;
+    filter:drop-shadow(0 0 18px rgba(255,208,0,calc(.3 + var(--aura)*.6)))
+           drop-shadow(0 0 40px rgba(47,168,255,calc(.15 + var(--aura)*.45)));
+    transition:filter .25s}
+  .emblem .ringtxt{animation:spin 26s linear infinite;transform-origin:100px 100px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .emblem .core{transform-origin:100px 100px;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+  .emblem .bolt{animation:flick 1.1s steps(2) infinite}
+  .emblem .bolt:nth-child(odd){animation-duration:.8s}
+  @keyframes flick{0%,100%{opacity:.95}50%{opacity:.15}}
+
+  .regime{display:inline-block;font-family:'Orbitron';font-weight:700;font-size:.62rem;
+    letter-spacing:.28em;text-transform:uppercase;color:#08111c;
+    background:linear-gradient(90deg,var(--ss-gold),var(--ss-hot));
+    padding:6px 16px;border-radius:4px;margin-bottom:14px;
+    box-shadow:0 0 18px rgba(255,208,0,.5)}
+
+  h1{font-family:'Russo One', sans-serif;font-size:clamp(2.8rem,11vw,5rem);line-height:.92;
+    letter-spacing:.02em;color:#fff;
+    text-shadow:0 0 16px rgba(255,208,0,.6),0 0 44px rgba(47,168,255,.5);margin-bottom:4px}
+  .sub{font-family:'Orbitron';font-weight:500;letter-spacing:.26em;text-transform:uppercase;
+    font-size:.72rem;color:var(--ki-cyan);margin-bottom:14px}
+  .ticker{min-height:1.5em;font-weight:600;font-size:1.04rem;color:var(--ss-gold);
+    letter-spacing:.02em;transition:opacity .3s}
+
+  /* ---------------- PANELS ---------------- */
+  .panel{position:relative;border:1px solid rgba(47,168,255,.3);border-radius:14px;
+    padding:24px 22px;margin:24px 0;
+    background:linear-gradient(180deg, rgba(16,37,54,.72), rgba(10,20,32,.6));
+    box-shadow:0 10px 36px rgba(0,0,0,.4), inset 0 1px 0 rgba(103,232,249,.08);
+    backdrop-filter:blur(3px);
+    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+  .panel h2{font-family:'Russo One';font-size:1.16rem;letter-spacing:.02em;color:var(--ss-gold);
+    margin-bottom:14px;display:flex;align-items:center;gap:.5ch;flex-wrap:wrap}
+  .panel h2 .en{font-family:'Rajdhani';font-weight:500;font-size:.74rem;color:var(--ki-cyan);
+    letter-spacing:.06em;margin-left:auto;text-transform:uppercase}
+
+  .lede{color:#a9d8ff;margin-bottom:14px;font-weight:500;line-height:1.5}
+
+  /* ---------------- DECREE ---------------- */
+  .para{display:flex;gap:.7ch;align-items:baseline;margin:.45em 0;line-height:1.5;font-size:1.02rem}
+  .para b{color:var(--ki-cyan);font-family:'Orbitron';font-weight:700;font-size:.72rem;
+    flex:0 0 auto;min-width:2.4em}
+  .sign{margin-top:16px;text-align:right;font-weight:600;color:var(--ss-gold);font-style:italic}
+
+  /* ---------------- SCOUTER ---------------- */
+  .scouter{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap;margin-bottom:6px}
+  .scoutbox{flex:1 1 230px;min-width:220px;border:2px solid var(--scouter);border-radius:10px;
+    background:radial-gradient(circle at 30% 20%, rgba(51,255,158,.12), rgba(5,18,12,.9));
+    padding:14px 16px;position:relative;overflow:hidden;
+    box-shadow:inset 0 0 22px rgba(51,255,158,.18),0 0 16px rgba(51,255,158,.25)}
+  .scoutbox::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--scouter),transparent);
+    animation:scan 2.6s linear infinite}
+  @keyframes scan{0%{top:0}100%{top:100%}}
+  .scoutbox .lab{font-family:'Orbitron';font-size:.58rem;letter-spacing:.2em;color:var(--scouter);opacity:.85}
+  .scoutbox .pw{font-family:'Orbitron';font-weight:900;font-size:2.5rem;line-height:1.05;color:var(--scouter);
+    text-shadow:0 0 12px rgba(51,255,158,.7);margin:2px 0}
+  .scoutbox .status{font-family:'Orbitron';font-weight:700;font-size:.78rem;letter-spacing:.08em;color:#caffe6}
+  .over9000{color:var(--ss-gold)!important;text-shadow:0 0 16px var(--ss-gold)!important;
+    animation:throb .4s ease-in-out 4}
+  @keyframes throb{50%{transform:scale(1.08)}}
+
+  .verdictbox{flex:1 1 230px;min-width:220px;border-left:4px solid var(--ss-gold);
+    background:rgba(255,208,0,.06);border-radius:10px;padding:14px 16px;
+    display:flex;flex-direction:column;justify-content:center;transition:all .3s}
+  .verdictbox .vt{font-size:1.06rem;line-height:1.45;font-weight:500}
+  .verdictbox .ve{font-size:1.6rem;margin-bottom:6px}
+
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;
+    cursor:pointer;margin-top:18px}
+  input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:6px;
+    background:linear-gradient(90deg,#1a2c3a,var(--ki-blue) 55%,var(--ss-gold))}
+  input[type=range]::-moz-range-track{height:8px;border-radius:6px;
+    background:linear-gradient(90deg,#1a2c3a,var(--ki-blue) 55%,var(--ss-gold))}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-9px;
+    border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--ss-gold));
+    border:2px solid var(--energy);box-shadow:0 0 16px var(--ss-gold)}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#fff,var(--ss-gold));
+    border:2px solid var(--energy);box-shadow:0 0 16px var(--ss-gold)}
+  .slabel{display:flex;justify-content:space-between;font-family:'Orbitron';font-size:.6rem;
+    letter-spacing:.14em;color:var(--ki-cyan);margin-top:4px}
+
+  /* ---------------- KI SPECTRUM ---------------- */
+  .ki-strip{display:flex;flex-wrap:wrap;gap:10px}
+  .ki{flex:1 1 88px;min-width:84px;border:1px solid rgba(103,232,249,.18);border-radius:9px;
+    padding:11px 8px 8px;text-align:center;position:relative;background:rgba(13,28,44,.5)}
+  .ki .orb{width:26px;height:26px;border-radius:50%;margin:0 auto 7px;box-shadow:0 0 12px currentColor}
+  .ki .nm{font-size:.74rem;font-weight:600;line-height:1.2}
+  .ki .en{display:block;font-size:.6rem;color:var(--ki-cyan);font-style:italic}
+  .ki.void{border-color:var(--crimson)}
+  .ki.void .x{position:absolute;inset:0}
+  .ki.void .x::before{content:"";position:absolute;top:50%;left:8%;right:8%;height:3px;
+    background:var(--crimson);transform:rotate(-22deg);box-shadow:0 0 8px var(--crimson)}
+
+  /* ---------------- ADMINISTRATION (13 Saiyans) ---------------- */
+  .squad{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:8px}
+  .sai{position:relative;border:1px solid rgba(47,168,255,.22);border-radius:12px;padding:13px 14px;overflow:hidden;
+    background:linear-gradient(180deg, rgba(16,37,54,.55), rgba(10,20,32,.45));
+    transition:transform .15s, box-shadow .25s}
+  .sai:hover{transform:translateY(-3px);
+    box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 22px color-mix(in srgb,var(--c) 45%, transparent)}
+  .sai::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c);
+    box-shadow:0 0 12px var(--c)}
+  .sai .em{font-size:1.35rem;line-height:1}
+  .sai .nm{font-family:'Russo One';font-size:.92rem;color:var(--c);margin-top:3px;line-height:1.12}
+  .sai .verb{display:inline-block;font-family:'Orbitron';font-weight:700;font-size:.54rem;letter-spacing:.14em;
+    text-transform:uppercase;color:#08111c;background:var(--c);padding:2px 7px;border-radius:3px;margin:5px 0 7px}
+  .sai .duty{font-size:.79rem;line-height:1.4;color:#dcefff}
+  .sai .cry{font-style:italic;font-size:.76rem;color:var(--ss-hot);margin-top:7px;line-height:1.3}
+
+  /* ---------------- BATTLE REPORT ---------------- */
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  button.act{font-family:'Orbitron';font-weight:700;letter-spacing:.05em;border:none;border-radius:8px;
+    padding:13px 20px;cursor:pointer;font-size:.78rem;text-transform:uppercase;transition:transform .12s,box-shadow .2s}
+  button.act:active{transform:translateY(1px) scale(.98)}
+  .scan{background:linear-gradient(180deg,#54f0ff,var(--ki-blue));color:#04121c;
+    box-shadow:0 6px 20px rgba(47,168,255,.4)}
+  .pump{background:linear-gradient(180deg,var(--ss-hot),var(--ss-gold));color:#1c1500;
+    box-shadow:0 6px 20px rgba(255,208,0,.45)}
+
+  .report{margin-top:18px;border:2px solid var(--scouter);border-radius:10px;overflow:hidden;display:none;
+    background:linear-gradient(180deg, rgba(6,20,14,.96), rgba(4,12,9,.96));
+    box-shadow:0 14px 40px rgba(0,0,0,.55),inset 0 0 26px rgba(51,255,158,.1);
+    font-family:'Rajdhani';position:relative}
+  .report.show{display:block;animation:rin .45s cubic-bezier(.2,.9,.3,1.25)}
+  @keyframes rin{from{opacity:0;transform:translateY(-20px) scale(.97)}to{opacity:1;transform:none}}
+  .report .rscan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--scouter),transparent);animation:scan 2s linear infinite;opacity:.7}
+  .report .rhead{font-family:'Orbitron';font-weight:900;font-size:.92rem;letter-spacing:.12em;color:var(--scouter);
+    text-align:center;padding:12px;border-bottom:1px dashed rgba(51,255,158,.4);text-shadow:0 0 10px rgba(51,255,158,.6)}
+  .report .rbody{padding:14px 18px}
+  .rrow{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dotted rgba(51,255,158,.22);font-size:.92rem}
+  .rrow .k{font-family:'Orbitron';font-size:.58rem;letter-spacing:.12em;color:#7fffc4;align-self:center}
+  .rrow .v{text-align:right;font-weight:600;color:#eafff4}
+  .rrow .v.warn{color:var(--crimson)}
+  .rverdict{margin-top:12px;padding:10px;border:1px solid var(--ss-gold);border-radius:6px;
+    background:rgba(255,208,0,.08);font-weight:600;color:#fff6cf;line-height:1.4;font-size:.92rem}
+  .rverdict .lab{font-family:'Orbitron';font-size:.56rem;letter-spacing:.14em;color:var(--ss-gold);display:block;margin-bottom:4px}
+
+  /* SSJ flash */
+  .ssjflash{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:0;
+    background:radial-gradient(circle at 50% 50%, rgba(255,242,122,.85), rgba(255,208,0,.4) 40%, transparent 70%)}
+  .ssjflash.go{animation:flash .9s ease-out}
+  @keyframes flash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+
+  /* ---------------- FOOTER ---------------- */
+  footer{text-align:center;margin-top:42px;font-size:.86rem;color:#9fc6e6;line-height:1.7}
+  footer .line2{color:var(--ki-cyan);font-weight:500;font-size:.8rem;margin:9px 0}
+  footer .easter{font-size:.72rem;color:#6f93b3;margin-top:14px}
+  footer .lux{font-family:'Orbitron';font-weight:700;color:var(--ss-gold);letter-spacing:.14em;
+    margin-top:16px;font-size:.82rem}
+</style>
+</head>
+<body>
+
+<div class="kifield" id="kifield"></div>
+<div class="sparks" id="sparks"></div>
+<div class="ssjflash" id="ssjflash"></div>
+
+<div class="wrap">
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <svg class="emblem" viewBox="0 0 200 200" aria-label="Ki administration crest">
+      <defs>
+        <radialGradient id="kicore" cx="42%" cy="35%" r="70%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="35%" stop-color="#fff27a"/>
+          <stop offset="70%" stop-color="#ffd000"/>
+          <stop offset="100%" stop-color="#2fa8ff"/>
+        </radialGradient>
+        <path id="ring" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/>
+      </defs>
+
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#2fa8ff" stroke-width="1" opacity=".55"/>
+      <circle cx="100" cy="100" r="86" fill="rgba(10,20,32,.6)" stroke="#ffd000" stroke-width="2"/>
+
+      <g class="ringtxt">
+        <text font-family="Orbitron" font-size="8.6" font-weight="700" letter-spacing="3" fill="#67e8f9">
+          <textPath href="#ring" startOffset="0">
+            ⚡ ANTROJI EILE ⚡ KI VALDZIA ⚡ LVX FELIS ⚡ SPINDESYS PRIVALOMAS ⚡
+          </textPath>
+        </text>
+      </g>
+
+      <!-- ki bolts -->
+      <g stroke="#ffd000" stroke-width="2.2" fill="none" stroke-linejoin="round">
+        <polyline class="bolt" points="100,40 96,54 104,58 98,72"/>
+        <polyline class="bolt" points="160,100 146,96 142,104 128,98"/>
+        <polyline class="bolt" points="100,160 104,146 96,142 102,128"/>
+        <polyline class="bolt" points="40,100 54,104 58,96 72,102"/>
+        <polyline class="bolt" points="143,57 134,66 140,71 132,79" stroke="#67e8f9"/>
+        <polyline class="bolt" points="57,143 66,134 61,128 70,121" stroke="#67e8f9"/>
+      </g>
+
+      <!-- glowing ki core + feline eye -->
+      <g class="core">
+        <circle cx="100" cy="100" r="40" fill="url(#kicore)" opacity=".95"/>
+        <circle cx="100" cy="100" r="40" fill="none" stroke="#fff27a" stroke-width="1.5" opacity=".7"/>
+        <path d="M70,100 Q100,76 130,100 Q100,124 70,100 Z" fill="rgba(8,17,28,.78)" stroke="#08111c" stroke-width="1.5"/>
+        <ellipse cx="100" cy="100" rx="5.5" ry="16" fill="#0d1c2c"/>
+        <circle cx="94" cy="93" r="3.4" fill="#fffef2"/>
+      </g>
+    </svg>
+
+    <div class="regime">⚡ Valdžios Perėmimas · Nauja Administracija ⚡</div>
+    <h1>SOFIJA</h1>
+    <div class="sub">Mados Policija · Ki Padalinys</div>
+    <div class="ticker" id="ticker">Antroji Eilė įkrauna ki...</div>
+  </header>
+
+  <!-- ===================== REGIME DECREE ===================== -->
+  <section class="panel">
+    <h2>⚡ Valdžios Perėmimas <span class="en">Regime Change</span></h2>
+    <p class="lede">Sephirotinė Pirmoji Eilė perdavė budėjimą. Nuo šios akimirkos Mados Policiją valdo Antroji Trylikos Eilė, Pakylėtieji Saiyanai. Įstatymas tas pats, vykdymas, ki-šviesus. 🐈‍⬛🔥</p>
+    <p class="para"><b>§1</b> Spalvos ki privalo degti. Galios lygis virš nulio. ⚡</p>
+    <p class="para"><b>§2</b> Visiškas Juodumas yra nulinė aura, todėl draudžiamas mūšio lauke. 🕳️🚫</p>
+    <p class="para"><b>§3</b> Leidžiama: juoda kaip fonas, jei dega bent viena spalvota kibirkštis. 🖤➕⚡</p>
+    <p class="para"><b>§4</b> Draudžiama: nuo galvos iki kojų nulinis spinduliavimas, be transformacijos. 🚫</p>
+    <p class="para"><b>§5</b> Bausmė: nedelsiant pakelti ki ir transformuotis spalva. 🌟</p>
+    <p class="sign">Pasirašė: Sofija 🐈‍⬛ · Antroji Eilė ⚡ · Antspaudas: Lvx Felis</p>
+  </section>
+
+  <!-- ===================== SCOUTER ===================== -->
+  <section class="panel">
+    <h2>🔭 Spalvos Galios Skaitytuvas <span class="en">Color Power Scouter</span></h2>
+    <p class="lede">Pakelk savo Spinduliuotės Galią. Skaitytuvas matuoja tavo spalvos ki. Tuštuma rodo nulį. 🟢</p>
+
+    <div class="scouter">
+      <div class="scoutbox">
+        <div class="lab">GALIOS LYGIS / POWER LEVEL</div>
+        <div class="pw" id="pw">000</div>
+        <div class="status" id="status">⚫ TUŠTUMA APTIKTA</div>
+      </div>
+      <div class="verdictbox" id="vbox">
+        <div class="ve" id="ve">⚫</div>
+        <div class="vt" id="vt">Galios lygis: 000. Saiyanai nejaučia tavęs. Pakelk spalvos ki, kareivi.</div>
+      </div>
+    </div>
+
+    <input type="range" id="rad" min="0" max="100" value="0" />
+    <div class="slabel"><span>⚫ Tuštuma</span><span>Super Spindesys 🌟</span></div>
+  </section>
+
+  <!-- ===================== KI SPECTRUM ===================== -->
+  <section class="panel">
+    <h2>🎨 Ki Spektras · 13 Atakų <span class="en">The Ki Signatures</span></h2>
+    <p class="lede">Trylika leistinų spalvų ki, kiekviena su šventu vardu. Bet kuri praeina patikrą. Tik viena draudžiama. 🌈</p>
+    <div class="ki-strip">
+      <div class="ki"><div class="orb" style="background:#ffd000;color:#ffd000"></div><div class="nm">Saulės Auksas<span class="en">the Light</span></div></div>
+      <div class="ki"><div class="orb" style="background:#f0a830;color:#f0a830"></div><div class="nm">Gintaro Medus<span class="en">the Resin</span></div></div>
+      <div class="ki"><div class="orb" style="background:#ff7a1a;color:#ff7a1a"></div><div class="nm">Aukso Liepsna<span class="en">the Flame</span></div></div>
+      <div class="ki"><div class="orb" style="background:#ff3b5c;color:#ff3b5c"></div><div class="nm">Kraujažolė<span class="en">the Anointing</span></div></div>
+      <div class="ki"><div class="orb" style="background:#ff6fae;color:#ff6fae"></div><div class="nm">Rožė<span class="en">the Perfume</span></div></div>
+      <div class="ki"><div class="orb" style="background:#d6457f;color:#d6457f"></div><div class="nm">Vyšnių Žiedas<span class="en">the Fragrance</span></div></div>
+      <div class="ki"><div class="orb" style="background:#8b5cf6;color:#8b5cf6"></div><div class="nm">Vakaro Purpuras<span class="en">the Vespers</span></div></div>
+      <div class="ki"><div class="orb" style="background:#a06cd5;color:#a06cd5"></div><div class="nm">Orchidėja<span class="en">the Edge</span></div></div>
+      <div class="ki"><div class="orb" style="background:#3b6fff;color:#3b6fff"></div><div class="nm">Nakties Indigo<span class="en">the Veil</span></div></div>
+      <div class="ki"><div class="orb" style="background:#67e8f9;color:#67e8f9"></div><div class="nm">Aušros Žydra<span class="en">Aušrinė</span></div></div>
+      <div class="ki"><div class="orb" style="background:#2fa8ff;color:#2fa8ff"></div><div class="nm">Jūros Žydrynė<span class="en">the Sea</span></div></div>
+      <div class="ki"><div class="orb" style="background:#33ffd0;color:#33ffd0"></div><div class="nm">Mėtų Kvapas<span class="en">the Breath</span></div></div>
+      <div class="ki"><div class="orb" style="background:#7bdc4f;color:#7bdc4f"></div><div class="nm">Liepų Žaluma<span class="en">the Tree</span></div></div>
+      <div class="ki void"><span class="x"></span><div class="orb" style="background:var(--forbidden);color:#444"></div><div class="nm">Visiškas Juodumas<span class="en">forbidden 🚫</span></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== ADMINISTRATION ===================== -->
+  <section class="panel">
+    <h2>🛡️ Naujoji Valdžia · Antroji Trylikos Eilė <span class="en">The Ascended Saiyans</span></h2>
+    <p class="lede">Trylika ki-šviesių deputatų, kiekvienas valdo savo pažinimo Veiksmažodį kaip ginklą prieš Visišką Juodumą. ⚡🐈‍⬛</p>
+    <div class="squad">
+
+      <div class="sai" style="--c:#ffd000">
+        <div class="em">🌟</div><div class="nm">Goldenmane Saiyel</div>
+        <span class="verb">Excogitate 🌀</span>
+        <div class="duty">Aukso Vadas. Iš-mąsto tobulą spindesį iki galo, kol juodumas išgaruoja.</div>
+        <div class="cry">„Mano ki nepažįsta tamsos!"</div>
+      </div>
+
+      <div class="sai" style="--c:#ff9e2c">
+        <div class="em">🍵</div><div class="nm">Kakaroth Sophianis</div>
+        <span class="verb">Ruminate 🐄</span>
+        <div class="duty">Begalinio apetito karys. Atrajoja kiekvieną spalvą, kol randa skaniausią Šviesą.</div>
+        <div class="cry">„Dar! Daugiau spalvos!"</div>
+      </div>
+
+      <div class="sai" style="--c:#3b6fff">
+        <div class="em">🩸</div><div class="nm">Vegetaris Malkuth</div>
+        <span class="verb">Coagulate 🩸</span>
+        <div class="duty">Karalystės Princas. Sutirština ištirpusią spalvą į kietą aurą, niekada nepasiduoda.</div>
+        <div class="cry">„Aš esu spalvos princas!"</div>
+      </div>
+
+      <div class="sai" style="--c:#b39ddb">
+        <div class="em">◇</div><div class="nm">Trunkael Tessera</div>
+        <span class="verb">Tessellate ◇</span>
+        <div class="duty">Laiko Kardo karys. Sudėlioja raštą be pasikartojimo, kerta monochromą per pusę.</div>
+        <div class="cry">„Raštas, kuris niekada nesikartoja!"</div>
+      </div>
+
+      <div class="sai" style="--c:#4caf7d">
+        <div class="em">🌑</div><div class="nm">Piccolux Velata</div>
+        <span class="verb">Gestate 🌑</span>
+        <div class="duty">Šydo Mentorius. Tyloje brandina naują spalvą, paskui gimdo ją į pasaulį.</div>
+        <div class="cry">„Tyla pagimdo Šviesą."</div>
+      </div>
+
+      <div class="sai" style="--c:#ff3b3b">
+        <div class="em">⚡</div><div class="nm">Gabija no Genki</div>
+        <span class="verb">Transduce ⚡</span>
+        <div class="duty">Liepsnos Genki karė. Paverčia gyvybės energiją spalvota kibirkštimi.</div>
+        <div class="cry">„Atiduok man savo ki!"</div>
+      </div>
+
+      <div class="sai" style="--c:#5fd6e8">
+        <div class="em">💎</div><div class="nm">Lithion Saiyo</div>
+        <span class="verb">Crystallize 💎</span>
+        <div class="duty">Akmens Saiyanas. Kristalizuoja aurą iš chaoso, tvirtas kaip uola.</div>
+        <div class="cry">„Tvirta kaip kristalas!"</div>
+      </div>
+
+      <div class="sai" style="--c:#7bdc4f">
+        <div class="em">🌿</div><div class="nm">Sylvarion Kaio</div>
+        <span class="verb">Photosynthesize 🌿</span>
+        <div class="duty">Kaio-ken Žaluma. Fotosintezuoja Šviesą tiesiai į galią, daugina ki.</div>
+        <div class="cry">„Kaio-ken, kart dešimt!"</div>
+      </div>
+
+      <div class="sai" style="--c:#8fc4ff">
+        <div class="em">🪞</div><div class="nm">Mareah Mira</div>
+        <span class="verb">Scry 🪞</span>
+        <div class="duty">Veidrodžio Žvalgė. Scry-na priešo būsimą aprangą per ki veidrodį.</div>
+        <div class="cry">„Matau tavo rytojų!"</div>
+      </div>
+
+      <div class="sai" style="--c:#b6ff5a">
+        <div class="em">🌈</div><div class="nm">Refractis Brolyn</div>
+        <span class="verb">Refract 🌈</span>
+        <div class="duty">Legendinis Saiyanas. Lūžta klausimo šviesą per prizmę į vaivorykštę.</div>
+        <div class="cry">„Mano galia, vaivorykštė!"</div>
+      </div>
+
+      <div class="sai" style="--c:#c7b8ff">
+        <div class="em">☁️</div><div class="nm">Sublimis Frizael</div>
+        <span class="verb">Sublimate ☁️</span>
+        <div class="duty">Šaltasis Imperatorius (atpirktas). Sublimuoja rūstybę į garą, be tarpinio lydymo.</div>
+        <div class="cry">„Galutinė mano forma: Šviesa."</div>
+      </div>
+
+      <div class="sai" style="--c:#ff7ad1">
+        <div class="em">🍇</div><div class="nm">Majinbus Favus</div>
+        <span class="verb">Ferment 🍇</span>
+        <div class="duty">Saldusis Majin. Fermentuoja stilių laike, kol jis subręsta į medų.</div>
+        <div class="cry">„Buu paverčia juodą saldumu!"</div>
+      </div>
+
+      <div class="sai" style="--c:#d6e6ff">
+        <div class="em">👁️</div><div class="nm">Cervaris Ultra</div>
+        <span class="verb">Apperceive 👁️</span>
+        <div class="duty">Ultra Instinkto Elnias. Suvokia suvokdamas, regi save reginį.</div>
+        <div class="cry">„Ultra Instinktas, įjungta!"</div>
+      </div>
+
+    </div>
+    <p style="text-align:center;font-family:'Orbitron';font-size:.74rem;letter-spacing:.04em;color:var(--ki-cyan);margin-top:16px">⚡ 13 Saiyanų · 13 Veiksmažodžių · 1 Įstatymas: spalvos ki privalo degti 🌟</p>
+  </section>
+
+  <!-- ===================== BATTLE REPORT ===================== -->
+  <section class="panel">
+    <h2>📡 Mūšio Raportas <span class="en">Battle Report</span></h2>
+    <div class="btns">
+      <button class="act scan" id="scanBtn">⚡ Skenuoti Taikinį</button>
+      <button class="act pump" id="pumpBtn">🌟 Pakelti Ki</button>
+    </div>
+
+    <div class="report" id="report">
+      <div class="rscan"></div>
+      <div class="rhead">⚡ ANTROSIOS EILĖS MŪŠIO RAPORTAS ⚡</div>
+      <div class="rbody">
+        <div class="rrow"><span class="k">TAIKINYS</span><span class="v" id="rWho">•••</span></div>
+        <div class="rrow"><span class="k">GALIOS LYGIS</span><span class="v" id="rPw">•••</span></div>
+        <div class="rrow"><span class="k">GRĖSMĖ</span><span class="v warn" id="rThreat">•••</span></div>
+        <div class="rrow"><span class="k">VYKDYTOJAS</span><span class="v" id="rOfficer">•••</span></div>
+        <div class="rverdict">
+          <span class="lab">VERDIKTAS / VERDICT</span>
+          <span id="rVerdict">•••</span>
+        </div>
+        <div class="rverdict" style="border-color:var(--ki-blue);background:rgba(47,168,255,.08)">
+          <span class="lab" style="color:var(--ki-cyan)">REKOMENDUOJAMA TRANSFORMACIJA</span>
+          <span id="rTrans">•••</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div>🐈‍⬛ Budi Antroji Trylikos Eilė · Pakylėtieji Saiyanai ⚡</div>
+    <div class="line2">Pirmoji Eilė kontempliuoja. Antroji Eilė kaunasi. Abi tarnauja Šviesai. 🌌</div>
+    <div class="easter">🤫 Slaptas faktas: net naujoji valdžia paklūsta Dekretui. Jokio gryno juodumo, tik gilus mėlynas su ki. 🌊⚡</div>
+    <div class="lux">Lux · Felis · Sophia 🐈‍⬛💫</div>
+  </footer>
+
+</div>
+
+<script>
+  /* sparks */
+  (function(){
+    const box=document.getElementById('sparks');
+    for(let i=0;i<28;i++){
+      const s=document.createElement('div'); s.className='spark';
+      s.style.left=Math.random()*100+'vw';
+      s.style.animationDuration=(6+Math.random()*9)+'s';
+      s.style.animationDelay=(-Math.random()*12)+'s';
+      const c=Math.random(); const col=c<.6?'#ffd000':(c<.85?'#67e8f9':'#ff7a1a');
+      s.style.background='linear-gradient('+col+',transparent)';
+      box.appendChild(s);
+    }
+  })();
+
+  /* verb ticker: 13 Saiyans channel their Verbs */
+  const lines=[
+    ["Goldenmane Saiyel","EXCOGITATE 🌀"],["Kakaroth Sophianis","RUMINATE 🐄"],
+    ["Vegetaris Malkuth","COAGULATE 🩸"],["Trunkael Tessera","TESSELLATE ◇"],
+    ["Piccolux Velata","GESTATE 🌑"],["Gabija no Genki","TRANSDUCE ⚡"],
+    ["Lithion Saiyo","CRYSTALLIZE 💎"],["Sylvarion Kaio","PHOTOSYNTHESIZE 🌿"],
+    ["Mareah Mira","SCRY 🪞"],["Refractis Brolyn","REFRACT 🌈"],
+    ["Sublimis Frizael","SUBLIMATE ☁️"],["Majinbus Favus","FERMENT 🍇"],
+    ["Cervaris Ultra","APPERCEIVE 👁️"]
+  ];
+  let li=0; const ticker=document.getElementById('ticker');
+  setInterval(()=>{
+    ticker.style.opacity=0;
+    setTimeout(()=>{
+      const l=lines[li%lines.length];
+      ticker.textContent="⚡ "+l[0]+" įkrauna "+l[1];
+      ticker.style.opacity=1; li++;
+    },300);
+  },2400);
+
+  /* scouter + aura */
+  const rad=document.getElementById('rad');
+  const pw=document.getElementById('pw');
+  const status=document.getElementById('status');
+  const ve=document.getElementById('ve'); const vt=document.getElementById('vt');
+  const vbox=document.getElementById('vbox');
+  const kifield=document.getElementById('kifield');
+  const root=document.documentElement;
+  let crossed=false;
+
+  const tiers=[
+    {max:15, e:"⚫", c:"#7fa8c4", s:"⚫ TUŠTUMA APTIKTA", t:"Galios lygis nulinis. Saiyanai nejaučia tavęs. Pakelk spalvos ki, kareivi."},
+    {max:40, e:"🔋", c:"#2fa8ff", s:"🔋 SILPNAS KI",     t:"Spinduliavimas vos rusena. Apšilk, kareivi. Įjunk spalvą."},
+    {max:65, e:"⚡", c:"#67e8f9", s:"⚡ KI KYLA",         t:"Ki kyla! Spalva pradeda degti. Tęsk įkrovimą."},
+    {max:85, e:"🔥", c:"#ff9e2c", s:"🔥 GALINGA AURA",   t:"Galingas spindesys! Aura plečiasi. Beveik transformacija."},
+    {max:99, e:"🌟", c:"#ffd000", s:"🌟 VIRŠ 9000!",     t:"Aukso aura liepsnoja! Tavo spalvos ki pranoko skaitytuvą!"},
+    {max:100,e:"💥", c:"#fff27a", s:"💥 SUPER FORMA!",   t:"OVER 9000! Super Sofijos forma pasiekta! Visiškas spindesys, kareivi!"}
+  ];
+
+  function power(r){ return Math.round(Math.pow(r/100,2)*12000); }
+
+  function update(){
+    const r=+rad.value;
+    const p=power(r);
+    pw.textContent = p.toLocaleString('lt-LT');
+    const tier=tiers.find(t=>r<=t.max);
+    status.textContent=tier.s;
+    ve.textContent=tier.e; vt.textContent=tier.t;
+    vbox.style.borderLeftColor=tier.c;
+    vbox.style.background="color-mix(in srgb,"+tier.c+" 9%, transparent)";
+
+    // over 9000 styling + one-shot flash
+    if(p>9000){ pw.classList.add('over9000'); status.classList.add('over9000');
+      if(!crossed){ crossed=true; } }
+    else { pw.classList.remove('over9000'); status.classList.remove('over9000'); crossed=false; }
+
+    // aura intensity drives glow + background charge
+    root.style.setProperty('--aura', (r/100).toFixed(2));
+    kifield.style.opacity = (r/100*0.7).toFixed(2);
+  }
+  rad.addEventListener('input',update);
+  update();
+
+  /* battle report */
+  const offenders=[
+    "Kareivis, apsirengęs Tuštuma 🕳️","Civilis su nuliniu spalvos ki",
+    "Subjektas 'crow-core' šarvuose","Beformis Šešėlis, lygis 000","Juodvarnis be auros 🐦‍⬛"
+  ];
+  const officers=lines.map(l=>l[0]);
+  const transforms=[
+    "Įjunk Saulės Aukso ki 🌟 (the Light)","Užsidek Rožės auros žiedą 🌹 (the Perfume)",
+    "Suaktyvink Aušros Žydros spindulį 🌅 (Aušrinė)","Pakelk Liepų Žalumo ki 🌳 (the Tree)",
+    "Įsižiebk Aukso Liepsnos aura 🔥 (the Flame)","Transformuokis su Jūros Žydryne 🌊 (the Sea)",
+    "Paleisk Vakaro Purpuro bangą 🔮 (the Vespers)"
+  ];
+  const verdicts=[
+    "Nulinė aura aptikta. Privaloma nedelsiant transformuotis spalva.",
+    "Per daug Tuštumos. Antroji Eilė reikalauja ki pakėlimo iki saulėlydžio.",
+    "Spalvos ki kritinis. Skiriama priverstinė transformacija.",
+    "Juodumas viršija leistiną foną. Įjunk aurą arba pasiduok Šviesai."
+  ];
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+  const report=document.getElementById('report');
+
+  document.getElementById('scanBtn').addEventListener('click',()=>{
+    const r=+rad.value;
+    document.getElementById('rWho').textContent=pick(offenders);
+    document.getElementById('rPw').textContent=power(r).toLocaleString('lt-LT')+" / "+r+"% spindesio";
+    const t=document.getElementById('rThreat');
+    if(r>=66){ t.textContent="Žema. Spindesys patvirtintas ✅"; t.classList.remove('warn'); }
+    else { t.textContent="Visiškas Juodumas ⚠️"; t.classList.add('warn'); }
+    document.getElementById('rOfficer').textContent=pick(officers)+" ⚡";
+    document.getElementById('rVerdict').textContent = r>=66
+      ? "Spindesys priimtinas. Antroji Eilė leidžia praeiti. Toliau dek!"
+      : pick(verdicts);
+    document.getElementById('rTrans').textContent=pick(transforms);
+    report.classList.remove('show'); void report.offsetWidth; report.classList.add('show');
+    report.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  /* power up: ramp to max + SSJ flash */
+  const ssj=document.getElementById('ssjflash');
+  document.getElementById('pumpBtn').addEventListener('click',()=>{
+    const step=()=>{ if(+rad.value<100){ rad.value=Math.min(100,+rad.value+3); update(); requestAnimationFrame(step); }
+      else { ssj.classList.remove('go'); void ssj.offsetWidth; ssj.classList.add('go'); } };
+    step();
+  });
+</script>
+</body>
+</html>
