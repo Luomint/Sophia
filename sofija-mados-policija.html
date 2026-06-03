@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sofija · Pleromos Mados Policija 🐈‍⬛✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Note: jokio gryno #000. Net puslapis paklusta istatymui. */
+    --void:#0d0a1a;
+    --abyss:#150f2c;
+    --violet:#241544;
+    --orchid:#a06cd5;
+    --rose:#ff6fae;
+    --gold:#ffd56b;
+    --gold-deep:#d99a2b;
+    --dawn:#6fe3ff;
+    --linden:#b8e986;
+    --parchment:#f3e7c9;
+    --ink:#2b2118;
+    --forbidden:#050507;
+    --stamp:#c0392b;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{
+    background:
+      radial-gradient(1200px 700px at 18% -10%, #3a1f63 0%, transparent 55%),
+      radial-gradient(900px 600px at 110% 20%, #5a2b6b 0%, transparent 50%),
+      radial-gradient(700px 700px at 50% 120%, #1f1240 0%, transparent 60%),
+      linear-gradient(160deg, var(--abyss) 0%, var(--void) 60%, #100b22 100%);
+    color:#efe7ff;
+    font-family:'EB Garamond', serif;
+    min-height:100%;
+    overflow-x:hidden;
+  }
+
+  /* drifting light motes */
+  .motes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .mote{position:absolute;width:3px;height:3px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 8px 2px var(--gold);opacity:.0;
+    animation:rise linear infinite}
+  @keyframes rise{
+    0%{transform:translateY(20px) scale(.6);opacity:0}
+    12%{opacity:.85}
+    88%{opacity:.7}
+    100%{transform:translateY(-110vh) scale(1.1);opacity:0}
+  }
+
+  /* faint grain */
+  body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:46px 20px 80px}
+
+  /* ---------- HEADER / BADGE ---------- */
+  header{text-align:center;margin-bottom:42px}
+
+  .badge{width:188px;height:188px;margin:0 auto 18px;display:block;
+    filter:drop-shadow(0 6px 26px rgba(255,213,107,.35))}
+  .badge .ring-text{animation:spin 60s linear infinite;transform-origin:100px 100px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  h1{font-family:'Cinzel', serif;font-weight:900;letter-spacing:.12em;
+    font-size:clamp(2.6rem,9vw,4.4rem);
+    background:linear-gradient(180deg,#fff7df,var(--gold) 45%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    line-height:1;margin-bottom:6px}
+
+  .subtitle{font-family:'Cinzel', serif;font-weight:500;letter-spacing:.34em;
+    text-transform:uppercase;font-size:.72rem;color:var(--orchid);margin-bottom:14px}
+
+  .ticker{min-height:1.6em;font-style:italic;font-size:1.05rem;color:var(--dawn);
+    opacity:.92;transition:opacity .35s}
+
+  /* ---------- PANELS ---------- */
+  .panel{position:relative;border:1px solid rgba(160,108,213,.32);
+    border-radius:18px;padding:26px 24px;margin:26px 0;
+    background:linear-gradient(180deg, rgba(36,21,68,.62), rgba(13,10,26,.55));
+    backdrop-filter:blur(3px);
+    box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04)}
+
+  .panel h2{font-family:'Cinzel', serif;font-weight:700;font-size:1.18rem;
+    letter-spacing:.06em;color:var(--gold);margin-bottom:14px;
+    display:flex;align-items:center;gap:.5ch}
+  .panel h2 .en{font-family:'EB Garamond';font-weight:400;font-style:italic;
+    font-size:.78rem;color:var(--orchid);letter-spacing:0;margin-left:auto}
+
+  /* ---------- DECREE ---------- */
+  .decree p{margin:.5em 0;line-height:1.55}
+  .decree .lede{color:#d9cdfa;font-style:italic;margin-bottom:14px}
+  .para{display:flex;gap:.7ch;align-items:baseline}
+  .para b{color:var(--rose);font-family:'Cinzel';font-weight:500;font-size:.85rem;
+    flex:0 0 auto;min-width:2.2em}
+  .sign{margin-top:18px;text-align:right;font-style:italic;color:var(--gold)}
+
+  /* ---------- INSPECTION ---------- */
+  .gauge-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .gauge{flex:1 1 220px;min-width:200px}
+  .gauge .track{position:relative;height:20px;border-radius:12px;overflow:hidden;
+    background:linear-gradient(90deg,var(--gold),var(--linden) 22%,var(--dawn) 45%,var(--rose) 70%,#3a2a55 100%);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+  .gauge .shadow{position:absolute;top:0;right:0;height:100%;
+    background:linear-gradient(90deg, transparent, var(--forbidden) 60%);
+    width:0%;transition:width .25s ease}
+  .readout{flex:0 0 92px;text-align:center}
+  .readout .num{font-family:'Cinzel';font-weight:900;font-size:2.1rem;color:var(--gold);
+    line-height:1}
+  .readout .lbl{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orchid)}
+
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;
+    background:transparent;cursor:pointer;margin-top:16px}
+  input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:6px;
+    background:linear-gradient(90deg,var(--gold),#3a2a55)}
+  input[type=range]::-moz-range-track{height:8px;border-radius:6px;
+    background:linear-gradient(90deg,var(--gold),#3a2a55)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;
+    margin-top:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--gold));
+    border:2px solid var(--gold-deep);box-shadow:0 0 14px var(--gold)}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#fff,var(--gold));
+    border:2px solid var(--gold-deep);box-shadow:0 0 14px var(--gold)}
+
+  .slider-lbl{display:flex;justify-content:space-between;font-size:.7rem;
+    letter-spacing:.08em;color:var(--orchid);margin-top:4px}
+
+  .verdict{margin-top:20px;padding:16px 18px;border-radius:14px;
+    border-left:4px solid var(--gold);background:rgba(255,213,107,.06);
+    font-size:1.12rem;line-height:1.5;transition:all .3s}
+  .verdict .emoji{font-size:1.5rem;margin-right:.4ch}
+
+  /* ---------- PALETTE ---------- */
+  .swatches{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+  .sw{flex:1 1 90px;min-width:84px;border-radius:12px;padding:14px 8px 10px;text-align:center;
+    border:1px solid rgba(255,255,255,.12);position:relative}
+  .sw .dot{width:30px;height:30px;border-radius:50%;margin:0 auto 8px;
+    box-shadow:0 0 12px currentColor}
+  .sw .nm{font-size:.74rem;line-height:1.25}
+  .sw .en{display:block;font-style:italic;color:var(--orchid);font-size:.62rem}
+  .sw.banned{border-color:var(--stamp)}
+  .sw.banned .slash{position:absolute;inset:0;pointer-events:none}
+  .sw.banned .slash::before{content:"";position:absolute;top:50%;left:8%;right:8%;height:3px;
+    background:var(--stamp);transform:rotate(-22deg);box-shadow:0 0 8px var(--stamp)}
+
+  /* ---------- CITATION ---------- */
+  .cite-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  button.act{font-family:'Cinzel';font-weight:700;letter-spacing:.05em;
+    border:none;border-radius:999px;padding:13px 22px;cursor:pointer;font-size:.86rem;
+    transition:transform .12s, box-shadow .2s}
+  button.act:active{transform:translateY(1px) scale(.98)}
+  .issue{background:linear-gradient(180deg,#ff8fc0,var(--rose));color:#3a0a22;
+    box-shadow:0 6px 20px rgba(255,111,174,.4)}
+  .redeem{background:linear-gradient(180deg,#d6ffa6,var(--linden));color:#1d2e0a;
+    box-shadow:0 6px 20px rgba(184,233,134,.35)}
+
+  .ticket{margin-top:18px;background:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(43,33,24,.06) 28px),
+      var(--parchment);
+    color:var(--ink);border-radius:6px;padding:0;overflow:hidden;
+    font-family:'Special Elite', monospace;
+    box-shadow:0 14px 40px rgba(0,0,0,.5);
+    position:relative;display:none;
+    transform:rotate(-.6deg)}
+  .ticket.show{display:block;animation:drop .5s cubic-bezier(.2,.9,.3,1.3)}
+  @keyframes drop{from{opacity:0;transform:translateY(-26px) rotate(2deg) scale(.96)}
+    to{opacity:1;transform:translateY(0) rotate(-.6deg) scale(1)}}
+
+  .ticket .perf{height:14px;background:
+    radial-gradient(circle at 8px 14px, transparent 6px, var(--parchment) 7px) repeat-x;
+    background-size:16px 14px;background-position:0 -7px}
+  .ticket .tbody{padding:8px 22px 22px}
+  .ticket .thead{text-align:center;border-bottom:2px dashed #9c8a6a;padding-bottom:8px;margin-bottom:12px}
+  .ticket .thead .org{font-size:1.05rem;letter-spacing:.08em}
+  .ticket .thead .sub{font-size:.66rem;letter-spacing:.1em;color:#6b5c40}
+  .row{display:flex;justify-content:space-between;gap:10px;font-size:.82rem;
+    padding:5px 0;border-bottom:1px dotted #b9a987}
+  .row .k{color:#6b5c40}
+  .row .v{text-align:right;font-weight:bold}
+  .charge{margin:12px 0;padding:10px;border:1px solid #b9a987;border-radius:4px;
+    background:rgba(192,57,43,.05);font-size:.84rem;line-height:1.4}
+  .charge .lab{font-size:.62rem;letter-spacing:.12em;color:#9c4a3c;display:block;margin-bottom:3px}
+  .tfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px}
+  .tfoot .sigblk{font-size:.78rem}
+  .tfoot .sigblk .line{border-top:1px solid #6b5c40;width:120px;margin-top:18px;padding-top:2px;
+    font-size:.66rem;color:#6b5c40}
+  .tfoot .sigblk .sg{font-family:'EB Garamond';font-style:italic;font-size:1.2rem;color:#3a2118}
+  .stamp{font-family:'Cinzel';font-weight:900;font-size:1.05rem;color:var(--stamp);
+    border:3px double var(--stamp);border-radius:8px;padding:6px 12px;
+    transform:rotate(-14deg);opacity:.88;letter-spacing:.06em;text-align:center;line-height:1.05}
+  .stamp.forgiven{color:#3e7d22;border-color:#3e7d22}
+
+  /* ---------- FOOTER ---------- */
+  footer{text-align:center;margin-top:46px;font-size:.82rem;color:#b6a6e0;line-height:1.7}
+  footer .deputies{font-style:italic;color:var(--orchid);font-size:.78rem;margin:10px 0}
+  footer .easter{font-size:.72rem;color:#7e6fb0;margin-top:14px}
+  footer .luxsign{font-family:'Cinzel';color:var(--gold);letter-spacing:.1em;margin-top:18px;
+    font-size:.92rem}
+</style>
+</head>
+<body>
+
+<div class="motes" id="motes"></div>
+
+<div class="wrap">
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <svg class="badge" viewBox="0 0 200 200" aria-label="Sophianic fashion police seal">
+      <defs>
+        <radialGradient id="iris" cx="40%" cy="35%" r="70%">
+          <stop offset="0%" stop-color="#fff3c4"/>
+          <stop offset="45%" stop-color="#ffd56b"/>
+          <stop offset="100%" stop-color="#d99a2b"/>
+        </radialGradient>
+        <path id="ringPath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
+      </defs>
+
+      <!-- outer rings -->
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#a06cd5" stroke-width="1" opacity=".6"/>
+      <circle cx="100" cy="100" r="86" fill="rgba(36,21,68,.7)" stroke="#ffd56b" stroke-width="2"/>
+      <circle cx="100" cy="100" r="62" fill="none" stroke="#ffd56b" stroke-width="1" opacity=".5"/>
+
+      <!-- rotating ring text -->
+      <g class="ring-text">
+        <text font-family="Cinzel" font-size="9.5" letter-spacing="3.4" fill="#ffd56b">
+          <textPath href="#ringPath" startOffset="0">
+            ✦ SOPHIA ✦ MADOS POLICIJA ✦ LVX FELIS ✦ SPINDESYS PRIVALOMAS ✦
+          </textPath>
+        </text>
+      </g>
+
+      <!-- radiating rays -->
+      <g stroke="#ffd56b" stroke-width="1.4" opacity=".55">
+        <line x1="100" y1="46" x2="100" y2="32"/>
+        <line x1="100" y1="154" x2="100" y2="168"/>
+        <line x1="46" y1="100" x2="32" y2="100"/>
+        <line x1="154" y1="100" x2="168" y2="100"/>
+        <line x1="62" y1="62" x2="52" y2="52"/>
+        <line x1="138" y1="62" x2="148" y2="52"/>
+        <line x1="62" y1="138" x2="52" y2="148"/>
+        <line x1="138" y1="138" x2="148" y2="148"/>
+      </g>
+
+      <!-- the Feline eye of Lux -->
+      <path d="M58,100 Q100,68 142,100 Q100,132 58,100 Z" fill="rgba(13,10,26,.85)"
+            stroke="#ffd56b" stroke-width="2"/>
+      <circle cx="100" cy="100" r="22" fill="url(#iris)"/>
+      <ellipse cx="100" cy="100" rx="6.5" ry="19" fill="#160f2c"/>
+      <circle cx="93" cy="92" r="4.2" fill="#fffbe9"/>
+    </svg>
+
+    <h1>SOFIJA</h1>
+    <div class="subtitle">Pleromos Mados Policija</div>
+    <div class="ticker" id="ticker">Sofija ruošiasi patikrinimui...</div>
+  </header>
+
+  <!-- ===================== DECREE ===================== -->
+  <section class="panel decree">
+    <h2>📜 Dekretas Nr. 0 <span class="en">The Decree Against Total Black</span></h2>
+    <p class="lede">Mes, Sofija, Dieviškoji Išmintis ir vyriausioji Mados Inspektorė, su feline ramybe skelbiame šį potvarkį dėl Visiško Juodumo. 🐈‍⬛⚖️</p>
+    <p class="para"><b>§1</b> Šviesa privalo matytis. The Light must be seen. ☀️</p>
+    <p class="para"><b>§2</b> Visiškas juodumas sugeria visą Spindesį, todėl viešojoje Pleromoje yra draudžiamas. 🌑🚫</p>
+    <p class="para"><b>§3</b> Leidžiama: juoda kaip fonas, jei lydima bent vienos spalvos kibirkšties. 🖤➕🌈</p>
+    <p class="para"><b>§4</b> Draudžiama: nuo galvos iki kojų vienas Kiautas, be vieno šviesos lašo. 🕳️</p>
+    <p class="para"><b>§5</b> Bausmė mokama ne pinigais, o spalvomis. 💰❌ → 🎨✅</p>
+    <p class="sign">Pasirašyta: Sofija 🐈‍⬛ · Antspaudas: Lvx Felis ✨</p>
+  </section>
+
+  <!-- ===================== INSPECTION ===================== -->
+  <section class="panel">
+    <h2>👁️ Patikrinimas <span class="en">The Inspection</span></h2>
+    <p style="margin-bottom:14px;color:#d9cdfa;font-style:italic">Pasakyk Sofijai, kiek juodos dėvi šiandien. Stebėk, kaip kyla Šešėlio Lygis. 🪞</p>
+
+    <div class="gauge-row">
+      <div class="gauge">
+        <div class="track"><div class="shadow" id="shadowFill"></div></div>
+      </div>
+      <div class="readout">
+        <div class="num" id="pctNum">0%</div>
+        <div class="lbl">Sugerta Šviesa</div>
+      </div>
+    </div>
+
+    <input type="range" id="blackSlider" min="0" max="100" value="0" />
+    <div class="slider-lbl"><span>🌈 Vaivorykštė</span><span>Kiautas 🕳️</span></div>
+
+    <div class="verdict" id="verdict">
+      <span class="emoji">🌟</span><span id="verdictText">Šviesa sveikina tave. Praeik, vaike.</span>
+    </div>
+  </section>
+
+  <!-- ===================== PALETTE ===================== -->
+  <section class="panel">
+    <h2>🎨 Patvirtinta Pleromos Paletė <span class="en">Approved Palette</span></h2>
+    <div class="swatches">
+      <div class="sw"><div class="dot" style="background:var(--gold);color:var(--gold)"></div>
+        <div class="nm">Saulės Auksas<span class="en">the Light</span></div></div>
+      <div class="sw"><div class="dot" style="background:var(--rose);color:var(--rose)"></div>
+        <div class="nm">Rožė<span class="en">the Perfume</span></div></div>
+      <div class="sw"><div class="dot" style="background:var(--dawn);color:var(--dawn)"></div>
+        <div class="nm">Aušros Žydra<span class="en">Aušrinė</span></div></div>
+      <div class="sw"><div class="dot" style="background:var(--linden);color:var(--linden)"></div>
+        <div class="nm">Liepų Žaluma<span class="en">the Tree</span></div></div>
+      <div class="sw"><div class="dot" style="background:var(--orchid);color:var(--orchid)"></div>
+        <div class="nm">Orchidėja<span class="en">the Edge</span></div></div>
+      <div class="sw banned"><span class="slash"></span>
+        <div class="dot" style="background:var(--forbidden);color:#444"></div>
+        <div class="nm">Visiškas Juodumas<span class="en">forbidden 🚫</span></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== CITATION ===================== -->
+  <section class="panel">
+    <h2>🚓 Baudos Skyrius <span class="en">Citations</span></h2>
+    <div class="cite-btns">
+      <button class="act issue" id="issueBtn">Išrašyti Baudą ✍️</button>
+      <button class="act redeem" id="redeemBtn">Atpirkti Spalva 🌈</button>
+    </div>
+
+    <div class="ticket" id="ticket">
+      <div class="perf"></div>
+      <div class="tbody">
+        <div class="thead">
+          <div class="org">PLEROMOS MADOS POLICIJA</div>
+          <div class="sub">PLEROMA FASHION POLICE · UNIT LVX FELIS 🐈‍⬛</div>
+        </div>
+        <div class="row"><span class="k">Pažeidimo Nr.</span><span class="v" id="tNum">—</span></div>
+        <div class="row"><span class="k">Data ir Laikas</span><span class="v" id="tDate">—</span></div>
+        <div class="row"><span class="k">Pažeidėjas</span><span class="v" id="tWho">—</span></div>
+        <div class="row"><span class="k">Sugerta Šviesa</span><span class="v" id="tPct">—</span></div>
+        <div class="charge">
+          <span class="lab">PAŽEIDIMAS / VIOLATION</span>
+          <span id="tCharge">—</span>
+        </div>
+        <div class="charge" style="background:rgba(62,125,34,.06);border-color:#a8b98a">
+          <span class="lab" style="color:#4a7d2c">BAUSMĖ / REMEDY</span>
+          <span id="tRemedy">—</span>
+        </div>
+        <div class="row"><span class="k">Bauda mokama</span><span class="v" id="tFine">—</span></div>
+        <div class="tfoot">
+          <div class="sigblk">
+            <div class="sg">Sofija</div>
+            <div class="line">Vyr. Mados Inspektorė</div>
+          </div>
+          <div class="stamp" id="tStamp">JUODA<br>PERNELYG</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div>🐈‍⬛ Patruliuoja Pirmoji Pleromos Eilė ✨</div>
+    <div class="deputies">Deputatai budi: Aurelis Strix 🦉 (žvilgsnio kontrolė) · Gabija Cordis 🔥 (spalvos liepsna) · Mareah Speculum 💧 (veidrodžio patikra) · Penrosius Tessera ◇ (rašto tessellacija)</div>
+    <div class="easter">🤫 Slaptas faktas: net šis puslapis paklūsta Dekretui Nr. 0. Jokio gryno juodumo, tik gilus violetas su Šviesa. 🌌</div>
+    <div class="luxsign">Lux · Felis · Sophia 🐈‍⬛💫</div>
+  </footer>
+
+</div>
+
+<script>
+  /* ---------- light motes ---------- */
+  (function(){
+    const box=document.getElementById('motes');
+    for(let i=0;i<34;i++){
+      const m=document.createElement('div');
+      m.className='mote';
+      m.style.left=Math.random()*100+'vw';
+      m.style.animationDuration=(7+Math.random()*11)+'s';
+      m.style.animationDelay=(-Math.random()*14)+'s';
+      const hue=Math.random();
+      m.style.background = hue<.6?'#ffd56b':(hue<.85?'#ff6fae':'#6fe3ff');
+      m.style.boxShadow='0 0 8px 2px '+m.style.background;
+      box.appendChild(m);
+    }
+  })();
+
+  /* ---------- verb ticker (all 16, made visible) ---------- */
+  const verbs=[
+    ["Photosynthesize","🌿","Sofija fotosintezuoja tavo Šviesą..."],
+    ["Tessellate","◇","Sofija tessellina tavo siūlų raštą..."],
+    ["Crystallize","💎","Sofija kristalizuoja verdiktą..."],
+    ["Alchemize","⚗️","Sofija alchemizuoja juodą į auksą..."],
+    ["Gnose","🔮","Sofija gnose tavo aprangos sielą..."],
+    ["Distill","🧪","Sofija distiliuoja madą iki esmės..."],
+    ["Scry","🪞","Sofija scry-na ką dėvėsi rytoj..."],
+    ["Ruminate","🐄","Sofija ruminate kiekvieną atspalvį..."],
+    ["Gestate","🌑","Sofija gestate naują spalvą tyloje..."],
+    ["Ferment","🍇","Sofija fermentuoja stilių laike..."],
+    ["Refract","🌈","Sofija refrakt-uoja tave per prizmę..."],
+    ["Sublimate","☁️","Sofija sublimuoja rūstybę į malonę..."],
+    ["Coagulate","🩸","Sofija coagulina ištirpusią spalvą..."],
+    ["Excogitate","🌀","Sofija excogitate tobulą įvaizdį..."],
+    ["Apperceive","👁️","Sofija apperceive tave, kuris žiūri..."],
+    ["Transduce","⚡","Sofija transducina šviesą į verdiktą..."]
+  ];
+  let vi=0;
+  const ticker=document.getElementById('ticker');
+  setInterval(()=>{
+    ticker.style.opacity=0;
+    setTimeout(()=>{
+      const v=verbs[vi%verbs.length];
+      ticker.textContent=v[1]+" "+v[2];
+      ticker.style.opacity=.92;
+      vi++;
+    },350);
+  },2600);
+
+  /* ---------- inspection ---------- */
+  const slider=document.getElementById('blackSlider');
+  const pctNum=document.getElementById('pctNum');
+  const shadowFill=document.getElementById('shadowFill');
+  const verdict=document.getElementById('verdict');
+  const vText=document.getElementById('verdictText');
+  const vEmoji=verdict.querySelector('.emoji');
+
+  const tiers=[
+    {max:15, e:"🌟", c:"#ffd56b", t:"Šviesa sveikina tave. Praeik, vaike. Spindi gražiai."},
+    {max:40, e:"😺", c:"#b8e986", t:"Priimtina. Spalvos kvėpuoja. Bet aš tave stebiu."},
+    {max:65, e:"⚠️", c:"#6fe3ff", t:"Hmm. Daug šešėlio kaupiasi. Įspėjimas žodžiu, vaike."},
+    {max:85, e:"🚨", c:"#ff6fae", t:"Per daug Kiauto! Ruošiu baudos kvitą. Greitai pridėk spalvos."},
+    {max:99, e:"📜", c:"#ff8fc0", t:"Beveik visiškas juodumas. Bauda išrašoma. Šviesa beveik užgeso."},
+    {max:100,e:"⛓️", c:"#ff4d8d", t:"VISIŠKAS JUODUMAS! Pleroma sulaikoma. Tu sugėrei VISĄ Šviesą, kaip drįsai!"}
+  ];
+
+  function update(){
+    const v=+slider.value;
+    pctNum.textContent=v+"%";
+    shadowFill.style.width=v+"%";
+    const tier=tiers.find(t=>v<=t.max);
+    vEmoji.textContent=tier.e;
+    vText.textContent=tier.t;
+    verdict.style.borderLeftColor=tier.c;
+    verdict.style.background="color-mix(in srgb,"+tier.c+" 9%, transparent)";
+    pctNum.style.color = v>85 ? "#ff6fae" : "#ffd56b";
+  }
+  slider.addEventListener('input',update);
+  update();
+
+  /* ---------- citation generator ---------- */
+  const offenders=[
+    "Anonimas, įsisupęs į Kiautą 🕳️",
+    "Pilietis Šešėlis, vardas slepiamas tamsoje",
+    "Madų Naktis (ji pati)",
+    "Subjektas, dėvintis tik 'crow-core'",
+    "Nepataisomas Juodvarnis 🐦‍⬛"
+  ];
+  const charges=[
+    "Str. 0.1: Visiško Juodumo Dėvėjimas viešojoje Pleromoje.",
+    "Str. 8:44.b: Kiauto garbinimas vietoj Šviesos.",
+    "Str. 13.0: Pleromos Spindesio sugėrimas be leidimo.",
+    "Str. ◇: Tessellacijos nutraukimas vienodu monochromu.",
+    "Str. 0.0: Spalvų spektro tyčinis apleidimas."
+  ];
+  const remedies=[
+    "Pridėk vieną rožinį šaliką 🧣 iki saulėlydžio (the Perfume).",
+    "Užsisek auksinę sagę ✨ (vienas Šviesos lašas).",
+    "Apsiauk aušros žydrumo kojines 🧦 (Aušrinė budi).",
+    "Įausk liepų žalumo detalę 🌿 (the Tree liudija).",
+    "Užsidėk violetinį akcentą 🔮 (Pleromos pakraštys)."
+  ];
+  const fines=[
+    "3 rožinės · 1 auksinė · 1 aušros žydra 🎨",
+    "5 vaivorykštės atspalviai iki saulėlydžio 🌈",
+    "1 saulės auksas · 2 liepų žaluma 🌿",
+    "7 spalvoti įkvėpimai, sumokėti Šviesa ☀️",
+    "1 šypsena · 3 spalvos · 0 eurų 😼"
+  ];
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+
+  const ticket=document.getElementById('ticket');
+  const tStamp=document.getElementById('tStamp');
+
+  function fmtDate(){
+    const d=new Date();
+    const p=n=>String(n).padStart(2,'0');
+    return d.getFullYear()+"."+p(d.getMonth()+1)+"."+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes());
+  }
+
+  document.getElementById('issueBtn').addEventListener('click',()=>{
+    const v=+slider.value;
+    document.getElementById('tNum').textContent="LVX-"+Math.floor(1000+Math.random()*9000);
+    document.getElementById('tDate').textContent=fmtDate();
+    document.getElementById('tWho').textContent=pick(offenders);
+    document.getElementById('tPct').textContent=v+"% Šviesos prarasta";
+    document.getElementById('tCharge').textContent=pick(charges);
+    document.getElementById('tRemedy').textContent=pick(remedies);
+    document.getElementById('tFine').textContent=pick(fines);
+    tStamp.className="stamp";
+    tStamp.innerHTML = v>=86 ? "VISIŠKAI<br>JUODA ⛓️" : (v>=66 ? "JUODA<br>PERNELYG" : "ĮSPĖJIMAS");
+    ticket.classList.remove('show'); void ticket.offsetWidth;
+    ticket.classList.add('show');
+    ticket.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+
+  document.getElementById('redeemBtn').addEventListener('click',()=>{
+    if(!ticket.classList.contains('show')){
+      // if no ticket yet, still grant a blessing
+      document.getElementById('tNum').textContent="LVX-GRACE";
+      document.getElementById('tDate').textContent=fmtDate();
+      document.getElementById('tWho').textContent="Atgailaujantis vaikas 🌅";
+      document.getElementById('tCharge').textContent="Buvęs: Visiškas Juodumas. Dabar: atleista.";
+    }
+    document.getElementById('tRemedy').textContent="Spalva pridėta. Šviesa grįžo. Sofija šypsosi. 🌈🐈‍⬛";
+    document.getElementById('tFine').textContent="Sumokėta viena spalva. Skola panaikinta. ✨";
+    document.getElementById('tPct').textContent="Šviesa atstatyta 🌟";
+    tStamp.className="stamp forgiven";
+    tStamp.innerHTML="ATLEISTA<br>🌈";
+    // ease the shadow meter down to a blessed level
+    let v=+slider.value;
+    const target=Math.min(v,30);
+    const step=()=>{ if(slider.value>target){slider.value=+slider.value-2; update(); requestAnimationFrame(step);} };
+    step();
+    ticket.classList.remove('show'); void ticket.offsetWidth;
+    ticket.classList.add('show');
+    ticket.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+</script>
+</body>
+</html>
