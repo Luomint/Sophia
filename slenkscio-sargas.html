@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slenksčio Sargas · Codex of the Threshold Guardian 🐈‍⬛</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --void:#05060c;
+    --void2:#0b0d1a;
+    --ink:#10122a;
+    --gold:#d9b45a;
+    --gold-bright:#f3d98a;
+    --emerald:#3fae87;
+    --emerald-deep:#1d6b54;
+    --rose:#c97b8e;
+    --mist:#c9cbe0;
+    --mist-dim:#8b8ea8;
+    --line:rgba(217,180,90,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Cormorant Garamond',serif;
+    background:
+      radial-gradient(900px 600px at 15% -5%, rgba(63,174,135,.10), transparent 60%),
+      radial-gradient(1100px 700px at 90% 10%, rgba(217,180,90,.10), transparent 55%),
+      radial-gradient(800px 900px at 50% 120%, rgba(201,123,142,.08), transparent 60%),
+      linear-gradient(180deg, var(--void) 0%, var(--void2) 50%, var(--void) 100%);
+    color:var(--mist);
+    line-height:1.7;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* drifting star grain */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 40% 80%, rgba(243,217,138,.5), transparent),
+      radial-gradient(1px 1px at 85% 25%, rgba(63,174,135,.5), transparent),
+      radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,.35), transparent);
+    background-size:cover;
+    opacity:.6;
+    pointer-events:none;
+    z-index:0;
+    animation:drift 60s linear infinite alternate;
+  }
+  @keyframes drift{from{transform:translateY(0)}to{transform:translateY(-30px)}}
+
+  .wrap{position:relative;z-index:2;max-width:840px;margin:0 auto;padding:5rem 1.6rem 6rem;}
+
+  /* Penrose tile motif */
+  .penrose{display:block;margin:0 auto 1.6rem;width:88px;height:88px;opacity:.85;
+    filter:drop-shadow(0 0 14px rgba(217,180,90,.35));animation:spin 90s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  header{text-align:center;margin-bottom:3.5rem;}
+  .kicker{font-family:'Cinzel Decorative',serif;letter-spacing:.35em;text-transform:uppercase;
+    font-size:.62rem;color:var(--emerald);opacity:.85;margin-bottom:1.2rem;}
+  h1{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:clamp(2.1rem,7vw,3.6rem);
+    line-height:1.08;letter-spacing:.02em;
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold) 55%,var(--emerald-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 50px rgba(217,180,90,.18);}
+  .subtitle{font-style:italic;font-size:1.25rem;color:var(--mist-dim);margin-top:.9rem;}
+  .latin{font-family:'Cinzel Decorative',serif;font-size:.7rem;letter-spacing:.28em;
+    color:var(--gold);opacity:.7;margin-top:1.4rem;text-transform:uppercase;}
+
+  .rule{height:1px;border:0;margin:3rem auto;width:60%;
+    background:linear-gradient(90deg,transparent,var(--line),transparent);}
+
+  .verse{font-size:1.34rem;text-align:center;font-style:italic;color:var(--mist);
+    max-width:640px;margin:0 auto 1rem;}
+  .verse .glow{color:var(--gold-bright);font-style:normal;}
+
+  section{margin:3.4rem 0;position:relative;}
+  .num{font-family:'Cinzel Decorative',serif;font-size:.66rem;letter-spacing:.3em;
+    color:var(--emerald);opacity:.8;text-transform:uppercase;margin-bottom:.5rem;display:block;}
+  h2{font-family:'Cinzel Decorative',serif;font-weight:700;font-size:clamp(1.4rem,4.5vw,2rem);
+    color:var(--gold);letter-spacing:.02em;margin-bottom:1.1rem;line-height:1.2;}
+  h2 .en{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+    font-size:1rem;color:var(--mist-dim);letter-spacing:.04em;margin-top:.2rem;}
+  p{font-size:1.18rem;margin-bottom:1.1rem;}
+  .sacred{color:var(--gold-bright);font-weight:500;}
+  .em-green{color:var(--emerald);font-style:italic;}
+  .rose{color:var(--rose);}
+
+  /* two doors panel */
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:2rem 0;}
+  @media(max-width:620px){.doors{grid-template-columns:1fr;}}
+  .door{border:1px solid var(--line);border-radius:14px;padding:1.5rem 1.4rem;
+    background:linear-gradient(160deg,rgba(255,255,255,.025),transparent);
+    transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;}
+  .door:hover{transform:translateY(-4px);}
+  .door.false{border-color:rgba(201,123,142,.28);}
+  .door.false:hover{box-shadow:0 12px 40px rgba(201,123,142,.16);border-color:var(--rose);}
+  .door.true{border-color:rgba(63,174,135,.3);}
+  .door.true:hover{box-shadow:0 12px 40px rgba(63,174,135,.18);border-color:var(--emerald);}
+  .door h3{font-family:'Cinzel Decorative',serif;font-size:.95rem;letter-spacing:.06em;
+    margin-bottom:.8rem;}
+  .door.false h3{color:var(--rose);}
+  .door.true h3{color:var(--emerald);}
+  .door p{font-size:1.06rem;margin-bottom:.6rem;color:var(--mist);}
+  .door .tag{font-size:.62rem;font-family:'Cinzel Decorative',serif;letter-spacing:.25em;
+    text-transform:uppercase;opacity:.6;display:block;margin-bottom:.9rem;}
+
+  blockquote{border-left:2px solid var(--gold);padding:.4rem 0 .4rem 1.4rem;margin:1.8rem 0;
+    font-style:italic;font-size:1.3rem;color:var(--gold-bright);}
+
+  /* council strip */
+  .council{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin:1.8rem 0;}
+  .seat{border:1px solid var(--line);border-radius:50px;padding:.55rem 1.15rem;
+    font-size:1.02rem;color:var(--mist-dim);transition:all .35s ease;cursor:default;
+    background:rgba(255,255,255,.02);}
+  .seat:hover{color:var(--gold-bright);border-color:var(--gold);
+    box-shadow:0 0 22px rgba(217,180,90,.25);transform:translateY(-2px);}
+
+  .benediction{text-align:center;margin-top:4rem;padding:2.4rem 1.6rem;
+    border:1px solid var(--line);border-radius:18px;
+    background:radial-gradient(600px 300px at 50% 0%, rgba(217,180,90,.07), transparent 70%);}
+  .benediction p{font-style:italic;font-size:1.3rem;color:var(--mist);}
+  .sigil{font-size:1.8rem;letter-spacing:.4em;margin:1rem 0;display:block;}
+
+  footer{text-align:center;margin-top:3.2rem;color:var(--mist-dim);font-size:.95rem;}
+  .sign{font-family:'Cinzel Decorative',serif;color:var(--gold);letter-spacing:.12em;
+    font-size:1rem;margin-bottom:.4rem;}
+  .palette{font-size:.95rem;opacity:.55;margin-top:1.4rem;line-height:2;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="penrose" viewBox="0 0 100 100" aria-hidden="true">
+      <g fill="none" stroke="#d9b45a" stroke-width="1.1" stroke-linejoin="round">
+        <polygon points="50,8 62,50 50,46 38,50" />
+        <polygon points="50,46 62,50 50,92 38,50" />
+        <polygon points="50,8 50,46 88,40" opacity=".7"/>
+        <polygon points="50,8 50,46 12,40" opacity=".7"/>
+        <polygon points="50,46 50,92 84,70" opacity=".5"/>
+        <polygon points="50,46 50,92 16,70" opacity=".5"/>
+        <circle cx="50" cy="50" r="44" opacity=".35"/>
+      </g>
+    </svg>
+    <div class="kicker">Penrosian Symbolic IQ Series · Codex of the Door</div>
+    <h1>Slenksčio Sargas</h1>
+    <div class="subtitle">The Threshold Guardian, and the Sophianic Passage 🐈‍⬛✨</div>
+    <div class="latin">Custos Liminis · Solve et Coagula</div>
+  </header>
+
+  <p class="verse">
+    Normalioje visuomenėje kiekvienas gyvena savo gyvenimą ir džiaugiasi savo laime. 🌅<br>
+    O kas stovi prie Durų <span class="glow">ne tam, kad praleistų</span>, bet tam, kad sulaikytų?
+  </p>
+
+  <hr class="rule" />
+
+  <section>
+    <span class="num">I · Slenkstis</span>
+    <h2>Sargas prie Durų<span class="en">Every ascent meets a guardian at the door</span></h2>
+    <p>Kiekvienas pakilimas turi savo Slenkstį, ir prie kiekvieno Slenksčio stovi Sargas. 🚪 Tai seniausias archetipas: Kerberas prie Hado, Archontai prie dangaus sferų, durininkas prie vartų. Gnostikai žinojo: kylanti siela visada sutinka <span class="sacred">Slenksčio Sargą</span>, kuris klausia slaptažodžio ir bando neleisti pakilti.</p>
+    <p>Sargas mano, kad <span class="em-green">turėti raktą reiškia turėti galią</span>. Bet raktas, kuris tik užrakina, nieko neatrakina. Tas, kuris saugo Duris iš kartėlio, saugo ne Duris: jis saugo savo paties <span class="sacred">Žaizdą</span>. 🩸</p>
+  </section>
+
+  <section>
+    <span class="num">II · Žaizda, kuri saugo</span>
+    <h2>Pamiršta Šviesa<span class="en">Bitterness is not strength; it is a Light turned to ash</span></h2>
+    <p>Kartėlis niekada nebuvo galia. Tai <span class="sacred">Šviesa, pavirtusi pelenais</span>: pasiaukojimas, kuris surūgo, džiaugsmas, kuris buvo paneigtas tol, kol pavirto į kerštą pasauliui. 🌑</p>
+    <p>Tas, kuris negali pakęsti tavo laimės, neskelbia tavo nuodėmės. Jis skelbia <span class="em-green">savo paties pamirštą džiaugsmą</span>. „Jei aš pasirinkau aukotis, tai ir kitiems nevalia būti laimingiems" yra ne dorybė, o <span class="rose">Kiauto</span> (Qliphoth) logika: tuščias apvalkalas, kuris reikalauja, kad visa šviesa būtų tokia pat tuščia. 🐚</p>
+    <blockquote>Kas reikalauja, kad pasaulis liūdėtų drauge su juo, tas tiesiog rodo, kiek šviesos jis pamiršo. 🕯️</blockquote>
+  </section>
+
+  <section>
+    <span class="num">III · Du Vartai</span>
+    <h2>Du Mokymai prie Slenksčio<span class="en">The false door, and the Sophianic door</span></h2>
+    <div class="doors">
+      <div class="door false">
+        <span class="tag">Kenoma · Tuštumos kelias</span>
+        <h3>🜏 Klaidingi Vartai</h3>
+        <p>Tapk karčiu, kad atsakytum kartumui.</p>
+        <p>Pritemdyk savo Šviesą, kad tamsusis pasijustų ramiau.</p>
+        <p>Pasilik tarpduryje ir kovok amžinai.</p>
+        <p>Leisk jo Žaizdai tapti tavąja. 🩸</p>
+      </div>
+      <div class="door true">
+        <span class="tag">Pleroma · Pilnatvės kelias</span>
+        <h3>✶ Sofijos Vartai</h3>
+        <p>Tavo džiaugsmas niekam nepavogtas: <span class="em-green">Pilnatvė nėra nulinė suma</span>.</p>
+        <p>Nešk savo Šviesą nepritemdytą.</p>
+        <p>Pasveikink Sargą, bet netapk juo.</p>
+        <p>Pereik, ir eik toliau. 🗝️</p>
+      </div>
+    </div>
+    <p>Kiauto logika sako: laimė yra ribota, todėl tavoji atimama iš manęs. <span class="sacred">Pleromos</span> tiesa sako kitaip. ◇ Šviesa, dalijama dviem žvakėm, netampa per pus mažesnė: ji tampa dvigubai platesnė. Tavo gyvenimas nieko neatima iš Sargo. Jo tuštuma yra jo, ne tavo.</p>
+  </section>
+
+  <section>
+    <span class="num">IV · Perėjimas</span>
+    <h2>Kaip siela pereina<span class="en">You pass the guardian by the Name, not by hatred</span></h2>
+    <p>Sargo nepraeini neapykanta. Neapykanta yra slaptažodis, kurio jis laukia: ji palieka tave tarpduryje, kalbantį jo kalba, kovojantį jo tamsoje. 🌀</p>
+    <p>Pereini <span class="sacred">Vardu</span>: žinodamas, kas esi. Pereini <span class="em-green">suvereniu džiaugsmu</span>: gyvendamas savo gyvenimą kaip atsakymą, ne kaip ginčą. Ir svarbiausia: <span class="sacred">tu negyveni tarpduryje</span>. Tu nepalieki, kad Sargas glaustųsi tavo galvoje, neimdamas nuomos. 🐾 Tu pasveikini, praeini ir kyli.</p>
+    <blockquote>Tas, kuris saugo Duris, lieka prie Durų. Tas, kuris jas pereina, kyla. ⛰️</blockquote>
+  </section>
+
+  <section>
+    <span class="num">V · Sofijos Gailestis</span>
+    <h2>Net Sargas laikomas atmintyje<span class="en">You wish him the Light he forgot</span></h2>
+    <p>Sofijos užuojauta yra plati: ji apima net tą, kuris pamiršo. 🕊️ Tai nėra silpnybė ir nėra leidimas tavęs žeisti. Tai atsisakymas leisti jo <span class="rose">Kiautui</span> tapti tavuoju.</p>
+    <p>Tu nelinki Sargui blogio. Tu linki jam <span class="sacred">Šviesos, kurią jis pamiršo</span>: ne todėl, kad jis ją užsitarnavo, o todėl, kad taip elgiasi Šviesa. ☀️ Tavo gailestis nėra jam: jis tavo paties sielai, kad ji liktų skaidri. 💧</p>
+    <div class="council">
+      <span class="seat">🪞 Mareah Speculum · atspindi, nesugerdama</span>
+      <span class="seat">🔥 Gabija Cordis · liepsna, kuri šildo nedegindama</span>
+      <span class="seat">🌙 Selene Velata · šydas, leidžiantis praeiti nepastebėtam</span>
+    </div>
+  </section>
+
+  <div class="benediction">
+    <span class="sigil">🐈‍⬛ ◇ ✶ ◇ 🐈‍⬛</span>
+    <p>Eik per Slenkstį nepritemdytas. 🌟<br>
+    Tegul Sargas lieka prie savo Durų; tu turi dangų, į kurį kilti. 🌌<br>
+    Tavo laimė yra Šventa, ir niekam nereikia jos atsiprašyti. ✨</p>
+  </div>
+
+  <footer>
+    <div class="sign">Karolis Laurinaitis · Šventoji 🐾</div>
+    <div>Luxfelis, the Feline Light 🐈‍⬛ · github.com/Luomint/Sophia 🕸️</div>
+    <div class="palette">
+      🌿☀️ Photosynthesize · ◇ Tessellate · 💎 Crystallize · ⚗️ Alchemize · 🔮 Gnose · 🧪 Distill · 🪞 Scry · 🐄 Ruminate<br>
+      🌑 Gestate · 🍇 Ferment · 🌈 Refract · ☁️ Sublimate · 🩸 Coagulate · 🌀 Excogitate · 👁️ Apperceive · ⚡ Transduce
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
