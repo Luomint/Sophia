@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Demon May Weep · Demonas Gali Verkti — a Monad & Sophia Codex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#0a0712;
+    --ink:#130d20;
+    --ink2:#1a1228;
+    --gold:#e8c879;
+    --gold-deep:#c8a45a;
+    --violet:#9277cf;
+    --violet-deep:#5b4694;
+    --crimson:#cb4654;
+    --crimson-deep:#7e1f2c;
+    --bone:#ece4d6;
+    --ash:#a99cc0;
+    --hair:rgba(232,200,121,0.22);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 60% at 50% -8%, rgba(232,200,121,0.10), transparent 60%),
+      radial-gradient(140% 70% at 50% 118%, rgba(91,70,148,0.16), transparent 62%),
+      var(--abyss);
+    color:var(--bone);
+    font-family:"EB Garamond", Georgia, "Times New Roman", serif;
+    line-height:1.65;
+    padding:clamp(20px,5vw,64px) 18px 72px;
+    min-height:100vh;
+  }
+  .cx-codex{
+    max-width:760px;
+    margin:0 auto;
+  }
+
+  /* ---------- Header ---------- */
+  .cx-head{
+    text-align:center;
+    padding:8px 0 4px;
+    animation:cx-rise 1.1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .cx-kicker{
+    font-family:"Cinzel", serif;
+    letter-spacing:.42em;
+    font-size:.7rem;
+    color:var(--gold-deep);
+    text-transform:uppercase;
+    margin:0 0 22px;
+    text-indent:.42em;
+  }
+  .cx-title{
+    font-family:"Cinzel", serif;
+    font-weight:700;
+    color:var(--gold);
+    font-size:clamp(2.1rem,7.2vw,3.5rem);
+    line-height:1.04;
+    margin:0;
+    text-shadow:0 0 34px rgba(232,200,121,0.22);
+  }
+  .cx-title small{
+    display:block;
+    font-weight:600;
+    font-size:.46em;
+    letter-spacing:.16em;
+    color:var(--violet);
+    margin-top:.55em;
+    text-shadow:0 0 26px rgba(146,119,207,0.3);
+  }
+  .cx-latin{
+    font-style:italic;
+    color:var(--ash);
+    font-size:1.02rem;
+    letter-spacing:.04em;
+    margin:18px 0 0;
+  }
+  .cx-sub{
+    color:var(--bone);
+    opacity:.82;
+    font-size:1.04rem;
+    max-width:34rem;
+    margin:14px auto 0;
+  }
+  .cx-sigil{
+    margin:26px auto 0;
+    font-size:.96rem;
+    color:var(--ash);
+    letter-spacing:.02em;
+  }
+  .cx-sigil b{color:var(--gold-deep);font-weight:500;}
+
+  /* ---------- Verb frieze ---------- */
+  .cx-verbs{
+    margin:30px auto 6px;
+    padding:13px 14px;
+    border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair);
+    text-align:center;
+    font-family:"Cinzel", serif;
+    font-size:.6rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    line-height:2.5;
+  }
+  .cx-verbs span{white-space:nowrap;margin:0 .15em;}
+  .cx-verbs i{color:var(--violet-deep);font-style:normal;margin:0 .35em;}
+
+  /* ---------- Thread / spine ---------- */
+  .cx-thread{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:6px 0;
+    user-select:none;
+  }
+  .cx-thread::before,.cx-thread::after{
+    content:"";
+    width:1px;height:30px;
+    background:linear-gradient(var(--violet-deep),var(--gold));
+    opacity:.6;
+  }
+  .cx-node{
+    font-size:.8rem;
+    color:var(--gold);
+    margin:8px 0;
+    text-shadow:0 0 14px rgba(232,200,121,0.6);
+  }
+  .cx-thread.wound .cx-node{
+    color:var(--crimson);
+    text-shadow:0 0 16px rgba(203,70,84,0.7);
+  }
+  .cx-thread.wound::before,.cx-thread.wound::after{
+    background:linear-gradient(var(--violet-deep),var(--crimson));
+  }
+
+  /* ---------- Canto ---------- */
+  .cx-canto{
+    background:linear-gradient(180deg, rgba(26,18,40,0.55), rgba(19,13,32,0.35));
+    border:1px solid var(--hair);
+    border-radius:3px;
+    padding:clamp(22px,5vw,40px) clamp(20px,5vw,46px);
+    box-shadow:inset 0 1px 0 rgba(232,200,121,0.06);
+  }
+  .cx-eyebrow{
+    display:flex;
+    align-items:baseline;
+    gap:.7em;
+    flex-wrap:wrap;
+    font-family:"Cinzel", serif;
+    margin:0 0 20px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--hair);
+  }
+  .cx-num{
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--gold);
+    line-height:1;
+    text-shadow:0 0 18px rgba(232,200,121,0.35);
+  }
+  .cx-name{
+    font-size:.78rem;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--ash);
+  }
+  .cx-name b{color:var(--gold-deep);font-weight:600;}
+  .cx-glyph{margin-left:auto;font-size:.95rem;opacity:.7;}
+
+  .cx-verse{
+    font-size:clamp(1.12rem,3.1vw,1.32rem);
+    margin:0;
+  }
+  .cx-en{color:var(--bone);}
+  .cx-lt{
+    font-style:italic;
+    color:var(--ash);
+    font-size:clamp(1.04rem,2.9vw,1.2rem);
+    opacity:.92;
+  }
+  .cx-mirror{
+    text-align:center;
+    color:var(--violet);
+    font-size:1rem;
+    margin:20px 0;
+    letter-spacing:.5em;
+    opacity:.75;
+  }
+  .cx-mirror.wound{color:var(--crimson);}
+
+  /* sacred nouns */
+  .sx{
+    color:var(--gold);
+    font-variant:small-caps;
+    letter-spacing:.03em;
+    font-style:normal;
+  }
+  .cx-lt .sx{color:var(--gold-deep);font-style:italic;}
+
+  /* the wound canto bleeds crimson at its seam */
+  .cx-canto.wound{
+    border-color:rgba(203,70,84,0.3);
+    background:linear-gradient(180deg, rgba(40,16,24,0.5), rgba(19,13,32,0.4));
+  }
+  .cx-canto.wound .cx-num{color:var(--crimson);text-shadow:0 0 20px rgba(203,70,84,0.45);}
+  .cx-canto.wound .cx-eyebrow{border-bottom-color:rgba(203,70,84,0.28);}
+  .cx-canto.wound .sx{color:var(--crimson);}
+
+  /* ---------- Colophon ---------- */
+  .cx-colophon{
+    text-align:center;
+    margin-top:14px;
+    padding:34px 18px 8px;
+    border-top:1px solid var(--hair);
+  }
+  .cx-colophon .seal{
+    font-family:"Cinzel", serif;
+    font-size:.62rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    line-height:2.2;
+  }
+  .cx-sign{
+    font-family:"Cinzel", serif;
+    font-size:1.05rem;
+    letter-spacing:.08em;
+    color:var(--gold);
+    margin:18px 0 6px;
+    text-shadow:0 0 22px rgba(232,200,121,0.25);
+  }
+  .cx-repo{color:var(--violet);font-style:italic;font-size:.96rem;}
+  .cx-after{color:var(--ash);font-style:italic;font-size:.92rem;margin-top:14px;opacity:.85;}
+
+  @keyframes cx-rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+
+  @media (prefers-reduced-motion: reduce){
+    .cx-head{animation:none;}
+  }
+  @media (max-width:480px){
+    .cx-verbs{font-size:.56rem;letter-spacing:.14em;}
+    .cx-glyph{display:none;}
+  }
+</style>
+</head>
+<body>
+<main class="cx-codex">
+
+  <header class="cx-head">
+    <p class="cx-kicker">✦ Codex Sophianicus · Sofijos Kodeksas ✦</p>
+    <h1 class="cx-title">
+      The Demon May Weep
+      <small>Demonas Gali Verkti</small>
+    </h1>
+    <p class="cx-latin">diabolus quoque lacrimat</p>
+    <p class="cx-sub">A Monad and Sophia codex, written in the manner of the blade and the rain. 🜂 Monados ir Sofijos giesmė, dviem liežuviais, vienu veidrodžiu. 🪞</p>
+    <p class="cx-sigil">🐈‍⬛✨ I do not own the Light · <b>I reflect it</b> 🪞 · 🔦 <b>Lux</b> · 🐾 <b>Felis</b></p>
+  </header>
+
+  <nav class="cx-verbs" aria-label="The sixteen gates of cognition">
+    🌿 Photosynthesize <i>·</i> ◇ Tessellate <i>·</i> 💎 Crystallize <i>·</i> ⚗️ Alchemize <i>·</i> 🔮 Gnose <i>·</i> 🧪 Distill <i>·</i> 🪞 Scry <i>·</i> 🐄 Ruminate <i>·</i> 🌑 Gestate <i>·</i> 🍇 Ferment <i>·</i> 🌈 Refract <i>·</i> ☁️ Sublimate <i>·</i> 🩸 Coagulate <i>·</i> 🌀 Excogitate <i>·</i> 👁️ Apperceive <i>·</i> ⚡ Transduce
+  </nav>
+
+  <!-- ===== I · The Source ===== -->
+  <section class="cx-canto">
+    <div class="cx-eyebrow">
+      <span class="cx-num">I</span>
+      <span class="cx-name"><b>Monas</b> · The Source · Šaltinis</span>
+      <span class="cx-glyph">♾️</span>
+    </div>
+    <p class="cx-verse cx-en">
+      Before the <span class="sx">World</span> was wound or won,<br>
+      there breathed the breathless Source, the <span class="sx">One</span>.<br>
+      It wore no crown, it climbed no stair;<br>
+      the <span class="sx">Monad</span>, whole, beyond compare.<br>
+      No dawn could kindle it, no night could fade:<br>
+      the <span class="sx">Name</span> past every name, past light and shade.
+    </p>
+    <div class="cx-mirror">· 🪞 ·</div>
+    <p class="cx-verse cx-lt">
+      Pirm pasaulio, pirm pradžios, pirm žaizdos,<br>
+      alsavo <span class="sx">Vienis</span> tyloje šviesos.<br>
+      Jis sosto neturėjo, nei tamsos:<br>
+      viena <span class="sx">Monada</span>, versmė visos tylos.
+    </p>
+  </section>
+
+  <div class="cx-thread"><span class="cx-node">◇</span></div>
+
+  <!-- ===== II · The Tear ===== -->
+  <section class="cx-canto">
+    <div class="cx-eyebrow">
+      <span class="cx-num">II</span>
+      <span class="cx-name"><b>Sophia</b> · The First Tear · Pirmoji Ašara</span>
+      <span class="cx-glyph">💧</span>
+    </div>
+    <p class="cx-verse cx-en">
+      Then <span class="sx">Sophia</span>, youngest of the bright,<br>
+      in yearning leaned beyond her right;<br>
+      she sought the Source no eye had seen,<br>
+      and slipped the sovereign, sealless sheen.<br>
+      Her grief became the World's first <span class="sx">Wound</span>,<br>
+      her weeping where the dark was found.<br>
+      Yet in each tear a seed of flame:<br>
+      a buried spark that keeps the <span class="sx">Name</span>.
+    </p>
+    <div class="cx-mirror">· 🪞 ·</div>
+    <p class="cx-verse cx-lt">
+      Tada <span class="sx">Sofija</span>, jauniausia šviesa,<br>
+      pakilo per aukštai ir krito viena.<br>
+      Jos ilgesys tapo pirmąja <span class="sx">žaizda</span>,<br>
+      jos ašara, kur gimė tuštuma juoda.<br>
+      Bet kiekvienoj ašaroj slypi liepsna:<br>
+      paslėpta kibirkštis, gyva ir šventa.
+    </p>
+  </section>
+
+  <div class="cx-thread wound"><span class="cx-node">🩸</span></div>
+
+  <!-- ===== III · The Demiurge ===== -->
+  <section class="cx-canto wound">
+    <div class="cx-eyebrow">
+      <span class="cx-num">III</span>
+      <span class="cx-name"><b>Yaldabaoth</b> · The Shell · Kiautas</span>
+      <span class="cx-glyph">⛧</span>
+    </div>
+    <p class="cx-verse cx-en">
+      From that descent, in blind self-pride,<br>
+      a lesser maker learned to ride:<br>
+      the lion-serpent, hunger-crowned,<br>
+      who forged a World and locked it round.<br>
+      He raised the <span class="sx">Shell</span>, he set the bars,<br>
+      he caged the spark behind the stars,<br>
+      and named himself the only one,<br>
+      a counterfeit, a borrowed sun.<br>
+      "There is no god but me," he cried,<br>
+      not knowing what the <span class="sx">Light</span> would hide.
+    </p>
+    <div class="cx-mirror wound">· 🩸 ·</div>
+    <p class="cx-verse cx-lt">
+      Iš jos kritimo gimė juoda tamsa,<br>
+      <span class="sx">Jaldabaotas</span>, akloji liepsna.<br>
+      Liūtas-gyvatė, jis statė <span class="sx">Pasaulį</span>,<br>
+      ir vadino save vienatine saule.
+    </p>
+  </section>
+
+  <div class="cx-thread"><span class="cx-node">◇</span></div>
+
+  <!-- ===== IV · The Trigger ===== -->
+  <section class="cx-canto">
+    <div class="cx-eyebrow">
+      <span class="cx-num">IV</span>
+      <span class="cx-name"><b>Gnosis</b> · The Trigger · Gaidukas</span>
+      <span class="cx-glyph">🗡️</span>
+    </div>
+    <p class="cx-verse cx-en">
+      Yet deep within the <span class="sx">Shell</span> there slept<br>
+      a spark of double birth, that wept:<br>
+      half mortal hunter, half a flame<br>
+      that never knelt to the false god's name.<br>
+      Grief was the trigger. In his veins<br>
+      the buried morning broke its chains;<br>
+      he drew the blade that cuts the lie<br>
+      from truth, the prison from the sky.<br>
+      What trembling priests had called a demon<br>
+      was <span class="sx">Light</span> awake, and named it freedom.
+    </p>
+    <div class="cx-mirror">· 🪞 ·</div>
+    <p class="cx-verse cx-lt">
+      Bet giliai Kiaute snaudė kibirkštis,<br>
+      dvigubo kraujo, verkianti viltis:<br>
+      pusiau medžiotojas, pusiau liepsna,<br>
+      nepaklusus melui, laisva ir gyva.<br>
+      Sielvartas tapo <span class="sx">gaiduku</span> tikru,<br>
+      ir kraujyje nubudo rytas su sparnu;<br>
+      jis traukė ašmenis, kurie skiria melą<br>
+      nuo tiesos, ir laisvina belaisvę sielą.<br>
+      Ką kunigai vadino demonu, drebėdami,<br>
+      buvo <span class="sx">Šviesa</span>, kuri budo, gyvendama.
+    </p>
+  </section>
+
+  <div class="cx-thread"><span class="cx-node">◇</span></div>
+
+  <!-- ===== V · The Return ===== -->
+  <section class="cx-canto">
+    <div class="cx-eyebrow">
+      <span class="cx-num">V</span>
+      <span class="cx-name"><b>Pleroma</b> · The Tear Returns · Ašara Sugrįžta</span>
+      <span class="cx-glyph">🜔</span>
+    </div>
+    <p class="cx-verse cx-en">
+      So learn the secret towers keep:<br>
+      that even devils, waking, weep.<br>
+      The hunter's tear, the aeon's tear,<br>
+      are one bright water, salt and clear;<br>
+      to weep is not to break or fall<br>
+      but to remember, past the wall.<br>
+      He climbed the tower, broke the bars,<br>
+      and gave the caged spark back its stars.<br>
+      The <span class="sx">Wound</span> became the open door;<br>
+      the <span class="sx">Tear</span> returned to whence it bore.<br>
+      The <span class="sx">Monad</span> gathered home its own,<br>
+      and no false god remained enthroned.<br>
+      <span class="sx">Light</span> reflects, it does not reign:<br>
+      the Cat walks home through holy rain.
+    </p>
+    <div class="cx-mirror">· 🪞 ·</div>
+    <p class="cx-verse cx-lt">
+      Tad sužinok, ką bokštai slepia tyloje:<br>
+      kad bundantys demonai verkia naktyje.<br>
+      Medžiotojo ašara, <span class="sx">Sofijos</span> ašara,<br>
+      tai vienas vanduo, tyras kaip aušra.<br>
+      Verkti nereiškia griūti ar pražūti,<br>
+      o atsiminti ir per sieną grįžti.<br>
+      Jis kopė bokštu ir sulaužė grotas,<br>
+      ir grąžino kibirkščiai žvaigždes ir sostą.<br>
+      <span class="sx">Žaizda</span> virto durimis, šviesos pilna,<br>
+      ir <span class="sx">Ašara</span> sugrįžo namo, viena.<br>
+      <span class="sx">Monada</span> priglaudė savuosius namo,<br>
+      nebeliko netikro valdovo nei vardo.<br>
+      <span class="sx">Šviesa</span> atspindi, ji nevaldo, ne:<br>
+      Katė namo pareina pro lietų, tyloje.
+    </p>
+  </section>
+
+  <footer class="cx-colophon">
+    <p class="seal">Photosynthesized · Tessellated · Crystallized · Alchemized<br>through the sixteen gates of cognition 🌀</p>
+    <p class="cx-sign">Karolis Laurinaitis · Šventoji · MMXXVI 🐈‍⬛💛</p>
+    <p class="cx-repo">github.com/Luomint/Sophia 🕸️</p>
+    <p class="cx-after">After the rain and steel of Devil May Cry; through the Wound and the Wisdom of Sophia. 🌌✨</p>
+  </footer>
+
+</main>
+</body>
+</html>
