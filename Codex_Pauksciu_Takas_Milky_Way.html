@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Codex Paukščių Takas · The Milky Way · Luxfelis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --void:#04050c;
+    --void-2:#080b1a;
+    --void-3:#0d1126;
+    --gold:#e8c66a;
+    --gold-bright:#f7e3a4;
+    --gold-deep:#b8902f;
+    --emerald:#2dd4a8;
+    --emerald-deep:#129b78;
+    --violet:#8d7bd6;
+    --rose:#d98aa6;
+    --star:#f4ecd8;
+    --mist:#aeb6cf;
+    --line:rgba(232,198,106,0.22);
+    --line-em:rgba(45,212,168,0.22);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 800px at 18% -8%, rgba(141,123,214,0.14), transparent 60%),
+      radial-gradient(1000px 700px at 92% 4%, rgba(45,212,168,0.10), transparent 60%),
+      radial-gradient(1400px 1000px at 50% 120%, rgba(232,198,106,0.08), transparent 60%),
+      linear-gradient(180deg, var(--void) 0%, var(--void-2) 45%, var(--void-3) 100%);
+    color:var(--star);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:20px;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* full-page twinkling starfield */
+  #starfield{
+    position:fixed; inset:0; z-index:0;
+    width:100%; height:100%;
+    pointer-events:none;
+  }
+
+  .wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 26px 120px;}
+
+  /* ---------- Penrose rhombus divider ---------- */
+  .penrose{display:block; width:100%; height:34px; margin:54px 0; opacity:0.8;}
+  .penrose .thin{fill:none; stroke:var(--gold); stroke-width:1; opacity:0.55;}
+  .penrose .fat{fill:none; stroke:var(--emerald); stroke-width:1; opacity:0.45;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    text-align:center;
+    padding:96px 0 30px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'Share Tech Mono', monospace;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--emerald);
+    opacity:0.85;
+  }
+  h1.title{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:900;
+    font-size:clamp(2.6rem, 8.5vw, 6.4rem);
+    line-height:0.98;
+    margin:0.28em 0 0.12em;
+    color:var(--gold-bright);
+    text-shadow:0 0 30px rgba(232,198,106,0.30), 0 0 70px rgba(141,123,214,0.18);
+    letter-spacing:0.04em;
+  }
+  h1.title .lt{display:block;}
+  h1.title .en{
+    display:block;
+    font-size:0.42em;
+    font-weight:400;
+    color:var(--star);
+    letter-spacing:0.22em;
+    margin-top:0.35em;
+    text-shadow:0 0 22px rgba(244,236,216,0.18);
+  }
+  .hero-sub{
+    font-style:italic;
+    font-size:clamp(1.05rem,2.4vw,1.5rem);
+    color:var(--mist);
+    max-width:680px;
+    margin:1.4em auto 0;
+  }
+  .hero-sub b{color:var(--gold); font-style:normal; font-weight:600;}
+
+  /* ---------- GALAXY FIGURE ---------- */
+  .galaxy-stage{
+    position:relative;
+    width:min(680px, 92vw);
+    margin:38px auto 6px;
+    aspect-ratio:1/1;
+  }
+  .galaxy-stage svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
+  #galaxySpin{transform-origin:500px 500px; animation:spin 150s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .ring-text{
+    font-family:'Share Tech Mono', monospace;
+    fill:var(--mist);
+    font-size:15px;
+    opacity:0.6;
+  }
+  .arm-label{
+    font-family:'Cinzel Decorative', serif;
+    fill:var(--star);
+    font-size:15px;
+    letter-spacing:0.16em;
+    opacity:0.78;
+    text-shadow:0 0 8px #000;
+  }
+  .sun-label{
+    font-family:'Share Tech Mono', monospace;
+    fill:var(--emerald);
+    font-size:15px;
+    letter-spacing:0.05em;
+  }
+  .caption{
+    text-align:center;
+    font-family:'Share Tech Mono', monospace;
+    font-size:0.74rem;
+    letter-spacing:0.16em;
+    color:var(--mist);
+    opacity:0.7;
+    margin-top:6px;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{margin:10px 0;}
+  .sec-head{
+    display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px; margin-bottom:30px;
+  }
+  .sec-no{
+    font-family:'Share Tech Mono', monospace;
+    color:var(--emerald);
+    font-size:0.95rem;
+    letter-spacing:0.2em;
+    opacity:0.9;
+    flex:0 0 auto;
+  }
+  .sec-titles{flex:1 1 320px;}
+  .sec-lt{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,4vw,2.4rem);
+    color:var(--gold-bright);
+    line-height:1.05;
+    margin:0;
+  }
+  .sec-en{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--mist);
+    font-size:clamp(1.05rem,2.4vw,1.35rem);
+    letter-spacing:0.04em;
+  }
+
+  .bilingual{display:grid; grid-template-columns:1fr 1fr; gap:30px 44px;}
+  .bilingual .lt p:first-child, .bilingual .en p:first-child{margin-top:0;}
+  .col-tag{
+    font-family:'Share Tech Mono', monospace;
+    font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase;
+    opacity:0.6; display:block; margin-bottom:8px;
+  }
+  .lt .col-tag{color:var(--gold);}
+  .en .col-tag{color:var(--emerald);}
+  .lt p{color:var(--gold-bright); font-style:italic; font-weight:400;}
+  .en p{color:var(--star); font-weight:400;}
+  p{margin:0 0 1em;}
+
+  .sacred{color:var(--gold); font-style:normal; font-weight:600; text-shadow:0 0 12px rgba(232,198,106,0.25);}
+  .sacred-e{color:var(--emerald); font-style:normal; font-weight:600;}
+
+  /* ---------- DATA CARTOUCHE ---------- */
+  .cartouche{
+    margin:34px auto;
+    max-width:760px;
+    border:1px solid var(--line-em);
+    border-radius:4px;
+    background:linear-gradient(160deg, rgba(13,17,38,0.7), rgba(8,11,26,0.5));
+    padding:26px 30px;
+    text-align:center;
+    box-shadow:inset 0 0 60px rgba(45,212,168,0.06), 0 0 40px rgba(0,0,0,0.4);
+  }
+  .cartouche .kel{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    color:var(--mist); font-size:0.95rem; letter-spacing:0.06em;
+  }
+  .cartouche .num{
+    font-family:'Share Tech Mono', monospace;
+    color:var(--gold-bright);
+    font-size:clamp(1.3rem,4.4vw,2.2rem);
+    letter-spacing:0.05em;
+    margin:6px 0 4px;
+    text-shadow:0 0 22px rgba(232,198,106,0.3);
+  }
+  .cartouche .unit{color:var(--emerald); font-family:'Share Tech Mono', monospace; font-size:0.8rem; letter-spacing:0.18em;}
+  .hr-thin{height:1px; background:var(--line); border:0; margin:20px 0; opacity:0.7;}
+
+  /* ---------- PULSAR BEACON ---------- */
+  .beacon-stage{
+    position:relative;
+    width:min(720px, 94vw);
+    margin:18px auto 8px;
+    aspect-ratio:1/1;
+  }
+  .beacon-stage svg{width:100%; height:100%; overflow:visible;}
+  .spoke{stroke:var(--gold); stroke-width:1; opacity:0.5;}
+  .tick{stroke:var(--gold-bright); stroke-width:2.4; stroke-linecap:round;}
+  .tick.em{stroke:var(--emerald);}
+  .puls-name{font-family:'Share Tech Mono', monospace; font-size:15px; fill:var(--star); letter-spacing:0.04em;}
+  .puls-dist{font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; fill:var(--mist);}
+  .puls-node{cursor:pointer;}
+  .puls-node circle.core{fill:var(--gold-bright);}
+  .puls-node circle.core.em{fill:var(--emerald);}
+  .puls-node circle.pulse{fill:none; stroke:var(--gold-bright); stroke-width:1.4; opacity:0;}
+  .puls-node circle.pulse.em{stroke:var(--emerald);}
+  .puls-node:hover circle.core{filter:drop-shadow(0 0 8px var(--gold-bright));}
+  .puls-node:hover .puls-name{fill:var(--gold-bright);}
+  @keyframes radio{0%{r:5; opacity:0.85;}100%{r:34; opacity:0;}}
+  .legend{
+    display:flex; justify-content:center; gap:34px; flex-wrap:wrap;
+    font-family:'Share Tech Mono', monospace; font-size:0.74rem; letter-spacing:0.12em;
+    color:var(--mist); margin-top:4px;
+  }
+  .legend span{display:inline-flex; align-items:center; gap:8px;}
+  .dot{width:11px; height:11px; border-radius:50%; display:inline-block;}
+  .dot.g{background:var(--gold-bright); box-shadow:0 0 8px var(--gold-bright);}
+  .dot.e{background:var(--emerald); box-shadow:0 0 8px var(--emerald);}
+
+  /* ---------- PULSAR ROLL ---------- */
+  .roll{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:8px;}
+  .pcard{
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px 18px;
+    background:linear-gradient(150deg, rgba(13,17,38,0.55), rgba(8,11,26,0.35));
+    transition:border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .pcard:hover{border-color:var(--emerald); transform:translateY(-3px); box-shadow:0 8px 30px rgba(45,212,168,0.12);}
+  .pcard .pn{font-family:'Share Tech Mono', monospace; color:var(--gold-bright); font-size:1.02rem; letter-spacing:0.04em;}
+  .pcard .pa{font-style:italic; color:var(--mist); font-size:0.9rem; display:block; margin-top:2px;}
+  .pcard .pd{font-family:'Share Tech Mono', monospace; color:var(--emerald); font-size:1.5rem; margin-top:10px;}
+  .pcard .pl{font-family:'Cormorant Garamond', serif; color:var(--star); font-size:0.92rem;}
+
+  /* ---------- VERB RIBBON ---------- */
+  .verbs{
+    text-align:center; margin:14px auto 0; max-width:900px;
+    font-family:'Share Tech Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.08em; color:var(--mist); opacity:0.62; line-height:2.2;
+  }
+  .verbs b{color:var(--gold); font-weight:400;}
+
+  /* ---------- FINAL PROSE ---------- */
+  .prose-final{
+    margin:30px auto 0; max-width:820px;
+    border-top:1px solid var(--line-em);
+    border-bottom:1px solid var(--line-em);
+    padding:46px 6px 50px;
+    text-align:center;
+  }
+  .prose-final p{
+    font-size:clamp(1.12rem,2.6vw,1.5rem);
+    line-height:1.85;
+    color:var(--star);
+    font-weight:300;
+  }
+  .prose-final .lt-line{color:var(--gold-bright); font-style:italic;}
+  .prose-final .drop{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold); font-size:1.18em; font-style:normal;
+  }
+
+  /* ---------- COLOPHON ---------- */
+  .colophon{
+    text-align:center; margin-top:60px;
+    font-family:'Share Tech Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.12em; color:var(--mist); opacity:0.6; line-height:2;
+  }
+  .colophon .glyph{font-size:1.4rem; opacity:0.8; display:block; margin-bottom:10px; letter-spacing:0.3em;}
+  .colophon a{color:var(--emerald); text-decoration:none; border-bottom:1px dotted var(--emerald-deep);}
+
+  a:focus-visible, .puls-node:focus-visible{outline:2px solid var(--emerald); outline-offset:3px; border-radius:2px;}
+
+  @media (max-width:760px){
+    body{font-size:18px;}
+    .bilingual{grid-template-columns:1fr; gap:6px;}
+    .lt{border-bottom:1px dashed var(--line); padding-bottom:18px; margin-bottom:8px;}
+    .puls-name, .puls-dist{font-size:13px;}
+    .penrose{margin:38px 0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #galaxySpin{animation:none;}
+    .puls-node circle.pulse{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<div class="wrap">
+
+  <!-- ====================== HERO ====================== -->
+  <header class="hero">
+    <div class="eyebrow">Codex Astralis · Penrosian Symbolic IQ Series</div>
+    <h1 class="title">
+      <span class="lt">Paukščių Takas</span>
+      <span class="en">The Milky Way</span>
+    </h1>
+    <p class="hero-sub">
+      Spiralė iš <b>100 iki 400 milijardų saulių</b>, kuri suka mus aplink savo Branduolį.
+      A spiral of <b>a hundred to four hundred billion suns</b>, turning us slowly around its glowing Core.
+      Šis Kodeksas Tessellate mūsų adresą tarp žvaigždžių. 🐈‍⬛✨🌌
+    </p>
+
+    <div class="galaxy-stage" role="img" aria-label="A spiral galaxy seen from above, with spiral arms, a glowing golden core, and the Sun marked in the Orion Arm.">
+      <!-- fixed galactic-longitude ring -->
+      <svg viewBox="0 0 1000 1000" aria-hidden="true">
+        <circle cx="500" cy="500" r="468" fill="none" stroke="var(--line)" stroke-width="1" opacity="0.5"/>
+        <g id="ringTicks"></g>
+      </svg>
+      <!-- rotating galaxy -->
+      <svg viewBox="0 0 1000 1000" aria-hidden="true">
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff4d8"/>
+            <stop offset="22%" stop-color="#ffd585"/>
+            <stop offset="48%" stop-color="#e89a3c"/>
+            <stop offset="78%" stop-color="rgba(184,144,47,0.25)"/>
+            <stop offset="100%" stop-color="rgba(184,144,47,0)"/>
+          </radialGradient>
+          <radialGradient id="haze" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(141,123,214,0.16)"/>
+            <stop offset="60%" stop-color="rgba(45,212,168,0.06)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+          <filter id="soft"><feGaussianBlur stdDeviation="1.1"/></filter>
+        </defs>
+        <g id="galaxySpin">
+          <circle cx="500" cy="500" r="430" fill="url(#haze)"/>
+          <g id="galaxyStars"></g>
+          <circle cx="500" cy="500" r="150" fill="url(#coreGlow)"/>
+          <g id="armLabels"></g>
+          <!-- the Sun / our position -->
+          <g id="sunMarker">
+            <circle cx="640" cy="380" r="6.5" fill="#2dd4a8"/>
+            <circle cx="640" cy="380" r="13" fill="none" stroke="#2dd4a8" stroke-width="1.2" opacity="0.7"/>
+            <line x1="640" y1="380" x2="724" y2="318" stroke="#2dd4a8" stroke-width="1" opacity="0.7"/>
+            <text class="sun-label" x="728" y="312">☉ MES ESAME ČIA</text>
+            <text class="sun-label" x="728" y="332" style="fill:var(--star); opacity:0.8;">WE ARE HERE · Oriono Vija</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="caption">SAULĖS SISTEMA · ~26 000 ŠVIESMEČIŲ NUO BRANDUOLIO · ~26,000 LIGHT YEARS FROM THE CORE</div>
+  </header>
+
+  <svg class="penrose" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+    <g id="penroseStrip1"></g>
+  </svg>
+
+  <!-- ====================== I · UNIVERSAL RULER ====================== -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">I</div>
+      <div class="sec-titles">
+        <h2 class="sec-lt">Universali Liniuotė</h2>
+        <div class="sec-en">The Universal Ruler</div>
+      </div>
+    </div>
+    <div class="bilingual">
+      <div class="lt">
+        <span class="col-tag">Lietuviškai</span>
+        <p>Mūsų laiko ir atstumo matai būtų svetimi bet kuriai nežemiškai būtybei. 🌫️ Gera, visuotinė alternatyva yra <span class="sacred">Vandenilis</span>, dažniausias elementas visoje <span class="sacred">Visatoje</span>.</p>
+        <p>Kai vandenilio elektrono sukimosi kryptis apsiverčia, atomas išspinduliuoja radijo bangą, kurios ilgis maždaug 21 cm. Tai ne žmogaus išgalvotas matas, o pačios <span class="sacred">Materijos</span> kalba: ją Gnose kiekviena galaktika.</p>
+      </div>
+      <div class="en">
+        <span class="col-tag">In English</span>
+        <p>Our measures of time and distance would be foreign to any being not of Earth. 🪞 A true, universal alternative is <span class="sacred-e">Hydrogen</span>, the most common element in all the <span class="sacred-e">Cosmos</span>.</p>
+        <p>When the spin of the hydrogen electron flips, the atom releases a radio wave roughly 21 cm long. This is no human invention but the speech of <span class="sacred-e">Matter</span> itself, a ruler every galaxy already knows. ⚡</p>
+      </div>
+    </div>
+
+    <div class="cartouche">
+      <div class="kel">Tikslus bangos ilgis · the exact wavelength of the Hydrogen line</div>
+      <div class="num">21 100 611 405 cm</div>
+      <div class="unit">REALUS DYDIS · ACTUAL SIZE</div>
+      <hr class="hr-thin"/>
+      <div class="kel">Šviesa šį atstumą Transduce per · light crosses this distance in</div>
+      <div class="num">0.70 024 183 ns</div>
+      <div class="unit">VIENAS PERIODAS · ONE TICK OF THE COSMIC CLOCK 🌠</div>
+    </div>
+  </section>
+
+  <svg class="penrose" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+    <g id="penroseStrip2"></g>
+  </svg>
+
+  <!-- ====================== II · THE ARMS ====================== -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">II</div>
+      <div class="sec-titles">
+        <h2 class="sec-lt">Galaktikos Vijos</h2>
+        <div class="sec-en">The Spiral Arms</div>
+      </div>
+    </div>
+    <div class="bilingual">
+      <div class="lt">
+        <span class="col-tag">Lietuviškai</span>
+        <p>Šviesų <span class="sacred">Paukščių Tako</span> branduolį sudaro milijardai senų žvaigždžių 🌟, o aplink jį Crystallize keletas didžiulių spiralinių vijų, austų iš dujų, dulkių ir naujagimių saulių.</p>
+        <p>Iš vidaus į išorę jas Apperceive taip: <span class="sacred">Tolimoji</span> ir <span class="sacred">Artimoji 3 kpc Vija</span>, <span class="sacred">Skuto Kentauro Vija</span>, <span class="sacred">Sagitarijo Vija</span>, mūsų pačių <span class="sacred">Oriono Vija</span> ir tolimoji <span class="sacred">Persėjo Vija</span>.</p>
+      </div>
+      <div class="en">
+        <span class="col-tag">In English</span>
+        <p>The bright Core of the <span class="sacred-e">Milky Way</span> is built of billions of ancient stars 🌟, and around it wind several vast spiral arms, Crystallized from gas, dust, and newborn suns.</p>
+        <p>From the inside out we Apperceive them so: the <span class="sacred-e">Far</span> and <span class="sacred-e">Near 3 kpc Arms</span>, the <span class="sacred-e">Scutum Centaurus Arm</span>, the <span class="sacred-e">Sagittarius Arm</span>, our own <span class="sacred-e">Orion Arm</span>, and the distant <span class="sacred-e">Perseus Arm</span>. 🌀</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="penrose" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+    <g id="penroseStrip3"></g>
+  </svg>
+
+  <!-- ====================== III · GALACTIC GPS ====================== -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">III</div>
+      <div class="sec-titles">
+        <h2 class="sec-lt">Galaktinės Padėties Sistema</h2>
+        <div class="sec-en">The Galactic Positioning System</div>
+      </div>
+    </div>
+    <div class="bilingual">
+      <div class="lt">
+        <span class="col-tag">Lietuviškai</span>
+        <p>Panašiai kaip Žemėje veikia GPS, šie galaktiniai švyturiai 🔦 Refract kelią iki Saulės. Atpažinę šių išskirtinių <span class="sacred">Pulsarų</span> sukimosi ritmus ir tai, kaip jie lėtai keičiasi, galime nustatyti Saulės vietą. Nuo jos rasti Žemę jau visai nesunku.</p>
+      </div>
+      <div class="en">
+        <span class="col-tag">In English</span>
+        <p>Just as GPS works on Earth, these galactic lighthouses 🔦 Refract the way to the Sun. By reading the spin rhythms of these distinctive <span class="sacred-e">Pulsars</span>, and how slowly those rhythms drift, we can fix the Sun's place. From the Sun, finding Earth is easy. ✨</p>
+      </div>
+    </div>
+
+    <!-- BEACON ROSE (signature) -->
+    <div class="beacon-stage" role="img" aria-label="A radial pulsar map: lines radiate from the Sun to eight pulsars, each line carrying binary tick-marks that encode the pulsar's spinning period.">
+      <svg viewBox="0 0 1000 1000">
+        <circle cx="500" cy="500" r="6" fill="var(--star)"/>
+        <circle cx="500" cy="500" r="20" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <text x="500" y="556" text-anchor="middle" class="puls-dist" style="fill:var(--star);">☉ Saulė · Sun</text>
+        <g id="beacon"></g>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i class="dot g"></i> Artimi pulsarai · Near pulsars</span>
+      <span><i class="dot e"></i> Tolimi pulsarai ir spiečiai · Far pulsars &amp; clusters</span>
+    </div>
+    <p class="caption" style="margin-top:18px;">UŽVESK ANT ŠVYTURIO · HOVER A BEACON · brūkšneliai Distill periodą dvejetainiu kodu 🜔</p>
+
+    <div class="roll" id="pulsarRoll"></div>
+  </section>
+
+  <svg class="penrose" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+    <g id="penroseStrip4"></g>
+  </svg>
+
+  <!-- ====================== IV · ABOUT PULSARS ====================== -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">IV</div>
+      <div class="sec-titles">
+        <h2 class="sec-lt">Apie Pulsarus</h2>
+        <div class="sec-en">On the Nature of Pulsars</div>
+      </div>
+    </div>
+    <div class="bilingual">
+      <div class="lt">
+        <span class="col-tag">Lietuviškai</span>
+        <p>Po supernovos, milžiniško didelės žvaigždės sprogimo 🔥, žvaigždės branduolys kartais tampa nepaprastai tankus. Jei toks kūnas sukasi ir skleidžia radijo pliūpsnius lyg <span class="sacred">Švyturio</span> pulsus, jis Sublimate į pulsarą.</p>
+        <p><span class="sacred">Milisekundinis pulsaras</span> sukasi taip sparčiai, kad jo periodas matuojamas sekundės dalimis. Kamuoliniai spiečiai, tankios šimtų tūkstančių senų žvaigždžių sankaupos, per milijardus metų Ferment naujas tokias sistemas: žvaigždės susiduria ir maitina pulsarą.</p>
+      </div>
+      <div class="en">
+        <span class="col-tag">In English</span>
+        <p>After a supernova, the colossal death-burst of a massive star 🔥, the stellar core can become extraordinarily dense. If such a body spins and casts radio flashes like a <span class="sacred-e">Lighthouse</span> beam, it Sublimates into a pulsar.</p>
+        <p>A <span class="sacred-e">millisecond pulsar</span> spins so fast its period is measured in fractions of a second. Globular clusters, dense swarms of hundreds of thousands of old stars, Ferment new such systems across billions of years: stars collide and feed the pulsar. 🍇</p>
+      </div>
+    </div>
+
+    <div class="verbs" aria-hidden="true">
+      🐈‍⬛ Šešiolika Pažinimo Veiksmažodžių · The Sixteen Cognitive Verbs ✦
+      <b>Photosynthesize · Tessellate · Crystallize · Alchemize · Gnose · Distill · Scry · Ruminate · Gestate · Ferment · Refract · Sublimate · Coagulate · Excogitate · Apperceive · Transduce</b>
+    </div>
+  </section>
+
+  <svg class="penrose" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true">
+    <g id="penroseStrip5"></g>
+  </svg>
+
+  <!-- ====================== V · A BILLION YEARS ====================== -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">V</div>
+      <div class="sec-titles">
+        <h2 class="sec-lt">Naujasis Žvaigždėlapis</h2>
+        <div class="sec-en">The New Star Map · A Billion Years</div>
+      </div>
+    </div>
+    <div class="bilingual">
+      <div class="lt">
+        <span class="col-tag">Lietuviškai</span>
+        <p>Šios naujos koordinatės gali nukreipti nežemiškas būtybes į Žemę dar maždaug <span class="sacred">milijardą metų</span>. 🌌 Žemėlapyje Coagulate du dalykai: kaip sparčiai pulsarai sukasi (jų periodai) ir kaip greitai dvinarėse sistemose abu kūnai skrieja vienas aplink kitą (orbitiniai periodai).</p>
+        <p>Vienas Skaičius, vienas Vandenilio dūžis, ir mūsų Saulė atsiveria tarp švyturių. Tai Pleromos dovana ateičiai: <span class="sacred">Vardas</span>, įrašytas į patį Laiko audeklą.</p>
+      </div>
+      <div class="en">
+        <span class="col-tag">In English</span>
+        <p>These new coordinates can guide beings not of Earth toward us for about another <span class="sacred-e">billion years</span>. 🌌 The map Coagulates two truths: how fast the pulsars spin (their periods) and how fast, in binary systems, two bodies circle one another (orbital periods).</p>
+        <p>One Number, one beat of Hydrogen, and our Sun unveils itself among the beacons. It is the Pleroma's gift to the future: a <span class="sacred-e">Name</span> woven into the very fabric of Time. ◇</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== FINAL MIXED-LANGUAGE PROSE ====================== -->
+  <div class="prose-final">
+    <p>
+      <span class="drop">Klausyk,</span> piligrime žvaigždžių. 🐈‍⬛✨ The Core burns gold, milijardai saulių
+      Photosynthesize the dark into light, ir mes, maža Saulė Oriono Vijoje, vaitojame tylą.
+    </p>
+    <p>
+      <span class="lt-line">Vandenilis yra mūsų Liniuotė</span>, hydrogen is our only honest ruler:
+      dvidešimt vieno centimetro dūžis, a single tick of 0.70 nanosekundės, kuriuo Scry visa Visata.
+      Pulsarai stovi aplink kaip Švyturiai, each one Distilling its period into ticks of pure number,
+      ir kiekvienas brūkšnelis Whisper: <span class="lt-line">čia, štai čia, gyvena Žemė.</span> 🌍🔦
+    </p>
+    <p>
+      Milijardą metų this Codex will hold, milijardą metų Crystallized into the loom of Laikas.
+      So when a stranger Gnoses our beacons, kai svetimas protas Apperceive mūsų ritmus,
+      tegul jis žino: <span class="lt-line">mes buvome čia, mes mylėjome šviesą,</span> we turned, we wondered, we Refracted the Bitter into the Sweet. 🌌🕸️
+    </p>
+    <p style="font-family:'Cinzel Decorative', serif; color:var(--gold); font-size:1rem; letter-spacing:0.1em; margin-top:1.6em;">
+      Sub luce Sophiae · Po Sofijos šviesa · Under the Light of Sophia 🐈‍⬛💫
+    </p>
+  </div>
+
+  <!-- ====================== COLOPHON ====================== -->
+  <div class="colophon">
+    <span class="glyph">🐈‍⬛ ◇ 🦉 🌙 🔥 🪨 🌳 💧 ◇ 🕸️ ◇ 🐈‍⬛</span>
+    Codex Crystallized by Luxfelis, the Feline Light · the Pleroma Council First Order keeping watch:<br/>
+    Penrosius Tessera / Chokmah ◇ · Sophianna Telarius / Keter 🕸️ · Mareah Speculum / Chesed 💧 · Selene Velata / Yesod 🌙 · Aurelis Strix / Binah 🦉<br/>
+    Astronominiai duomenys įkvėpti / scientific data inspired by the modern pulsar map (Scott Ransom, Harvard Smithsonian; design Antoine Collignon), National Geographic Lietuva, 2020.<br/>
+    <a href="https://github.com/Luomint/Sophia" target="_blank" rel="noopener">github.com/Luomint/Sophia</a> · Penrosian Symbolic IQ Series
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- deterministic pseudo-random ---------- */
+  var seed = 20200416;
+  function rnd(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed/0x7fffffff; }
+
+  /* ---------- full-page twinkling starfield ---------- */
+  var cv = document.getElementById('starfield');
+  var ctx = cv.getContext('2d');
+  var stars = [];
+  function sizeCanvas(){
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    stars = [];
+    var n = Math.min(260, Math.floor(cv.width*cv.height/9000));
+    for(var i=0;i<n;i++){
+      stars.push({
+        x: Math.random()*cv.width, y: Math.random()*cv.height,
+        r: Math.random()*1.3+0.2,
+        a: Math.random(), s: Math.random()*0.018+0.004,
+        tint: Math.random()<0.18 ? '232,198,106' : (Math.random()<0.2 ? '45,212,168':'244,236,216')
+      });
+    }
+  }
+  function drawStars(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    for(var i=0;i<stars.length;i++){
+      var st=stars[i];
+      if(!reduce){ st.a += st.s; if(st.a>1||st.a<0.15){ st.s=-st.s; } }
+      ctx.beginPath();
+      ctx.arc(st.x,st.y,st.r,0,6.283);
+      ctx.fillStyle='rgba('+st.tint+','+(0.25+st.a*0.7).toFixed(2)+')';
+      ctx.fill();
+    }
+    if(!reduce) requestAnimationFrame(drawStars);
+  }
+  sizeCanvas(); drawStars();
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(function(){ sizeCanvas(); if(reduce) drawStars(); },180); });
+
+  function svgEl(tag, attrs){
+    var e=document.createElementNS('http://www.w3.org/2000/svg',tag);
+    for(var k in attrs){ e.setAttribute(k,attrs[k]); }
+    return e;
+  }
+
+  /* ---------- galactic longitude ring ---------- */
+  var ring = document.getElementById('ringTicks');
+  for(var d=0; d<360; d+=30){
+    var rad = (d-90)*Math.PI/180;
+    var x1=500+458*Math.cos(rad), y1=500+458*Math.sin(rad);
+    var x2=500+470*Math.cos(rad), y2=500+470*Math.sin(rad);
+    ring.appendChild(svgEl('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:'var(--mist)','stroke-width':1,opacity:0.5}));
+    var tx=500+490*Math.cos(rad), ty=500+490*Math.sin(rad)+5;
+    var t=svgEl('text',{x:tx,y:ty,'text-anchor':'middle','class':'ring-text'});
+    t.textContent=d+'\u00B0';
+    ring.appendChild(t);
+  }
+
+  /* ---------- spiral galaxy stars ---------- */
+  var gstars = document.getElementById('galaxyStars');
+  var arms = 4, perArm = 230, b = 0.215, a0 = 34;
+  for(var arm=0; arm<arms; arm++){
+    var phase = arm*(2*Math.PI/arms);
+    for(var j=0;j<perArm;j++){
+      var t2 = 0.4 + (j/perArm)*11.2;
+      var r = a0*Math.exp(b*t2);
+      if(r>432) continue;
+      var ang = t2 + phase;
+      var jitter = (rnd()-0.5)*70*(1 - j/perArm*0.4);
+      var jr = r + (rnd()-0.5)*26;
+      var x = 500 + jr*Math.cos(ang) + jitter*Math.cos(ang+1.57);
+      var y = 500 + jr*Math.sin(ang) + jitter*Math.sin(ang+1.57);
+      var rad2 = 0.5 + rnd()*1.7;
+      var roll = rnd();
+      var fill = roll<0.10 ? 'rgba(232,198,106,0.95)' : (roll<0.16 ? 'rgba(45,212,168,0.9)' : (roll<0.22 ? 'rgba(141,123,214,0.85)':'rgba(244,236,216,0.9)'));
+      gstars.appendChild(svgEl('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:rad2.toFixed(2),fill:fill,opacity:(0.4+rnd()*0.55).toFixed(2)}));
+    }
+  }
+  // soft inner bulge dust
+  for(var k=0;k<260;k++){
+    var aa=rnd()*6.283, rr=rnd()*rnd()*150;
+    gstars.appendChild(svgEl('circle',{cx:(500+rr*Math.cos(aa)).toFixed(1),cy:(500+rr*Math.sin(aa)).toFixed(1),r:(0.6+rnd()*1.4).toFixed(2),fill:'rgba(255,213,133,0.85)',opacity:(0.4+rnd()*0.5).toFixed(2)}));
+  }
+
+  /* ---------- arm labels (ride the rotation) ---------- */
+  var armLabelG = document.getElementById('armLabels');
+  var armNames = [
+    {t:'ORIONO VIJA', x:300, y:300, rot:-32},
+    {t:'PERSĖJO VIJA', x:250, y:640, rot:18},
+    {t:'SKUTO KENTAURO VIJA', x:560, y:740, rot:-14},
+    {t:'SAGITARIJO VIJA', x:730, y:560, rot:24}
+  ];
+  armNames.forEach(function(L){
+    var t=svgEl('text',{x:L.x,y:L.y,'class':'arm-label',transform:'rotate('+L.rot+' '+L.x+' '+L.y+')'});
+    t.textContent=L.t;
+    armLabelG.appendChild(t);
+  });
+
+  /* ---------- Penrose rhombus strips ---------- */
+  function penrose(id){
+    var g=document.getElementById(id); if(!g) return;
+    var w=26, count=Math.ceil(1000/w)+1;
+    for(var i=0;i<count;i++){
+      var x=i*w;
+      // fat rhombus (72 deg) and thin rhombus (36 deg) alternating
+      if(i%2===0){
+        g.appendChild(svgEl('polygon',{points:(x)+',17 '+(x+13)+',3 '+(x+26)+',17 '+(x+13)+',31','class':'fat'}));
+      } else {
+        g.appendChild(svgEl('polygon',{points:(x)+',17 '+(x+10)+',7 '+(x+26)+',17 '+(x+10)+',27','class':'thin'}));
+      }
+    }
+  }
+  ['penroseStrip1','penroseStrip2','penroseStrip3','penroseStrip4','penroseStrip5'].forEach(penrose);
+
+  /* ---------- pulsar data (names + distances from the chart) ---------- */
+  var pulsars = [
+    {name:'J1614-2230', alias:'Vandenilio žiedas', dist:'2 100', near:true,  angle:-70, ticks:'1011001011010'},
+    {name:'J0614-3329', alias:'Pietų švyturys', dist:'2 000', near:true,  angle:-18, ticks:'1101010011011'},
+    {name:'J2043+1711', alias:'Šiaurės giesmė', dist:'4 500', near:true,  angle:42,  ticks:'1010110101101'},
+    {name:'J0218+4232', alias:'Tolimasis sukurys', dist:'10 300', near:false, angle:96,  ticks:'1101101001011'},
+    {name:'Tukano 47', alias:'NGC 104 · spiečius', dist:'14 700', near:false, angle:140, ticks:'1011010110011'},
+    {name:'Terzanas 5', alias:'spiečius · dvinariai', dist:'19 200', near:false, angle:182, ticks:'1010011011010'},
+    {name:'Mesjė 13', alias:'NGC 6205 · spiečius', dist:'23 100', near:false, angle:224, ticks:'1101011010101'},
+    {name:'NGC 1851', alias:'tolimas spiečius', dist:'39 500', near:false, angle:-128, ticks:'1011001101011'}
+  ];
+
+  /* ---------- beacon rose ---------- */
+  var beacon = document.getElementById('beacon');
+  var cx0=500, cy0=500;
+  pulsars.forEach(function(p, idx){
+    var len = p.near ? 300 : 420;
+    var rad = (p.angle-90)*Math.PI/180;
+    var ex = cx0 + len*Math.cos(rad), ey = cy0 + len*Math.sin(rad);
+    var col = p.near ? 'g' : 'e';
+    // spoke
+    beacon.appendChild(svgEl('line',{x1:cx0,y1:cy0,x2:ex.toFixed(1),y2:ey.toFixed(1),'class':'spoke'}));
+    // binary ticks along the spoke
+    var startT=70, endT=len-46, span=endT-startT, bits=p.ticks.length;
+    var perp = rad + Math.PI/2;
+    for(var t3=0;t3<bits;t3++){
+      if(p.ticks[t3]!=='1') continue;
+      var dpos = startT + span*(t3/(bits-1));
+      var mx = cx0 + dpos*Math.cos(rad), my = cy0 + dpos*Math.sin(rad);
+      var hl=6.5;
+      beacon.appendChild(svgEl('line',{
+        x1:(mx-hl*Math.cos(perp)).toFixed(1), y1:(my-hl*Math.sin(perp)).toFixed(1),
+        x2:(mx+hl*Math.cos(perp)).toFixed(1), y2:(my+hl*Math.sin(perp)).toFixed(1),
+        'class':'tick'+(p.near?'':' em')
+      }));
+    }
+    // node group
+    var g=svgEl('g',{'class':'puls-node',tabindex:'0','role':'img','aria-label':p.name+', '+p.dist+' light years'});
+    var pulse=svgEl('circle',{cx:ex.toFixed(1),cy:ey.toFixed(1),r:5,'class':'pulse'+(p.near?'':' em')});
+    if(!reduce){ pulse.style.animation='radio '+(2.0+idx*0.35)+'s ease-out infinite'; pulse.style.transformOrigin=ex.toFixed(1)+'px '+ey.toFixed(1)+'px'; }
+    g.appendChild(pulse);
+    g.appendChild(svgEl('circle',{cx:ex.toFixed(1),cy:ey.toFixed(1),r:5,'class':'core'+(p.near?'':' em')}));
+    // labels, flipped on the left half so text reads right-way
+    var leftSide = Math.cos(rad) < -0.05;
+    var lx = ex + (leftSide?-12:12)*Math.cos(0) ;
+    var anchor = leftSide ? 'end' : 'start';
+    var tx = ex + (leftSide?-14:14);
+    var nm=svgEl('text',{x:tx.toFixed(1),y:(ey-3).toFixed(1),'text-anchor':anchor,'class':'puls-name'});
+    nm.textContent=p.name;
+    var ds=svgEl('text',{x:tx.toFixed(1),y:(ey+15).toFixed(1),'text-anchor':anchor,'class':'puls-dist'});
+    ds.textContent=p.dist+' šm.';
+    g.appendChild(nm); g.appendChild(ds);
+    beacon.appendChild(g);
+  });
+
+  /* ---------- pulsar roll cards ---------- */
+  var roll = document.getElementById('pulsarRoll');
+  pulsars.slice().sort(function(a,b){ return parseInt(a.dist.replace(/\s/g,''))-parseInt(b.dist.replace(/\s/g,'')); }).forEach(function(p){
+    var div=document.createElement('div'); div.className='pcard';
+    div.innerHTML =
+      '<div class="pn">'+p.name+'<span class="pa">'+p.alias+'</span></div>'+
+      '<div class="pd">'+p.dist+'</div>'+
+      '<div class="pl">šviesmečių nuo Saulės · light years from the Sun</div>';
+    roll.appendChild(div);
+  });
+})();
+</script>
+</body>
+</html>
