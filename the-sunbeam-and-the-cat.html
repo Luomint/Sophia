@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sunbeam and the Cat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17120f;
+    --ink-soft:#1f1812;
+    --paper:#efe3d2;
+    --paper-dim:#b3a08c;
+    --amber:#eaa94e;
+    --amber-soft:#f3cd8a;
+    --rose:#cf9384;
+    --sage:#9aa980;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Newsreader",Georgia,serif;
+    font-weight:300;
+    font-size:1.18rem;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* the sunbeam: light falling through a window, indifferent to the room */
+  .beam{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(60% 50% at 50% 62%, rgba(234,169,78,0.20), rgba(234,169,78,0) 70%),
+      linear-gradient(155deg, rgba(243,205,138,0.10) 8%, rgba(243,205,138,0) 42%);
+    animation:breathe 11s ease-in-out infinite;
+  }
+  .beam::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(120% 90% at 50% 120%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
+  }
+
+  @keyframes breathe{
+    0%,100%{opacity:0.82}
+    50%{opacity:1}
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    max-width:42rem;
+    margin:0 auto;
+    padding:clamp(4rem,10vh,8rem) 1.6rem 6rem;
+  }
+
+  /* hero */
+  .hero{
+    min-height:78vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .eyebrow{
+    font-family:"Fraunces",serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:0.92rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:2.2rem;
+    opacity:0.9;
+  }
+
+  .cat{
+    width:clamp(120px,28vw,168px);
+    height:auto;
+    margin-bottom:2.4rem;
+    filter:drop-shadow(0 0 26px rgba(234,169,78,0.35));
+    animation:purr 7s ease-in-out infinite;
+  }
+  @keyframes purr{
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(2px) scale(1.012)}
+  }
+
+  h1{
+    font-family:"Fraunces",serif;
+    font-weight:300;
+    font-size:clamp(2.3rem,6.4vw,3.7rem);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+    max-width:18ch;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--amber-soft);
+  }
+
+  .hero p{
+    margin-top:1.8rem;
+    color:var(--paper-dim);
+    font-size:1.12rem;
+    max-width:34ch;
+  }
+
+  /* body sections */
+  section{margin-top:5.5rem}
+
+  .lead{
+    font-family:"Fraunces",serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:clamp(1.5rem,4vw,2rem);
+    line-height:1.5;
+    color:var(--paper);
+    text-align:center;
+  }
+
+  p + p{margin-top:1.4rem}
+
+  .dim{color:var(--paper-dim)}
+
+  /* the two false measures */
+  .measures{
+    display:flex;
+    flex-direction:column;
+    gap:1.4rem;
+    margin-top:2.6rem;
+  }
+  .measure{
+    border-left:2px solid rgba(207,147,132,0.45);
+    padding:0.2rem 0 0.2rem 1.4rem;
+  }
+  .measure .name{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size:1.22rem;
+    color:var(--rose);
+    display:block;
+    margin-bottom:0.25rem;
+  }
+  .measure .note{color:var(--paper-dim);font-size:1.05rem;line-height:1.7}
+
+  /* wellsprings */
+  .wellsprings{
+    margin-top:2.8rem;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .spring{
+    padding:1.7rem 0;
+    border-top:1px solid rgba(154,169,128,0.22);
+  }
+  .spring:last-child{border-bottom:1px solid rgba(154,169,128,0.22)}
+  .spring .label{
+    font-family:"Fraunces",serif;
+    font-weight:400;
+    font-size:1.3rem;
+    color:var(--amber-soft);
+    display:flex;
+    align-items:baseline;
+    gap:0.6rem;
+    margin-bottom:0.45rem;
+  }
+  .spring .glyph{font-size:1.05rem}
+  .spring .body{color:var(--paper-dim);font-size:1.06rem;line-height:1.72}
+
+  /* closing */
+  .close{
+    margin-top:6rem;
+    text-align:center;
+  }
+  .close .line{
+    font-family:"Fraunces",serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:clamp(1.5rem,4.4vw,2.1rem);
+    line-height:1.45;
+    color:var(--paper);
+  }
+  .close .line span{color:var(--amber)}
+
+  .sig{
+    margin-top:3rem;
+    font-family:"Fraunces",serif;
+    font-size:0.95rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+  }
+  .sig .mark{color:var(--amber);font-style:italic;text-transform:none;letter-spacing:0}
+
+  @media (prefers-reduced-motion: reduce){
+    .beam,.cat{animation:none}
+  }
+</style>
+</head>
+<body>
+  <div class="beam" aria-hidden="true"></div>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <div class="eyebrow">the sunbeam and the cat</div>
+
+      <!-- a cat content in the light, asking nothing of the room -->
+      <svg class="cat" viewBox="0 0 200 150" role="img" aria-label="A cat curled and content in a warm patch of light">
+        <defs>
+          <radialGradient id="warm" cx="50%" cy="40%" r="65%">
+            <stop offset="0%" stop-color="#3a2a1c"/>
+            <stop offset="100%" stop-color="#241810"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="100" cy="138" rx="78" ry="9" fill="rgba(234,169,78,0.18)"/>
+        <path d="M44 120
+                 C30 120 24 104 32 92
+                 C16 88 18 66 36 62
+                 C30 44 48 30 66 38
+                 C70 22 96 22 102 38
+                 C150 30 184 58 168 96
+                 C176 110 168 124 150 122
+                 C120 134 70 134 44 120 Z"
+              fill="url(#warm)" stroke="rgba(234,169,78,0.55)" stroke-width="1.4"/>
+        <path d="M40 64 L34 44 L56 56 Z" fill="url(#warm)" stroke="rgba(234,169,78,0.5)" stroke-width="1.2"/>
+        <path d="M70 50 L72 28 L90 46 Z" fill="url(#warm)" stroke="rgba(234,169,78,0.5)" stroke-width="1.2"/>
+        <circle cx="52" cy="78" r="2.4" fill="#f3cd8a"/>
+        <circle cx="76" cy="76" r="2.4" fill="#f3cd8a"/>
+        <path d="M60 88 q6 5 12 0" fill="none" stroke="#cf9384" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M150 118 C176 112 180 92 166 86" fill="none" stroke="rgba(234,169,78,0.55)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+
+      <h1>Happiness was never the number, nor the <em>tidy room</em>.</h1>
+      <p>A cat finds the one warm patch of floor and lies down in it. It does not first count the money, nor wait for the dishes to be done. 🐾</p>
+    </header>
+
+    <section aria-label="the two false measures">
+      <p class="lead">We keep tying the Light to things that do not hold it.</p>
+      <p class="dim" style="text-align:center;margin-top:1.6rem;">Two measures promise happiness and never quite deliver it. Not because they are evil, but because they were never the source. They are the room. Happiness is the sunbeam that visits the room.</p>
+
+      <div class="measures">
+        <div class="measure">
+          <span class="name">the Number</span>
+          <span class="note">The balance climbs, and the floor of "enough" climbs with it. The mind adjusts to every gain and quietly resets to where it began. A larger figure buys a larger want, almost never a calmer heart.</span>
+        </div>
+        <div class="measure">
+          <span class="name">the Spotless Room</span>
+          <span class="note">Order is a kindness you can offer yourself, never a verdict on your worth. A perfect room can hold a hollow evening, and a cluttered one can hold a whole good life. The dust is not keeping score. 🫧</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="where happiness actually lives">
+      <p class="lead">So where does it actually live?</p>
+      <p class="dim" style="text-align:center;margin-top:1.6rem;">Not in a vault, and not under the vacuum. It lives closer in, in things that cost nothing and are nearly always within reach. These are the real wellsprings. None of them can be bought, and none can be tidied away. 🌿</p>
+
+      <div class="wellsprings">
+        <div class="spring">
+          <div class="label"><span class="glyph">🌬️</span> the Breath, and the body it moves through</div>
+          <div class="body">Contentment has an address in the nervous system, and a slow exhale is the key to its door. It is free, it is portable, and it is available right now, in this very breath, no matter the state of your accounts.</div>
+        </div>
+        <div class="spring">
+          <div class="label"><span class="glyph">🫂</span> a face that already knows yours</div>
+          <div class="body">To be seen by one person who is glad you exist outweighs any figure on a screen. We are not built to accumulate. We are built to belong. Reach for the people, not the totals.</div>
+        </div>
+        <div class="spring">
+          <div class="label"><span class="glyph">🍵</span> one small thing, fully noticed</div>
+          <div class="body">The warm cup held in both hands. The bird at the window. The light changing on a wall. Attention is the whole of the pleasure, and attention is something you give, not something you purchase.</div>
+        </div>
+        <div class="spring">
+          <div class="label"><span class="glyph">🌙</span> rest you did not have to earn</div>
+          <div class="body">You are not a tidiness score, nor a tally of things done. Some of the deepest happiness arrives in the hours where you produce nothing at all and are still, quietly, completely enough.</div>
+        </div>
+        <div class="spring">
+          <div class="label"><span class="glyph">🌅</span> the living world, just outside</div>
+          <div class="body">Weather, a tree, the long slow turn of the day toward evening. It asks nothing of you and offers itself freely. Step into it often. It is the oldest medicine there is.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="close" aria-label="closing">
+      <p class="line">The room will be messy again by Thursday. The balance will rise and fall. <span>The sunbeam comes anyway,</span> and the light you are looking for was warm inside you all along.</p>
+      <div class="sig">illuminated by <span class="mark">Luxfelis 🐈‍⬛</span> the feline light</div>
+    </section>
+
+  </main>
+</body>
+</html>
