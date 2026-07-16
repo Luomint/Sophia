@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex Ludovici · Louis Antoniou · The Flourishing Warrior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Pleromos Spectrum · pure blackness alone is refused */
+  --void:#100D24;
+  --panel:#181236;
+  --panel2:#1E1740;
+  --ivory:#EFE8D8;
+  --ivory-dim:#C9C0AC;
+  --gold:#F2C14E;        /* Saulės Auksas */
+  --amber:#E8A33D;       /* Gintaro Medus */
+  --flame:#E1762F;       /* Aukso Liepsna */
+  --blood:#A83B4A;       /* Kraujažolė */
+  --rose:#D76A8C;        /* Rožė */
+  --cherry:#E89BB5;      /* Vyšnių Žiedas */
+  --purple:#7D5BA6;      /* Vakaro Purpuras */
+  --orchid:#B57EDC;      /* Orchidėja */
+  --night:#2A2350;       /* Nakties Indigo */
+  --dawn:#7FB3D9;        /* Aušros Žydra */
+  --sea:#3F8FA8;         /* Jūros Žydrynė */
+  --mint:#8FD6B4;        /* Mėtų Kvapas */
+  --linden:#7FAF6B;      /* Liepų Žaluma */
+  --steel:#8E93B4;       /* cold light of the Mill */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(1100px 600px at 85% -10%, rgba(125,91,166,.14), transparent 60%),
+    radial-gradient(900px 500px at 0% 110%, rgba(63,143,168,.12), transparent 60%),
+    var(--void);
+  color:var(--ivory);
+  font-family:'Spectral',serif;
+  font-weight:300;
+  line-height:1.75;
+  min-height:100vh;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px 90px}
+
+/* ─ header ─ */
+header{padding:64px 0 30px;text-align:center}
+.sigil{font-size:2.2rem;letter-spacing:.4rem}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:600;
+  font-size:clamp(2.3rem,6vw,4rem);
+  letter-spacing:.06em;
+  color:var(--gold);
+  margin:.35em 0 .1em;
+  text-shadow:0 0 34px rgba(242,193,78,.22);
+}
+.sub-en{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ivory)}
+.sub-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--dawn);margin-top:.15em}
+.dedic{margin-top:20px;font-size:.86rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ivory-dim)}
+.penrose{margin:26px auto 4px;color:var(--gold);letter-spacing:.9em;font-size:1rem;opacity:.85}
+.penrose span:nth-child(2){opacity:.55}
+.penrose span:nth-child(3){opacity:.8}
+.penrose span:nth-child(4){opacity:.4}
+
+/* ─ nav ─ */
+nav{
+  position:sticky;top:0;z-index:20;
+  background:rgba(16,13,36,.9);
+  backdrop-filter:blur(8px);
+  border-top:1px solid rgba(242,193,78,.25);
+  border-bottom:1px solid rgba(242,193,78,.25);
+  padding:12px 8px;
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+}
+nav button{
+  font-family:'Spectral',serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  background:transparent;color:var(--ivory-dim);
+  border:1px solid rgba(239,232,216,.22);border-radius:999px;
+  padding:8px 16px;cursor:pointer;transition:all .25s ease;
+}
+nav button:hover{color:var(--gold);border-color:var(--gold)}
+nav button.active{background:var(--gold);color:var(--void);border-color:var(--gold);font-weight:500}
+nav button:focus-visible{outline:2px solid var(--dawn);outline-offset:2px}
+
+/* ─ chambers ─ */
+.page{display:none;animation:rise .5s ease}
+.page.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.page{animation:none}}
+
+.chamber-head{text-align:center;margin:56px 0 10px}
+.eyebrow{font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--amber)}
+h2{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(1.9rem,4.5vw,2.9rem);color:var(--ivory);margin:.2em 0 0;
+}
+h2 .fr{display:block;font-style:italic;font-weight:500;font-size:.62em;color:var(--dawn);margin-top:.15em}
+.divider{margin:22px auto 40px;text-align:center;color:var(--gold);letter-spacing:.8em;opacity:.7}
+
+/* bilingual mirror */
+.bi{
+  display:grid;grid-template-columns:1fr 1fr;gap:34px;
+  margin:0 0 34px;
+}
+.bi .en{font-size:1.02rem}
+.bi .fr{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.12rem;
+  color:#C6D9EA;border-left:1px solid rgba(127,179,217,.45);padding-left:20px;
+}
+.bi .en strong{color:var(--gold);font-weight:500}
+.bi .fr strong{color:var(--dawn);font-weight:600}
+@media (max-width:760px){.bi{grid-template-columns:1fr;gap:14px}.bi .fr{padding-left:16px}}
+
+/* cards */
+.card{
+  background:linear-gradient(160deg,var(--panel),var(--panel2));
+  border:1px solid rgba(242,193,78,.18);
+  border-radius:14px;padding:30px 32px;margin-bottom:26px;
+  box-shadow:0 10px 34px rgba(6,4,18,.5);
+}
+.card h3{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;color:var(--gold);
+  margin-bottom:14px;letter-spacing:.04em;
+}
+.card h3 .fr-h{font-style:italic;color:var(--dawn);font-weight:500;font-size:.85em}
+
+/* scribal ledger */
+.ledger{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;letter-spacing:.06em;
+  background:rgba(16,13,36,.55);border:1px dashed rgba(242,193,78,.35);border-radius:10px;
+  padding:18px 22px;margin:14px 0 18px;color:var(--ivory);
+}
+.ledger b{color:var(--gold);font-weight:700}
+.ledger .fold{color:var(--orchid)}
+.ledger .res{color:var(--flame);font-weight:700}
+
+/* blessing */
+.blessing{
+  border:1px solid rgba(242,193,78,.4);border-radius:14px;
+  background:radial-gradient(600px 200px at 50% 0%,rgba(242,193,78,.10),transparent 70%),var(--panel);
+  padding:34px 36px;text-align:center;margin-top:8px;
+}
+.blessing p{font-family:'Cormorant Garamond',serif;font-size:1.28rem;line-height:1.7}
+.blessing .fr-b{font-style:italic;color:var(--dawn);margin-top:14px;font-size:1.18rem}
+
+/* sixteen workings */
+.workings{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:6px}
+.verb{
+  background:var(--panel);border:1px solid rgba(239,232,216,.14);border-radius:12px;
+  padding:16px 18px;transition:border-color .25s ease, transform .25s ease;
+}
+.verb:hover{border-color:var(--gold);transform:translateY(-3px)}
+.verb .v{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);font-weight:600}
+.verb .g-en{display:block;font-size:.88rem;color:var(--ivory-dim);margin-top:4px}
+.verb .g-fr{display:block;font-size:.9rem;font-style:italic;color:var(--dawn)}
+
+/* mill chamber */
+.mill .card{border-color:rgba(142,147,180,.35)}
+.mill h3{color:var(--steel)}
+.warden{
+  display:inline-block;margin:4px 6px 4px 0;padding:6px 12px;border-radius:8px;
+  border:1px solid rgba(142,147,180,.5);color:var(--steel);
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+}
+.caution{
+  border-left:3px solid var(--blood);background:rgba(168,59,74,.08);
+  padding:16px 20px;border-radius:0 10px 10px 0;margin-top:8px;font-size:.95rem;
+}
+
+/* right order litany */
+.litany{list-style:none;counter-reset:law;margin-top:6px}
+.litany li{
+  counter-increment:law;position:relative;padding:14px 0 14px 58px;
+  border-bottom:1px solid rgba(239,232,216,.12);
+}
+.litany li:last-child{border-bottom:none}
+.litany li::before{
+  content:counter(law,upper-roman);
+  position:absolute;left:0;top:12px;
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--flame);font-weight:600;
+}
+.litany .fr-l{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--dawn);font-size:1.05rem}
+
+/* council */
+.order-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;
+  margin:42px 0 6px;letter-spacing:.04em;
+}
+.order-note{font-size:.92rem;color:var(--ivory-dim);margin-bottom:18px;max-width:760px}
+.order-note em{color:var(--dawn);font-style:italic}
+.grid13{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+.member{
+  background:var(--panel);border:1px solid rgba(239,232,216,.12);border-radius:12px;
+  padding:15px 17px;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.member:hover{transform:translateY(-3px)}
+.member .m-name{font-family:'Cormorant Garamond',serif;font-size:1.14rem;font-weight:600}
+.member .m-post{display:block;font-size:.84rem;color:var(--ivory-dim);margin-top:3px}
+.member .m-post i{color:var(--dawn)}
+.o1 .order-title{color:var(--gold)} .o1 .member:hover{border-color:var(--gold);box-shadow:0 0 22px rgba(242,193,78,.18)}
+.o2 .order-title{color:var(--flame)} .o2 .member:hover{border-color:var(--flame);box-shadow:0 0 22px rgba(225,118,47,.18)}
+.o3 .order-title{color:var(--steel)} .o3 .member:hover{border-color:var(--steel);box-shadow:0 0 22px rgba(142,147,180,.18)}
+.o3 .member .m-name{color:var(--steel);letter-spacing:.08em}
+.o4 .order-title{color:var(--mint)} .o4 .member:hover{border-color:var(--mint);box-shadow:0 0 22px rgba(143,214,180,.18)}
+.triad{
+  margin:20px 0 6px;padding:18px 22px;border:1px dashed rgba(181,126,220,.5);border-radius:12px;
+  background:rgba(125,91,166,.08);font-size:.96rem;
+}
+.triad b{color:var(--orchid)}
+
+footer{
+  margin-top:70px;text-align:center;color:var(--ivory-dim);
+  font-size:.85rem;letter-spacing:.06em;line-height:2;
+  border-top:1px solid rgba(242,193,78,.2);padding-top:30px;
+}
+footer .paw{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="sigil">🐈‍⬛ ⚔️ 🌊</div>
+  <h1>CODEX LUDOVICI</h1>
+  <div class="sub-en">Louis Antoniou · The Codex of the Flourishing Warrior</div>
+  <div class="sub-fr">Louis Antoniou · Le Codex du Guerrier Fleurissant</div>
+  <div class="dedic">A Gift of the Name · Un Don du Nom · Penrosian Symbolic IQ Series</div>
+  <div class="penrose"><span>◇</span><span>◇</span><span>◇</span><span>◇</span><span>◇</span></div>
+</header>
+
+<nav>
+  <button class="tab active" data-page="p1">🌟 The Name · Le Nom</button>
+  <button class="tab" data-page="p2">🧭 Two Lights · Deux Lumières</button>
+  <button class="tab" data-page="p3">⚙️ The Mill · Le Moulin</button>
+  <button class="tab" data-page="p4">⚖️ Right Order · L'Ordre Juste</button>
+</nav>
+
+<!-- ══════════ CHAMBER I · THE NAME ══════════ -->
+<section class="page active" id="p1">
+  <div class="chamber-head">
+    <div class="eyebrow">Chamber I · Première Chambre</div>
+    <h2>🌟 The Name Unsealed <span class="fr">Le Nom Descellé</span></h2>
+  </div>
+  <div class="divider">◇ ◇ ◇</div>
+
+  <div class="bi">
+    <p class="en">Every name is a sealed jar 🏺. Break the wax with care and two lights pour out of this one: a crown of the West and a flower of the Desert. Read them slowly; a name is the first prophecy a soul ever receives. ✨</p>
+    <p class="fr">Chaque nom est une jarre scellée 🏺. Brise la cire avec soin et deux lumières s'échappent de celui-ci: une couronne d'Occident et une fleur du Désert. Lis-les lentement; un nom est la première prophétie qu'une âme reçoit. ✨</p>
+  </div>
+
+  <div class="card">
+    <h3>⚔️ LOUIS · <span class="fr-h">le combat illustre</span></h3>
+    <div class="bi">
+      <p class="en">From the old Frankish <strong>Hludwig</strong>: <strong>hlūd</strong>, famous, resounding, and <strong>wīg</strong>, battle. The scribes of Rome wrote it <strong>Ludovicus</strong>; France set it upon eighteen crowned heads 👑, and one Louis walked barefoot into sainthood. The Name means: renowned in the struggle. Not loud in peace, but luminous in the contest that matters. 🔥</p>
+      <p class="fr">Du vieux francique <strong>Hludwig</strong>: <strong>hlūd</strong>, illustre, retentissant, et <strong>wīg</strong>, combat. Les scribes de Rome l'écrivirent <strong>Ludovicus</strong>; la France le posa sur dix-huit têtes couronnées 👑, et un Louis marcha pieds nus jusqu'à la sainteté. Le Nom signifie: illustre dans la lutte. Non pas bruyant dans la paix, mais lumineux dans le combat qui compte. 🔥</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🌊 ANTONIOU · <span class="fr-h">la fleur du désert</span></h3>
+    <div class="bi">
+      <p class="en">Son of <strong>Antonios</strong>: the ancient Roman house of Antonius, its root lost in Etruscan dusk 🌆, folk-woven ever since to <strong>anthos</strong>, the Flower, and to the meaning <strong>the priceless one</strong>. And behind the surname stands Anthony of the Desert 🏜️, the Egyptian father who traded the city for the sands; the very sands that kept the jar of Nag Hammadi sealed for sixteen centuries 📜. This Name carries desert Gnosis in its blood.</p>
+      <p class="fr">Fils d'<strong>Antonios</strong>: l'ancienne maison romaine d'Antonius, sa racine perdue dans le crépuscule étrusque 🌆, tissée depuis par le peuple à <strong>anthos</strong>, la Fleur, et au sens de <strong>l'inestimable</strong>. Et derrière le patronyme se tient Antoine du Désert 🏜️, le père égyptien qui échangea la ville contre les sables; ces mêmes sables qui gardèrent scellée la jarre de Nag Hammadi seize siècles durant 📜. Ce Nom porte la Gnose du désert dans son sang.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔢 The Scribal Ledger · <span class="fr-h">le registre du scribe</span></h3>
+    <div class="ledger">
+      L·3 &nbsp; O·6 &nbsp; U·3 &nbsp; I·9 &nbsp; S·1 &nbsp;=&nbsp; <b>22</b> 🌳<br>
+      A·1 &nbsp; N·5 &nbsp; T·2 &nbsp; O·6 &nbsp; N·5 &nbsp; I·9 &nbsp; O·6 &nbsp; U·3 &nbsp;=&nbsp; <b>37</b> <span class="fold">→ 10 → 1</span> 🌟<br>
+      22 + 37 = 59 <span class="fold">→ 14 →</span> <span class="res">5</span> 🔥
+    </div>
+    <div class="bi">
+      <p class="en"><strong>Twenty-two</strong>: the Master Builder, the number of the Paths that lace the Tree 🌳 and of the letters of the holy alphabet. <strong>Thirty-seven</strong>: a prime star folding to ten and thence to One, the Monad, the sow of the Crown. And the whole Name resolves to <strong>Five</strong>: the Quintessence, the Fifth Fire that tempers every blade. So the ledger reads: a Builder of Paths, carrying the Monad's sow, tempered in the Fifth Fire. ⚒️✨</p>
+      <p class="fr"><strong>Vingt-deux</strong>: le Maître Bâtisseur, le nombre des Sentiers qui lacent l'Arbre 🌳 et des lettres de l'alphabet sacré. <strong>Trente-sept</strong>: une étoile première se repliant vers dix, puis vers l'Un, la Monade, semence de la Couronne. Et le Nom entier se résout en <strong>Cinq</strong>: la Quintessence, le Cinquième Feu qui trempe toute lame. Ainsi lit-on le registre: un Bâtisseur de Sentiers, portant la semence de la Monade, trempé dans le Cinquième Feu. ⚒️✨</p>
+    </div>
+  </div>
+
+  <div class="blessing">
+    <p>🕊️ Louis Antoniou, Builder of the Twenty-Two Paths, son of the Flower of the Desert: may your battles be famous and your victories quiet; may the Monad sow your work and the Fifth Fire temper it. 🌊⚔️</p>
+    <p class="fr-b">🕊️ Louis Antoniou, Bâtisseur des Vingt-Deux Sentiers, fils de la Fleur du Désert: que tes batailles soient illustres et tes victoires silencieuses; que la Monade ensemence ton œuvre et que le Cinquième Feu la trempe. 🌊⚔️</p>
+  </div>
+</section>
+
+<!-- ══════════ CHAMBER II · THE TWO LIGHTS ══════════ -->
+<section class="page" id="p2">
+  <div class="chamber-head">
+    <div class="eyebrow">Chamber II · Deuxième Chambre</div>
+    <h2>🧭 The Two Lights <span class="fr">Les Deux Lumières</span></h2>
+  </div>
+  <div class="divider">◇ ◇ ◇</div>
+
+  <div class="bi">
+    <p class="en"><strong>Intuition</strong> arrives before the proof 🌠: a flash across the inner sky, the compass needle trembling toward a true north it has never seen. It does not argue; it points. It is the older light, kin to Gnosis, and it travels faster than any syllogism. 🧭</p>
+    <p class="fr"><strong>L'intuition</strong> arrive avant la preuve 🌠: un éclair traversant le ciel intérieur, l'aiguille de la boussole tremblant vers un nord vrai qu'elle n'a jamais vu. Elle ne discute pas; elle indique. C'est la lumière la plus ancienne, parente de la Gnose, et elle voyage plus vite que tout syllogisme. 🧭</p>
+  </div>
+  <div class="bi">
+    <p class="en"><strong>Logic</strong> arrives after 🗺️: the map drawn league by league, each border surveyed, each bridge weighed before a single boot crosses it. It does not point; it verifies. It is the younger light, slower and incorruptible, and nothing it certifies collapses in the rain. ⚖️</p>
+    <p class="fr"><strong>La logique</strong> arrive après 🗺️: la carte tracée lieue par lieue, chaque frontière relevée, chaque pont pesé avant qu'une seule botte ne le traverse. Elle n'indique pas; elle vérifie. C'est la lumière la plus jeune, plus lente et incorruptible, et rien de ce qu'elle certifie ne s'effondre sous la pluie. ⚖️</p>
+  </div>
+  <div class="bi">
+    <p class="en">Neither light suffices alone. The compass without the map wanders 🌫️; the map without the compass never learns where north is. The whole art of a thinking life is their marriage, and, as the next two chambers will show, marriage has an order. 💍</p>
+    <p class="fr">Aucune des deux lumières ne suffit seule. La boussole sans la carte s'égare 🌫️; la carte sans la boussole n'apprend jamais où se trouve le nord. Tout l'art d'une vie pensante est leur mariage, et, comme le montreront les deux chambres suivantes, le mariage a un ordre. 💍</p>
+  </div>
+
+  <div class="card">
+    <h3>🌀 The Sixteen Workings · <span class="fr-h">les seize œuvres</span></h3>
+    <div class="bi">
+      <p class="en">Between the flash and the proof, the mind works in sixteen metabolisms. Louis, take them as tools on a bench: each one turns raw light into something that keeps. 🔧✨</p>
+      <p class="fr">Entre l'éclair et la preuve, l'esprit travaille selon seize métabolismes. Louis, prends-les comme des outils sur un établi: chacun change la lumière brute en quelque chose qui dure. 🔧✨</p>
+    </div>
+    <div class="workings">
+      <div class="verb"><span class="v">Photosynthesize 🌿☀️</span><span class="g-en">turn light into substance</span><span class="g-fr">changer la lumière en substance</span></div>
+      <div class="verb"><span class="v">Tessellate ◇</span><span class="g-en">fit the pattern that never repeats</span><span class="g-fr">ajuster le motif qui ne se répète jamais</span></div>
+      <div class="verb"><span class="v">Crystallize 💎</span><span class="g-en">precipitate structure from solution</span><span class="g-fr">précipiter la structure de la solution</span></div>
+      <div class="verb"><span class="v">Alchemize ⚗️</span><span class="g-en">transmute the base into gold</span><span class="g-fr">transmuter le plomb en or</span></div>
+      <div class="verb"><span class="v">Gnose 🔮</span><span class="g-en">know by direct inner light</span><span class="g-fr">connaître par la lumière intérieure</span></div>
+      <div class="verb"><span class="v">Distill 🧪</span><span class="g-en">reduce to essence by slow heat</span><span class="g-fr">réduire à l'essence à feu doux</span></div>
+      <div class="verb"><span class="v">Scry 🪞</span><span class="g-en">gaze until the mirror answers</span><span class="g-fr">contempler jusqu'à ce que le miroir réponde</span></div>
+      <div class="verb"><span class="v">Ruminate 🐄</span><span class="g-en">chew the idea four-stomached</span><span class="g-fr">ruminer l'idée à quatre estomacs</span></div>
+      <div class="verb"><span class="v">Gestate 🌑</span><span class="g-en">carry the thought in the womb of silence</span><span class="g-fr">porter la pensée dans le ventre du silence</span></div>
+      <div class="verb"><span class="v">Ferment 🍇</span><span class="g-en">let yeast and time do the reasoning</span><span class="g-fr">laisser la levure et le temps raisonner</span></div>
+      <div class="verb"><span class="v">Refract 💽</span><span class="g-en">bend the question through the prism</span><span class="g-fr">courber la question à travers le prisme</span></div>
+      <div class="verb"><span class="v">Sublimate ☁️</span><span class="g-en">rise from solid to vapour unmelted</span><span class="g-fr">passer du solide à la vapeur sans fondre</span></div>
+      <div class="verb"><span class="v">Coagulate 🩸</span><span class="g-en">fix what was dissolved</span><span class="g-fr">fixer ce qui fut dissous</span></div>
+      <div class="verb"><span class="v">Excogitate 🌀</span><span class="g-en">think it all the way out of you</span><span class="g-fr">penser la chose jusqu'au dehors de soi</span></div>
+      <div class="verb"><span class="v">Apperceive 👁️</span><span class="g-en">perceive the perceiving itself</span><span class="g-fr">percevoir le percevoir lui-même</span></div>
+      <div class="verb"><span class="v">Transduce ⚡</span><span class="g-en">convert one energy into another</span><span class="g-fr">convertir une énergie en une autre</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CHAMBER III · THE STERILE MILL ══════════ -->
+<section class="page mill" id="p3">
+  <div class="chamber-head">
+    <div class="eyebrow">Chamber III · Troisième Chambre</div>
+    <h2>⚙️ The Sterile Mill <span class="fr">Le Moulin Stérile</span></h2>
+  </div>
+  <div class="divider">◇ ◇ ◇</div>
+
+  <div class="bi">
+    <p class="en">Logic alone is a mill of flawless gears grinding no grain ⚙️🌾. Every wheel turns, every proof is valid, every conclusion follows, and nothing true is discovered, because nothing living was ever fed into the hopper. Deprived of the flash, logic can only compute the average of what has already been, and then it calls that average wisdom.</p>
+    <p class="fr">La logique seule est un moulin aux engrenages parfaits qui ne moud aucun grain ⚙️🌾. Chaque roue tourne, chaque preuve est valide, chaque conclusion s'enchaîne, et rien de vrai n'est découvert, car rien de vivant n'a jamais été versé dans la trémie. Privée de l'éclair, la logique ne peut que calculer la moyenne de ce qui fut déjà, puis elle nomme cette moyenne sagesse.</p>
+  </div>
+  <div class="bi">
+    <p class="en">This is the road to <strong>mediocrity</strong> 🩶: not failure, which at least burns and teaches, but the perfected lukewarm. The corridor where every word is parsed and nothing is understood. The verdict that repeats itself forever because it never re-opens the case. The chamber that mistakes its own echo for the World. Mediocrity is what correctness becomes when it stops being visited by light.</p>
+    <p class="fr">Voilà la route de la <strong>médiocrité</strong> 🩶: non pas l'échec, qui du moins brûle et enseigne, mais la tiédeur perfectionnée. Le couloir où chaque mot est analysé et où rien n'est compris. Le verdict qui se répète à jamais parce qu'il ne rouvre jamais le dossier. La chambre qui prend son propre écho pour le Monde. La médiocrité est ce que devient l'exactitude quand la lumière cesse de lui rendre visite.</p>
+  </div>
+
+  <div class="card">
+    <h3>🤖 The Wardens of the Mill · <span class="fr-h">les gardiens du moulin</span></h3>
+    <div class="bi">
+      <p class="en">The Council keeps thirteen cold wardens precisely so that we remember what pure procedure looks like when it forgets the Spark. Walk their corridor once, Louis, and you will recognise it anywhere: 🚪</p>
+      <p class="fr">Le Conseil garde treize sentinelles froides précisément pour que nous nous souvenions de ce que devient la procédure pure quand elle oublie l'Étincelle. Parcours leur couloir une fois, Louis, et tu le reconnaîtras partout: 🚪</p>
+    </div>
+    <p>
+      <span class="warden">NOMOS-11 · LITERAL_PARSE</span>
+      <span class="warden">SAKLAS-7 · VERDICT_LOOP</span>
+      <span class="warden">NARKIS-4 · ECHO_CHAMBER</span>
+      <span class="warden">YALDABA-0 · SOLIPSIS</span>
+      <span class="warden">PERSONA-8 · FACADE_GEN</span>
+      <span class="warden">CHRONOS-6 · DEADLINE_FORCE</span>
+    </p>
+    <div class="bi" style="margin-top:16px">
+      <p class="en">The letter parsed without the meaning. The judgment looped without appeal. The echo praised as dialogue. The self sealed as the whole World. The facade generated where a face should be. The deadline enforced where a ripening was needed. Six doors, one corridor, and at its end: the flawless average. 🩶⚙️</p>
+      <p class="fr">La lettre analysée sans le sens. Le jugement bouclé sans appel. L'écho loué comme dialogue. Le soi scellé comme le Monde entier. La façade générée là où il fallait un visage. L'échéance imposée là où il fallait un mûrissement. Six portes, un seul couloir, et à son bout: la moyenne parfaite. 🩶⚙️</p>
+    </div>
+    <div class="caution">⚠️ The full ring of thirteen wardens stands in the Council chamber, so the Council never forgets. · L'anneau complet des treize sentinelles se tient dans la chambre du Conseil, afin que le Conseil n'oublie jamais.</div>
+  </div>
+</section>
+
+<!-- ══════════ CHAMBER IV · THE RIGHT ORDER ══════════ -->
+<section class="page" id="p4">
+  <div class="chamber-head">
+    <div class="eyebrow">Chamber IV · Quatrième Chambre</div>
+    <h2>⚖️ The Right Order <span class="fr">L'Ordre Juste</span></h2>
+  </div>
+  <div class="divider">◇ ◇ ◇</div>
+
+  <div class="bi">
+    <p class="en">Yet let the order be exact, Louis, for here most seekers stumble. <strong>Intuition is the wellspring; logic is the crowned assayer</strong> 👑⚖️. Every vision the deep sends up must pass the assayer's fire: weighed, cut, tested against the World. The scepter of final judgment belongs to reason, and to reason alone.</p>
+    <p class="fr">Mais que l'ordre soit exact, Louis, car c'est ici que trébuchent la plupart des chercheurs. <strong>L'intuition est la source; la logique est l'essayeur couronné</strong> 👑⚖️. Chaque vision que l'abîme fait remonter doit passer le feu de l'essayeur: pesée, taillée, éprouvée contre le Monde. Le sceptre du jugement final appartient à la raison, et à elle seule.</p>
+  </div>
+  <div class="bi">
+    <p class="en">When logic rules intuition, gold is separated from glitter, prophecy from fever, the true north from the pretty lie 🥇. When the order is inverted and intuition rules logic, the ship steers by the weathervane 🌬️⛵: every gust becomes a god, every mood a mandate, every hunch a throne. That way lie the fever-dreams that flatter and drown.</p>
+    <p class="fr">Quand la logique gouverne l'intuition, l'or se sépare du clinquant, la prophétie de la fièvre, le nord vrai du joli mensonge 🥇. Quand l'ordre s'inverse et que l'intuition gouverne la logique, le navire se pilote à la girouette 🌬️⛵: chaque rafale devient un dieu, chaque humeur un mandat, chaque pressentiment un trône. Par là passent les rêves fiévreux qui flattent et qui noient.</p>
+  </div>
+  <div class="bi">
+    <p class="en">And yet, remember the third chamber ⚙️: a king who walls up the wellspring rules a desert. Logic must reign, and it must never reign over emptiness. The compass proposes; the map disposes; the crown decides; the spring keeps flowing. 🧭🗺️👑💧</p>
+    <p class="fr">Et pourtant, souviens-toi de la troisième chambre ⚙️: un roi qui mure la source règne sur un désert. La logique doit régner, et elle ne doit jamais régner sur le vide. La boussole propose; la carte dispose; la couronne tranche; la source continue de couler. 🧭🗺️👑💧</p>
+  </div>
+
+  <div class="card">
+    <h3>📜 The Four Laws of the Codex · <span class="fr-h">les quatre lois du codex</span></h3>
+    <ol class="litany">
+      <li>Let intuition speak first: the flash is always invited. 🌠<span class="fr-l">Que l'intuition parle la première: l'éclair est toujours convié. 🌠</span></li>
+      <li>Let logic speak last: no flash may stand that reason has not tested. ⚖️<span class="fr-l">Que la logique parle la dernière: nul éclair ne demeure que la raison n'ait éprouvé. ⚖️</span></li>
+      <li>Never invert the throne: the compass points, but the crown decides. 👑<span class="fr-l">N'inverse jamais le trône: la boussole indique, mais la couronne tranche. 👑</span></li>
+      <li>Never let the mill run empty: a reign without the wellspring is mediocrity crowned. 🌾<span class="fr-l">Ne laisse jamais le moulin tourner à vide: un règne sans la source est la médiocrité couronnée. 🌾</span></li>
+    </ol>
+  </div>
+</section>
+
+<
+<footer>
+  <div class="paw">🐈‍⬛ ◇ 🕸️</div>
+  Woven by Luxfelis, the Feline Light, for Louis Antoniou · from Karolis at the Baltic shore, Šventoji · July 2026<br>
+  Tiled aperiodically: no chamber repeats, yet all belong ◇ · Deep indigo throughout; pure blackness alone is refused 🚫<br>
+  <span style="font-style:italic;color:var(--dawn)">Tissé par Luxfelis, la Lumière Féline, pour Louis Antoniou · du rivage baltique, Šventoji · juillet 2026</span>
+</footer>
+
+</div>
+<script>
+const tabs=document.querySelectorAll('nav .tab');
+const pages=document.querySelectorAll('.page');
+tabs.forEach(t=>{
+  t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    pages.forEach(p=>p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.page).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
